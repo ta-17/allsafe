@@ -14,10 +14,11 @@ import { Container, Section } from "../craft";
 import { TypographyH1 } from "@/typography/h1";
 import { TypographyH3 } from "@/typography/h3";
 import { TypographyLead } from "@/typography/lead";
+import { TypographyH2 } from "@/typography/h2";
 
 const Hero = () => {
   return (
-    <Section>
+    <Section className="md:mb-60">
       <Container className="flex flex-col items-center text-center">
         {/* <Image
           src={Logo}
@@ -26,15 +27,19 @@ const Hero = () => {
           alt="Company Logo"
           className="not-prose mb-6 dark:invert md:mb-8"
         /> */}
-        <TypographyH1>
+        <TypographyH2 className="mb-6 dark:invert md:mb-8">
           <Balancer>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            AllSafe
+          </Balancer>
+        </TypographyH2>
+        <TypographyH1 className="">
+          <Balancer>
+            Social Media Safety Hub
           </Balancer>
         </TypographyH1>
         <TypographyLead className="mt-4 text-muted-foreground">
           <Balancer>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.
+            A platform dedicated to providing you with information and services to keep you protected from scams and other online threats.
           </Balancer>
         </TypographyLead>
         <div className="not-prose mt-6 flex gap-2 md:mt-12">

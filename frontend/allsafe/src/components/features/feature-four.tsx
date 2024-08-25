@@ -5,19 +5,19 @@ import Image from "next/image";
 // UI component imports
 import { Section, Container } from "@/components/craft";
 import { Button } from "@/components/ui/button";
+import { TypographyH3 } from "@/typography/h3";
 
 // Asset imports
 // import Placeholder from "@/public/placeholder.jpg";
 
-const FeatureRight = () => {
+const FeatureRight = ({title, body}: {title: string, body: string}) => {
   return (
     <Section>
       <Container className="grid items-stretch md:grid-cols-2 md:gap-12">
         <div className="flex flex-col gap-6 py-8">
-          <h3 className="!my-0">Lorem ipsum dolor sit</h3>
+          <TypographyH3 className="!my-0">{title}</TypographyH3>
           <p className="font-light leading-[1.4] opacity-70">
-            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
+            {body}
           </p>
           <div className="not-prose flex items-center gap-2">
             <Button className="w-fit" asChild>
