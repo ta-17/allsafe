@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import NavBar from "../components/NavBar";
-import { TypographyH1 } from "@/typography/h1";
-import { TypographyLead } from "@/typography/lead";
-import { Button } from "@/components/ui/button";
-import Feature from "@/components/hero/feature";
-import Hero from "@/components/hero/hero-two";
-import FeatureLeft from "@/components/features/feature-three";
-import FeatureRight from "@/components/features/feature-four";
-import Header from "@/components/hero/header-two";
+import Image from 'next/image'
+import NavBar from '../components/NavBar'
+import { TypographyH1 } from '@/typography/h1'
+import { TypographyLead } from '@/typography/lead'
+import { Button } from '@/components/ui/button'
+import Feature from '@/components/hero/feature'
+import Hero from '@/components/hero/hero-two'
+import FeatureLeft from '@/components/features/feature-three'
+import FeatureRight from '@/components/features/feature-four'
+import Header from '@/components/hero/header-two'
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <NavBar />
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        {/* <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <NavBar />
+            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+                {/* <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
@@ -38,9 +38,9 @@ export default function Home() {
             />
           </a>
         </div> */}
-      </div>
+            </div>
 
-      {/* <div className="relative z-[-1] flex flex-col place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
+            {/* <div className="relative z-[-1] flex flex-col place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
         <TypographyH1 title="AllSafe"/>
         <div className="py-1"></div>
         <TypographyLead title="Your social media safety hub." />
@@ -49,11 +49,24 @@ export default function Home() {
         <Button variant="outline">Learn More</Button>
         </div>
       </div> */}
-      <Hero />
-      <Header />
-      <FeatureLeft title="News, news, and news" body="Get the latest news and updates about different types of scams. Learning from relevant sources, to familiarize you with different types of scams that are currently going around. We have curated a list of the most relevant news related to scams. Keeping them updated to always be relevant." />
-      <FeatureRight title="Scam detection model" body="Coming soon is an AI model which can be used to detect scams. This model has been trained on a large dataset of social media scams from different platforms, to ensure that the model is reliable. All you need to do is paste the suspicious message and the model will detect it."/>
-      <FeatureLeft title="Quiz yourself" body="We have provided a series of quizzes about scams. We have created a set of learning resources to help you learn about different types of scams. And to test yourself on how well you can spot and identify them." />
-    </main>
-  );
+            <Hero />
+            <Header
+                title="Scared of being scammed or target online?"
+                subtitle=" Our collection of resources, articles, and scam detector
+                        tools can help."
+            />
+            <FeatureLeft
+                title="News, news, and news"
+                body="Get the latest news and updates about different types of scams. Learning from relevant sources, to familiarize you with different types of scams that are currently going around. We have curated a list of the most relevant news related to scams. Keeping them updated to always be relevant."
+            />
+            <FeatureRight
+                title="Scam detection model"
+                body="Coming soon is an AI model which can be used to detect scams. This model has been trained on a large dataset of social media scams from different platforms, to ensure that the model is reliable. All you need to do is paste the suspicious message and the model will detect it."
+            />
+            <FeatureLeft
+                title="Quiz yourself"
+                body="We have provided a series of quizzes about scams. We have created a set of learning resources to help you learn about different types of scams. And to test yourself on how well you can spot and identify them."
+            />
+        </main>
+    )
 }
