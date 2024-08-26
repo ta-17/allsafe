@@ -96,12 +96,12 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          scp -o StrictHostKeyChecking=no -r ./.env ./backend/docker-compose.prod.yml ${{secrets.EC2_USER}}@${{ secrets.EC2_HOST }}:
+          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{secrets.EC2_USER}}@${{ secrets.EC2_HOST }}:
           ssh -o StrictHostKeyChecking=no ${{secrets.EC2_USER}}@${{ secrets.EC2_HOST }} << EOF
-              docker-compose -f backend/docker-compose.prod.yml down --rmi all -v
+              docker-compose down --rmi all -v
               docker login ghcr.io -u ${{secrets.NAMESPACE}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}
               docker pull $DJANGO_TUTORIAL_API_IMAGE
               docker pull $DJANGO_TUTORIAL_NGINX_IMAGE
-              docker-compose --env-file=.env -f backend/docker-compose.prod.yml up -d --build
+              docker-compose --env-file=.env -f docker-compose.prod.yml up -d --build
               docker logout
           EOF
