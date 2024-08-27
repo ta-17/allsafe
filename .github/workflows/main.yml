@@ -69,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: checking-secrets
     if: needs.checking-secrets.outputs.secret_key_exists == 'true'
+    secrets: inherit
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
