@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('RDS_ENGINE','django.db..mysql'),
+        'ENGINE': os.getenv('RDS_ENGINE','django.db.backends.mysql'),
         'NAME': os.getenv('RDS_DB_NAME','TA17'),
         'USER': os.getenv('RDS_USER_NAME','Paris'),
         'PASSWORD': os.getenv('RDS_PASS','paris123'),
