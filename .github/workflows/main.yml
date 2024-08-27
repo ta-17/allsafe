@@ -42,11 +42,6 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -qq docker-compose
 
-      - name: Clean up existing containers and images
-        run: |
-          docker-compose -f backend/docker-compose.ci.yml down --rmi all -v
-          docker system prune -f
-
       - name: Build images
         id: build-images
         run: |

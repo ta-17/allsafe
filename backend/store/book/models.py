@@ -1,18 +1,10 @@
 from django.db import models
 
-# Create your models here.
-class Book (models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    content = models.TextField()
-    pub_date = models.DateField()
+class ScamSMS(models.Model):
+    label = models.CharField(max_length=255)
+    text_length = models.IntegerField()
+    text = models.TextField()
 
-
-class QuizData(models.Model):
-    # Define the fields according to your database schema
-    # For example:
-    question = models.CharField(max_length=255)
-    answer = models.TextField()
-
-    def __str__(self):
-        return self.question
+    class Meta:
+        db_table = 'scam_sms'  # This tells Django to use the existing table
+        managed = False  # This ensures Django does not try to create or modify this table
