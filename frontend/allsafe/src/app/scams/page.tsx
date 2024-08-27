@@ -22,7 +22,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="https://via.placeholder.com/100"
+                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                             altText="Placeholder Image"
                             heading="Buying or Selling"
                             description="This happens when having transactions, either you are a buyer or a seller, via social media to a website, marketplace, or just pretending to be a business with a fake invoice."
@@ -39,7 +39,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="https://via.placeholder.com/100"
+                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                             altText="Placeholder Image"
                             heading="Gain Personal Information"
                             description="Scammers will attempt to get your personal details and bank account or try to hack or phishing you. Your personal information may be used in various situations, which may ultimately lead to your money loss."
@@ -56,7 +56,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="https://via.placeholder.com/100"
+                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                             altText="Placeholder Image"
                             heading="Investment"
                             description="Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period."
@@ -73,9 +73,9 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="https://via.placeholder.com/100"
+                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                             altText="Placeholder Image"
-                            heading="Jobs and Employment Opportunities"
+                            heading="Jobs and Employment"
                             description="It can be related to gaining personal information or money. Scammers offer jobs with high salaries with low effort or unrealistic hourly rates; it sometimes also requires you to pay first to earn the money."
                             link="/scams/job-and-employment-opportunities"
                         />
@@ -90,7 +90,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="https://via.placeholder.com/100"
+                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                             altText="Placeholder Image"
                             heading="Dating and Romance"
                             description="Scammers usually build up trust with you through dating, romance or friend relationships. After building up the trust, they will use the emotional connection with you to trick you for money."
