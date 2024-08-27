@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('RDS_ENGINE'),
-        'NAME': os.getenv('RDS_DB_NAME'),
-        'USER': os.getenv('RDS_USER_NAME'),
-        'PASSWORD': os.getenv('RDS_PASS'),
-        'HOST': os.getenv('RDS_HOST'),
-        'PORT': os.getenv('RDS_PORT'),
+        'ENGINE': os.getenv('RDS_ENGINE','django.db.backends.mysql'),
+        'NAME': os.getenv('RDS_DB_NAME','TA17'),
+        'USER': os.getenv('RDS_USER_NAME','admin'),
+        'PASSWORD': os.getenv('RDS_PASS','roychan1998'),
+        'HOST': os.getenv('RDS_HOST','ta17-database-1.cnu2iwakad0g.ap-southeast-2.rds.amazonaws.com'),
+        'PORT': os.getenv('RDS_PORT','3306'),
     }
 }
 

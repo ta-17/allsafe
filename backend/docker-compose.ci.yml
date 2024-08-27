@@ -1,5 +1,5 @@
 services:
-  quizdata:
+  bookapi:
     build:
       context: ./store
       dockerfile: Dockerfile
