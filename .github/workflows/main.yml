@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - paris-dgango
 
 env:
   DJANGO_TUTORIAL_API_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/backend/store
