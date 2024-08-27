@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamMenu from '@/components/assets/ScamMenu'
 import Link from 'next/link'
+import Header from '@/components/hero/header-two'
 
 export default function ScamInfo() {
     return (
@@ -12,6 +13,7 @@ export default function ScamInfo() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
 
+                <Header title="Scams" subtitle="" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
                     <div
                         style={{
