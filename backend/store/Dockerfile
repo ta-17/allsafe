@@ -9,13 +9,16 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /store
 
-# Install MySQL development libraries
-RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev \
-    build-essential
+# Install MySQL development libraries and build tools
+RUN apk add --no-cache mariadb-connector-c-dev gcc musl-dev
 
+# Upgrade pip
 RUN pip install --upgrade pip
+
+# Copy the requirements file into the container
 COPY ./requirements.txt /store/requirements.txt
+
+# Install the dependencies
 RUN pip install -r /store/requirements.txt
 
 # Copy the source code into the container.
