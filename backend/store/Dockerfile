@@ -9,6 +9,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /store
 
+# Install MySQL development libraries
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    build-essential
+
 RUN pip install --upgrade pip
 COPY ./requirements.txt /store/requirements.txt
 RUN pip install -r /store/requirements.txt
