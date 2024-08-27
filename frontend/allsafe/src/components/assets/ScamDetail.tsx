@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 interface ScamDetailProps {
@@ -18,7 +19,6 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
     return (
         <div
             style={{
-                padding: '20px',
                 boxSizing: 'border-box',
                 maxWidth: '1200px',
                 margin: '0 auto',
@@ -34,14 +34,14 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
                     boxSizing: 'border-box',
                 }}
             >
-                <img
+                <Image
                     src={imageSrc}
                     alt={altText}
-                    style={{
-                        width: '100%',
-                        height: 'auto',
-                        borderRadius: '8px',
-                    }}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: '90%', height: 'auto' }} // optional
+                    className="w-full"
                 />
             </div>
 

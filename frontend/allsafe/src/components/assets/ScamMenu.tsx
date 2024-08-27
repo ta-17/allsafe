@@ -1,5 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { TypographyH3 } from '@/typography/h3'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
 
 interface ScamMenuProps {
     imageSrc: string
@@ -18,66 +28,21 @@ const ScamMenu: React.FC<ScamMenuProps> = ({
 }) => {
     return (
         <Link href={link}>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    width: '100%',
-                    height: '100%',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '8px',
-                    padding: '16px',
-                    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)',
-                    transition: 'box-shadow 0.2s ease-in-out',
-                    cursor: 'pointer',
-                }}
-                onMouseEnter={(e) =>
-                    (e.currentTarget.style.boxShadow =
-                        '0px 4px 6px rgba(0, 0, 0, 0.1)')
-                }
-                onMouseLeave={(e) =>
-                    (e.currentTarget.style.boxShadow =
-                        '0px 1px 2px rgba(0, 0, 0, 0.1)')
-                }
-            >
-                <div>
-                    <img
+            <Card className="w-[350px] h-[500px]">
+                <CardHeader>
+                    <Image
                         src={imageSrc}
                         alt={altText}
-                        style={{
-                            width: '100px',
-                            height: '100px',
-                            objectFit: 'cover',
-                            borderRadius: '4px',
-                            marginBottom: '16px',
-                        }}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{ width: '100%', height: 'auto' }} // optional
+                        className="w-full"
                     />
-                    <h2
-                        style={{
-                            fontSize: '1.5rem',
-                            margin: '8px 0',
-                            color: '#333',
-                            textAlign: 'center',
-                        }}
-                    >
-                        {heading}
-                    </h2>
-                </div>
-                <p
-                    style={{
-                        fontSize: '1rem',
-                        color: '#555',
-                        lineHeight: '1.5',
-                        textAlign: 'center',
-                    }}
-                >
-                    {description}
-                </p>
-            </div>
+                    <CardTitle>{heading}</CardTitle>
+                    <CardDescription>{description}</CardDescription>
+                </CardHeader>
+            </Card>
         </Link>
     )
 }

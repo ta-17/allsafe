@@ -30,10 +30,10 @@ const cardData = [
 export default function BuyingOrSelling() {
     return (
         <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <main className="flex min-h-screen gap-y-16 flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="https://via.placeholder.com/300"
+                    imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                     altText="Always use image alt"
                     heading="Buying or Selling"
                     subheading="Online Shopping | Classified | False Billing"
