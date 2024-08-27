@@ -20,21 +20,20 @@ const ScamMenu: React.FC<ScamMenuProps> = ({
         <Link href={link}>
             <div
                 style={{
-                    display: 'flex',
+                    display: 'block',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    width: '100%',
-                    height: '100%',
+                    // height: '500px',
                     textDecoration: 'none',
                     color: 'inherit',
                     border: '1px solid #e2e8f0',
                     borderRadius: '8px',
-                    padding: '16px',
                     boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)',
                     transition: 'box-shadow 0.2s ease-in-out',
                     cursor: 'pointer',
                 }}
+                className="px-4 py-2 md:min-h-[23rem] xl:min-h-96 overflow-hidden"
                 onMouseEnter={(e) =>
                     (e.currentTarget.style.boxShadow =
                         '0px 4px 6px rgba(0, 0, 0, 0.1)')

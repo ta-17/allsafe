@@ -12,25 +12,13 @@ export default function ScamInfo() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
 
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'stretch',
-                        width: '100%',
-                        gap: '20px',
-                        flexWrap: 'wrap',
-                    }}
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
                     <div
                         style={{
-                            flex: '1 1 30%',
-                            maxWidth: '30%',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            height: '100%',
                         }}
                     >
                         <ScamMenu
@@ -44,13 +32,10 @@ export default function ScamInfo() {
 
                     <div
                         style={{
-                            flex: '1 1 30%',
-                            maxWidth: '30%',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            height: '100%',
                         }}
                     >
                         <ScamMenu
@@ -64,13 +49,10 @@ export default function ScamInfo() {
 
                     <div
                         style={{
-                            flex: '1 1 30%',
-                            maxWidth: '30%',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            height: '100%',
                         }}
                     >
                         <ScamMenu
@@ -84,8 +66,6 @@ export default function ScamInfo() {
 
                     <div
                         style={{
-                            flex: '1 1 30%',
-                            maxWidth: '30%',
                             boxSizing: 'border-box',
                             minHeight: '200px',
                             display: 'flex',
@@ -103,8 +83,6 @@ export default function ScamInfo() {
 
                     <div
                         style={{
-                            flex: '1 1 30%',
-                            maxWidth: '30%',
                             boxSizing: 'border-box',
                             minHeight: '200px',
                             display: 'flex',
