@@ -20,6 +20,7 @@ const Card: React.FC<CardProps> = ({ asset, title, body }) => {
                 width: '100%',
                 boxSizing: 'border-box',
             }}
+            className="h-full"
         >
             {asset}
             <div
@@ -49,25 +50,16 @@ interface ScamTipsProps {
 
 const ScamTips: React.FC<ScamTipsProps> = ({ cards }) => {
     return (
-        <div
-            style={{ padding: '20px', boxSizing: 'border-box', width: '100%' }}
-        >
+        <div style={{ boxSizing: 'border-box', width: '100%' }}>
             <div style={{ marginBottom: '16px' }}>
                 <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 'bold' }}>
                     Tips to avoid:
                 </h1>
-                <h2 style={{ margin: 0, fontSize: '18px', color: '#555' }}>
+                {/* <h2 style={{ margin: 0, fontSize: '18px', color: '#555' }}>
                     Subheading
-                </h2>
+                </h2> */}
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    gap: '20px',
-                    flexWrap: 'wrap',
-                }}
-            >
+            <div className="flex flex-wrap h-40 gap-16">
                 {cards.map((card, index) => (
                     <div
                         key={index}
@@ -76,6 +68,7 @@ const ScamTips: React.FC<ScamTipsProps> = ({ cards }) => {
                             boxSizing: 'border-box',
                             maxWidth: 'calc(33% - 20px)',
                         }}
+                        className=""
                     >
                         <Card
                             asset={card.asset}
