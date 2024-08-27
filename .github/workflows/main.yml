@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - paris-dgango
 
 env:
   DJANGO_TUTORIAL_API_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/backend/store
@@ -20,7 +19,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
 
-      - name: Add environment variables to .env
+      - name: Set environment variables to .env
         run: |
           echo "DJANGO_TUTORIAL_API_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_API_IMAGE}})" >> $GITHUB_ENV
           echo "DJANGO_TUTORIAL_NGINX_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_NGINX_IMAGE}})" >> $GITHUB_ENV
