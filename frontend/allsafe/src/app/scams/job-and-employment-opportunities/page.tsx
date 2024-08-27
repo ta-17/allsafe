@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
+import employment from '@/components/assets/scam-photo/employment.webp'
 
 const cardData = [
     {
@@ -33,7 +34,7 @@ export default function JobAndEmployment() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="https://via.placeholder.com/300"
+                    imageSrc={employment}
                     altText="Always use image alt"
                     heading="Jobs and Employment Opportunities"
                     subheading="Subheading"

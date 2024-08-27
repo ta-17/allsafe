@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
+import dating from '@/components/assets/scam-photo/dating.webp'
 
 const cardData = [
     {
@@ -42,7 +43,7 @@ export default function DatingAndRomance() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="https://via.placeholder.com/300"
+                    imageSrc={dating}
                     altText="Always use image alt"
                     heading="Dating and Romance"
                     subheading="Subheading"

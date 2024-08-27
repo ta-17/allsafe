@@ -2,9 +2,11 @@
 
 import Image from 'next/image'
 import NavBar from '../../components/NavBar'
-import Biography from '../../components/assets/Biography'
 import Header from '@/components/hero/header-two'
 import Footer from '@/components/footer/footer-four'
+import royImage from '@/components/assets/memoji/roy-memoji.jpg'
+import parisImage from '@/components/assets/memoji/paris-memoji.png'
+import joImage from '@/components/assets/memoji/jo-memoji.jpg'
 
 import {
     Card,
@@ -23,13 +25,13 @@ import {
 
 const us = [
     {
-        image: '',
+        image: royImage,
         heading: 'Roy',
         subheading: 'Data Science',
         description: 'Hello world.',
     },
     {
-        image: '',
+        image: parisImage,
         heading: 'Lyn',
         subheading: 'Data Science',
         description: 'Hello world.',
@@ -47,7 +49,7 @@ const us = [
         description: 'Hello world.',
     },
     {
-        image: '',
+        image: joImage,
         heading: 'Jo',
         subheading: 'Business Information System',
         description: 'Hello world.',
@@ -61,7 +63,7 @@ export default function AboutUs() {
                 <NavBar />
                 <Header
                     title="Our Team"
-                    subtitle="We are a group of student from Monash University."
+                    subtitle="We are a group of students from Monash University."
                 />
                 <div className="w-full sm:w-3/4 md:w-2/3 lg:w-5/6 mx-auto">
                     <Carousel
@@ -80,15 +82,17 @@ export default function AboutUs() {
                                         <Card>
                                             <CardHeader className="">
                                                 <Image
-                                                    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                                    alt="heading"
-                                                    width={0}
-                                                    height={0}
-                                                    sizes="100vw"
+                                                    src={
+                                                        individual.image ||
+                                                        '/images/placeholder.png'
+                                                    } // Fallback to placeholder if image is not provided
+                                                    alt={individual.heading}
+                                                    width={500} // Specify the width of the image
+                                                    height={500} // Specify the height of the image
                                                     style={{
                                                         width: '100%',
                                                         height: 'auto',
-                                                    }} // optional
+                                                    }}
                                                 />
                                                 <CardTitle>
                                                     {individual.heading}

@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
+import buySell from '@/components/assets/scam-photo/buy-sell.webp'
 
 const cardData = [
     {
@@ -33,7 +34,7 @@ export default function BuyingOrSelling() {
             <main className="flex min-h-screen gap-y-16 flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                    imageSrc={buySell}
                     altText="Always use image alt"
                     heading="Buying or Selling"
                     subheading="Online Shopping | Classified | False Billing"

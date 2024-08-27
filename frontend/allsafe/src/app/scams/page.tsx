@@ -6,6 +6,11 @@ import Footer from '@/components/footer/footer-four'
 import ScamMenu from '@/components/assets/ScamMenu'
 import Link from 'next/link'
 import Header from '@/components/hero/header-two'
+import buySell from '@/components/assets/scam-photo/buy-sell.webp'
+import personalInfo from '@/components/assets/scam-photo/personal-info.webp'
+import investment from '@/components/assets/scam-photo/investment.webp'
+import employment from '@/components/assets/scam-photo/employment.webp'
+import dating from '@/components/assets/scam-photo/dating.webp'
 
 export default function ScamInfo() {
     return (
@@ -24,7 +29,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                            imageSrc={buySell}
                             altText="Placeholder Image"
                             heading="Buying or Selling"
                             description="This happens when having transactions, either you are a buyer or a seller, via social media to a website, marketplace, or just pretending to be a business with a fake invoice."
@@ -41,7 +46,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                            imageSrc={personalInfo}
                             altText="Placeholder Image"
                             heading="Gain Personal Information"
                             description="Scammers will attempt to get your personal details and bank account or try to hack or phishing you. Your personal information may be used in various situations, which may ultimately lead to your money loss."
@@ -58,7 +63,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                            imageSrc={investment}
                             altText="Placeholder Image"
                             heading="Investment"
                             description="Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period."
@@ -75,7 +80,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                            imageSrc={employment}
                             altText="Placeholder Image"
                             heading="Jobs and Employment"
                             description="It can be related to gaining personal information or money. Scammers offer jobs with high salaries with low effort or unrealistic hourly rates; it sometimes also requires you to pay first to earn the money."
@@ -92,7 +97,7 @@ export default function ScamInfo() {
                         }}
                     >
                         <ScamMenu
-                            imageSrc="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                            imageSrc={dating}
                             altText="Placeholder Image"
                             heading="Dating and Romance"
                             description="Scammers usually build up trust with you through dating, romance or friend relationships. After building up the trust, they will use the emotional connection with you to trick you for money."

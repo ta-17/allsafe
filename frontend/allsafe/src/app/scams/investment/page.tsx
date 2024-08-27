@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
+import investment from '@/components/assets/scam-photo/investment.webp'
 
 const cardData = [
     {
@@ -42,7 +43,7 @@ export default function Investment() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="https://via.placeholder.com/300"
+                    imageSrc={investment}
                     altText="Always use image alt"
                     heading="Investment"
                     subheading="Subheading"
