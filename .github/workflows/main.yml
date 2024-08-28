@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - paris-dgango
 
 env:
   DJANGO_TUTORIAL_API_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/backend/store
@@ -19,11 +20,18 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
 
-      - name: Set environment variables to .env
+      - name: Add environment variables to .env
         run: |
           echo "DJANGO_TUTORIAL_API_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_API_IMAGE}})" >> $GITHUB_ENV
           echo "DJANGO_TUTORIAL_NGINX_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_NGINX_IMAGE}})" >> $GITHUB_ENV
-
+          echo NAMESPACE=${{ secrets.NAMESPACE }} >> backend/.env
+          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> backend/.env
+          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> backend/.env
+          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> backend/.env
+          echo RDS_HOST=${{ secrets.RDS_HOST }} >> backend/.env
+          echo RDS_PASS=${{ secrets.RDS_PASS }} >> backend/.env
+          echo RDS_PORT=${{ secrets.RDS_PORT }} >> backend/.env
+          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> backend/.env
       - name: Log in to GitHub Packages
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -33,22 +41,14 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq docker-compose
-
-      - name: Clean up existing containers and images
-        run: |
-          docker-compose -f backend/docker-compose.ci.yml down --rmi all -v
-          docker system prune -f
-
       - name: Build images
         id: build-images
         run: |
           docker-compose -f backend/docker-compose.ci.yml build --no-cache --pull
-
       - name: Push images
         run: |
           docker push ${{ env.DJANGO_TUTORIAL_API_IMAGE }}
           docker push ${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }}
-
   checking-secrets:
     name: Checking secrets
     runs-on: ubuntu-latest
@@ -65,7 +65,6 @@ jobs:
           else
             echo "defined=false" >> $GITHUB_OUTPUT;
           fi
-
   deploy:
     name: Deploy to AWS EC2
     runs-on: ubuntu-latest
@@ -77,11 +76,16 @@ jobs:
 
       - name: Add environment variables to .env
         run: |
-          echo DJANGO_TUTORIAL_API_IMAGE=${{ env.DJANGO_TUTORIAL_API_IMAGE }} >> .env
-          echo DJANGO_TUTORIAL_NGINX_IMAGE=${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }} >> .env
-          echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
-          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> .env
-
+          echo DJANGO_TUTORIAL_API_IMAGE=${{ env.DJANGO_TUTORIAL_API_IMAGE }} >> backend/.env
+          echo DJANGO_TUTORIAL_NGINX_IMAGE=${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }} >> backend/.env
+          echo NAMESPACE=${{ secrets.NAMESPACE }} >> backend/.env
+          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> backend/.env
+          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> backend/.env
+          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> backend/.env
+          echo RDS_HOST=${{ secrets.RDS_HOST }} >> backend/.env
+          echo RDS_PASS=${{ secrets.RDS_PASS }} >> backend/.env
+          echo RDS_PORT=${{ secrets.RDS_PORT }} >> backend/.env
+          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> backend/.env
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -90,13 +94,11 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "${{ secrets.EC2_SSH_KEY }}"
-
       - name: Copy files to EC2
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           scp -o StrictHostKeyChecking=no -r ./backend ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/
-
       - name: Deploy images on AWS EC2
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock

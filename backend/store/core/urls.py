@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from book.views import quiz_data  # Import the new view
+from book.views import random_scam_sms  # Import the new view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('quiz-data/', quiz_data, name='quiz-data'),  # Add the new API endpoint
+    path('quiz-data/', random_scam_sms, name='quiz-data'),  # Add the new API endpoint
 ]
 
 # Serve static and media files during development

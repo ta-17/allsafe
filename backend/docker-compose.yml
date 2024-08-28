@@ -9,6 +9,8 @@ services:
       - media_volume:/store/mediafiles/
     expose:
       - 80
+    env_file:
+      - .env
 
   nginx:
     build:
@@ -19,6 +21,8 @@ services:
     volumes:
       - static_volume:/store/staticfiles/
       - media_volume:/store/mediafiles/
+    env_file:
+      - .env
 
 volumes:
   static_volume:
