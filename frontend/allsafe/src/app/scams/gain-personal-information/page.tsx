@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
+import personalInfo from '@/components/assets/scam-photo/personal-info.webp'
 
 const cardData = [
     {
@@ -42,7 +43,7 @@ export default function PersonalInfo() {
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
                 <NavBar />
                 <ScamDetail
-                    imageSrc="https://via.placeholder.com/300"
+                    imageSrc={personalInfo}
                     altText="Always use image alt"
                     heading="Gain Personal Information"
                     subheading="Identity Theft | Hacking | Phishing "
