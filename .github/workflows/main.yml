@@ -24,14 +24,14 @@ jobs:
         run: |
           echo "DJANGO_TUTORIAL_API_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_API_IMAGE}})" >> $GITHUB_ENV
           echo "DJANGO_TUTORIAL_NGINX_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_NGINX_IMAGE}})" >> $GITHUB_ENV
-          echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
-          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> .env
-          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> .env
-          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> .env
-          echo RDS_HOST=${{ secrets.RDS_HOST }} >> .env
-          echo RDS_PASS=${{ secrets.RDS_PASS }} >> .env
-          echo RDS_PORT=${{ secrets.RDS_PORT }} >> .env
-          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> .env
+          echo NAMESPACE=${{ secrets.NAMESPACE }} >> backend/.env
+          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> backend/.env
+          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> backend/.env
+          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> backend/.env
+          echo RDS_HOST=${{ secrets.RDS_HOST }} >> backend/.env
+          echo RDS_PASS=${{ secrets.RDS_PASS }} >> backend/.env
+          echo RDS_PORT=${{ secrets.RDS_PORT }} >> backend/.env
+          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> backend/.env
       - name: Log in to GitHub Packages
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -76,16 +76,16 @@ jobs:
 
       - name: Add environment variables to .env
         run: |
-          echo DJANGO_TUTORIAL_API_IMAGE=${{ env.DJANGO_TUTORIAL_API_IMAGE }} >> .env
-          echo DJANGO_TUTORIAL_NGINX_IMAGE=${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }} >> .env
-          echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
-          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> .env
-          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> .env
-          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> .env
-          echo RDS_HOST=${{ secrets.RDS_HOST }} >> .env
-          echo RDS_PASS=${{ secrets.RDS_PASS }} >> .env
-          echo RDS_PORT=${{ secrets.RDS_PORT }} >> .env
-          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> .env
+          echo DJANGO_TUTORIAL_API_IMAGE=${{ env.DJANGO_TUTORIAL_API_IMAGE }} >> backend/.env
+          echo DJANGO_TUTORIAL_NGINX_IMAGE=${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }} >> backend/.env
+          echo NAMESPACE=${{ secrets.NAMESPACE }} >> backend/.env
+          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> backend/.env
+          echo RDS_ENGINE=${{ secrets.RDS_ENGINE }} >> backend/.env
+          echo RDS_DB_NAME=${{ secrets.RDS_DB_NAME }} >> backend/.env
+          echo RDS_HOST=${{ secrets.RDS_HOST }} >> backend/.env
+          echo RDS_PASS=${{ secrets.RDS_PASS }} >> backend/.env
+          echo RDS_PORT=${{ secrets.RDS_PORT }} >> backend/.env
+          echo RDS_USER_NAME=${{ secrets.RDS_USER_NAME }} >> backend/.env
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
