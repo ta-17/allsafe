@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,12 +88,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('RDS_ENGINE','django.db.backends.mysql'),
-        'NAME': os.getenv('RDS_DB_NAME','TA17'),
-        'USER': os.getenv('RDS_USER_NAME','Paris'),
-        'PASSWORD': os.getenv('RDS_PASS','paris123'),
-        'HOST': os.getenv('RDS_HOST','ta17-database-1.cnu2iwakad0g.ap-southeast-2.rds.amazonaws.com'),
-        'PORT': os.getenv('RDS_PORT','3306'),
+        'ENGINE': env('RDS_ENGINE'),
+        'NAME': env('RDS_DB_NAME'),
+        'USER': env('RDS_USER_NAME'),
+        'PASSWORD': env('RDS_PASS'),
+        'HOST': env('RDS_HOST'),
+        'PORT': env('RDS_PORT'),
     }
 }
 
