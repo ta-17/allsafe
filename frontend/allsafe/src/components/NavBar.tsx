@@ -27,6 +27,9 @@ const NavBar: React.FC = () => {
                     <Link href="/data-sources" className="hover:text-gray-400">
                         Data Sources
                     </Link>
+                    <Link href="/quiz" className="hover:text-gray-400">
+                        Quiz
+                    </Link>
                     <Link href="/about" className="hover:text-gray-400">
                         About Us
                     </Link>
