@@ -134,6 +134,7 @@ USE_TZ = True
 
 ALLOWED_HOSTS=['*',]
 CSRF_TRUSTED_ORIGINS = ['http://localhost','http://127.0.0.1','http://51.20.75.55']
+CORS_ALLOWED_ORIGINS = ["*",]
 
 STATIC_URL = '/store/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
