@@ -28,7 +28,6 @@ export default function ScamInfo({}) {
                 <NavBar />
                 <Quiz />
             </main>
-            <Footer />
         </div>
     )
 }

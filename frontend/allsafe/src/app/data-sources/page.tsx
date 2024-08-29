@@ -15,7 +15,6 @@ export default function DataSource() {
     return (
         <div>
             <main className="flex min-h-screen flex-col items-center p-24">
-                <NavBar />
                 <Header
                     title="Data Sources"
                     subtitle="We aim to provide transparency on where our data comes from."
@@ -128,7 +127,6 @@ export default function DataSource() {
                     </Accordion>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

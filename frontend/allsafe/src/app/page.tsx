@@ -36,7 +36,6 @@ export default function Quiz() {
                     body="We have provided a series of quizzes about scams. We have created a set of learning resources to help you learn about different types of scams. And to test yourself on how well you can spot and identify them."
                 />
             </main>
-            <Footer />
         </div>
     )
 }

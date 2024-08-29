@@ -46,7 +46,6 @@ export default function ScamInfo() {
                     </div>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }
