@@ -14,6 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
+import { TypographyLead } from '@/typography/lead'
 
 const cardData = [
     {
@@ -49,48 +50,57 @@ export default function BuyingOrSelling() {
                 ]}
                 cardData={cardData}
             />
-            <Card>
-                <CardHeader>
-                    <CardTitle>
-                        Online shopping scam – Sarah lost $160
-                    </CardTitle>
-                    <CardDescription></CardDescription>
-                </CardHeader>
-                <CardContent>
-                    A clever website advertised cheap BBQs. Payment was required
-                    via credit card with a 2.99% fee, or direct transfer with a
-                    5% discount. Then Sarah received an email saying that due to
-                    logistic emails, her order was cancelled and the money was
-                    being refunded. The money has not been refunded.
-                    <br />
-                    <strong>Warning signs</strong>
-                    <br />
-                    <li>Very low prices from a very new website or seller;</li>
-                    <li>
-                        The website encouraged the buyer to pay via direct bank
-                        transfer by offering a discount for this payment method,
-                        and charged a higher fee for credit card payment.
-                    </li>
-                    <strong>Precautionary steps</strong>
-                    <br />
-                    <li>
-                        Precautionary steps Do some research on the seller and
-                        check independent reviews from other consumers;
-                    </li>
-                    <li>
-                        and Use a secure payment method such as credit card or
-                        PayPal.
-                    </li>
-                </CardContent>
-                <CardFooter>
-                    <a
-                        href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
-                        className="underline"
-                    >
-                        Read more.
-                    </a>
-                </CardFooter>
-            </Card>
+
+            <div className="flex flex-col gap-y-4">
+                <TypographyLead className="">Case Studies:</TypographyLead>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>
+                            Online shopping scam – Sarah lost $160
+                        </CardTitle>
+                        <CardDescription></CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        A clever website advertised cheap BBQs. Payment was
+                        required via credit card with a 2.99% fee, or direct
+                        transfer with a 5% discount. Then Sarah received an
+                        email saying that due to logistic emails, her order was
+                        cancelled and the money was being refunded. The money
+                        has not been refunded.
+                        <br />
+                        <strong>Warning signs</strong>
+                        <br />
+                        <li>
+                            Very low prices from a very new website or seller;
+                        </li>
+                        <li>
+                            The website encouraged the buyer to pay via direct
+                            bank transfer by offering a discount for this
+                            payment method, and charged a higher fee for credit
+                            card payment.
+                        </li>
+                        <strong>Precautionary steps</strong>
+                        <br />
+                        <li>
+                            Precautionary steps Do some research on the seller
+                            and check independent reviews from other consumers;
+                        </li>
+                        <li>
+                            and Use a secure payment method such as credit card
+                            or PayPal.
+                        </li>
+                    </CardContent>
+                    <CardFooter>
+                        <a
+                            href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
+                            className="underline"
+                        >
+                            Read more.
+                        </a>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     )
 }

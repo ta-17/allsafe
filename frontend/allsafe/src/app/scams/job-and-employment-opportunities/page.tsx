@@ -14,6 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
+import { TypographyLead } from '@/typography/lead'
 
 const cardData = [
     {
@@ -38,61 +39,57 @@ const cardData = [
 
 export default function JobAndEmployment() {
     return (
-        <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
-                <div>
-                    <ScamDetail
-                        imageSrc={employment}
-                        altText="Always use image alt"
-                        heading="Jobs and Employment Opportunities"
-                        subheading="Subheading"
-                        paragraphs={[
-                            'This scam type can be related to gaining personal information or money. There are different tricks that scammers can use to get what they want, for instance, mentioning that you need to pay first to be onboard and pretending they are an agency to get your identity details. This type of job opportunity offers high salaries without the skills requirement or effort to put in, which usually do not really exist.',
-                        ]}
-                        cardData={cardData}
-                    />
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>
-                                Elaborate online job scam steals dozens of
-                                identities
-                            </CardTitle>
-                            <CardDescription></CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            A Brisbane man used two aliases to arrange an
-                            elaborate online job scam through various companies
-                            to steal the identities of 52 taxpayers. He lodged
-                            62 fraudulent income tax returns and attempted to
-                            obtain over $565,000 in refunds. After conducting
-                            fake interviews over the phone the fraudster would
-                            email applicants to confirm they had been successful
-                            in their application for the job. He would also
-                            request a scanned copy of their driver’s license,
-                            bank account details, tax file number and shirt
-                            size. He used this information to fraudulently
-                            create myGov accounts. If they already had an
-                            account he used the information to take over their
-                            account and change the details as required. He would
-                            then link the myGov accounts to Australian Taxation
-                            Office’s online services where he would lodge false
-                            income tax returns in their names. The man was
-                            charged with 106 offences and was sentenced to 5
-                            years in prison.
-                        </CardContent>
-                        <CardFooter>
-                            <a
-                                href="https://www.counterfraud.gov.au/case-studies/elaborate-online-job-scam-steals-dozens-identities"
-                                className="underline"
-                            >
-                                Read more.
-                            </a>
-                        </CardFooter>
-                    </Card>
-                </div>
-            </main>
-            <Footer />
+        <div className="flex flex-col gap-y-16">
+            <ScamDetail
+                imageSrc={employment}
+                altText="Always use image alt"
+                heading="Jobs and Employment Opportunities"
+                subheading="Subheading"
+                paragraphs={[
+                    'This scam type can be related to gaining personal information or money. There are different tricks that scammers can use to get what they want, for instance, mentioning that you need to pay first to be onboard and pretending they are an agency to get your identity details. This type of job opportunity offers high salaries without the skills requirement or effort to put in, which usually do not really exist.',
+                ]}
+                cardData={cardData}
+            />
+            <div className="flex flex-col gap-y-4">
+                <TypographyLead className="">Case Studies:</TypographyLead>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>
+                            Elaborate online job scam steals dozens of
+                            identities
+                        </CardTitle>
+                        <CardDescription></CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        A Brisbane man used two aliases to arrange an elaborate
+                        online job scam through various companies to steal the
+                        identities of 52 taxpayers. He lodged 62 fraudulent
+                        income tax returns and attempted to obtain over $565,000
+                        in refunds. After conducting fake interviews over the
+                        phone the fraudster would email applicants to confirm
+                        they had been successful in their application for the
+                        job. He would also request a scanned copy of their
+                        driver&apos;s license, bank account details, tax file
+                        number and shirt size. He used this information to
+                        fraudulently create myGov accounts. If they already had
+                        an account he used the information to take over their
+                        account and change the details as required. He would
+                        then link the myGov accounts to Australian Taxation
+                        Office&apos;s online services where he would lodge false
+                        income tax returns in their names. The man was charged
+                        with 106 offences and was sentenced to 5 years in
+                        prison.
+                    </CardContent>
+                    <CardFooter>
+                        <a
+                            href="https://www.counterfraud.gov.au/case-studies/elaborate-online-job-scam-steals-dozens-identities"
+                            className="underline"
+                        >
+                            Read more.
+                        </a>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     )
 }
