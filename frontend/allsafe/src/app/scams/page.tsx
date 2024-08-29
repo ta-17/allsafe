@@ -19,7 +19,7 @@ export default function ScamInfo() {
                 title="Scams"
                 subtitle="A collection of the top 5 most common scam types."
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
+            <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-12">
                 <div
                     style={{
                         boxSizing: 'border-box',

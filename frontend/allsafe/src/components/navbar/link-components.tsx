@@ -13,6 +13,9 @@ const NavbarLinks = () => {
             <Link href="/quiz" className="hover:text-gray-400">
                 Quiz
             </Link>
+            <Link href="/resources/news" className="hover:text-gray-400">
+                Resources
+            </Link>
             <Link href="/about" className="hover:text-gray-400">
                 About Us
             </Link>

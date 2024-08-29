@@ -27,7 +27,7 @@ const FeatureLeft = ({
         <Craft.Section>
             <Craft.Container
                 className={cn(
-                    'grid items-stretch md:grid-cols-2 md:gap-12',
+                    'grid items-stretch grid-cols-1 md:grid-cols-2 md:gap-12',
                     className
                 )}
             >
