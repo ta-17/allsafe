@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamMenu from '@/components/assets/ScamMenu'
 import Link from 'next/link'

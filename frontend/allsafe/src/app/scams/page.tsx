@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamMenu from '@/components/assets/ScamMenu'
 import Link from 'next/link'
@@ -11,6 +10,7 @@ import personalInfo from '@/components/assets/scam-photo/personal-info.webp'
 import investment from '@/components/assets/scam-photo/investment.webp'
 import employment from '@/components/assets/scam-photo/employment.webp'
 import dating from '@/components/assets/scam-photo/dating.webp'
+import NavBar from '@/components/navbar/NavBar'
 
 export default function ScamInfo() {
     return (
