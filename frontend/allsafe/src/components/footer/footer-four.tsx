@@ -25,7 +25,7 @@ export default function Footer() {
                 <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr_0.5fr]">
                     <div className="not-prose flex flex-col gap-6">
                         <Link href="/">
-                            <TypographyH3 className="">allsafe</TypographyH3>
+                            <TypographyH3 className="">AllSafe</TypographyH3>
                             {/* <Image
                                 src={'../public/next.svg'}
                                 alt="Logo"
@@ -36,7 +36,7 @@ export default function Footer() {
                         </Link>
                         <p>
                             <Balancer>
-                                allsafe is a platform that provides youth&apos;s
+                                AllSafe is a platform that provides youth&apos;s
                                 with the ability to protect themselves online
                                 from digital scams.
                             </Balancer>
