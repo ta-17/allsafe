@@ -47,41 +47,44 @@ const articles = [
         updatedAt: dayjs('2024-08-29'),
     },
 ]
-
 export default function News() {
     return (
-        <div className="flex flex-col items-center px-12 py-24 gap-4">
+        <div className="flex flex-col items-center justify-center px-12 py-24 gap-4">
             <Header
                 title="News Articles"
                 subtitle="We have curated a list of the most relevant news related to scams."
             />
-            {articles.map((article) => (
-                <a href={article.link} className="min-w-full">
-                    <Card key={article.id}>
-                        <CardHeader>
-                            <CardTitle>{article.title}</CardTitle>
-                            <CardDescription>{article.source}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-gray-500">
-                                Source: {article.source}
-                            </p>
-                            <p className="text-xs text-gray-400">
-                                Added:
-                                {dayjs(article.addedAt).toNow()}
-                            </p>
-                            <p className="text-xs text-gray-400">
-                                Updated: {dayjs(article.updatedAt).toNow()}
-                            </p>
-                        </CardContent>
-                        <CardFooter>
-                            <span className="text-right text-muted-foreground">
-                                {article.link}
-                            </span>
-                        </CardFooter>
-                    </Card>
-                </a>
-            ))}
+            <div className="grid grid-cols-1 w-full mx-auto gap-12 md:flex-row md:grid-cols-2 lg:grid-cols-3">
+                {articles.map((article) => (
+                    <a href={article.link} className="max-w-lg">
+                        <Card key={article.id}>
+                            <CardHeader>
+                                <CardTitle>{article.title}</CardTitle>
+                                <CardDescription>
+                                    {article.source}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-sm text-gray-500">
+                                    Source: {article.source}
+                                </p>
+                                <p className="text-xs text-gray-400">
+                                    Added:
+                                    {dayjs(article.addedAt).toNow()}
+                                </p>
+                                <p className="text-xs text-gray-400">
+                                    Updated: {dayjs(article.updatedAt).toNow()}
+                                </p>
+                            </CardContent>
+                            <CardFooter className="overflow-scroll">
+                                <span className="text-right text-muted-foreground">
+                                    {article.link}
+                                </span>
+                            </CardFooter>
+                        </Card>
+                    </a>
+                ))}
+            </div>
         </div>
     )
 }
