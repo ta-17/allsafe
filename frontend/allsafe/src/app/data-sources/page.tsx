@@ -25,7 +25,7 @@ export default function DataSource() {
                         <AccordionItem value="item-1">
                             <AccordionTrigger>Scam Text</AccordionTrigger>
                             <AccordionContent>
-                                <TypographyBlockquote className="">
+                                <TypographyBlockquote className="mt-0">
                                     The SMS Spam Collection is a set of SMS
                                     tagged messages that have been collected for
                                     SMS Spam research. It contains one set of
@@ -34,18 +34,30 @@ export default function DataSource() {
                                     spam.
                                 </TypographyBlockquote>
                                 <br />
-                                This is a reliable dataset, it is sourced from
-                                kaggle which provide public datasets for data
-                                science and machine learning engineers. This
-                                dataset is used to power our ai model and our
-                                quizzes.{' '}
-                                <a
-                                    href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data"
-                                    className="underline"
-                                >
-                                    Found here.
-                                </a>
-                                <br />
+
+                                <p>
+                                    SMS Spam data is retrieved from{' '}
+                                    <a
+                                        href="https://www.kaggle.com/"
+                                        className="underline"
+                                    >
+                                        Kaggle
+                                    </a>
+                                    , a platform that provides datasets,
+                                    notebooks and discussions with global data
+                                    scientists and machine learners. This
+                                    dataset is used on the scam-knowledge quiz
+                                    (need to confirm the name) and training our
+                                    scam detection model by providing a
+                                    scam-like percentage of the user input text{' '}
+                                    <a
+                                        href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data"
+                                        className="underline"
+                                    >
+                                        found here
+                                    </a>
+                                    .
+                                </p>
                                 <br />
                                 <p>The original work is provided by:</p>
                                 <p>
@@ -65,25 +77,22 @@ export default function DataSource() {
                             </AccordionTrigger>
                             <AccordionContent>
                                 <p>
-                                    ScamWatch is a government website which is
-                                    ran by the National Anti-Scam Centre. They
-                                    aim to helps people spot and avoid scams.
-                                    Make it easier for people to report scams
-                                    improves. Share information to disrupt
-                                    scammers, and work with government, industry
-                                    and supports law enforcement.
-                                </p>
-                                <br />
-                                <p>
-                                    This is a reliable dataset, provided by the
-                                    government. It is updated frequently on a
-                                    monthly basis. It can be{' '}
-                                    <a
-                                        href="https://www.scamwatch.gov.au/research-and-resources/scam-statistics"
-                                        className="underline"
-                                    >
-                                        found here.
-                                    </a>
+                                    <p>
+                                        Scam Statistics data is retrieved from{' '}
+                                        <a
+                                            href="https://www.scamwatch.gov.au/"
+                                            className="underline"
+                                        >
+                                            Scam Watch
+                                        </a>
+                                        , the Australian Government&apos;s
+                                        website, to investigate historical scams
+                                        and find insight to understand how the
+                                        scams via social media influence young
+                                        adults. The data is also used for
+                                        interactive visualisation for
+                                        discovering more scam information.
+                                    </p>
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
@@ -92,36 +101,27 @@ export default function DataSource() {
                                 Social Media Scams
                             </AccordionTrigger>
                             <AccordionContent>
-                                <p>
-                                    {' '}
-                                    I should see a brief description for each
-                                    source, explaining its reliability,
-                                    relevance, and the role it plays in the
-                                    platform.
-                                </p>
-                                <TypographyBlockquote className="">
+                                <TypographyBlockquote className="mt-0">
                                     Collects and annotates Instagram comments in
                                     bulk for detecting spam and scam comments on
                                     Instagram.
                                 </TypographyBlockquote>
                                 <br />
                                 <p>
-                                    The is a reliable source. It is produced by
-                                    a individual person who works in IT. The
-                                    dataset seems to be from resources gathered
-                                    for a research paper. The frequency of
-                                    updates is unknown, with the last activity
-                                    on Github being a year ago.
-                                </p>
-                                <p>
-                                    The data used to detect whether social media
-                                    dm&apos;s, and can be{' '}
+                                    IG Comment data is retrieved from{' '}
                                     <a
+                                        href="https://github.com/"
                                         className="underline"
-                                        href="https://github.com/ScamSpot/scamspot_ig-comment-scraper/blob/main/data/comments-rated-plus-reported.csv"
                                     >
-                                        found here.
+                                        Github
                                     </a>
+                                    , a developer platform that enables
+                                    developers to discover, store, manage, and
+                                    share their code. The collected data is from
+                                    Instagram comments for decking spam and scam
+                                    comments; the dataset will be utilised to
+                                    train our scam detection model to provide a
+                                    scam-like percentage of the user input text.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
