@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
@@ -41,6 +41,7 @@ export default function JobAndEmployment() {
                     paragraphs={[
                         'This scam type can be related to gaining personal information or money. There are different tricks that scammers can use to get what they want, for instance, mentioning that you need to pay first to be onboard and pretending they are an agency to get your identity details. This type of job opportunity offers high salaries without the skills requirement or effort to put in, which usually do not really exist.',
                     ]}
+                    cardData={cardData}
                 />
                 <div>
                     <ScamTips cards={cardData} />

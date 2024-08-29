@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer/footer-four'
 import Header from '@/components/hero/header-two'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import {
     Accordion,
     AccordionContent,
@@ -15,7 +15,6 @@ export default function DataSource() {
     return (
         <div>
             <main className="flex min-h-screen flex-col items-center p-24">
-                <NavBar />
                 <Header
                     title="Data Sources"
                     subtitle="We aim to provide transparency on where our data comes from."
@@ -23,7 +22,9 @@ export default function DataSource() {
                 <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1">
-                            <AccordionTrigger>Scam Text</AccordionTrigger>
+                            <AccordionTrigger>
+                                Spot the Scam Quiz
+                            </AccordionTrigger>
                             <AccordionContent>
                                 <TypographyBlockquote className="mt-0">
                                     The SMS Spam Collection is a set of SMS
@@ -47,9 +48,9 @@ export default function DataSource() {
                                     notebooks and discussions with global data
                                     scientists and machine learners. This
                                     dataset is used on the scam-knowledge quiz
-                                    (need to confirm the name) and training our
-                                    scam detection model by providing a
-                                    scam-like percentage of the user input text{' '}
+                                    and training our scam detection model by
+                                    providing a scam-like percentage of the user
+                                    input text{' '}
                                     <a
                                         href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data"
                                         className="underline"
@@ -59,7 +60,7 @@ export default function DataSource() {
                                     .
                                 </p>
                                 <br />
-                                <p>The original work is provided by:</p>
+                                <p>The original work is provided by</p>
                                 <p>
                                     Almeida, T.A., GÃ³mez Hidalgo, J.M.,
                                     Yamakami, A. Contributions to the Study of
@@ -128,7 +129,6 @@ export default function DataSource() {
                     </Accordion>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

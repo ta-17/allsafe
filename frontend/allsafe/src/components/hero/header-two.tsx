@@ -7,9 +7,17 @@ import { Button } from '../ui/button'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
 
-const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
+const Header = ({
+    title,
+    subtitle,
+    clasName = '',
+}: {
+    title: string
+    subtitle: string
+    clasName?: string
+}) => {
     return (
-        <Section>
+        <Section className={clasName}>
             <Container className="flex flex-col text-center">
                 <TypographyH1 className="!mb-0">{title}</TypographyH1>
                 <TypographyLead className="text-muted-foreground">

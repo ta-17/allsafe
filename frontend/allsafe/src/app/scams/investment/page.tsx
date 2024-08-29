@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
@@ -39,23 +39,15 @@ const cardData = [
 
 export default function Investment() {
     return (
-        <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
-                <ScamDetail
-                    imageSrc={investment}
-                    altText="Always use image alt"
-                    heading="Investment"
-                    subheading="Subheading"
-                    paragraphs={[
-                        'Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period. Commonly, they have many “successful” cases to share with you to convince people they are not scamming. It usually starts with a positive outcome from the beginning and turns out negative after you increase the amount of your investment.',
-                    ]}
-                />
-                <div>
-                    <ScamTips cards={cardData} />
-                </div>
-            </main>
-            <Footer />
-        </div>
+        <ScamDetail
+            imageSrc={investment}
+            altText="Always use image alt"
+            heading="Investment"
+            subheading="Subheading"
+            paragraphs={[
+                'Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period. Commonly, they have many “successful” cases to share with you to convince people they are not scamming. It usually starts with a positive outcome from the beginning and turns out negative after you increase the amount of your investment.',
+            ]}
+            cardData={cardData}
+        />
     )
 }

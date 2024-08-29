@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
@@ -39,23 +39,15 @@ const cardData = [
 
 export default function DatingAndRomance() {
     return (
-        <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
-                <ScamDetail
-                    imageSrc={dating}
-                    altText="Always use image alt"
-                    heading="Dating and Romance"
-                    subheading="Subheading"
-                    paragraphs={[
-                        'Scammers usually build up trust with you in dating, romance or friend relationships. They usually set up attractive profiles using pictures of other people or even celebrities. Instead of texting you, they may make phone calls to make you feel inclusive. After building up trust and a relationship with you, it will be mentioned that they are facing an urgent situation and want you to help them by transferring money using your empathy.',
-                    ]}
-                />
-                <div>
-                    <ScamTips cards={cardData} />
-                </div>
-            </main>
-            <Footer />
-        </div>
+        <ScamDetail
+            imageSrc={dating}
+            altText="Always use image alt"
+            heading="Dating and Romance"
+            subheading="Subheading"
+            paragraphs={[
+                'Scammers usually build up trust with you in dating, romance or friend relationships. They usually set up attractive profiles using pictures of other people or even celebrities. Instead of texting you, they may make phone calls to make you feel inclusive. After building up trust and a relationship with you, it will be mentioned that they are facing an urgent situation and want you to help them by transferring money using your empathy.',
+            ]}
+            cardData={cardData}
+        />
     )
 }

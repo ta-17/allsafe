@@ -1,5 +1,21 @@
 import React from 'react'
 
+// import {
+//     Card,
+//     CardContent,
+//     CardDescription,
+//     CardHeader,
+//     CardTitle,
+// } from '@/components/ui/card'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel'
+import { TypographyLead } from '@/typography/lead'
+
 interface CardProps {
     asset: React.ReactNode
     title: string
@@ -48,35 +64,71 @@ interface ScamTipsProps {
     cards: CardProps[]
 }
 
-const ScamTips: React.FC<ScamTipsProps> = ({ cards }) => {
+const ScamTips = ({ cards }: { cards: any }) => {
     return (
         <div style={{ boxSizing: 'border-box', width: '100%' }}>
             <div style={{ marginBottom: '16px' }}>
-                <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 'bold' }}>
+                <TypographyLead className={'mt-8'}>
                     Tips to avoid:
-                </h1>
-                {/* <h2 style={{ margin: 0, fontSize: '18px', color: '#555' }}>
-                    Subheading
-                </h2> */}
+                </TypographyLead>
             </div>
-            <div className="flex flex-wrap h-40 gap-16">
-                {cards.map((card, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            flex: '1 1 calc(33% - 20px)', // Adjust the card to take up 33% of the row minus the gap
-                            boxSizing: 'border-box',
-                            maxWidth: 'calc(33% - 20px)',
-                        }}
-                        className=""
-                    >
-                        <Card
-                            asset={card.asset}
-                            title={card.title}
-                            body={card.body}
-                        />
-                    </div>
-                ))}
+            <div className="flex flex-wrap w-full h-40 gap-16">
+                <Carousel
+                    opts={{
+                        align: 'start',
+                    }}
+                    className="w-full max-w-lg"
+                >
+                    <CarouselContent>
+                        {cards.map(
+                            (
+                                card: {
+                                    asset:
+                                        | string
+                                        | number
+                                        | bigint
+                                        | boolean
+                                        | React.ReactElement<
+                                              any,
+                                              | string
+                                              | React.JSXElementConstructor<any>
+                                          >
+                                        | Iterable<React.ReactNode>
+                                        | React.ReactPortal
+                                        | Promise<React.AwaitedReactNode>
+                                        | null
+                                        | undefined
+                                    title: string
+                                    body: string
+                                },
+                                index: React.Key | null | undefined
+                            ) => (
+                                <CarouselItem
+                                    key={index}
+                                    // className="md:basis-1/2 lg:basis-1/3"
+                                >
+                                    <div className="p-1">
+                                        {/* <Card>
+                                        <CardContent className="flex aspect-square items-center justify-center p-6">
+                                            <span className="text-3xl font-semibold">
+                                                {index + 1}
+                                            </span>
+                                        </CardContent>
+                                    </Card> */}{' '}
+                                        <Card
+                                            key={index}
+                                            asset={card.asset}
+                                            title={card.title}
+                                            body={card.body}
+                                        />
+                                    </div>
+                                </CarouselItem>
+                            )
+                        )}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
             </div>
         </div>
     )

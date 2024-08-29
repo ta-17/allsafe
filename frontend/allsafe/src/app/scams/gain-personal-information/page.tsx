@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
@@ -39,23 +39,15 @@ const cardData = [
 
 export default function PersonalInfo() {
     return (
-        <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
-                <ScamDetail
-                    imageSrc={personalInfo}
-                    altText="Always use image alt"
-                    heading="Gain Personal Information"
-                    subheading="Identity Theft | Hacking | Phishing "
-                    paragraphs={[
-                        ' Scammers will attempt to gain personal information, mainly focusing on hacking and phishing young adults. Either accidentally providing personal information through social media or being hacked by scammers, it may lead to personal detail leakage with money lost in the end. ',
-                    ]}
-                />
-                <div>
-                    <ScamTips cards={cardData} />
-                </div>
-            </main>
-            <Footer />
-        </div>
+        <ScamDetail
+            imageSrc={personalInfo}
+            altText="Always use image alt"
+            heading="Gain Personal Information"
+            subheading="Identity Theft | Hacking | Phishing "
+            paragraphs={[
+                ' Scammers will attempt to gain personal information, mainly focusing on hacking and phishing young adults. Either accidentally providing personal information through social media or being hacked by scammers, it may lead to personal detail leakage with money lost in the end. ',
+            ]}
+            cardData={cardData}
+        />
     )
 }
