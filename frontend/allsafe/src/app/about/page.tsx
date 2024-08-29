@@ -65,7 +65,7 @@ export default function AboutUs() {
                 <NavBar />
                 <Header
                     title="Our Team"
-                    subtitle="We are a group of students from Monash University."
+                    subtitle="We are a group of students from Monash University, aiming to create a platform were young adults can protect themselves from the dangers of online scams."
                 />
                 <div className="w-full sm:w-3/4 md:w-2/3 lg:w-5/6 mx-auto">
                     <Carousel
