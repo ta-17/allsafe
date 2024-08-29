@@ -67,7 +67,7 @@ interface ScamTipsProps {
 const ScamTips = ({ cards }: { cards: any }) => {
     return (
         <div style={{ boxSizing: 'border-box', width: '100%' }}>
-            <div style={{ marginBottom: '16px' }}>
+            <div>
                 <TypographyLead className={'mt-8'}>
                     Tips to avoid:
                 </TypographyLead>

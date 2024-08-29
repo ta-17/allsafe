@@ -29,8 +29,8 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: '90%', height: 'auto' }} // optional
-                className="w-full"
+                style={{ height: 'auto' }} // optional
+                className="w-96 md:w-1/2"
             />
 
             {/* Text Section */}
