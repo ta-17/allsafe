@@ -22,7 +22,9 @@ export default function DataSource() {
                 <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1">
-                            <AccordionTrigger>Scam Text</AccordionTrigger>
+                            <AccordionTrigger>
+                                Spot the Scam Quiz
+                            </AccordionTrigger>
                             <AccordionContent>
                                 <TypographyBlockquote className="mt-0">
                                     The SMS Spam Collection is a set of SMS
