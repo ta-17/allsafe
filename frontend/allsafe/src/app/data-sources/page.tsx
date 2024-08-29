@@ -46,9 +46,9 @@ export default function DataSource() {
                                     notebooks and discussions with global data
                                     scientists and machine learners. This
                                     dataset is used on the scam-knowledge quiz
-                                    (need to confirm the name) and training our
-                                    scam detection model by providing a
-                                    scam-like percentage of the user input text{' '}
+                                    and training our scam detection model by
+                                    providing a scam-like percentage of the user
+                                    input text{' '}
                                     <a
                                         href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data"
                                         className="underline"
@@ -58,7 +58,7 @@ export default function DataSource() {
                                     .
                                 </p>
                                 <br />
-                                <p>The original work is provided by:</p>
+                                <p>The original work is provided by</p>
                                 <p>
                                     Almeida, T.A., GÃ³mez Hidalgo, J.M.,
                                     Yamakami, A. Contributions to the Study of
