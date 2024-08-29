@@ -103,6 +103,41 @@ export default function AboutUs() {
                                                     {individual.subheading}
                                                 </CardDescription>
                                             </CardHeader>
+                                            <p>
+                                                <strong>Warning signs</strong>
+                                                <br />
+                                                <ul>
+                                                    <li>
+                                                        Very low prices from a
+                                                        very new website or
+                                                        seller;
+                                                    </li>
+                                                    <li>
+                                                        The website encouraged
+                                                        the buyer to pay via
+                                                        direct bank transfer by
+                                                        offering a discount for
+                                                        this payment method, and
+                                                        charged a higher fee for
+                                                        credit card payment.
+                                                    </li>
+                                                </ul>
+                                                <strong>
+                                                    Precautionary steps
+                                                </strong>
+                                                <br />
+                                                <li>
+                                                    Precautionary steps Do some
+                                                    research on the seller and
+                                                    check independent reviews
+                                                    from other consumers;
+                                                </li>
+                                                <li>
+                                                    and Use a secure payment
+                                                    method such as credit card
+                                                    or PayPal.
+                                                </li>
+                                            </p>
                                         </Card>
                                     </div>
                                 </CarouselItem>
