@@ -11,6 +11,7 @@ import FeatureLeft from '@/components/features/feature-three'
 import FeatureRight from '@/components/features/feature-four'
 import Header from '@/components/hero/header-two'
 import Footer from '@/components/footer/footer-four'
+import CTA from '@/components/cta/cta-one'
 
 export default function Quiz() {
     return (
@@ -35,6 +36,7 @@ export default function Quiz() {
                     title="Quiz yourself"
                     body="We have provided a series of quizzes about scams. We have created a set of learning resources to help you learn about different types of scams. And to test yourself on how well you can spot and identify them."
                 />
+                <CTA />
             </main>
         </div>
     )
