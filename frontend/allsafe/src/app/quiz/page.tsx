@@ -18,7 +18,7 @@ import { ArrowRight } from 'lucide-react'
 export default function ScamInfo() {
     return (
         <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <main className="flex min-h-screen flex-col items-center justify-between p-8 py-24 md:px-24">
                 <NavBar />
                 {/* <Card className="w-2/3 min-h-lvh">
                     <CardHeader className="text-center">

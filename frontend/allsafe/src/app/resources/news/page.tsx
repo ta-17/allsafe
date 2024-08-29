@@ -54,7 +54,7 @@ export default function News() {
                 title="News Articles"
                 subtitle="We have curated a list of the most relevant news related to scams."
             />
-            <div className="grid grid-cols-1 w-full mx-auto gap-12 md:flex-row md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 justify-items-center w-full mx-auto gap-12 md:flex-row md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article) => (
                     <a
                         href={article.link}
