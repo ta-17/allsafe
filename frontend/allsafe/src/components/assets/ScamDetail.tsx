@@ -44,15 +44,17 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
                 >
                     {heading}
                 </h1>
-                <h2
-                    style={{
-                        fontSize: '18px',
-                        color: '#555',
-                        marginBottom: '16px',
-                    }}
-                >
-                    {subheading}
-                </h2>
+                {subheading !== 'Subheading' && (
+                    <h2
+                        style={{
+                            fontSize: '18px',
+                            color: '#555',
+                            marginBottom: '16px',
+                        }}
+                    >
+                        {subheading}
+                    </h2>
+                )}
                 {paragraphs.map((text, index) => (
                     <p
                         key={index}
