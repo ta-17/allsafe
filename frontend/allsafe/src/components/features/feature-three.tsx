@@ -16,10 +16,12 @@ const FeatureLeft = ({
     title,
     body,
     className,
+    img,
 }: {
     title: string
     body: string
     className?: string
+    img?: any
 }) => {
     return (
         <Craft.Section>
@@ -30,11 +32,15 @@ const FeatureLeft = ({
                 )}
             >
                 <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
-                    {/* <Image
-            src={Placeholder}
-            alt="placeholder"
-            className="fill object-cover"
-          /> */}
+                    <Image
+                        src={img}
+                        width={0}
+                        height={0}
+                        alt="placeholder"
+                        sizes="100vw"
+                        layout="fill"
+                        className="fill object-cover"
+                    />
                 </div>
                 <div className="flex flex-col gap-6 py-8">
                     <TypographyH3 className="!my-0">{title}</TypographyH3>

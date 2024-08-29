@@ -15,10 +15,12 @@ const FeatureRight = ({
     title,
     body,
     className,
+    img,
 }: {
     title: string
     body: string
     className?: string
+    img?: string
 }) => {
     return (
         <Section>
@@ -43,11 +45,15 @@ const FeatureRight = ({
                     </div> */}
                 </div>
                 <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
-                    {/* <Image
-            src={Placeholder}
-            alt="placeholder"
-            className="fill object-cover"
-          /> */}
+                    <Image
+                        src={img}
+                        width={0}
+                        height={0}
+                        alt="placeholder"
+                        sizes="100vw"
+                        layout="fill"
+                        className="fill object-cover"
+                    />
                 </div>
             </Container>
         </Section>
