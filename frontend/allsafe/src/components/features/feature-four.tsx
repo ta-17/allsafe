@@ -20,7 +20,7 @@ const FeatureRight = ({
     title: string
     body: string
     className?: string
-    img?: string
+    img?: any
 }) => {
     return (
         <Section>

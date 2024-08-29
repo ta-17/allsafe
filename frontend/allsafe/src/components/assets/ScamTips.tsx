@@ -80,28 +80,51 @@ const ScamTips = ({ cards }: { cards: any }) => {
                     className="w-full max-w-lg"
                 >
                     <CarouselContent>
-                        {cards.map((card, index) => (
-                            <CarouselItem
-                                key={index}
-                                // className="md:basis-1/2 lg:basis-1/3"
-                            >
-                                <div className="p-1">
-                                    {/* <Card>
+                        {cards.map(
+                            (
+                                card: {
+                                    asset:
+                                        | string
+                                        | number
+                                        | bigint
+                                        | boolean
+                                        | React.ReactElement<
+                                              any,
+                                              | string
+                                              | React.JSXElementConstructor<any>
+                                          >
+                                        | Iterable<React.ReactNode>
+                                        | React.ReactPortal
+                                        | Promise<React.AwaitedReactNode>
+                                        | null
+                                        | undefined
+                                    title: string
+                                    body: string
+                                },
+                                index: React.Key | null | undefined
+                            ) => (
+                                <CarouselItem
+                                    key={index}
+                                    // className="md:basis-1/2 lg:basis-1/3"
+                                >
+                                    <div className="p-1">
+                                        {/* <Card>
                                         <CardContent className="flex aspect-square items-center justify-center p-6">
                                             <span className="text-3xl font-semibold">
                                                 {index + 1}
                                             </span>
                                         </CardContent>
                                     </Card> */}{' '}
-                                    <Card
-                                        key={index}
-                                        asset={card.asset}
-                                        title={card.title}
-                                        body={card.body}
-                                    />
-                                </div>
-                            </CarouselItem>
-                        ))}
+                                        <Card
+                                            key={index}
+                                            asset={card.asset}
+                                            title={card.title}
+                                            body={card.body}
+                                        />
+                                    </div>
+                                </CarouselItem>
+                            )
+                        )}
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />

@@ -56,7 +56,11 @@ export default function News() {
             />
             <div className="grid grid-cols-1 w-full mx-auto gap-12 md:flex-row md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article) => (
-                    <a href={article.link} className="max-w-lg">
+                    <a
+                        href={article.link}
+                        className="max-w-lg"
+                        key={article.id}
+                    >
                         <Card key={article.id}>
                             <CardHeader>
                                 <CardTitle>{article.title}</CardTitle>
