@@ -29,13 +29,13 @@ const us = [
     {
         image: royImage,
         heading: 'Master of Data Science',
-        subheading: 'Backend',
+        subheading: 'Database',
         description: 'Hello world.',
     },
     {
         image: lynImage,
         heading: 'Master of Data Science',
-        subheading: 'Backend',
+        subheading: 'Database',
         description: 'Hello world.',
     },
     {
