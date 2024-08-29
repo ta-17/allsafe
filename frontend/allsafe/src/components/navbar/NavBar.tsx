@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarLinks from './link-components'
 
 const NavBar: React.FC = () => {

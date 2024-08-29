@@ -41,6 +41,7 @@ export default function JobAndEmployment() {
                     paragraphs={[
                         'This scam type can be related to gaining personal information or money. There are different tricks that scammers can use to get what they want, for instance, mentioning that you need to pay first to be onboard and pretending they are an agency to get your identity details. This type of job opportunity offers high salaries without the skills requirement or effort to put in, which usually do not really exist.',
                     ]}
+                    cardData={cardData}
                 />
                 <div>
                     <ScamTips cards={cardData} />

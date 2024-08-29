@@ -16,8 +16,7 @@ export default function ScamInfo() {
     return (
         <div>
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
-
+                {/* <NavBar /> */}
                 <Header title="Scams" subtitle="" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
                     <div

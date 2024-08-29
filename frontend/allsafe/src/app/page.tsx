@@ -16,7 +16,7 @@ export default function Quiz() {
     return (
         <div>
             <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <NavBar />
+                {/* <NavBar /> */}
                 <Hero />
                 <Header
                     title="Scared of being scammed or target online?"
