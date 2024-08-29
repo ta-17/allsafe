@@ -20,9 +20,12 @@ const Quiz = () => {
 
     const fetchQuestions = async () => {
         try {
-            const response = await fetch('http://3.104.111.28/quiz-data/', {
-                cache: 'force-cache',
-            }) // Replace with your API endpoint
+            const response = await fetch(
+                'https://evpt9eomd9.execute-api.ap-southeast-2.amazonaws.com/quiz-data/',
+                {
+                    cache: 'force-cache',
+                }
+            ) // Replace with your API endpoint
             const data = await response.json()
             const randomQuestions = getRandomQuestions(data, 5)
             setQuestions(randomQuestions)
