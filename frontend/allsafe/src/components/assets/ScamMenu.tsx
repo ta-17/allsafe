@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/card'
 
 interface ScamMenuProps {
-    imageSrc: string
+    imageSrc: any
     altText: string
     heading: string
     description: string

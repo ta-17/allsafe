@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 
 interface ScamDetailProps {
-    imageSrc: string
+    imageSrc: any
     altText: string
     heading: string
     subheading: string

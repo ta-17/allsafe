@@ -7,9 +7,9 @@ import { TypographyBlockquote } from '@/typography/blockqoute'
 import { TypographyH3 } from '@/typography/h3'
 
 const Quiz = () => {
-    const [questions, setQuestions] = useState([])
+    const [questions, setQuestions] = useState<any[]>([])
     const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [userAnswers, setUserAnswers] = useState([])
+    const [userAnswers, setUserAnswers] = useState<any[]>([])
     const [quizCompleted, setQuizCompleted] = useState(false)
     const [score, setScore] = useState(0)
     const [nextjsData, setNextjsData] = useState()
@@ -33,7 +33,10 @@ const Quiz = () => {
         }
     }
 
-    const getRandomQuestions = (allQuestions, count) => {
+    const getRandomQuestions = (
+        allQuestions: any,
+        count: number | undefined
+    ) => {
         const shuffled = [...allQuestions].sort(() => 0.5 - Math.random())
         return shuffled.slice(0, count)
     }
@@ -115,9 +118,9 @@ const Quiz = () => {
                                         of urgency or pressure.
                                     </li>
                                     <li>
-                                        Verify the sender's identity through
-                                        official channels before taking any
-                                        action.
+                                        Verify the sender&apos;s identity
+                                        through official channels before taking
+                                        any action.
                                     </li>
                                     <li>
                                         Do not click suspicious looking links.
