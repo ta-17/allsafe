@@ -6,6 +6,14 @@ import Footer from '@/components/footer/footer-four'
 import ScamDetail from '@/components/assets/ScamDetail'
 import ScamTips from '@/components/assets/ScamTips'
 import investment from '@/components/assets/scam-photo/investment.webp'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
 
 const cardData = [
     {
@@ -39,15 +47,71 @@ const cardData = [
 
 export default function Investment() {
     return (
-        <ScamDetail
-            imageSrc={investment}
-            altText="Always use image alt"
-            heading="Investment"
-            subheading="Subheading"
-            paragraphs={[
-                'Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period. Commonly, they have many “successful” cases to share with you to convince people they are not scamming. It usually starts with a positive outcome from the beginning and turns out negative after you increase the amount of your investment.',
-            ]}
-            cardData={cardData}
-        />
+        <div>
+            <ScamDetail
+                imageSrc={investment}
+                altText="Always use image alt"
+                heading="Investment"
+                subheading="Subheading"
+                paragraphs={[
+                    'Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period. Commonly, they have many “successful” cases to share with you to convince people they are not scamming. It usually starts with a positive outcome from the beginning and turns out negative after you increase the amount of your investment.',
+                ]}
+                cardData={cardData}
+            />
+            <Card>
+                <CardHeader>
+                    <CardTitle>Investment scam – Lily lost $50,000</CardTitle>
+                    <CardDescription></CardDescription>
+                </CardHeader>
+                <CardContent>
+                    Lily was called by an online trader who specialised in
+                    binary options and cryptocurrency. He said his company used
+                    the latest technology and offered guaranteed returns. Lily
+                    invested a few thousand dollars on the company’s online
+                    platform. She could see good profits and continued to invest
+                    at their insistence. When she wanted to withdraw some money
+                    she was told she would need to pay taxes on the profits.
+                    When she continued asking for her money, her trades started
+                    to fail and her profits fall. She faced continuous pressure
+                    to keep investing otherwise she would lose everything.
+                    Eventually Lily got back 3% of her initial investment but
+                    had realised it was a scam.
+                    <br />
+                    <strong>Warning signs</strong>
+                    <br />
+                    <li>
+                        VShe was phoned out of the blue by a stranger offering
+                        unsolicited advice on investments;
+                    </li>
+                    <li>She was offered ‘guaranteed returns’; and</li>
+                    <li>
+                        She was pressured to invest more to ensure she didn’t
+                        lose all her money.
+                    </li>
+                    <strong>Precautionary steps</strong>
+                    <br />
+                    <li>
+                        She could have hung up on the caller and taken some time
+                        to think about it;
+                    </li>
+                    <li>
+                        researched and sought trusted or independent financial
+                        or legal advice; and
+                    </li>
+                    <li>
+                        checked on the ASIC website to ensure the business was a
+                        registered financial advisor.
+                    </li>
+                </CardContent>
+                <CardFooter>
+                    <a
+                        href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
+                        className="underline"
+                    >
+                        Read more.
+                    </a>
+                </CardFooter>
+            </Card>
+        </div>
     )
 }
