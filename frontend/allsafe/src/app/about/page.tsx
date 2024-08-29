@@ -52,7 +52,7 @@ const us = [
     },
     {
         image: joImage,
-        heading: 'Master of Busness Information System',
+        heading: 'Master of Business Information System',
         subheading: 'Frontend',
         description: 'Hello world.',
     },
@@ -78,11 +78,11 @@ export default function AboutUs() {
                             {us.map((individual, index) => (
                                 <CarouselItem
                                     key={index}
-                                    className="md:basis-1/2 lg:basis-1/3"
+                                    className="md:basis-1/2 lg:basis-5/12"
                                 >
                                     <div className="p-1">
                                         <Card>
-                                            <CardHeader className="">
+                                            <CardHeader>
                                                 <Image
                                                     src={
                                                         individual.image ||
@@ -96,48 +96,13 @@ export default function AboutUs() {
                                                         height: 'auto',
                                                     }}
                                                 />
-                                                <CardTitle>
+                                                <CardTitle className="text-lg">
                                                     {individual.heading}
                                                 </CardTitle>
                                                 <CardDescription>
                                                     {individual.subheading}
                                                 </CardDescription>
                                             </CardHeader>
-                                            <p>
-                                                <strong>Warning signs</strong>
-                                                <br />
-                                                <ul>
-                                                    <li>
-                                                        Very low prices from a
-                                                        very new website or
-                                                        seller;
-                                                    </li>
-                                                    <li>
-                                                        The website encouraged
-                                                        the buyer to pay via
-                                                        direct bank transfer by
-                                                        offering a discount for
-                                                        this payment method, and
-                                                        charged a higher fee for
-                                                        credit card payment.
-                                                    </li>
-                                                </ul>
-                                                <strong>
-                                                    Precautionary steps
-                                                </strong>
-                                                <br />
-                                                <li>
-                                                    Precautionary steps Do some
-                                                    research on the seller and
-                                                    check independent reviews
-                                                    from other consumers;
-                                                </li>
-                                                <li>
-                                                    and Use a secure payment
-                                                    method such as credit card
-                                                    or PayPal.
-                                                </li>
-                                            </p>
                                         </Card>
                                     </div>
                                 </CarouselItem>

@@ -14,6 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
+import { TypographyLead } from '@/typography/lead'
 
 const cardData = [
     {
@@ -47,7 +48,7 @@ const cardData = [
 
 export default function PersonalInfo() {
     return (
-        <div>
+        <div className="flex flex-col gap-y-16">
             <ScamDetail
                 imageSrc={personalInfo}
                 altText="Always use image alt"
@@ -58,48 +59,53 @@ export default function PersonalInfo() {
                 ]}
                 cardData={cardData}
             />
-            <Card>
-                <CardHeader>
-                    <CardTitle>Identity fraud – Mary lost $6,028</CardTitle>
-                    <CardDescription></CardDescription>
-                </CardHeader>
-                <CardContent>
-                    Mary received an SMS to say her mobile number was being
-                    ported to a different network provider. She contacted her
-                    mobile provider to find out why. She immediately realised
-                    what was going on and phoned her bank. While on the phone,
-                    she tried logging in to her internet banking, but to no
-                    avail. As she was talking to the bank, she started receiving
-                    e-mails about her personal details being changed and the PIN
-                    to the credit card was being changed. She had ordered a
-                    credit card a month earlier but had not received it. The
-                    bank started blocking my accounts and cards. However, the
-                    fraudsters have stolen her identity to create a new mobile
-                    account at the different network provider, hacked her
-                    internet banking account, and stolen funds.
-                    <br />
-                    <strong>Warning signs</strong>
-                    <br />
-                    <li>
-                        The SMS advising Mary her number was being ported to
-                        another provider; and
-                    </li>
-                    <li>
-                        Mary never receiving her new credit card in the mail.
-                    </li>
-                    <strong>Precautionary steps</strong>
-                    <br />
-                    <li>a lock on her mailbox.</li>
-                </CardContent>
-                <CardFooter>
-                    <a
-                        href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
-                        className="underline"
-                    >
-                        Read more.
-                    </a>
-                </CardFooter>
-            </Card>
+            <div className="flex flex-col gap-y-4">
+                <TypographyLead className="">Case Study:</TypographyLead>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Identity fraud – Mary lost $6,028</CardTitle>
+                        <CardDescription></CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        Mary received an SMS to say her mobile number was being
+                        ported to a different network provider. She contacted
+                        her mobile provider to find out why. She immediately
+                        realised what was going on and phoned her bank. While on
+                        the phone, she tried logging in to her internet banking,
+                        but to no avail. As she was talking to the bank, she
+                        started receiving e-mails about her personal details
+                        being changed and the PIN to the credit card was being
+                        changed. She had ordered a credit card a month earlier
+                        but had not received it. The bank started blocking my
+                        accounts and cards. However, the fraudsters have stolen
+                        her identity to create a new mobile account at the
+                        different network provider, hacked her internet banking
+                        account, and stolen funds.
+                        <br />
+                        <strong>Warning signs</strong>
+                        <br />
+                        <li>
+                            The SMS advising Mary her number was being ported to
+                            another provider; and
+                        </li>
+                        <li>
+                            Mary never receiving her new credit card in the
+                            mail.
+                        </li>
+                        <strong>Precautionary steps</strong>
+                        <br />
+                        <li>a lock on her mailbox.</li>
+                    </CardContent>
+                    <CardFooter>
+                        <a
+                            href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
+                            className="underline"
+                        >
+                            Read more.
+                        </a>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     )
 }

@@ -14,6 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
+import { TypographyLead } from '@/typography/lead'
 
 const cardData = [
     {
@@ -47,7 +48,7 @@ const cardData = [
 
 export default function Investment() {
     return (
-        <div>
+        <div className="flex flex-col gap-y-16">
             <ScamDetail
                 imageSrc={investment}
                 altText="Always use image alt"
@@ -58,60 +59,66 @@ export default function Investment() {
                 ]}
                 cardData={cardData}
             />
-            <Card>
-                <CardHeader>
-                    <CardTitle>Investment scam – Lily lost $50,000</CardTitle>
-                    <CardDescription></CardDescription>
-                </CardHeader>
-                <CardContent>
-                    Lily was called by an online trader who specialised in
-                    binary options and cryptocurrency. He said his company used
-                    the latest technology and offered guaranteed returns. Lily
-                    invested a few thousand dollars on the company’s online
-                    platform. She could see good profits and continued to invest
-                    at their insistence. When she wanted to withdraw some money
-                    she was told she would need to pay taxes on the profits.
-                    When she continued asking for her money, her trades started
-                    to fail and her profits fall. She faced continuous pressure
-                    to keep investing otherwise she would lose everything.
-                    Eventually Lily got back 3% of her initial investment but
-                    had realised it was a scam.
-                    <br />
-                    <strong>Warning signs</strong>
-                    <br />
-                    <li>
-                        VShe was phoned out of the blue by a stranger offering
-                        unsolicited advice on investments;
-                    </li>
-                    <li>She was offered ‘guaranteed returns’; and</li>
-                    <li>
-                        She was pressured to invest more to ensure she didn’t
-                        lose all her money.
-                    </li>
-                    <strong>Precautionary steps</strong>
-                    <br />
-                    <li>
-                        She could have hung up on the caller and taken some time
-                        to think about it;
-                    </li>
-                    <li>
-                        researched and sought trusted or independent financial
-                        or legal advice; and
-                    </li>
-                    <li>
-                        checked on the ASIC website to ensure the business was a
-                        registered financial advisor.
-                    </li>
-                </CardContent>
-                <CardFooter>
-                    <a
-                        href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
-                        className="underline"
-                    >
-                        Read more.
-                    </a>
-                </CardFooter>
-            </Card>
+            <div className="flex flex-col gap-y-4">
+                <TypographyLead className="">Case Study:</TypographyLead>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>
+                            Investment scam – Lily lost $50,000
+                        </CardTitle>
+                        <CardDescription></CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        Lily was called by an online trader who specialised in
+                        binary options and cryptocurrency. He said his company
+                        used the latest technology and offered guaranteed
+                        returns. Lily invested a few thousand dollars on the
+                        company&apos;s online platform. She could see good
+                        profits and continued to invest at their insistence.
+                        When she wanted to withdraw some money she was told she
+                        would need to pay taxes on the profits. When she
+                        continued asking for her money, her trades started to
+                        fail and her profits fall. She faced continuous pressure
+                        to keep investing otherwise she would lose everything.
+                        Eventually Lily got back 3% of her initial investment
+                        but had realised it was a scam.
+                        <br />
+                        <strong>Warning signs</strong>
+                        <br />
+                        <li>
+                            VShe was phoned out of the blue by a stranger
+                            offering unsolicited advice on investments;
+                        </li>
+                        <li>She was offered ‘guaranteed returns’; and</li>
+                        <li>
+                            She was pressured to invest more to ensure she
+                            didn&apos;t lose all her money.
+                        </li>
+                        <strong>Precautionary steps</strong>
+                        <br />
+                        <li>
+                            She could have hung up on the caller and taken some
+                            time to think about it;
+                        </li>
+                        <li>
+                            researched and sought trusted or independent
+                            financial or legal advice; and
+                        </li>
+                        <li>
+                            checked on the ASIC website to ensure the business
+                            was a registered financial advisor.
+                        </li>
+                    </CardContent>
+                    <CardFooter>
+                        <a
+                            href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
+                            className="underline"
+                        >
+                            Read more.
+                        </a>
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     )
 }
