@@ -14,7 +14,7 @@ const NavbarLinks = () => {
                 Quiz
             </Link>
             <Link href="/resources/news" className="hover:text-gray-400">
-                Resources
+                News
             </Link>
             <Link href="/about" className="hover:text-gray-400">
                 About Us

@@ -19,7 +19,7 @@ import quiz from '@/components/assets/homepage/feature3-quiz.jpg'
 export default function Quiz() {
     return (
         <div>
-            <main className="flex min-h-screen flex-col items-center justify-between px-8 py-24 md:px-24">
+            <main className="flex min-h-screen flex-col gap-12 items-center justify-between px-8 py-24 md:px-24">
                 {/* <NavBar /> */}
                 <Hero />
                 <Header

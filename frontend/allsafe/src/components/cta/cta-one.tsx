@@ -25,14 +25,14 @@ const CTA = () => {
                         and tools to navigate the internet confidently.
                     </Balancer>
                 </TypographyH4>
-                <div className="not-prose flex items-center gap-2">
+                {/* <div className="not-prose flex items-center gap-2">
                     <Button asChild>
                         <Link href="#">Get Started</Link>
                     </Button>
                     <Button variant="link" asChild>
                         <Link href="#">Learn More {'->'}</Link>
                     </Button>
-                </div>
+                </div> */}
             </Container>
         </Section>
     )
