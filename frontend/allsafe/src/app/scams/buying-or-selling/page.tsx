@@ -52,7 +52,7 @@ export default function BuyingOrSelling() {
             />
 
             <div className="flex flex-col gap-y-4">
-                <TypographyLead className="">Case Studies:</TypographyLead>
+                <TypographyLead className="">Case Study:</TypographyLead>
 
                 <Card>
                     <CardHeader>
