@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '../../components/NavBar'
+import NavBar from '../../components/navbar/NavBar'
 import Header from '@/components/hero/header-two'
 import Footer from '@/components/footer/footer-four'
 import royImage from '@/components/assets/memoji/roy-memoji.png'

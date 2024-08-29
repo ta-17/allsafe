@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import NavBar from '../components/NavBar'
+import NavBar from '../components/navbar/NavBar'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
 import { Button } from '@/components/ui/button'

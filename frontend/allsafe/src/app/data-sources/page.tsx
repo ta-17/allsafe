@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer/footer-four'
 import Header from '@/components/hero/header-two'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import {
     Accordion,
     AccordionContent,
