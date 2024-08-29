@@ -4,9 +4,11 @@ import Image from 'next/image'
 import NavBar from '../../components/NavBar'
 import Header from '@/components/hero/header-two'
 import Footer from '@/components/footer/footer-four'
-import royImage from '@/components/assets/memoji/roy-memoji.jpg'
+import royImage from '@/components/assets/memoji/roy-memoji.png'
 import parisImage from '@/components/assets/memoji/paris-memoji.png'
 import joImage from '@/components/assets/memoji/jo-memoji.jpg'
+import lynImage from '@/components/assets/memoji/lyn-memoji.png'
+import ibrahimImage from '@/components/assets/memoji/ibrahim-memoji.jpg'
 
 import {
     Card,
@@ -26,32 +28,32 @@ import {
 const us = [
     {
         image: royImage,
-        heading: 'Roy',
-        subheading: 'Data Science',
+        heading: 'Master of Data Science',
+        subheading: 'Backend',
+        description: 'Hello world.',
+    },
+    {
+        image: lynImage,
+        heading: 'Master of Data Science',
+        subheading: 'Backend',
         description: 'Hello world.',
     },
     {
         image: parisImage,
-        heading: 'Lyn',
-        subheading: 'Data Science',
+        heading: 'Master of AI',
+        subheading: 'Backend',
         description: 'Hello world.',
     },
     {
-        image: '',
-        heading: 'Paris',
-        subheading: 'AI',
-        description: 'Hello world.',
-    },
-    {
-        image: '',
-        heading: 'Ibrahim',
-        subheading: 'Computer Science',
+        image: ibrahimImage,
+        heading: 'Master of IT',
+        subheading: 'Front/Backend',
         description: 'Hello world.',
     },
     {
         image: joImage,
-        heading: 'Jo',
-        subheading: 'Business Information System',
+        heading: 'Master of Busness Information System',
+        subheading: 'Frontend',
         description: 'Hello world.',
     },
 ]
