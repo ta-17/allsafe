@@ -21,7 +21,7 @@ import { TypographyH3 } from '@/typography/h3'
 export default function Footer() {
     return (
         <footer>
-            <Section className="w-full">
+            <Section className="w-full bg-black text-background">
                 <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr_0.5fr]">
                     <div className="not-prose flex flex-col gap-6">
                         <Link href="/">
@@ -44,14 +44,14 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <h5>Website</h5>
-                        <Link className="underline" href="/">
+                        <Link className="underline" href="/quiz">
                             Quiz
                         </Link>
-                        <Link className="underline" href="/">
+                        {/* <Link className="underline" href="/">
                             AI Model
-                        </Link>
+                        </Link> */}
                         <Link className="underline" href="/data-sources">
-                            Data
+                            Data Sources
                         </Link>
                         <Link className="underline" href="/about">
                             About Us
@@ -59,13 +59,13 @@ export default function Footer() {
                     </div>{' '}
                     <div className="flex flex-col gap-2">
                         <h5>Resources</h5>
-                        <Link className="underline" href="/">
+                        <Link className="underline" href="/resources/news">
                             News
                         </Link>
                     </div>
                     <div className="flex flex-col gap-2">
                         <h5>Legal</h5>
-                        <Link className="underline" href="/privacy-policy">
+                        {/* <Link className="underline" href="/privacy-policy">
                             Privacy Policy
                         </Link>
                         <Link className="underline" href="/terms-of-service">
@@ -73,7 +73,7 @@ export default function Footer() {
                         </Link>
                         <Link className="underline" href="/cookie-policy">
                             Cookie Policy
-                        </Link>
+                        </Link> */}
                     </div>
                 </Container>
                 <Container className="not-prose flex flex-col justify-end gap-6 border-t md:flex-row md:items-center md:gap-2">
@@ -88,9 +88,7 @@ export default function Footer() {
                             <Facebook />
                         </Button>
                     </div> */}
-                    <p className="text-muted-foreground">
-                        © allsafe. All rights reserved. 2024-present.
-                    </p>
+                    <p>© allsafe. All rights reserved. 2024-present.</p>
                 </Container>
             </Section>
         </footer>
