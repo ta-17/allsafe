@@ -27,7 +27,7 @@ export default function RootLayout({
             </head>
             <body className={inter.className}>
                 <NavBar />
-                <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <main className="flex min-h-screen flex-col items-center justify-between px-8 py-24 md:px-24">
                     {children}
                 </main>
                 <Footer />
