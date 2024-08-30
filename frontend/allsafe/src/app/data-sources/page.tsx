@@ -75,7 +75,7 @@ export default function DataSource() {
                                 <p>
                                     Scam Statistics data is retrieved from{' '}
                                     <a
-                                        href="https://www.scamwatch.gov.au/"
+                                        href="https://www.scamwatch.gov.au/research-and-resources/scam-statistics"
                                         className="underline"
                                     >
                                         Scam Watch
@@ -103,7 +103,7 @@ export default function DataSource() {
                             <p>
                                 IG Comment data is retrieved from{' '}
                                 <a
-                                    href="https://github.com/"
+                                    href="https://github.com/ScamSpot/scamspot_ig-comment-scraper/blob/main/data/comments-rated-plus-reported.csv"
                                     className="underline"
                                 >
                                     Github
