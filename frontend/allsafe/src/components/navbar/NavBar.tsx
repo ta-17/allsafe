@@ -49,7 +49,7 @@ const NavBar: React.FC = () => {
             {isOpen && (
                 <div className="md:hidden">
                     <div className="flex flex-col items-end px-9 pt-2 pb-3 space-y-1">
-                        <NavbarLinks />
+                        <NavbarLinks setIsOpen={setIsOpen} />
                     </div>
                 </div>
             )}

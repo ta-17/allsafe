@@ -13,15 +13,13 @@ export default function Top() {
     }
 
     return (
-        <div>
-            <Button
-                className="fixed bottom-8 right-8"
-                variant="outline"
-                size="icon"
-                onClick={scrollToTop}
-            >
-                <ChevronUp />
-            </Button>
-        </div>
+        <Button
+            className="fixed bottom-8 right-8"
+            variant="outline"
+            size="icon"
+            onClick={scrollToTop}
+        >
+            <ChevronUp />
+        </Button>
     )
 }

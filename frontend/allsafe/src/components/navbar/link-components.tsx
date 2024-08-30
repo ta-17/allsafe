@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-const NavbarLinks = () => {
+const NavbarLinks = ({ setIsOpen }: { setIsOpen: any }) => {
     return (
-        <>
+        <div
+            className="flex flex-col items-end justify-items-end"
+            onClick={() => setIsOpen(false)}
+        >
             <Link href="/scams" className="hover:text-gray-400">
                 Scam Information
             </Link>
@@ -19,7 +22,7 @@ const NavbarLinks = () => {
             <Link href="/about" className="hover:text-gray-400">
                 About Us
             </Link>
-        </>
+        </div>
     )
 }
 
