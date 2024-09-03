@@ -4,7 +4,7 @@ from django.db.models import Count
 import random
 
 def random_scam_sms(request):
-    # Get the total count of rows in the table
+    # # Get the total count of rows in the table
     # count = ScamSMS.objects.count()
 
     # # Generate a list of random indexes
@@ -19,8 +19,9 @@ def random_scam_sms(request):
                4369,4379,4384,4486,4613,4614,4645,4656,4749,4806,4839,4876,
                5026,5077,5102,5126,5166,5228,5251,5274,5336,5387,5442,5455,
                5501,5526]
+    indexes_minus_one = [i - 1 for i in indexes]
 
     # Fetch 100 random rows using the generated random indexes
-    data = list(ScamSMS.objects.filter(id__in=(indexes-1)).values())
+    data = list(ScamSMS.objects.filter(id__in=indexes_minus_one).values())
 
     return JsonResponse(data, safe=False)
