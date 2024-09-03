@@ -26,9 +26,14 @@ export default function RootLayout({
                     content="upgrade-insecure-requests"
                 />
             </head>
-            <body className={cn(inter.className, 'w-full')}>
+            <body
+                className={cn(
+                    inter.className,
+                    'flex flex-col justify-between w-full'
+                )}
+            >
                 <NavBar />
-                <main className="flex flex-col items-center justify-between sm:px-8 md:px-24">
+                <main className="flex flex-col items-center justify-between sm:px-8 md:px-24 mb-16">
                     {children}
                 </main>
                 <Footer />

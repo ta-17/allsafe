@@ -20,26 +20,26 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
     cardData,
 }) => {
     return (
-        <div className="flex flex-col items-center gap-x-16 md:flex-row md:items-start md:justify-start max-w-screen-xl">
+        <div className="flex flex-col items-stretch md:items-center gap-x-16 lg:flex-row lg:items-start md:justify-start">
             {/* Image Section */}
 
-            <Image
-                src={imageSrc}
-                alt={altText}
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ height: 'auto' }} // optional
-                className="w-96 md:w-1/2"
-            />
-
+            <div className="md:flex-1 md:w-full">
+                <Image
+                    src={imageSrc}
+                    alt={altText}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: '100%' }} // optional
+                    className=""
+                />
+            </div>
             {/* Text Section */}
-            <div className="flex flex-col w-11/12 px-1">
+            <div className="md:flex-1">
                 <h1
                     style={{
                         fontSize: '24px',
                         fontWeight: 'bold',
-                        marginBottom: '8px',
                     }}
                 >
                     {heading}
@@ -59,7 +59,6 @@ const ScamDetail: React.FC<ScamDetailProps> = ({
                     <p
                         key={index}
                         style={{ fontSize: '16px', lineHeight: '1.5' }}
-                        className="w-4/5 md:w-full"
                     >
                         {text}
                     </p>

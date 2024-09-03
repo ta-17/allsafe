@@ -18,16 +18,10 @@ export default function ScamInfo() {
             <Header
                 title="Scams"
                 subtitle="A collection of the top 5 most common scam types."
+                className="p-0"
             />
-            <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-12">
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={buySell}
                         altText="Placeholder Image"
@@ -37,14 +31,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={personalInfo}
                         altText="Placeholder Image"
@@ -54,14 +41,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={investment}
                         altText="Placeholder Image"
@@ -71,14 +51,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        minHeight: '200px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={employment}
                         altText="Placeholder Image"
@@ -88,14 +61,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        minHeight: '200px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={dating}
                         altText="Placeholder Image"
