@@ -33,7 +33,7 @@ export default function RootLayout({
                 )}
             >
                 <NavBar />
-                <main className="flex flex-col items-center justify-between sm:px-8 md:px-24 mb-16">
+                <main className="flex flex-col h-screen items-center justify-between sm:px-8 md:px-24 mb-16">
                     {children}
                 </main>
                 <Footer />
