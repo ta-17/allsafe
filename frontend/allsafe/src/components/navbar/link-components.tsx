@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 const NavbarLinks = ({ setIsOpen }: { setIsOpen: any }) => {
     return (
         <div
-            className="flex flex-col md:flex-row md:gap-x-4 items-end justify-items-end"
+            className="flex flex-col md:flex-row gap-y-1 md:gap-x-4 items-end justify-items-end"
             onClick={() => setIsOpen(false)}
         >
             <Link href="/scams" className="hover:text-gray-400">
