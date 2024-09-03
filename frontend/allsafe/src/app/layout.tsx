@@ -26,9 +26,9 @@ export default function RootLayout({
                     content="upgrade-insecure-requests"
                 />
             </head>
-            <body className={cn(inter.className, 'w-lvw')}>
+            <body className={cn(inter.className, 'w-full')}>
                 <NavBar />
-                <main className="flex min-h-screen flex-col items-center justify-between px-8 py-24 md:px-24">
+                <main className="flex flex-col items-center justify-between sm:px-8 md:px-24">
                     {children}
                 </main>
                 <Footer />

@@ -12,13 +12,13 @@ const NavBar: React.FC = () => {
     }
 
     return (
-        <nav className="bg-gray-800 text-white fixed w-full top-0 z-50">
+        <nav className="bg-gray-800 text-white w-full top-0 z-50">
             <div className="container mx-auto flex justify-between items-center py-4">
                 <div className="text-xl font-bold">
                     <Link href="/">AllSafe</Link>
                 </div>
                 <div className="hidden md:flex space-x-4 sm:px-9">
-                    <NavbarLinks />
+                    <NavbarLinks setIsOpen={undefined} />
                 </div>
                 <div className="md:hidden">
                     <button

@@ -10,14 +10,14 @@ import { TypographyLead } from '@/typography/lead'
 const Header = ({
     title,
     subtitle,
-    clasName = '',
+    className = '',
 }: {
     title: string
     subtitle: string
-    clasName?: string
+    className?: string
 }) => {
     return (
-        <Section className={clasName}>
+        <Section className={className}>
             <Container className="flex flex-col text-center">
                 <TypographyH1 className="!mb-0">{title}</TypographyH1>
                 <TypographyLead className="text-muted-foreground">

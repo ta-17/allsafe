@@ -50,35 +50,35 @@ const articles = [
 ]
 export default function News() {
     return (
-        <div className="flex flex-col items-center justify-center px-12 py-24 gap-4">
+        <div className="">
             <Header
                 title="News Articles"
                 subtitle="We have curated a list of the most relevant news related to scams."
+                className="p-0"
             />
-            <div className="flex flex-col p-4 gap-y-4">
+            <div className="p-4">
                 {articles.map((article) => (
-                    <a href={article.link} className="w-30" key={article.id}>
-                        <Card key={article.id}>
+                    <a href={article.link} key={article.id}>
+                        <Card
+                            key={article.id}
+                            className="flex flex-col sm:flex-row items-end justify-between sm:items-center mb-4"
+                        >
                             <CardHeader>
                                 <p className="text-sm text-gray-500">
                                     {article.source}
                                 </p>
                                 <CardTitle>{article.title}</CardTitle>
                                 <CardDescription>
-                                    {/* <p className="text-xs text-gray-400">
-                                        Added:
-                                        {dayjs(article.addedAt).toNow()}
-                                    </p> */}
                                     <p className="text-xs text-gray-400">
                                         Updated:
                                         {dayjs(article.updatedAt).fromNow()}
                                     </p>
                                 </CardDescription>
-                            </CardHeader>
-                            <CardContent className="flex flex-col sm:flex-row items-end justify-end gap-x-4">
-                                <span className="text-right text-muted-foreground overflow-scroll">
+                                <span className="text-muted-foreground text-xs break-words">
                                     {article.link}
                                 </span>
+                            </CardHeader>
+                            <CardContent>
                                 <ArrowUpRight />
                             </CardContent>
                         </Card>
