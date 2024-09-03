@@ -4,6 +4,7 @@ import './globals.css'
 import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import Top from '@/components/top/top'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,7 @@ export default function RootLayout({
                     content="upgrade-insecure-requests"
                 />
             </head>
-            <body className={inter.className}>
+            <body className={cn(inter.className, 'w-lvw')}>
                 <NavBar />
                 <main className="flex min-h-screen flex-col items-center justify-between px-8 py-24 md:px-24">
                     {children}

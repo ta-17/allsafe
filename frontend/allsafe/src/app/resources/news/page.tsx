@@ -10,6 +10,7 @@ import {
 import dayjs, { Dayjs } from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Header from '@/components/hero/header-two'
+import { ArrowUpRight } from 'lucide-react'
 
 dayjs.extend(relativeTime)
 
@@ -54,37 +55,32 @@ export default function News() {
                 title="News Articles"
                 subtitle="We have curated a list of the most relevant news related to scams."
             />
-            <div className="grid grid-cols-1 justify-items-center w-full mx-auto gap-12 md:flex-row md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-col p-4 gap-y-4">
                 {articles.map((article) => (
-                    <a
-                        href={article.link}
-                        className="max-w-lg"
-                        key={article.id}
-                    >
+                    <a href={article.link} className="w-30" key={article.id}>
                         <Card key={article.id}>
                             <CardHeader>
+                                <p className="text-sm text-gray-500">
+                                    {article.source}
+                                </p>
                                 <CardTitle>{article.title}</CardTitle>
                                 <CardDescription>
-                                    {article.source}
+                                    {/* <p className="text-xs text-gray-400">
+                                        Added:
+                                        {dayjs(article.addedAt).toNow()}
+                                    </p> */}
+                                    <p className="text-xs text-gray-400">
+                                        Updated:
+                                        {dayjs(article.updatedAt).fromNow()}
+                                    </p>
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-gray-500">
-                                    Source: {article.source}
-                                </p>
-                                <p className="text-xs text-gray-400">
-                                    Added:
-                                    {dayjs(article.addedAt).toNow()}
-                                </p>
-                                <p className="text-xs text-gray-400">
-                                    Updated: {dayjs(article.updatedAt).toNow()}
-                                </p>
-                            </CardContent>
-                            <CardFooter className="overflow-scroll">
-                                <span className="text-right text-muted-foreground">
+                            <CardContent className="flex flex-col sm:flex-row items-end justify-end gap-x-4">
+                                <span className="text-right text-muted-foreground overflow-scroll">
                                     {article.link}
                                 </span>
-                            </CardFooter>
+                                <ArrowUpRight />
+                            </CardContent>
                         </Card>
                     </a>
                 ))}
