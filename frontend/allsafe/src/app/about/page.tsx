@@ -29,31 +29,31 @@ const us = [
     {
         image: royImage,
         heading: 'Master of Data Science',
-        subheading: 'Database',
+        subheading: 'SQL, DBMS',
         description: 'Hello world.',
     },
     {
         image: lynImage,
         heading: 'Master of Data Science',
-        subheading: 'Database',
+        subheading: 'SQL, DBMS',
         description: 'Hello world.',
     },
     {
         image: parisImage,
         heading: 'Master of AI',
-        subheading: 'Backend',
+        subheading: 'ML, AI, API',
         description: 'Hello world.',
     },
     {
         image: ibrahimImage,
         heading: 'Master of IT',
-        subheading: 'Front/Backend',
+        subheading: 'API, React',
         description: 'Hello world.',
     },
     {
         image: joImage,
         heading: 'Master of Business Information System',
-        subheading: 'Frontend',
+        subheading: 'React',
         description: 'Hello world.',
     },
 ]

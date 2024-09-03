@@ -15,6 +15,7 @@ import {
     CardTitle,
 } from '@/components/ui/card'
 import { TypographyLead } from '@/typography/lead'
+import ReturnButton from '@/components/button/ReturnButton'
 
 const cardData = [
     {
@@ -40,6 +41,9 @@ const cardData = [
 export default function JobAndEmployment() {
     return (
         <div className="flex flex-col gap-y-16">
+            <div className="absolute top-18 left-4">
+                <ReturnButton href="/scams" /> {/* Pass the link as a prop */}
+            </div>
             <ScamDetail
                 imageSrc={employment}
                 altText="Always use image alt"
