@@ -11,6 +11,7 @@ import investment from '@/components/assets/scam-photo/investment.webp'
 import employment from '@/components/assets/scam-photo/employment.webp'
 import dating from '@/components/assets/scam-photo/dating.webp'
 import NavBar from '@/components/navbar/NavBar'
+import { Button } from '@/components/ui/button'
 
 export default function ScamInfo() {
     return (
@@ -69,6 +70,15 @@ export default function ScamInfo() {
                         description="Scammers usually build up trust with you through dating, romance or friend relationships. After building up the trust, they will use the emotional connection with you to trick you for money."
                         link="/scams/dating-and-romance"
                     />
+                </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                    <Header
+                        title="Let's test what you have learn!"
+                        subtitle="Test Your Ability to Identify Online Scams and Stay Safe in the Digital World"
+                    />
+                    <Link href="/quiz" passHref>
+                        <Button className="mt-4 pr-4">Go to quiz {'->'}</Button>
+                    </Link>
                 </div>
             </div>
         </div>

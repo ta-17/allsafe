@@ -8,7 +8,7 @@ const NavbarLinks = ({ setIsOpen }: { setIsOpen: any }) => {
             onClick={() => setIsOpen(false)}
         >
             <Link href="/scams" className="hover:text-gray-400">
-                Scam Details
+                Scam Tactic
             </Link>
             <Link href="/data-sources" className="hover:text-gray-400">
                 Data Sources
