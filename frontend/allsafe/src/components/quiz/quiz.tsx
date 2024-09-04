@@ -26,7 +26,7 @@ export default function QuizCard({
     handleAnswer: any
 }) {
     return (
-        <div className="flex flex-col items-center justify-center w-2/3">
+        <div className="flex flex-col items-center justify-center p-6 gap-8 max-w-4xl">
             <div
                 className="flex flex-1 flex-col items-center justify-center p-24 w-full md:min-h-[30rem] rounded-lg border shadow-sm"
                 x-chunk="dashboard-02-chunk-1"
@@ -43,9 +43,9 @@ export default function QuizCard({
                     <TypographyH3 className="text-center">{msg}</TypographyH3>
                 </div>
             </div>
-            <div className="flex flex-col-reverse md:flex-row gap-4 w-full h-full items-center justify-center">
+            <div className="flex items-center justify-center flex-col-reverse md:flex-row gap-2 w-full h-full">
                 <Button
-                    className="mt-4 pr-4 px-28 py-12"
+                    className="pr-4 w-full h-full px-28 py-12"
                     onClick={() => {
                         handleAnswer(0)
                     }}
@@ -53,7 +53,7 @@ export default function QuizCard({
                     No
                 </Button>
                 <Button
-                    className="mt-4 pr-4 px-28 py-12"
+                    className="pr-4 w-full h-full px-28 py-12"
                     onClick={() => {
                         handleAnswer(1)
                     }}

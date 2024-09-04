@@ -22,11 +22,5 @@ import Quiz from '@/components/quiz/quiz-homepage'
 
 export default function ScamInfo({}) {
     // render data
-    return (
-        <div>
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <Quiz />
-            </main>
-        </div>
-    )
+    return <Quiz />
 }

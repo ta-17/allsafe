@@ -11,6 +11,7 @@ import investment from '@/components/assets/scam-photo/investment.webp'
 import employment from '@/components/assets/scam-photo/employment.webp'
 import dating from '@/components/assets/scam-photo/dating.webp'
 import NavBar from '@/components/navbar/NavBar'
+import { Button } from '@/components/ui/button'
 
 export default function ScamInfo() {
     return (
@@ -18,16 +19,10 @@ export default function ScamInfo() {
             <Header
                 title="Scams"
                 subtitle="A collection of the top 5 most common scam types."
+                className="p-0"
             />
-            <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-12">
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={buySell}
                         altText="Placeholder Image"
@@ -37,14 +32,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={personalInfo}
                         altText="Placeholder Image"
@@ -54,14 +42,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={investment}
                         altText="Placeholder Image"
@@ -71,14 +52,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        minHeight: '200px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={employment}
                         altText="Placeholder Image"
@@ -88,14 +62,7 @@ export default function ScamInfo() {
                     />
                 </div>
 
-                <div
-                    style={{
-                        boxSizing: 'border-box',
-                        minHeight: '200px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                >
+                <div className="row-span-1">
                     <ScamMenu
                         imageSrc={dating}
                         altText="Placeholder Image"
@@ -103,6 +70,15 @@ export default function ScamInfo() {
                         description="Scammers usually build up trust with you through dating, romance or friend relationships. After building up the trust, they will use the emotional connection with you to trick you for money."
                         link="/scams/dating-and-romance"
                     />
+                </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                    <Header
+                        title="Let's test what you have learn!"
+                        subtitle="Test Your Ability to Identify Online Scams and Stay Safe in the Digital World"
+                    />
+                    <Link href="/quiz" passHref>
+                        <Button className="mt-4 pr-4">Go to quiz {'->'}</Button>
+                    </Link>
                 </div>
             </div>
         </div>

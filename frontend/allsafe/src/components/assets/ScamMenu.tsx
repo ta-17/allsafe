@@ -27,8 +27,8 @@ const ScamMenu: React.FC<ScamMenuProps> = ({
     link,
 }) => {
     return (
-        <Link href={link}>
-            <Card className="w-[350px] h-[500px]">
+        <Link href={link} className="flex h-full">
+            <Card>
                 <CardHeader>
                     <Image
                         src={imageSrc}

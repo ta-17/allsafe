@@ -4,6 +4,7 @@ import './globals.css'
 import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
 import Top from '@/components/top/top'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,9 +26,16 @@ export default function RootLayout({
                     content="upgrade-insecure-requests"
                 />
             </head>
-            <body className={inter.className}>
+            <body
+                className={cn(
+                    inter.className,
+                    'flex flex-col justify-between w-full'
+                )}
+            >
                 <NavBar />
-                {children}
+                <main className="flex flex-col h-screen items-center justify-between sm:px-8 md:px-24 mb-16">
+                    {children}
+                </main>
                 <Footer />
                 <Top />
             </body>
