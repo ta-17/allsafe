@@ -5,7 +5,15 @@
         "enabled": false
     },
     "builds": [
-        { "src": "frontend/allsafe/package.json", "use": "@vercel/node" }
+        {
+            "src": "frontend/allsafe/package.json",
+            "use": "@vercel/node"
+        }
     ],
-    "routes": [{ "src": "/(.*)", "dest": "frontend/allsafe/$1" }]
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "frontend/allsafe/$1"
+        }
+    ]
 }
