@@ -7,6 +7,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4.1.7
+              with:
+                  sparse-checkout: |
+                      frontend/allsafe
             - uses: amondnet/vercel-action@v25.2.0
               id: vercel-deploy
               with:
