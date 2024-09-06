@@ -12,7 +12,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4.1.7
-
+              with:
+                  sparse-checkout: |
+                      frontend/allsafe
             # Set up Vercel Action
             - uses: amondnet/vercel-action@v25.2.0
               id: vercel-deploy
@@ -21,7 +23,6 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
                   vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-                  working-directory: ./frontend/allsafe # No leading `./`
 
             # Output the Vercel Preview URL
             - name: Show preview URL
