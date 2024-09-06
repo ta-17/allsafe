@@ -16,7 +16,6 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   vercel-org-id: ${{ secrets.ORG_ID }}
                   vercel-project-id: ${{ secrets.PROJECT_ID }}
-                  vercel-args: '--pre' # Specify preview deployment
             - name: Show preview URL
               run: |
                   echo ${{ steps.vercel-deploy.outputs.preview-url }}
