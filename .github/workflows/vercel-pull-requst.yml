@@ -1,9 +1,8 @@
-name: Deploy to Vercel on Merge
+name: Create Vercel Preview URL on Pull Request
 
 on:
-    push:
-        branches:
-            - main
+    pull_request:
+        branches: [main, master]
 
 jobs:
     build_and_deploy:
@@ -11,9 +10,13 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: amondnet/vercel-action@v25
+              id: vercel-deploy
               with:
                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  vercel-args: '--prod' # Add "--yes" to automatically confirm deployment
                   vercel-org-id: ${{ secrets.ORG_ID }}
                   vercel-project-id: ${{ secrets.PROJECT_ID }}
+                  vercel-args: '--pre' # Specify preview deployment
+            - name: Show preview URL
+              run: |
+                  echo ${{ steps.vercel-deploy.outputs.preview-url }}
