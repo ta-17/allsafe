@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { PopoverDemo } from './popover-navbar'
 
 const NavbarLinks = ({
     setIsOpen,
@@ -16,16 +17,22 @@ const NavbarLinks = ({
             <Link href="/scams" className="hover:text-gray-400">
                 Scam Tactic
             </Link>
-            <Link href="/data-sources" className="hover:text-gray-400">
+            <Link
+                href="/data-sources"
+                className="block sm:hidden hover:text-gray-400"
+            >
                 Data Sources
             </Link>
             <Link href="/quiz" className="hover:text-gray-400">
                 Quiz
             </Link>
-            <Link href="/resources/news" className="hover:text-gray-400">
+            <Link
+                href="/resources/news"
+                className="block sm:hidden hover:text-gray-400"
+            >
                 News
             </Link>
-
+            <PopoverDemo className="hidden sm:block" />
             <Link href="/about" className="hover:text-gray-400">
                 About Us
             </Link>
