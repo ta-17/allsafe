@@ -25,6 +25,7 @@ const NavbarLinks = ({
             <Link href="/resources/news" className="hover:text-gray-400">
                 News
             </Link>
+
             <Link href="/about" className="hover:text-gray-400">
                 About Us
             </Link>
