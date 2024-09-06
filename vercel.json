@@ -4,12 +4,7 @@
     "github": {
         "enabled": false
     },
-    "builds": [
-        {
-            "src": "frontend/allsafe/package.json",
-            "use": "@vercel/node"
-        }
-    ],
+
     "routes": [
         {
             "src": "/(.*)",
