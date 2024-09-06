@@ -15,11 +15,14 @@ import { TypographyH1 } from '@/typography/h1'
 import { TypographyH3 } from '@/typography/h3'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH2 } from '@/typography/h2'
+import FlickeringGrid from '../magicui/flickering-grid'
+import AnimatedGridPattern from '../magicui/animated-grid-pattern'
+import { cn } from '@/lib/utils'
 
 const Hero = () => {
     return (
         <Section className="md:mb-60">
-            <Container className="flex flex-col items-center text-center">
+            <Container className="flex flex-col justify-center items-center text-center">
                 {/* <Image
           src={Logo}
           width={172}
@@ -51,6 +54,16 @@ const Hero = () => {
           </Button>
         </div> */}
             </Container>
+            <AnimatedGridPattern
+                numSquares={30}
+                maxOpacity={0.1}
+                duration={3}
+                repeatDelay={1}
+                className={cn(
+                    '[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]',
+                    'inset-x-0 inset-y-[-40%] h-[200%] skew-y-12'
+                )}
+            />
         </Section>
     )
 }

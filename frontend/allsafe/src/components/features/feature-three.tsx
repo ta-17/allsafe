@@ -26,10 +26,10 @@ const FeatureLeft = ({
     link?: string
 }) => {
     return (
-        <Craft.Section>
+        <Craft.Section className="w-full">
             <Craft.Container
                 className={cn(
-                    'grid items-stretch grid-cols-1 md:grid-cols-2 md:gap-12',
+                    'grid items-stretch w-full grid-cols-1 md:grid-cols-2 md:gap-12',
                     className
                 )}
             >
@@ -54,9 +54,11 @@ const FeatureLeft = ({
                             <Link href="#">Get Started</Link>
                         </Button> */}
                         {link !== undefined && (
-                            <Button className="w-fit" variant="link" asChild>
-                                <Link href={link}>Learn More {'->'}</Link>
-                            </Button>
+                            // <Button className="w-fit" variant="link" asChild>
+                            <Link href={link} className="hover:underline">
+                                Learn More {'->'}
+                            </Link>
+                            // </Button>
                         )}
                     </div>
                 </div>
