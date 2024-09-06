@@ -31,6 +31,7 @@ export default function Quiz() {
                 body="Get the latest news and updates about different types of scams. Learning from relevant sources, to familiarize you with different types of scams that are currently going around. We have curated a list of the most relevant news related to scams. Keeping them updated to always be relevant."
                 className="rounded-md bg-slate-200"
                 img={newspaper}
+                link="/resources/news"
             />
             <FeatureRight
                 title="Scam detection model"
@@ -43,6 +44,7 @@ export default function Quiz() {
                 body="We have provided a series of quizzes about scams. We have created a set of learning resources to help you learn about different types of scams. And to test yourself on how well you can spot and identify them."
                 className="rounded-md bg-slate-200"
                 img={quiz}
+                link="/quiz/"
             />
             <CTA />
         </>

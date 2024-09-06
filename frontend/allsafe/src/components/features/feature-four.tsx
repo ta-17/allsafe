@@ -16,11 +16,13 @@ const FeatureRight = ({
     body,
     className,
     img,
+    link,
 }: {
     title: string
     body: string
     className?: string
     img?: any
+    link?: string
 }) => {
     return (
         <Section>
@@ -35,14 +37,16 @@ const FeatureRight = ({
                     <p className="font-light leading-[1.4] opacity-70">
                         {body}
                     </p>
-                    {/* <div className="not-prose flex items-center gap-2">
-                        <Button className="w-fit" asChild>
+                    <div className="not-prose flex gap-2">
+                        {/* <Button className="w-fit" asChild>
                             <Link href="#">Get Started</Link>
-                        </Button>
-                        <Button className="w-fit" variant="link" asChild>
-                            <Link href="#">Learn More {'->'}</Link>
-                        </Button>
-                    </div> */}
+                        </Button> */}
+                        {link !== undefined && (
+                            <Button className="w-fit" variant="link" asChild>
+                                <Link href={link}>Learn More {'->'}</Link>
+                            </Button>
+                        )}
+                    </div>
                 </div>
                 <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
                     <Image
