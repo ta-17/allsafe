@@ -11,6 +11,10 @@ const NavBar: React.FC = () => {
         setIsOpen(!isOpen)
     }
 
+    const funOpen = (open: boolean) => {
+        setIsOpen(open)
+    }
+
     return (
         <nav className="bg-gray-800 text-white w-full top-0 z-50">
             <div className="container mx-auto flex justify-between items-center py-4">
@@ -18,7 +22,7 @@ const NavBar: React.FC = () => {
                     <Link href="/">AllSafe</Link>
                 </div>
                 <div className="hidden md:flex space-x-4 sm:px-9">
-                    <NavbarLinks setIsOpen={undefined} />
+                    <NavbarLinks />
                 </div>
                 <div className="md:hidden">
                     <button
@@ -49,7 +53,7 @@ const NavBar: React.FC = () => {
             {isOpen && (
                 <div className="md:hidden">
                     <div className="flex flex-col items-end px-9 pt-2 pb-3 space-y-1">
-                        <NavbarLinks setIsOpen={setIsOpen} />
+                        <NavbarLinks setIsOpen={funOpen} />
                     </div>
                 </div>
             )}
