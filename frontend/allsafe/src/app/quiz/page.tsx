@@ -18,10 +18,10 @@ import { ArrowRight } from 'lucide-react'
 export default function ScamInfo() {
     return (
         <div
-            className="flex flex-1 items-center justify-center w-full rounded-lg border shadow-sm"
+            className="flex items-center justify-center h-screen w-full"
             x-chunk="dashboard-02-chunk-1"
         >
-            <div className="flex flex-col items-center gap-1 text-center">
+            <div className="flex flex-col justify-around items-center gap-1 p-8 text-center">
                 <Header
                     title="Spot the Scam: How Sharp Are Your Senses?"
                     subtitle="Test Your Ability to Identify Online Scams and Stay Safe in the Digital World"

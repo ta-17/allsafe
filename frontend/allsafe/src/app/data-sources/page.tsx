@@ -13,7 +13,7 @@ import { TypographyBlockquote } from '@/typography/blockqoute'
 
 export default function DataSource() {
     return (
-        <>
+        <div className="flex-1">
             <Header
                 title="Data Sources"
                 subtitle="We aim to provide transparency on where our data comes from."
@@ -120,6 +120,6 @@ export default function DataSource() {
                     </AccordionItem>
                 </Accordion>
             </div>
-        </>
+        </div>
     )
 }
