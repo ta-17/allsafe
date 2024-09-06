@@ -3,5 +3,9 @@
     "public": false,
     "github": {
         "enabled": false
-    }
+    },
+    "builds": [
+        { "src": "frontend/allsafe/package.json", "use": "@vercel/node" }
+    ],
+    "routes": [{ "src": "/(.*)", "dest": "frontend/allsafe/$1" }]
 }
