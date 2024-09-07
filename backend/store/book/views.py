@@ -1,7 +1,8 @@
 from django.http import JsonResponse
 from .models import ScamSMS
-from django.db.models import Count
-import random
+from .models import HistoricalScam
+# from django.db.models import Count
+# import random
 
 def random_scam_sms(request):
     # # Get the total count of rows in the table
@@ -14,7 +15,11 @@ def random_scam_sms(request):
       935, 1102, 1694, 2052, 2460, 3296, 3546, 5199, 5400]
     # indexes_plus_one = [i - 1 for i in indexes]
 
-    # Fetch 100 random rows using the generated random indexes
+    # Fetch rows using the indexes
     data = list(ScamSMS.objects.filter(id__in=indexes).values())
 
+    return JsonResponse(data, safe=False)
+
+def all_historical_scam(request):
+    data = list(HistoricalScam.objects.all().values())  # Fetch all rows
     return JsonResponse(data, safe=False)

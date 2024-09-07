@@ -140,3 +140,4 @@ GitHub.sublime-settings
 
 # my dir #
 *migrations/*
+directories.py
