@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.db import connection
 from .models import ScamSMS
 from .models import HistoricalScam
 # from django.db.models import Count
@@ -21,5 +22,13 @@ def random_scam_sms(request):
     return JsonResponse(data, safe=False)
 
 def all_historical_scam(request):
-    data = list(HistoricalScam.objects.all().values())  # Fetch all rows
+    with connection.cursor() as cursor:
+        # Execute raw SQL to fetch all data from 'historical_scam' table
+        cursor.execute("SELECT * FROM historical_scam")
+        columns = [col[0] for col in cursor.description]  # Get column names
+        data = [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]  # Combine column names and row values into a dictionary
+
     return JsonResponse(data, safe=False)
