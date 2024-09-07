@@ -52,8 +52,8 @@ export default function News() {
     return (
         <div className="">
             <Header
-                title="News Articles"
-                subtitle="We have curated a list of the most relevant news related to scams."
+                title="Safety Watch"
+                subtitle="Curated list of scam related news articles."
                 className="p-0"
             />
             <div className="p-4">

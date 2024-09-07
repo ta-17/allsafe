@@ -26,7 +26,7 @@ export default function QuizCard({
     handleAnswer: any
 }) {
     return (
-        <div className="flex flex-col items-center justify-center p-6 gap-8 max-w-4xl">
+        <div className="flex flex-col items-center justify-center p-6 gap-8 w-full max-w-4xl">
             <div
                 className="flex flex-1 flex-col items-center justify-center p-24 w-full md:min-h-[30rem] rounded-lg border shadow-sm"
                 x-chunk="dashboard-02-chunk-1"

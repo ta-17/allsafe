@@ -17,17 +17,19 @@ const FeatureLeft = ({
     body,
     className,
     img,
+    link,
 }: {
     title: string
     body: string
     className?: string
     img?: any
+    link?: string
 }) => {
     return (
-        <Craft.Section>
+        <Craft.Section className="w-full">
             <Craft.Container
                 className={cn(
-                    'grid items-stretch grid-cols-1 md:grid-cols-2 md:gap-12',
+                    'grid items-stretch w-full grid-cols-1 md:grid-cols-2 md:gap-12',
                     className
                 )}
             >
@@ -47,14 +49,18 @@ const FeatureLeft = ({
                     <p className="font-light leading-[1.4] opacity-70">
                         {body}
                     </p>
-                    {/* <div className="not-prose flex items-center gap-2">
-                        <Button className="w-fit" asChild>
+                    <div className="not-prose flex gap-2">
+                        {/* <Button className="w-fit" asChild>
                             <Link href="#">Get Started</Link>
-                        </Button>
-                        <Button className="w-fit" variant="link" asChild>
-                            <Link href="#">Learn More {'->'}</Link>
-                        </Button>
-                    </div> */}
+                        </Button> */}
+                        {link !== undefined && (
+                            // <Button className="w-fit" variant="link" asChild>
+                            <Link href={link} className="hover:underline">
+                                Learn More {'->'}
+                            </Link>
+                            // </Button>
+                        )}
+                    </div>
                 </div>
             </Craft.Container>
         </Craft.Section>

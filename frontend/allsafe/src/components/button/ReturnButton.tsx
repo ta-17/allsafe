@@ -1,17 +1,17 @@
+// 'use client'
+
 import React from 'react'
 import Link from 'next/link'
+import { Button } from '../ui/button'
+import { useRouter } from 'next/navigation'
 
-interface ReturnButtonProps {
-    href: string
-}
+const ReturnButton: React.FC = () => {
+    const router = useRouter()
 
-const ReturnButton: React.FC<ReturnButtonProps> = ({ href }) => {
     return (
-        <Link href={href}>
-            <div className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
-                Go Back
-            </div>
-        </Link>
+        <Button variant="secondary" onClick={() => router.back()}>
+            {'<-'} Go Back
+        </Button>
     )
 }
 

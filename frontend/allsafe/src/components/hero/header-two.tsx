@@ -23,7 +23,7 @@ const Header = ({
                 <TypographyLead className="text-muted-foreground">
                     <Balancer>{subtitle}</Balancer>
                 </TypographyLead>
-                <div className="mx-auto !mt-8 flex items-center gap-2"></div>
+                {/* <div className="mx-auto !mt-8 flex items-center gap-2"></div> */}
             </Container>
         </Section>
     )
