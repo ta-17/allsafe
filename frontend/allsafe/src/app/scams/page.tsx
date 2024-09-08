@@ -23,7 +23,7 @@ export default function ScamInfo() {
                     className="p-0"
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                    <div className="row-span-1">
+                    <div className="row-span-1 max-w-lg">
                         <ScamMenu
                             imageSrc={buySell}
                             altText="Placeholder Image"
@@ -33,7 +33,7 @@ export default function ScamInfo() {
                         />
                     </div>
 
-                    <div className="row-span-1">
+                    <div className="row-span-1 max-w-lg">
                         <ScamMenu
                             imageSrc={personalInfo}
                             altText="Placeholder Image"
@@ -43,7 +43,7 @@ export default function ScamInfo() {
                         />
                     </div>
 
-                    <div className="row-span-1">
+                    <div className="row-span-1 max-w-lg">
                         <ScamMenu
                             imageSrc={investment}
                             altText="Placeholder Image"
@@ -53,7 +53,7 @@ export default function ScamInfo() {
                         />
                     </div>
 
-                    <div className="row-span-1">
+                    <div className="row-span-1 max-w-lg">
                         <ScamMenu
                             imageSrc={employment}
                             altText="Placeholder Image"
@@ -63,7 +63,7 @@ export default function ScamInfo() {
                         />
                     </div>
 
-                    <div className="row-span-1">
+                    <div className="row-span-1 max-w-lg">
                         <ScamMenu
                             imageSrc={dating}
                             altText="Placeholder Image"
@@ -74,7 +74,7 @@ export default function ScamInfo() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-1 text-center">
+            <div className="flex flex-col items-center gap-1 text-center mb-16">
                 <Header
                     title="Let's test what you have learn!"
                     subtitle="Test Your Ability to Identify Online Scams and Stay Safe in the Digital World"
