@@ -88,15 +88,11 @@ const Quiz = () => {
     if (quizCompleted) {
         return (
             <div
-                className="flex flex-col items-center min-h-screen justify-center rounded-lg gap-y-20 border border-dashed shadow-sm w-full mt-16"
+                className="flex flex-col items-center min-h-screen rounded-lg gap-y-20 w-full"
                 x-chunk="dashboard-02-chunk-1"
             >
                 <div className="flex flex-col items-center text-center w-full">
-                    <Header
-                        title="Quiz Results"
-                        subtitle={successMessage}
-                        className="py-0 md:py-0"
-                    />
+                    <Header title="Quiz Results" subtitle={successMessage} />
                     {score > 4 && (
                         <div className="mb-4 font-semibold">
                             <span className="text-left">
