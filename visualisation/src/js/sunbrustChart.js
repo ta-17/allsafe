@@ -3,7 +3,7 @@ export function createSunbrustChart(data, containerId) {
     console.log("Creating sunbrust chart...")
 
     // set up dimensions and margins of the graph (change accordingly)
-    const container = document.getElementsById(containerId);
+    const container = document.getElementById(containerId);
     const { width: containerWidth, height: containerHeight } = 
         container.getBoundingClientRect();
 
