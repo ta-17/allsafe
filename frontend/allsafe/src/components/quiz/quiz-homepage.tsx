@@ -162,9 +162,13 @@ const Quiz = () => {
                                     </ul>
                                 </TypographyBlockquote>
                                 <span className="text-xs text-muted-foreground">
-                                    <Link href="https://help.instagram.com/514187739359208?helpref=faq_content">
+                                    <a
+                                        href="https://help.instagram.com/514187739359208?helpref=faq_content"
+                                        className="underline"
+                                        target="_blank"
+                                    >
                                         https://help.instagram.com/514187739359208?helpref=faq_content
-                                    </Link>
+                                    </a>
                                 </span>
                             </div>
                         </div>
