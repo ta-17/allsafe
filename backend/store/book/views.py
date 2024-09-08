@@ -12,8 +12,8 @@ def random_scam_sms(request):
     # # Generate a list of random indexes
     # random_indexes = random.sample(range(1, count+1), min(100, count))
 
-    indexes = [165, 259, 375, 834, 1688, 1765, 2645, 4571, 5028, 530, 895, 
-      935, 1102, 1694, 2052, 2460, 3296, 3546, 5199, 5400]
+    indexes = [259, 375, 834, 1688, 1765, 2645, 4571, 5028, 530, 895, 
+      935, 1102, 1482, 1694, 2052, 2460, 3296, 3546, 5199, 5400]
     # indexes_plus_one = [i - 1 for i in indexes]
 
     # Fetch rows using the indexes
