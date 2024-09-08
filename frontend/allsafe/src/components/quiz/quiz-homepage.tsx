@@ -164,7 +164,7 @@ const Quiz = () => {
                                 <span className="text-xs text-muted-foreground">
                                     <a
                                         href="https://help.instagram.com/514187739359208?helpref=faq_content"
-                                        className="underline"
+                                        className="underline text-blue-500 visited:text-blue-800"
                                         target="_blank"
                                     >
                                         https://help.instagram.com/514187739359208?helpref=faq_content
