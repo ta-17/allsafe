@@ -88,15 +88,11 @@ const Quiz = () => {
     if (quizCompleted) {
         return (
             <div
-                className="flex flex-col items-center min-h-screen justify-center rounded-lg gap-y-20 border border-dashed shadow-sm w-full mt-16"
+                className="flex flex-col items-center min-h-screen rounded-lg gap-y-20 w-full"
                 x-chunk="dashboard-02-chunk-1"
             >
                 <div className="flex flex-col items-center text-center w-full">
-                    <Header
-                        title="Quiz Results"
-                        subtitle={successMessage}
-                        className="py-0 md:py-0"
-                    />
+                    <Header title="Quiz Results" subtitle={successMessage} />
                     {score > 4 && (
                         <div className="mb-4 font-semibold">
                             <span className="text-left">
@@ -162,9 +158,13 @@ const Quiz = () => {
                                     </ul>
                                 </TypographyBlockquote>
                                 <span className="text-xs text-muted-foreground">
-                                    <Link href="https://help.instagram.com/514187739359208?helpref=faq_content">
+                                    <a
+                                        href="https://help.instagram.com/514187739359208?helpref=faq_content"
+                                        className="underline text-blue-500 visited:text-blue-800"
+                                        target="_blank"
+                                    >
                                         https://help.instagram.com/514187739359208?helpref=faq_content
-                                    </Link>
+                                    </a>
                                 </span>
                             </div>
                         </div>

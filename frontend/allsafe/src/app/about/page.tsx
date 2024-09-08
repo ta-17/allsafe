@@ -19,11 +19,13 @@ import {
 } from '@/components/ui/card'
 import {
     Carousel,
+    CarouselApi,
     CarouselContent,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
 } from '@/components/ui/carousel'
+import React from 'react'
 
 const us = [
     {
@@ -59,18 +61,36 @@ const us = [
 ]
 
 export default function AboutUs() {
+    const [api, setApi] = React.useState<CarouselApi>()
+    const [current, setCurrent] = React.useState(0)
+    const [count, setCount] = React.useState(0)
+
+    React.useEffect(() => {
+        if (!api) {
+            return
+        }
+
+        setCount(api.scrollSnapList().length)
+        setCurrent(api.selectedScrollSnap() + 1)
+
+        api.on('select', () => {
+            setCurrent(api.selectedScrollSnap() + 1)
+        })
+    }, [api])
+
     return (
         <>
             <Header
                 title="Our Team"
                 subtitle="We are a group of students from Monash University, aiming to create a platform were young adults can protect themselves from the dangers of online scams."
             />
-            <div className="w-full sm:w-3/4 md:w-2/3 lg:w-5/6 mx-auto">
+            <div className="w-1/2 sm:w-3/4 md:w-2/3 lg:w-5/6 mx-auto 2xl:max-w-7xl">
                 <Carousel
                     opts={{
                         align: 'start',
                         loop: true,
                     }}
+                    setApi={setApi}
                 >
                     <CarouselContent>
                         {us.map((individual, index) => (
@@ -109,6 +129,9 @@ export default function AboutUs() {
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
+                <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {current} of {count}
+                </div>
             </div>
         </>
     )

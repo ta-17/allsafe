@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+        paths: ['frontend/allsafe/**']
 permissions:
     pull-requests: write
     contents: write

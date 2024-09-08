@@ -35,8 +35,9 @@ export default function DataSource() {
                             <p>
                                 SMS Spam data is retrieved from{' '}
                                 <a
+                                    target="_blank"
                                     href="https://www.kaggle.com/"
-                                    className="underline"
+                                    className="underline text-blue-500 visited:text-blue-800"
                                 >
                                     Kaggle
                                 </a>
@@ -47,8 +48,9 @@ export default function DataSource() {
                                 detection model by providing a scam-like
                                 percentage of the user input text{' '}
                                 <a
+                                    target="_blank"
                                     href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data"
-                                    className="underline"
+                                    className="underline text-blue-500 visited:text-blue-800"
                                 >
                                     found here
                                 </a>
@@ -75,8 +77,9 @@ export default function DataSource() {
                                 <p>
                                     Scam Statistics data is retrieved from{' '}
                                     <a
+                                        target="_blank"
                                         href="https://www.scamwatch.gov.au/research-and-resources/scam-statistics"
-                                        className="underline"
+                                        className="underline text-blue-500 visited:text-blue-800"
                                     >
                                         Scam Watch
                                     </a>
@@ -103,8 +106,9 @@ export default function DataSource() {
                             <p>
                                 IG Comment data is retrieved from{' '}
                                 <a
+                                    target="_blank"
                                     href="https://github.com/ScamSpot/scamspot_ig-comment-scraper/blob/main/data/comments-rated-plus-reported.csv"
-                                    className="underline"
+                                    className="underline text-blue-500 visited:text-blue-800"
                                 >
                                     Github
                                 </a>

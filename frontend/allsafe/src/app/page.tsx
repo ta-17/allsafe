@@ -29,7 +29,7 @@ export default function Homepage() {
     }, [])
 
     return (
-        <div className="absolute inset-0 overflow-y-auto snap-y snap-mandatory">
+        <div className="absolute inset-0 overflow-y-auto snap-y">
             <div className="snap-start min-h-screen w-full flex items-center justify-center">
                 <Hero />
             </div>

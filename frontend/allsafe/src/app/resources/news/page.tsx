@@ -58,7 +58,7 @@ export default function News() {
             />
             <div className="p-4">
                 {articles.map((article) => (
-                    <a href={article.link} key={article.id}>
+                    <a href={article.link} key={article.id} target="_blank">
                         <Card
                             key={article.id}
                             className="flex flex-col sm:flex-row items-end justify-between sm:items-center mb-4"

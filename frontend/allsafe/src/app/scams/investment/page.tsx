@@ -119,6 +119,7 @@ export default function Investment() {
                             <a
                                 href="https://ndh.org.au/complex-situations/scams/scams-case-studies-2/"
                                 className="underline"
+                                target="_blank"
                             >
                                 Read more.
                             </a>

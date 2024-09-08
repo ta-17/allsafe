@@ -90,6 +90,7 @@ export default function JobAndEmployment() {
                             <a
                                 href="https://www.counterfraud.gov.au/case-studies/elaborate-online-job-scam-steals-dozens-identities"
                                 className="underline"
+                                target="_blank"
                             >
                                 Read more.
                             </a>
