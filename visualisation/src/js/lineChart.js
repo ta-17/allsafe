@@ -61,7 +61,16 @@ export function createLineChart(data, containerId) {
     svg.append("g")
         .attr("transform", `translate(0,${height - lineMargin.bottom})`)
         .call(d3.axisBottom(x).tickFormat(d3.format("d"))
-        .ticks(monthData2024.length));
+        .ticks(monthData2024.length))
+        .call((g) =>
+            g
+              .append("text")
+              .attr("x", width -lineMargin.right + 15)
+              .attr("y", 17)
+              .attr("fill", "currentColor")
+              .attr("text-anchor", "start")
+              .text("Month")
+          );
 
     // add y-axis
     svg.append("g")
@@ -76,15 +85,15 @@ export function createLineChart(data, containerId) {
                       .attr("y", 15)
                       .attr("fill", "currentColor")
                       .attr("text-anchor", "start")
-                      .text("Number of Reports"));
+                      .text("↑ Number of Reports"));
 
     // draw the line
-    svg.append("path")
-       .datum(monthData2024)
-       .attr("fill", "none")
-       .attr("stroke", "red")
-       .attr("stroke-width", 1.5)
-       .attr("d", line);
+    const linePath = svg.append("path")
+                        .datum(monthData2024)
+                        .attr("fill", "none")
+                        .attr("stroke", "red")
+                        .attr("stroke-width", 3)
+                        .attr("d", line);
     
     // create area
     const area = d3.area()
@@ -112,23 +121,66 @@ export function createLineChart(data, containerId) {
     // gradient ends
     gradient.append('stop')
             .attr('offset', '70%')
-            .attr('stop-color', 'red')
+            .attr('stop-color', 'orange')
             .attr('stop-opacity', 0.2);
 
     // draw area
-    svg.append('path')
-       .datum(monthData2024)
-       .attr('fill', `url(#${gradientId})`)
-       .attr('stroke', 'none')
-       .attr('d', area);
+    const areaPath = svg.append('path')
+                        .datum(monthData2024)
+                        .attr('fill', `url(#${gradientId})`)
+                        .attr('stroke', 'none')
+                        .attr('d', area);
+
+    // get tooltip
+    const tooltip = d3.select("body")
+                      .append("div")
+                      .attr("class", "tooltip")
+                      .style("opacity", 0);
+
+    // update report number format
+    const formatNumber = new Intl.NumberFormat();
+
+
+    // add dots with showing data details
+    const dots = svg.append("g")
+                    .selectAll("circle")
+                    .data(monthData2024)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "line-chart-dot")
+                    .attr("r", 8)
+                    .attr("fill", "red")
+                    .attr("cx", d => x(d.month))
+                    .attr("cy", d => y(d.no_of_reports))
+                    .on("mouseover", (event, d) => {
+                        // change opacity
+                        linePath.style("opacity", 0.5);
+                        areaPath.style("opacity", 0.5);
+                        dots.style("opacity", 0.5);
+
+                        // highlight the current dot
+                        d3.select(event.currentTarget).style("opacity", 1);
+
+                        // tooltip content
+                        tooltip.style("opacity", 1)
+                               .html(`Date: ${d.year}/${d.month}<br>Number of Reports: ${formatNumber.format(d.no_of_reports)}`)
+                               .style("left", `${event.pageX + 5}px`)
+                               .style("top", `${event.pageY - 28}px`);
+                    })
+                    .on("mousemove", (event) => {
+                        tooltip.style("left", `${event.pageX + 5}px`)
+                               .style("top", `${event.pageY - 28}px`);
+                    })
+                    .on("mouseout", () => {
+                        // reset opacity
+                        linePath.style("opacity", 1);
+                        areaPath.style("opacity", 1);
+                        dots.style("opacity", 1);
+
+                        tooltip.style("opacity", 0);
+                    });
 
     // append the svg to the container
     container.appendChild(svg.node());
     
-    // get tooltip
-    const tooltip = d3.select("#tooltip");
-
-    // add dot
-
-    // set up interaction
 }
