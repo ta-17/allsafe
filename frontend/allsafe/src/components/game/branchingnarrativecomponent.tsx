@@ -20,9 +20,9 @@ const BranchingNarrativeComponent = () => {
     }
 
     return (
-        <div>
+        <div className="flex flex-col gap-y-6">
             <h2>{currentQuestionData.question}</h2>
-            <div>
+            <div className="flex flex-col gap-y-4">
                 {currentQuestionData.answers.map(
                     (
                         answer: {
@@ -44,12 +44,13 @@ const BranchingNarrativeComponent = () => {
                         },
                         index: React.Key | null | undefined
                     ) => (
-                        <button
+                        <span
                             key={index}
+                            className="border border-slate-600 rounded-sm w-full"
                             onClick={() => handleAnswerClick(answer.link)}
                         >
                             {answer.text}
-                        </button>
+                        </span>
                     )
                 )}
             </div>

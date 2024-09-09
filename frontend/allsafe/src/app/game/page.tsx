@@ -90,9 +90,8 @@ export default function Game() {
                 )}
 
                 {started === true && (
-                    <div className="flex flex-col rounded-md border border-slate-600 w-full h-28">
-                        <p>Scenario</p>
-                        <p> {scenarios[scenario]}</p>
+                    <div className="flex flex-col rounded-md border border-slate-600 w-full h-fit gap-y-8">
+                        <p>Scenario {scenarios[scenario]}</p>
                         <BranchingNarrativeComponent />
                         {/* <QuestionAnswer
                             data={tree['q0']}
