@@ -7,6 +7,8 @@ import Top from '@/components/top/top'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import FooterWrapper from '@/components/footer/footer-wrapper'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,6 +39,8 @@ export default function RootLayout({
                 <NavBar />
                 <main className="flex flex-col justify-center items-center min-h-screen pt-16">
                     {children}
+                    <SpeedInsights />
+                    <Analytics />
                 </main>
                 <FooterWrapper />
                 <Top />
