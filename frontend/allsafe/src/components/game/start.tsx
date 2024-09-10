@@ -27,6 +27,7 @@ export default function Start({
                         onClick={() => {
                             selectScenario(index + 1)
                             onStartMenuProgress(1)
+                            start(true)
                         }}
                     >
                         <CardContent>
@@ -67,7 +68,7 @@ export default function Start({
             <h1>Game</h1>
             <span className="text-muted-foreground">Choose a scenario</span>
             {startMenuProgress === 0 && scenario()}
-            {startMenuProgress === 1 && platform()}
+            {/* {startMenuProgress === 1 && platform()} */}
         </div>
     )
 }
