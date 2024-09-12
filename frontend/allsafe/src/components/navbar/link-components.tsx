@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { PopoverDemo } from './popover-navbar'
+import { PopoverInteractive } from './popover-interactive'
 
 const NavbarLinks = ({
     setIsOpen,
@@ -23,9 +24,7 @@ const NavbarLinks = ({
             >
                 Data Sources
             </Link>
-            <Link href="/quiz" className="hover:text-gray-400">
-                Quiz
-            </Link>
+            <PopoverInteractive className="hidden sm:block" />
             <Link
                 href="/resources/news"
                 className="block sm:hidden hover:text-gray-400"
