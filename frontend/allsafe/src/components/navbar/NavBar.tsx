@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import NavbarLinks from './link-components'
+import { usePathname } from 'next/navigation'
 
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -13,6 +14,13 @@ const NavBar: React.FC = () => {
 
     const funOpen = (open: boolean) => {
         setIsOpen(open)
+    }
+
+    const pathname = usePathname()
+    const isGamePage = pathname === '/game'
+
+    if (isGamePage) {
+        return null
     }
 
     return (

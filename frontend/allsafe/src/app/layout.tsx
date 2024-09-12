@@ -3,12 +3,13 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/navbar/NavBar'
 import Footer from '@/components/footer/footer-four'
-import Top from '@/components/top/top'
+import Top from '@/components/helper/top'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import FooterWrapper from '@/components/footer/footer-wrapper'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
+import GoBack from '@/components/helper/go-back'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,6 +45,7 @@ export default function RootLayout({
                 </main>
                 <FooterWrapper />
                 <Top />
+                <GoBack />
             </body>
         </html>
     )
