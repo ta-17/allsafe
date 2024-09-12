@@ -3,7 +3,12 @@
 import BranchingNarrativeComponent from '@/components/game/branchingnarrativecomponent'
 import QuestionAnswer from '@/components/game/question-answer'
 import Start from '@/components/game/start'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+} from '@/components/ui/card'
 import { useEffect, useState } from 'react'
 
 enum scenarios {
@@ -35,7 +40,7 @@ export default function Game() {
     }, [scenario, started])
 
     return (
-        <div className="w-5/6 h-96 bg-white relative overflow-hidden">
+        <div className="flex flex-1 w-5/6 bg-white pb-16">
             {started !== true && (
                 <Start
                     scenarios={scenarios}
@@ -47,27 +52,10 @@ export default function Game() {
             )}
             {/* Main card content */}
             {started === true && (
-                <div className="p-6 h-full border border-slate-100">
-                    <div className="flex flex-col">
-                        <p>Scenario {scenarios[scenario]}</p>
-                        <BranchingNarrativeComponent scenario={scenario} />
-                        {/* <QuestionAnswer
-                                    data={tree['q0']}
-                                    text={tree['q1']}
-                                    progress={progress}
-                                    onProgress={onProgress}
-                                /> */}
-                    </div>
-                    <Card>
-                        <CardHeader>
-                            <h6>{scenarios[scenario]}</h6>
-                        </CardHeader>
-                        <CardContent>
-                            {' '}
-                            <BranchingNarrativeComponent scenario={scenario} />
-                        </CardContent>
-                    </Card>
-                </div>
+                <BranchingNarrativeComponent
+                    scenarios={scenarios}
+                    scenario={scenario}
+                />
             )}
             {/* Top-left cut corner */}
             {/* <div className="absolute top-0 left-0 w-8 h-8 bg-gray-200 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div> */}
