@@ -1,9 +1,10 @@
 import { gameData } from '@/data/gameData'
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Button } from '../ui/button'
 import { Card, CardHeader, CardDescription, CardContent } from '../ui/card'
 import gifImg from '@/components/assets/Isometric Bar Snowing.gif'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const BranchingNarrativeComponent = ({
     scenarios,
@@ -15,19 +16,45 @@ const BranchingNarrativeComponent = ({
     const [gameBegan, setGameBegan] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState('q0')
     const [navAnswer, setNavAnswer] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(false)
     const choice = gameData[scenario - 1]
+
+    const audioRef = useRef<HTMLAudioElement | null>(null) // Ref to control the audio element
 
     const handleAnswerClick = (link: React.SetStateAction<string>) => {
         if (choice[currentQuestion as keyof typeof choice]) {
             setCurrentQuestion(link)
             setNavAnswer(false)
             setGameBegan(true)
+            if (audioRef.current && !isPlaying) {
+                audioRef.current.play()
+                setIsPlaying(true)
+            }
         } else {
             console.error(`Question with link "${link}" not found in gameData.`)
         }
     }
 
+    const togglePlayPause = () => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                audioRef.current.pause()
+            } else {
+                audioRef.current.play()
+            }
+            setIsPlaying(!isPlaying)
+        }
+    }
+
     const currentQuestionData = choice[currentQuestion as keyof typeof choice]
+
+    useEffect(() => {
+        // Automatically play music when the game begins
+        if (gameBegan && audioRef.current) {
+            audioRef.current.play()
+            setIsPlaying(true)
+        }
+    }, [gameBegan])
 
     if (!currentQuestionData && gameBegan) {
         return (
@@ -35,8 +62,24 @@ const BranchingNarrativeComponent = ({
                 <p>Game over</p>
                 <p>Play again?</p>
                 <div className="flex">
-                    <Button>Yes</Button>
-                    <Button>No</Button>
+                    <Link href="/game" passHref>
+                        <Button
+                            className="m-6 self-end"
+                            variant="ghost"
+                            onClick={() => setNavAnswer(true)}
+                        >
+                            Yes
+                        </Button>
+                    </Link>
+                    <Link href="/app" passHref>
+                        <Button
+                            className="m-6 self-end"
+                            variant="ghost"
+                            onClick={() => setNavAnswer(true)}
+                        >
+                            No
+                        </Button>
+                    </Link>
                 </div>
             </div>
         )
@@ -48,8 +91,17 @@ const BranchingNarrativeComponent = ({
 
     return (
         <div className="flex flex-col justify-end items-end gap-y-6 w-full">
-            <Image src={gifImg} alt={''} />
-            <Card className="flex flex-col h-56 overflow-y-scroll w-full justify-between z-10">
+            <audio ref={audioRef} src="/music.mp3" loop={true} preload="auto" />
+
+            <Image
+                src={gifImg}
+                alt={'background gif'}
+                layout="fill"
+                objectFit="cover"
+                priority={true} // Ensures the GIF is prioritized for loading
+                className="absolute top-0 left-0 w-full h-full z-0" // Positions the GIF correctly as a background
+            />
+            <Card className="flex flex-col h-50 overflow-y-scroll w-full justify-between z-10">
                 <CardHeader>
                     <CardDescription>{scenarios[scenario]}</CardDescription>
                 </CardHeader>
@@ -103,6 +155,14 @@ const BranchingNarrativeComponent = ({
                     </Button>
                 )}
             </Card>
+            {/* Play/Pause Button */}
+            <Button
+                onClick={togglePlayPause}
+                className="fixed top-20 right-10 z-20"
+                variant="ghost"
+            >
+                {isPlaying ? 'Pause Music' : 'Play Music'}
+            </Button>
         </div>
     )
 }
