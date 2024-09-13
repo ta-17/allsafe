@@ -47,6 +47,9 @@ export default function Footer() {
                         <Link className="underline" href="/quiz">
                             Quiz
                         </Link>
+                        <Link className="underline" href="/game">
+                            Game
+                        </Link>
                         {/* <Link className="underline" href="/">
                             AI Model
                         </Link> */}
