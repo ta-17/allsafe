@@ -10,6 +10,7 @@ import FooterWrapper from '@/components/footer/footer-wrapper'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 import GoBack from '@/components/helper/go-back'
+import Mute from '@/components/helper/mute'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,6 +47,7 @@ export default function RootLayout({
                 <FooterWrapper />
                 <Top />
                 <GoBack />
+                <Mute />
             </body>
         </html>
     )
