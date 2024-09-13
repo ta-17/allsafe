@@ -27,7 +27,7 @@ export default function Start({
             <div className="flex flex-col items-center gap-y-36">
                 <div className="flex flex-col items-center gap-y-12">
                     <TypographyH1 className="text-center">
-                        Welcome to AllSafe's in house visual novel game.
+                        Welcome to AllSafe&prime;s in house visual novel game.
                     </TypographyH1>
                     <TypographyLead className="text-center text-3xl">
                         Start new game
