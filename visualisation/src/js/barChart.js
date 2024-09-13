@@ -66,9 +66,8 @@ export function createBarChart(data, containerId) {
     // console.log(scamTypes);
 
     // set color scale
-    const color = d3.scaleOrdinal()
-                    .domain(scamTypes)
-                    .range(new Array(scamTypes.length).fill('orange'));
+    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length));
+
 
     // create svg
     const svg = d3.create("svg")
@@ -126,7 +125,6 @@ export function createBarChart(data, containerId) {
 
                         // highlight the current bar
                         d3.select(event.currentTarget)
-                          .attr("fill", "red")
                           .style("opacity", 0.8);
                         
                         // tooltip content
@@ -141,7 +139,7 @@ export function createBarChart(data, containerId) {
                     })
                     .on("mouseout", () => {
                         // reset opacity
-                        bars.attr("fill", "orange").style("opacity", 0.6);
+                        bars.style("opacity", 0.6);
             
                         tooltip.style("opacity", 0);
                     })
