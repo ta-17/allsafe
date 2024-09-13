@@ -44,6 +44,9 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <h5>Website</h5>
+                        <Link className="underline" href="/scams">
+                            Scam Tactic
+                        </Link>
                         <Link className="underline" href="/quiz">
                             Quiz
                         </Link>

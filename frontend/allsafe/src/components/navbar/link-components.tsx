@@ -19,11 +19,11 @@ const NavbarLinks = ({
             <Link href="/scams" className="hover:text-gray-400">
                 Scam Tactic
             </Link>
-            <Link
-                href="/data-sources"
-                className="block sm:hidden hover:text-gray-400"
-            >
-                Data Sources
+            <Link href="/quiz" className="hover:text-gray-400">
+                Quiz
+            </Link>
+            <Link href="/game" className="hover:text-gray-400">
+                Game
             </Link>
             <PopoverInteractive className="hidden sm:block" />
             <Link
@@ -32,7 +32,15 @@ const NavbarLinks = ({
             >
                 News
             </Link>
-            <PopoverDemo className="hidden sm:block" />
+            <Link href="/data-sources" className="hover:text-gray-400">
+                Data Sources
+            </Link>
+            <Link href="/help" className="hover:text-gray-400">
+                Report a scam
+            </Link>
+            <Link href="/help/post" className="hover:text-gray-400">
+                Get help
+            </Link>
             <Link href="/about" className="hover:text-gray-400">
                 About Us
             </Link>

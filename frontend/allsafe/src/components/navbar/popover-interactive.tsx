@@ -33,7 +33,7 @@ export function PopoverInteractive({ className }: { className?: string }) {
                         Quiz
                     </Link>
                     <Link href="/game" className="hover:text-gray-400">
-                        Are your safe game
+                        Game
                     </Link>
                 </div>
             </PopoverContent>
