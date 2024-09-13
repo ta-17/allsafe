@@ -11,8 +11,8 @@ export default function SentMoney() {
                 </h2>
                 <ol className="list-decimal list-inside">
                     <li>
-                        Don't send any more money. Block all contact from the
-                        scammer.
+                        Don&apos;t send any more money. Block all contact from
+                        the scammer.
                     </li>
                     <li>
                         Contact your bank or financial institution immediately
@@ -27,7 +27,7 @@ export default function SentMoney() {
 
             <section className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">
-                    If You've Paid a Scammer
+                    If You&apos;ve Paid a Scammer
                 </h2>
                 <p className="mb-2">
                     Depending on how you paid, take the following actions:

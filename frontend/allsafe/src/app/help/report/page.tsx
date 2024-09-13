@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-export function TabsPlatform() {
+export default function TabsPlatform() {
     return (
         <Tabs defaultValue="account" className="w-[400px]">
             <TabsList className="grid w-full grid-cols-2">
@@ -24,7 +24,7 @@ export function TabsPlatform() {
                         <CardTitle>Account</CardTitle>
                         <CardDescription>
                             Make changes to your account here. Click save when
-                            you're done.
+                            you&apos;re done.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -47,8 +47,8 @@ export function TabsPlatform() {
                     <CardHeader>
                         <CardTitle>Password</CardTitle>
                         <CardDescription>
-                            Change your password here. After saving, you'll be
-                            logged out.
+                            Change your password here. After saving, you&apos;ll
+                            be logged out.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
