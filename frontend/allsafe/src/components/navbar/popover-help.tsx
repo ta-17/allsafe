@@ -11,7 +11,7 @@ import { PopoverArrow } from '@radix-ui/react-popover'
 import { cn } from '@/lib/utils'
 import React from 'react'
 
-export function PopoverInteractive({ className }: { className?: string }) {
+export function PopoverHelp({ className }: { className?: string }) {
     const [popover, openPopover] = React.useState(false)
 
     return (
@@ -22,18 +22,16 @@ export function PopoverInteractive({ className }: { className?: string }) {
                 onClick={() => openPopover(!popover)}
             >
                 {/* <Button variant="outline">Open popover</Button> */}
-                <p className="cursor-pointer hover:text-slate-300">
-                    Playground
-                </p>
+                <p className="cursor-pointer hover:text-slate-300">Help</p>
             </PopoverTrigger>
-            <PopoverContent className="w-40">
+            <PopoverContent className="w-52">
                 <PopoverArrow className="fill-white border-0" />
                 <div className="grid gap-4" onClick={() => openPopover(false)}>
                     <Link href="/quiz" className="hover:text-gray-400">
-                        Quiz
+                        Report a scam.
                     </Link>
                     <Link href="/game" className="hover:text-gray-400">
-                        Game
+                        Get help.
                     </Link>
                 </div>
             </PopoverContent>
