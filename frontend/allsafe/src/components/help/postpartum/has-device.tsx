@@ -9,7 +9,7 @@ export default function HasDeviceAccess() {
                 A scammer pretends to be from your internet or phone provider.
                 They say you have a technical problem and ask for access to your
                 device. Then they infect it with a virus, to steal your
-                passwords and financial information. Here's what to do:
+                passwords and financial information. Here&apos;s what to do:
             </p>
 
             <section className="mb-6">

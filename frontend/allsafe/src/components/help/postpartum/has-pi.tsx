@@ -7,8 +7,8 @@ export default function HasPersonalInformation() {
 
             <p className="mb-4 italic">
                 If your personal details (like name, phone, email, address,
-                identity documents) have been leaked in a data breach, here's
-                what to do:
+                identity documents) have been leaked in a data breach,
+                here&apos;s what to do:
             </p>
 
             <ul className="list-disc list-inside space-y-4">
@@ -40,8 +40,9 @@ export default function HasPersonalInformation() {
                 <li>
                     <strong>Create a new, stronger password</strong>
                     <p className="ml-6">
-                        Make sure you haven't used it before. If you've used the
-                        leaked password anywhere else, update it there too.
+                        Make sure you haven&apos;t used it before. If
+                        you&apos;ve used the leaked password anywhere else,
+                        update it there too.
                     </p>
                 </li>
 
@@ -49,8 +50,9 @@ export default function HasPersonalInformation() {
                     <strong>Watch out for suspicious contact</strong>
                     <p className="ml-6">
                         Look for suspicious emails, phone calls, texts or
-                        messages through social media. Block or don't answer
-                        anyone you don't know. Don't click on any links.
+                        messages through social media. Block or don&apos;t
+                        answer anyone you don&apos;t know. Don&apos;t click on
+                        any links.
                     </p>
                 </li>
 
