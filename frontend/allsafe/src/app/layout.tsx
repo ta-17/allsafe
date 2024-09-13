@@ -39,7 +39,7 @@ export default function RootLayout({
                 )}
             >
                 <NavBar />
-                <main className="flex flex-col justify-center items-center min-h-screen pt-16">
+                <main className="flex flex-col justify-center items-center min-h-screen">
                     {children}
                     <SpeedInsights />
                     <Analytics />

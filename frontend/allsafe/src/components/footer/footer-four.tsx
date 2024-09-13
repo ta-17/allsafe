@@ -44,6 +44,9 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <h5>Website</h5>
+                        <Link className="underline" href="/scams">
+                            Scam Tactic
+                        </Link>
                         <Link className="underline" href="/quiz">
                             Quiz
                         </Link>
@@ -59,11 +62,20 @@ export default function Footer() {
                         <Link className="underline" href="/about">
                             About Us
                         </Link>
-                    </div>{' '}
+                    </div>
                     <div className="flex flex-col gap-2">
                         <h5>Resources</h5>
-                        <Link className="underline" href="/resources/news">
+                        <Link href="/data-sources" className="underline">
+                            Data Sources
+                        </Link>
+                        <Link href="/resources/news" className="underline">
                             News
+                        </Link>
+                        <Link href="/help" className="underline">
+                            Report a scam.
+                        </Link>
+                        <Link href="/help/post" className="underline">
+                            Get help.
                         </Link>
                     </div>
                     <div className="flex flex-col gap-2">
