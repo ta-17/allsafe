@@ -15,5 +15,8 @@ export function parseData(data) {
         d.no_of_reports = +d.no_of_reports;
     
     // console.log("Parsed data:", data);
+
+    // Log the category_level2 to see if it is correctly assigned
+    // console.log("Parsed category_level2:", d.category_level2);
     });
 }
