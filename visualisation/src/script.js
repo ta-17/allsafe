@@ -1,7 +1,7 @@
 import { parseData } from "./data.js";
 import { createLineChart } from "./js/lineChart.js";
 import { createSunbrustChart } from "./js/sunbrustChart.js";
-import { createPieChart } from "./js/pieChart.js";
+// import { createPieChart } from "./js/pieChart.js";
 import { createBarChart } from "./js/barChart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Create charts directly
         createLineChart(data, "scam-line-chart");
         createSunbrustChart(data, "scam-sunbrust-chart");
-        createPieChart(data, "report-pie-chart");
+        // createPieChart(data, "report-pie-chart");
         createBarChart(data, "money-bar-chart");
     }).catch((error) => {
         console.error('Error loading or parsing data:', error);
