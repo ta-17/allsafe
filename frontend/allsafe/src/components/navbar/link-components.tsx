@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { PopoverDemo } from './popover-navbar'
 import { PopoverInteractive } from './popover-interactive'
+import { PopoverHelp } from './popover-help'
 
 const NavbarLinks = ({
     setIsOpen,
