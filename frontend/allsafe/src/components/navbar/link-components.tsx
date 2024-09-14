@@ -16,32 +16,53 @@ const NavbarLinks = ({
                 if (setIsOpen !== undefined) setIsOpen(false)
             }}
         >
-            <Link href="/scams" className="hover:text-gray-400">
+            <Link
+                href="/scams"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Scam Tactic
             </Link>
-            <Link href="/quiz" className="hover:text-gray-400">
+            <Link
+                href="/quiz"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Quiz
             </Link>
-            <Link href="/game" className="hover:text-gray-400">
+            <Link
+                href="/game"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Game
             </Link>
-            <PopoverInteractive className="hidden sm:block" />
+            {/* <PopoverInteractive className="hidden sm:block" /> */}
             <Link
                 href="/resources/news"
-                className="block sm:hidden hover:text-gray-400"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
             >
                 News
             </Link>
-            <Link href="/data-sources" className="hover:text-gray-400">
+            <Link
+                href="/data-sources"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Data Sources
             </Link>
-            <Link href="/help" className="hover:text-gray-400">
+            <Link
+                href="/help"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Report a scam
             </Link>
-            <Link href="/help/post" className="hover:text-gray-400">
+            <Link
+                href="/help/post"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 Get help
             </Link>
-            <Link href="/about" className="hover:text-gray-400">
+            <Link
+                href="/about"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
                 About Us
             </Link>
         </div>

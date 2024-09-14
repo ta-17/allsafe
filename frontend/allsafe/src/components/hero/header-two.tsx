@@ -30,6 +30,7 @@ const Header = ({
             <Section className={className}>
                 <Container className="flex flex-col text-center">
                     <div
+                        ref={ref}
                         style={{
                             transform: isInView ? 'none' : 'translateY(200px)',
                             opacity: isInView ? 1 : 0,

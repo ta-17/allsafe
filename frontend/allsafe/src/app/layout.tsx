@@ -12,6 +12,8 @@ import { Analytics } from '@vercel/analytics/react'
 import GoBack from '@/components/helper/go-back'
 import Mute from '@/components/helper/mute'
 
+import { ReactLenis, useLenis } from 'lenis/react'
+
 const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata: Metadata = {
