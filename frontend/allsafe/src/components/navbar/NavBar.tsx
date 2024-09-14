@@ -78,7 +78,7 @@ const resources: { title: string; href: string; description: string }[] = [
     },
     {
         title: 'Get help',
-        href: '/data-sources',
+        href: '/help/post',
         description:
             'Guides on securing your accounts, and taking steps to recover from fraudulent activities',
     },
@@ -132,7 +132,7 @@ const NavBar: React.FC = () => {
                                         </NavigationMenuLink>
                                     </Link>
                                 </NavigationMenuItem>
-                                <NavigationMenuItem>
+                                {/* <NavigationMenuItem>
                                     <NavigationMenuTrigger>
                                         Playground
                                     </NavigationMenuTrigger>
@@ -160,10 +160,6 @@ const NavBar: React.FC = () => {
                                                     </a>
                                                 </NavigationMenuLink>
                                             </li>
-                                            {/* <ListItem href="/docs" title="Introduction">
-                                    Re-usable components built using Radix UI
-                                    and Tailwind CSS.
-                                </ListItem> */}
                                             <ListItem href="/quiz" title="Quiz">
                                                 Test your ability to detect
                                                 scams.
@@ -174,7 +170,7 @@ const NavBar: React.FC = () => {
                                             </ListItem>
                                         </ul>
                                     </NavigationMenuContent>
-                                </NavigationMenuItem>
+                                </NavigationMenuItem> */}
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger>
                                         Resources
