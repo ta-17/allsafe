@@ -14,7 +14,7 @@ export default function AudioControl() {
     const isGamePage = pathname === '/game'
 
     const [isMuted, setIsMuted] = useState(false)
-    const [volume, setVolume] = useState<number>(50)
+    const [volume, setVolume] = useState<number>(10)
     const [isPlaying, setIsPlaying] = useState(false)
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
