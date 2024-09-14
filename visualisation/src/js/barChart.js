@@ -30,7 +30,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         const flattened = [];
 
         for (const [level2, level3Map] of grouped) {
-            if (level2 === "unexpected money") continue;
+            if (level2 === "Unexpected money" || level2 === "Threats and extortion") continue;
 
             let totalAmountForLevel2 = 0;
             const level3Data = [];
