@@ -17,6 +17,7 @@ import {
 import { usePathname } from 'next/navigation'
 import NavbarLinks from './link-components'
 import { Menu, X } from 'lucide-react'
+import { Button } from '../ui/button'
 
 // const components: { title: string; href: string; description: string }[] = [
 //     {
@@ -108,7 +109,7 @@ const NavBar: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className="z-10">
             <div className="hidden sm:flex items-center justify-around w-full p-2">
                 <div className="text-xl font-bold">
                     <Link href="/">AllSafe</Link>
@@ -195,8 +196,16 @@ const NavBar: React.FC = () => {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex flex-col sm:hidden w-full">
+            <div className="flex flex-col sm:hidden w-full z-20">
                 <div className="container mx-auto flex justify-between items-center py-4">
+                    <Button
+                        onClick={() => {
+                            console.log('Hey i was clicked')
+                        }}
+                        className="md:hidden"
+                    >
+                        Click me{' '}
+                    </Button>
                     <div className="text-xl font-bold">
                         <Link href="/">AllSafe</Link>
                     </div>

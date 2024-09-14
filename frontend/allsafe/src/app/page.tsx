@@ -15,7 +15,8 @@ import CTA from '@/components/cta/cta-one'
 import newspaper from '@/components/assets/homepage/feature1-newspaper.jpg'
 import aimodel from '@/components/assets/homepage/feature2-scams.jpg'
 import quiz from '@/components/assets/homepage/feature3-quiz.jpg'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { useInView } from 'framer-motion'
 
 export default function Homepage() {
     useEffect(() => {
@@ -29,6 +30,7 @@ export default function Homepage() {
     }, [])
 
     return (
+        // TODO add ref={ref} to all divs
         <div className="absolute inset-0 overflow-y-auto snap-y">
             <div className="snap-start min-h-screen w-full flex items-center justify-center">
                 <Hero />
