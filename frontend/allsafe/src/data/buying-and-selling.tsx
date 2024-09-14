@@ -2,7 +2,7 @@ export const buyingAndSelling = {
     q0: {
         id: 0,
         question:
-            "You're browsing an online marketplace looking for a great deal on [Item X] (it could be a phone, gaming console, etc.). You come across an offer that looks almost too good to be true — a brand-new item for a significantly lower price than usual. You decide to reach out to the seller. You message the seller, and they reply almost immediately:\n\nScammer (as Seller):\nHey! Thanks for your interest in [Item X]. I'm selling it because I need the cash urgently. It's brand new, and I can ship it to you right away for just $200. Normally it goes for $500, so you're getting a great deal! Let me know if you're ready to buy.",
+            "You're browsing an online marketplace looking for a great deal on [Item X] (it could be a phone, gaming console, etc.). You come across an offer that looks almost too good to be true — a brand-new item for a significantly lower price than usual. You decide to reach out to the seller. You message the seller, and they reply almost immediately:\n\nSeller:\nHey! Thanks for your interest in [Item X]. I'm selling it because I need the cash urgently. It's brand new, and I can ship it to you right away for just $200. Normally it goes for $500, so you're getting a great deal! Let me know if you're ready to buy.",
         answers: [
             {
                 text: 'Agree to buy the item at $200.',
@@ -25,7 +25,7 @@ export const buyingAndSelling = {
     q1: {
         id: 1,
         question:
-            "You agree to buy the item and transfer $200 to the seller using their preferred method of payment. After you send the money, the seller responds:\n\nScammer (as Seller):\nThanks for the payment! I'll ship the item today, and you should receive it within the next few days. I'll send you the tracking information as soon as it's available.\n\nAfter a couple of days, you ask for an update, but the seller becomes unresponsive. You check the tracking number they gave you, and it either doesn't work or shows that no package was shipped. You realize you've been scammed.",
+            "You agree to buy the item and transfer $200 to the seller using their preferred method of payment. After you send the money, the seller responds:\n\nSeller:\nThanks for the payment! I'll ship the item today, and you should receive it within the next few days. I'll send you the tracking information as soon as it's available.\n\nAfter a couple of days, you ask for an update, but the seller becomes unresponsive. You check the tracking number they gave you, and it either doesn't work or shows that no package was shipped. You realize you've been scammed.",
         answers: [
             {
                 text: 'Try to contact the seller again and demand a refund.',
@@ -44,7 +44,7 @@ export const buyingAndSelling = {
     q2: {
         id: 2,
         question:
-            "Before I send the payment, could you provide more pictures of the item and confirm how you'll ship it to me? I just want to make sure everything is legit.\n\nScammer (as Seller):\nSure! Here are a few more photos. I'll be shipping it via [reputable shipping service], and I'll send you a tracking number as soon as it's shipped. Don't worry, I've sold a few of these before without any problems. You'll get the item within 3 days.\n\nThe photos look genuine, but there's still something that feels off. The price is still too good to be true.",
+            "Before I send the payment, could you provide more pictures of the item and confirm how you'll ship it to me? I just want to make sure everything is legit.\n\nSeller:\nSure! Here are a few more photos. I'll be shipping it via [reputable shipping service], and I'll send you a tracking number as soon as it's shipped. Don't worry, I've sold a few of these before without any problems. You'll get the item within 3 days.\n\nThe photos look genuine, but there's still something that feels off. The price is still too good to be true.",
         answers: [
             {
                 text: 'Trust the seller and proceed with the payment.',
@@ -59,7 +59,7 @@ export const buyingAndSelling = {
     q3: {
         id: 3,
         question:
-            "I'd prefer to meet in person to make the purchase. Can we arrange a time to meet so I can inspect the item before I pay?\n\nScammer (as Seller):\nI'd love to, but I'm currently out of town/on a business trip. I can't meet right now, but I can ship it to you immediately. If you don't like it when it arrives, you can always return it.",
+            "I'd prefer to meet in person to make the purchase. Can we arrange a time to meet so I can inspect the item before I pay?\n\nSeller:\nI'd love to, but I'm currently out of town/on a business trip. I can't meet right now, but I can ship it to you immediately. If you don't like it when it arrives, you can always return it.",
         answers: [
             {
                 text: "Accept the seller's reasoning and proceed with payment.",
@@ -89,7 +89,7 @@ export const buyingAndSelling = {
     q5: {
         id: 5,
         question:
-            "You try to contact the seller, but they either stop responding altogether or continue to give excuses like:\n\nScammer (as Seller):\nHey, sorry about the delay! The package is stuck with the shipping company. I'm trying to get it sorted out. Please give me a couple more days.\n\nAfter another week of waiting, it becomes clear that you won't be receiving the item.",
+            "You try to contact the seller, but they either stop responding altogether or continue to give excuses like:\n\nSeller:\nHey, sorry about the delay! The package is stuck with the shipping company. I'm trying to get it sorted out. Please give me a couple more days.\n\nAfter another week of waiting, it becomes clear that you won't be receiving the item.",
         answers: [
             {
                 text: 'Accept the loss.',
@@ -134,7 +134,7 @@ export const buyingAndSelling = {
     q8: {
         id: 8,
         question:
-            "Could you show me proof of any successful sales you've done before? I'd just feel more comfortable if I knew other buyers were happy with their purchases.\n\nScammer (as Seller):\nSure! Here's a screenshot of the last sale I made for the same item. The buyer was really happy, and I can even give you their contact info if you want.\n\nThe screenshot looks convincing, but you're unsure whether it's genuine or doctored.",
+            "Could you show me proof of any successful sales you've done before? I'd just feel more comfortable if I knew other buyers were happy with their purchases.\n\nSeller:\nSure! Here's a screenshot of the last sale I made for the same item. The buyer was really happy, and I can even give you their contact info if you want.\n\nThe screenshot looks convincing, but you're unsure whether it's genuine or doctored.",
         answers: [
             {
                 text: 'Trust the proof and proceed with the purchase.',
@@ -153,7 +153,7 @@ export const buyingAndSelling = {
     q9: {
         id: 9,
         question:
-            "I'm sorry, but I'm only comfortable with meeting in person. If we can't meet, I'll have to pass on the deal.\n\nThe seller tries to convince you, but eventually backs off:\n\nScammer (as Seller):\nI understand. If you change your mind, let me know. I'll keep it available for now.",
+            "I'm sorry, but I'm only comfortable with meeting in person. If we can't meet, I'll have to pass on the deal.\n\nThe seller tries to convince you, but eventually backs off:\n\nSeller:\nI understand. If you change your mind, let me know. I'll keep it available for now.",
         answers: [
             {
                 text: 'End the conversation and avoid the scam.',
@@ -164,7 +164,7 @@ export const buyingAndSelling = {
     q10: {
         id: 10,
         question:
-            "I looked into your account, and there are a lot of red flags. Your account is new, and there are reports from other buyers about missing items. I'm not comfortable moving forward with this.\n\nScammer (as Seller):\nThose are fake reviews left by competitors. I can assure you that I'm legitimate. I've sold many items without any issues. If you don't trust me, that's fine, but you're going to miss out on a great deal.",
+            "I looked into your account, and there are a lot of red flags. Your account is new, and there are reports from other buyers about missing items. I'm not comfortable moving forward with this.\n\nSeller:\nThose are fake reviews left by competitors. I can assure you that I'm legitimate. I've sold many items without any issues. If you don't trust me, that's fine, but you're going to miss out on a great deal.",
         answers: [
             {
                 text: "Trust the seller's explanation and proceed with the payment.",
@@ -356,172 +356,140 @@ export const buyingAndSelling = {
             },
         ],
     },
-}
-const gameData = {
-    q0: {
-        id: 0,
+    q23: {
+        id: 23,
         question:
-            "The scammer reaches out to the player with a direct message, claiming they found the player's profile through a job posting platform, social media, or online résumé. The scammer's offer seems attractive, offering a high salary for remote work or a part-time job that doesn't require special qualifications.",
+            "You decide to share your experience to warn others about the scam you encountered. You post about it on social media and forums to raise awareness, hoping others don't fall victim to similar tricks. How would you like to share your experience?",
         answers: [
             {
-                text: 'Show interest and ask for more details about the job.',
-                link: 'q1',
+                text: 'Post a detailed account of the scam with screenshots on relevant online platforms.',
+                link: 'q32',
             },
             {
-                text: "Ask how they found your profile and why they think you're a good fit.",
-                link: 'q2',
-            },
-            {
-                text: 'Ignore the message and block the scammer.',
-                link: 'q3',
+                text: 'Share the experience in online communities focused on consumer protection.',
+                link: 'q33',
             },
         ],
     },
-    q1: {
-        id: 1,
+    q24: {
+        id: 24,
         question:
-            'You express interest in the job offer and ask for more details. The scammer responds enthusiastically but quickly shifts focus to the next steps involving personal information.',
+            "You decide to research ways to protect yourself from similar scams in the future. You find multiple resources online, offering advice on identifying scams, secure payment methods, and ways to verify sellers. What would you like to focus on?",
         answers: [
             {
-                text: "Agree to provide the information and proceed with the 'hiring process.'",
-                link: 'q4',
+                text: 'Learn about secure payment methods that offer buyer protection.',
+                link: 'q34',
             },
             {
-                text: 'Ask for a company website or references to verify the legitimacy of the job offer.',
-                link: 'q5',
-            },
-            {
-                text: 'Recognize the red flags and stop responding.',
-                link: 'q6',
+                text: 'Find out how to verify the legitimacy of online sellers.',
+                link: 'q35',
             },
         ],
     },
-    q2: {
-        id: 2,
+    q25: {
+        id: 25,
         question:
-            "You're cautious and ask the scammer how they found your profile and why they believe you're a good fit.",
+            "You feel relieved that the payment platform refunded your money and you’re more cautious now. What’s your next step?",
         answers: [
             {
-                text: 'Ask for more specific details about where they found your profile.',
-                link: 'q7',
+                text: 'Continue searching for the item you want, but be more cautious.',
+                link: 'q22',
             },
             {
-                text: "Ask why they're reaching out if you haven't applied for jobs recently.",
-                link: 'q8',
-            },
-            {
-                text: 'Express suspicion and end the conversation.',
-                link: 'q6',
+                text: 'Share your story to warn others about the potential scam.',
+                link: 'q23',
             },
         ],
     },
-    q3: {
-        id: 3,
+    q26: {
+        id: 26,
         question:
-            "You decide to ignore the message and block the scammer. You've heard about job scams before and don't want to take any chances.",
+            "You’ve decided to move on from the experience, but you remain vigilant when shopping online. What’s your next step?",
         answers: [
             {
-                text: 'End the conversation and block the scammer.',
-                link: 'end',
+                text: 'Research ways to avoid similar scams in the future.',
+                link: 'q24',
+            },
+            {
+                text: 'Look for a reputable seller for the item you want.',
+                link: 'q22',
             },
         ],
     },
-    q4: {
-        id: 4,
+    q27: {
+        id: 27,
         question:
-            "You agree to provide the information and proceed with the 'hiring process.' The scammer continues to ask for more personal details, such as your Social Security number, credit card information, or passwords.",
+            "You file a report with local authorities, providing all the evidence and details of the scam. Though the chances of tracking down the scammer are slim, you’ve done your part. What would you like to do next?",
         answers: [
             {
-                text: "Provide the information, trusting the scammer's promises of a high-paying job.",
-                link: 'q9',
+                text: 'Feel reassured that you took action and move on.',
+                link: 'q26',
             },
             {
-                text: 'Become suspicious and refuse to provide any more information.',
-                link: 'q10',
+                text: 'Continue searching for the item from a more reputable seller.',
+                link: 'q22',
             },
         ],
     },
-    q5: {
-        id: 5,
+    q28: {
+        id: 28,
         question:
-            "You ask for a company website or references to verify the legitimacy of the job offer. The scammer avoids providing this information, claiming that the company is new or that they can't share it for confidentiality reasons.",
+            "You confront the seller about using stolen images. The seller becomes defensive and tries to explain it away:\n\nSeller:\nI must have mixed up the images with another listing. But I promise the item is genuine!\n\nWhat would you like to do?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
-                link: 'q10',
+                text: "Don't believe the excuse and decide to walk away from the deal.",
+                link: 'q20',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Report the seller to the marketplace immediately.',
+                link: 'q11',
             },
         ],
     },
-    q6: {
-        id: 6,
+    q29: {
+        id: 29,
         question:
-            "You express suspicion and end the conversation. You've heard about job scams before and don't want to take any chances.",
+            "You're waiting for the platform's response regarding your report of the scammer. What would you like to do in the meantime?",
         answers: [
             {
-                text: 'End the conversation and block the scammer.',
-                link: 'end',
+                text: 'Start searching for another seller for the item you want.',
+                link: 'q22',
+            },
+            {
+                text: 'Continue to gather evidence in case it’s needed.',
+                link: 'q36',
             },
         ],
     },
-    q7: {
-        id: 7,
+    q30: {
+        id: 30,
         question:
-            "You ask for more specific details about where they found your profile. The scammer provides a vague answer, such as 'a job board' or 'a database of resumes.'",
+            "You decide to search for sellers with good ratings and reviews. After some browsing, you find a reputable seller offering the item for a reasonable price. How would you like to proceed?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
-                link: 'q10',
+                text: 'Contact the seller to ask a few questions before buying.',
+                link: 'q37',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Go ahead and purchase the item with a secure payment method.',
+                link: 'q38',
             },
         ],
     },
-    q8: {
-        id: 8,
+    q31: {
+        id: 31,
         question:
-            "You ask why they're reaching out if you haven't applied for jobs recently. The scammer claims that they were impressed by your profile and think you'd be a great fit.",
+            "You prefer to look for local sellers so that you can meet in person to inspect the item before purchasing. You find a few listings nearby. What would you like to do?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
-                link: 'q10',
+                text: 'Reach out to the sellers and arrange in-person meetings.',
+                link: 'q39',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Continue searching for more listings to compare prices.',
+                link: 'q40',
             },
         ],
     },
-    q9: {
-        id: 9,
-        question:
-            "You provide the information, trusting the scammer's promises of a high-paying job. The scammer disappears after receiving your personal information.",
-        answers: [
-            {
-                text: 'End the conversation and report the scammer to the authorities.',
-                link: 'end',
-            },
-        ],
-    },
-    q10: {
-        id: 10,
-        question:
-            'You become suspicious and refuse to provide any more information. You end the conversation and block the scammer.',
-        answers: [
-            {
-                text: 'End the conversation and block the scammer.',
-                link: 'end',
-            },
-        ],
-    },
-    end: {
-        id: 'end',
-        question: 'You successfully avoided the job scam.',
-        answers: [],
-    },
+    
 }
