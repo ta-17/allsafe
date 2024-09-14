@@ -73,9 +73,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
     const scamTypes = Array.from(new Set(allYearData.map(d => d.category_level2)));
 
     // set color scale
-    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length))
-        .domain(scamTypes)
-        .range(new Array(scamTypes.length).fill('orange'));
+    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length));
 
     const svg = d3.create("svg")
         .attr("width", width + margin.left + margin.right)
@@ -158,10 +156,9 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
             if (selectedBar === this) {
                 // Deselect the currently selected bar and reset color
                 d3.select(this)
-                   .style("fill", "orange")  // Reset the bar color back to orange using style
                    .style("opacity", 0.6);   // Reset opacity
         
-                console.log("Deselecting the same bar, reset to orange.");
+                console.log("Deselecting the same bar, reset it.");
         
                 // Clear the selection
                 selectedBar = null;
@@ -171,16 +168,14 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                     console.log("Deselecting previously selected bar.");
         
                     d3.select(selectedBar)
-                       .style("fill", "orange")  // Reset previously selected bar using style
                        .style("opacity", 0.6);   // Reset opacity
         
-                    console.log("Previously selected bar reset to orange.");
+                    console.log("Previously selected bar reset.");
                 }
         
                 // Now select the new bar and change its color to red
                 console.log("Selecting a new bar.");
                 d3.select(this)
-                   .style("fill", "red")  // Change the fill color to red using style
                    .style("opacity", 0.8);  // Highlight the newly selected bar with higher opacity
         
                 console.log("Bar fill after selection:", d3.select(this).style("fill"));
@@ -211,7 +206,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                 if (selectedBar === this) {
                     // Deselect the bar
                     bars.style("opacity", 0.6);  // Reset all bars to normal opacity
-                    d3.select(this).style("opacity", 0.6).attr("fill", "orange");
+                    d3.select(this).style("opacity", 0.6);
                     selectedBar = null;
                 } else {
                     // Fade all other bars
@@ -219,12 +214,11 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
     
                     // Deselect previously selected bar
                     if (selectedBar) {
-                        d3.select(selectedBar).style("opacity", 0.4).attr("fill", "orange");
+                        d3.select(selectedBar).style("opacity", 0.4);
                     }
     
                     // Highlight the newly clicked bar
                     d3.select(this)
-                        .attr("fill", "red")
                         .style("opacity", 0.8);
     
                     selectedBar = this;  // Update the selected bar reference
@@ -238,7 +232,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         console.log('Bar Chart Received Reset Event');  // Log the received event
         
         // Reset all bars to their default state (e.g., remove highlighting)
-        bars.style("opacity", 0.6).attr("fill", "orange");  // Reset all bars' opacity and color
+        bars.style("opacity", 0.6);  // Reset all bars' opacity and color
     
         // Clear the selected bar reference
         selectedBar = null;
