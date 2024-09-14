@@ -16,10 +16,10 @@ export default function PostPartum() {
                 title="Help me i've been scammed"
                 subtitle="It is inevitable that some of you will be scammed. Therefore we have create a guide below to help you with the vulnerable recovery process. It is key to act fast as to reduce further damage."
             />
-            <Accordion type="single" collapsible className="w-full pb-6">
+            <Accordion type="single" collapsible className="min-w-full pb-6">
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        If you&apos;ve paid a scammer ?
+                        If you&apos;ve paid a scammer?
                     </AccordionTrigger>
                     <AccordionContent>
                         <SentMoney />
@@ -27,7 +27,7 @@ export default function PostPartum() {
                 </AccordionItem>
                 <AccordionItem value="item-2">
                     <AccordionTrigger>
-                        If a scammer has your personal information ?
+                        If a scammer has your personal information?
                     </AccordionTrigger>
                     <AccordionContent>
                         <HasPersonalInformation />
