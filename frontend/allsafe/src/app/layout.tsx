@@ -48,8 +48,6 @@ export default function RootLayout({
                 </main>
                 <FooterWrapper />
                 <Top />
-                <GoBack />
-                <Mute />
             </body>
         </html>
     )

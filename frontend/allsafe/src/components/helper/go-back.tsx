@@ -15,7 +15,7 @@ export default function GoBack() {
     }
 
     return (
-        <div className="fixed top-8 left-8">
+        <div className="">
             <Button variant="outline" onClick={() => router.back()}>
                 {'<-'} Go Back
             </Button>
