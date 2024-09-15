@@ -170,7 +170,41 @@ export const buyingAndSelling = {
     q9: {
         id: 9,
         question:
-            "You report the seller to the marketplace platform.\n\n[Placeholder for instructions on how to report a seller on the marketplace platform.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+            "You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?",
+        answers: [
+            {
+                text: 'Facebook Marketplace',
+                link: 'q9Facebook',
+            },
+            {
+                text: 'Instagram Marketplace',
+                link: 'q9Instagram',
+            },
+            {
+                text: 'TikTok Marketplace',
+                link: 'q9TikTok',
+            },
+        ],
+    },
+
+    q9Facebook: {
+        id: 9,
+        question:
+            "You report the seller on Facebook Marketplace.\n\n[Instructions on how to report a seller on Facebook Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+        answers: [],
+    },
+
+    q9Instagram: {
+        id: 9,
+        question:
+            "You report the seller on Instagram Marketplace.\n\n[Instructions on how to report a seller on Instagram Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+        answers: [],
+    },
+
+    q9TikTok: {
+        id: 9,
+        question:
+            "You report the seller on TikTok Marketplace.\n\n[Instructions on how to report a seller on TikTok Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
     },
 
@@ -191,8 +225,21 @@ export const buyingAndSelling = {
     q12: {
         id: 12,
         question:
-            "You report the seller to the marketplace platform.\n\n[Placeholder for instructions on how to report a seller on the marketplace platform.]\n\nThe platform thanks you for your report and will take appropriate action. You've contributed to making the marketplace safer.\n\n**Conclusion:** Reporting suspicious activity helps protect the community from scams.\n\n**Feedback:** Excellent decision! You've acted responsibly and helped others.",
-        answers: [],
+            "You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?",
+        answers: [
+            {
+                text: 'Facebook Marketplace',
+                link: 'q9Facebook',
+            },
+            {
+                text: 'Instagram Marketplace',
+                link: 'q9Instagram',
+            },
+            {
+                text: 'TikTok Marketplace',
+                link: 'q9TikTok',
+            },
+        ],
     },
 
     q15: {
@@ -217,4 +264,4 @@ export const buyingAndSelling = {
             "You decide not to take any further action. The seller may continue to operate on the platform and potentially scam others.\n\n**Conclusion:** By not reporting, others may fall victim to the same scam. Consider reporting in the future to help protect the community.\n\n**Feedback:** Next time, reporting suspicious activity can make a significant difference in preventing scams.",
         answers: [],
     }
-}
+};
