@@ -54,7 +54,7 @@ export const investment = {
             'EliteInvesting123:\nAwesome! All you need to do is send $200 via our secure platform. You’ll start seeing profits within days. We’ve had so many happy customers.',
         answers: [
             {
-                text: 'Send $200 (move to Phase 3).',
+                text: 'Send $200.',
                 link: 'q6',
             },
             {
@@ -228,73 +228,71 @@ export const investment = {
     qEnd1: {
         id: 'End1',
         question:
-            'You successfully prevent the scam. You’ve recognized the risk and taken steps to protect yourself.\n\nEnd Result: You avoided the scam altogether.\n\nEnd of Game.',
+            'You successfully prevent the scam. You’ve recognized the risk and taken steps to protect yourself.\n\n**Conclusion:** Besides ignoring the message, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always be cautious when the investment is high return without risks.',
         answers: [],
     },
     qEnd2: {
         id: 'End2',
         question:
-            'You successfully called out the scam and walked away from the situation.\n\nEnd Result: You avoided losing any money.\n\nEnd of Game.',
+            'You successfully called out the scam and walked away from the situation. \n\n**Conclusion:** Besides confronting and walking away from the message, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always be cautious when the information of investment associate is not found.',
         answers: [],
     },
     qEnd3: {
         id: 'End3',
         question:
-            'You confronted the scammer and ended the interaction.\n\nEnd Result: You avoided getting scammed.\n\nEnd of Game.',
+            'You confronted the scammer and ended the interaction.\n\n**Conclusion:** Besides confronting the scam, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always searching for information before you start the investment.',
         answers: [],
     },
     qEnd4: {
         id: 'End4',
         question:
-            'You reported the scammer to authorities and helped prevent others from falling victim.\n\nEnd Result: You took steps to combat online fraud.\n\nEnd of Game.',
+            'You reported the scammer to authorities and helped prevent others from falling victim.n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer. Always searching for information before you start the investment.',
         answers: [],
     },
     qEnd5: {
         id: 'End5',
         question:
-            'You decided not to engage with the scam and moved on safely.\n\nEnd Result: You avoided any risk.\n\nEnd of Game.',
-        answers: [],
+            'You decided not to engage with the scam and moved on safely.\n\n**Conclusion:** Besides walking away from the message, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always searching for information before you start the investment.',
     },
     qEnd6: {
         id: 'End6',
         question:
-            'You walked away from the scam after realizing the scammer’s tactics.\n\nEnd Result: You protected yourself.\n\nEnd of Game.',
-        answers: [],
+            'You walked away from the scam after realizing the scammer’s tactics.\n\n**Conclusion:** Besides walking away from the message, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always be cautious when the information is unclear.',
     },
     qEnd7: {
         id: 'End7',
         question:
-            'You became suspicious and ended the conversation without sending any money.\n\nEnd Result: You avoided the scam.\n\nEnd of Game.',
+            'You became suspicious and ended the conversation without sending any money.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer. Always be cautious when the information is unclear.',
         answers: [],
     },
     qEnd8: {
         id: 'End8',
         question:
-            'You walked away from the scam after sensing red flags.\n\nEnd Result: You protected your money.\n\nEnd of Game.',
+            'You walked away from the scam after sensing red flags.\n\n**Conclusion:** Besides walking away from the message, you can also report it on social media and the government platform. By reporting the scam, you help to make social media and the community safer.',
         answers: [],
     },
     qEnd9: {
         id: 'End9',
         question:
-            'You refused to pay any withdrawal fees and ended the scam attempt.\n\nEnd Result: You avoided losing more money.\n\nEnd of Game.',
+            'You refused to pay any withdrawal fees and ended the scam attempt.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.',
         answers: [],
     },
     qEnd10: {
         id: 'End10',
         question:
-            'You refused to invest further and demanded a refund.\n\nEnd Result: You protected your remaining funds.\n\nEnd of Game.',
+            'You refused to invest further and demanded a refund.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer. Always be cautious when the investment is high return without risks.',
         answers: [],
     },
     qEnd11: {
         id: 'End11',
         question:
-            'You paid the additional fee, but the scammer disappeared with your money.\n\nEnd Result: You were scammed.\n\nEnd of Game.',
+            'You paid the additional fee, but the scammer disappeared with your money.\n\n**Conclusion:** The action you need to take is reporting the scam via government and the platform. By reporting the scam, you can help to make social media and the community safer. Always be cautious when the investment is high return without risks.',
         answers: [],
     },
     qEnd12: {
         id: 'End12',
         question:
-            'You refused to pay the security fee, and the scammer blocked you from further communication.\n\nEnd Result: You lost your initial investment but avoided further losses.\n\nEnd of Game.',
+            'You refused to pay the security fee, and the scammer blocked you from further communication. \n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.',
         answers: [],
     },
 }
