@@ -151,37 +151,31 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
             tooltip.style("opacity", 0);  // Hide tooltip
         })
         .on("click", function(event, d) {
-            console.log("Current fill before click:", d3.select(this).style("fill"));  // Log before color change
-        
+            console.log("Clicked bar")
             if (selectedBar === this) {
-                // Deselect the currently selected bar and reset color
+                console.log("Deseleted bar")
+                // Deselect the currently selected bar and reset opacity
                 d3.select(this)
-                   .style("opacity", 0.6);   // Reset opacity
-        
+                    .style("opacity", 0.6);   // Reset opacity
+                
                 console.log("Deselecting the same bar, reset it.");
-        
+                
                 // Clear the selection
                 selectedBar = null;
+        
+                // Dispatch the reset event to the sunburst chart
+                console.log('Dispatching resetSunburst event');  // Add this log
+                const resetSunburstEvent = new CustomEvent('resetSunburst');
+                window.dispatchEvent(resetSunburstEvent);
+        
             } else {
-                // If another bar was previously selected, reset that bar
-                if (selectedBar) {
-                    console.log("Deselecting previously selected bar.");
-        
+                console.log("Selected bar")
+                // Existing logic for new bar selection
+                if (selectedBar === null) {
                     d3.select(selectedBar)
-                       .style("opacity", 0.6);   // Reset opacity
-        
-                    console.log("Previously selected bar reset.");
+                        .style("opacity", 0.8);  // Reset opacity
+                    console.log("Bar color changed")
                 }
-        
-                // Now select the new bar and change its color to red
-                console.log("Selecting a new bar.");
-                d3.select(this)
-                   .style("opacity", 0.8);  // Highlight the newly selected bar with higher opacity
-        
-                console.log("Bar fill after selection:", d3.select(this).style("fill"));
-        
-                // Update the reference to the selected bar
-                selectedBar = this;
         
                 // Notify the sunburst chart that a new bar has been clicked
                 const barClickEvent = new CustomEvent('barClick', {

@@ -313,6 +313,14 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
         }
     });
 
+    // Event listener for resetting the sunburst
+    window.addEventListener('resetSunburst', function() {
+        console.log('Sunburst received reset event, returning to root.');
+        
+        // Reset the sunburst to its initial state (root view)
+        clicked(null, root);  // Simulate a click on the root to reset the sunburst
+    });
+
     // Adjust the visibility of labels based on the sector's size
     function labelVisible(d) {
         const labelThreshold = 0.2;  // A more restrictive threshold (increase if needed)
