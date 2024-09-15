@@ -190,21 +190,21 @@ export const buyingAndSelling = {
     q9Facebook: {
         id: 9,
         question:
-            "You report the seller on Facebook Marketplace.\n\n[Instructions on how to report a seller on Facebook Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+            "You report the seller on Facebook Marketplace.\n\nOpen your Facebook app.\n\nIn the bottom right, tap **☰ Menu**, then tap **Marketplace**.\n\nTap a listing from the seller that you want to report, then tap the seller's name below Seller information.\n\nTap **more**, then tap **Report**.\n\nFollow the on-screen instructions.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
     },
 
     q9Instagram: {
         id: 9,
         question:
-            "You report the seller on Instagram Marketplace.\n\n[Instructions on how to report a seller on Instagram Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+            "You report the seller on Instagram Marketplace.\n\nGo to the profile of the seller that you want to report.\n\nTap **… (iPhone)** or **︙(Android)** in the top right.\n\nTap **Report**, then tap **Report account**.\n\nTap **It's posting content that shouldn't be on Instagram**.\n\nScroll down, then select **Misleading or possible scam**.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
     },
 
     q9TikTok: {
         id: 9,
         question:
-            "You report the seller on TikTok Marketplace.\n\n[Instructions on how to report a seller on TikTok Marketplace.]\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
+            "You report the seller on TikTok Marketplace.\n\nIn the TikTok app, tap **Profile** at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Report a problem**. From here, you can:\n\n   ༚  Select a **Topic**. You might be prompted to select a subtopic within each topic. Follow the instructions to resolve the problem. If the suggested steps don't resolve your issue, tap **No** to the question **Is your problem resolved?**, then tap **Need more help?** to contact us with further details.\n\n   ༚  Scroll down and tap **Chat with us**.\n\nChat with our helpdesk to resolve the problem.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
     },
 
@@ -245,7 +245,7 @@ export const buyingAndSelling = {
     q15: {
         id: 15,
         question:
-            "You choose not to report the seller. However, reporting suspicious accounts helps protect others from scams. It's important to report such incidents to keep the community safe.\n\n[Placeholder for instructions on how to report a seller on the marketplace platform.]\n\nDo you want to reconsider and report the seller?",
+            "You choose not to report the seller. However, reporting suspicious accounts helps protect others from scams. It's important to report such incidents to keep the community safe.\n\nDo you want to reconsider and report the seller?",
         answers: [
             {
                 text: 'Yes, I will report the seller now.',
