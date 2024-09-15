@@ -1,5 +1,3 @@
-// Dating and Romance Scam Scenario:
-
 export const datingAndRomance = {
     q0: {
         id: 0,

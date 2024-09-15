@@ -1,148 +1,298 @@
-export const personalInformation = {
+export const personalInformation2 = {
     q0: {
         id: 0,
         question:
-            "The employer reaches out to you with a direct message, claiming they found your profile through online platforms. The job offer seems attractive, offering a high salary and flexibility that doesn't require special qualifications.",
+            "You receive a direct message from someone named Jamie Lee, who appears to be a fellow student at your university:\n\nJamie:\nHey! I think we met at the campus event last week. Check out these photos, I think you're in some of them!\n\n[Link provided]\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Show interest and ask for more details about the job.',
+                text: 'Click on the link to view the photos.',
                 link: 'q1',
             },
             {
-                text: "Ask how they found your profile and why they think you're a good fit.",
+                text: "Ask Jamie how you met, since you don't recall.",
                 link: 'q2',
             },
             {
-                text: 'Ignore the message and block the employer.',
+                text: 'Ignore the message.',
                 link: 'q3',
+            },
+            {
+                text: "Report Jamie's account as suspicious.",
+                link: 'q4',
             },
         ],
     },
+    
     q1: {
         id: 1,
         question:
-            'You express interest in the job offer and ask for more details. The employer responds enthusiastically but quickly shifts focus to the next steps involving personal information.',
+            "You click on the link, and it takes you to a login page that looks identical to your social media platform's login. It asks you to sign in again to view the content.\n\nWhat do you do next?",
         answers: [
             {
-                text: "Agree to provide the information and proceed with the 'hiring process.'",
-                link: 'q4',
-            },
-            {
-                text: 'Ask for a company website or references to verify the legitimacy of the job offer.',
+                text: 'Enter your login credentials to sign in.',
                 link: 'q5',
             },
             {
-                text: 'Recognize the red flags and stop responding.',
+                text: 'Realize something is off and close the page.',
                 link: 'q6',
+            },
+            {
+                text: 'Check the URL to see if it’s the official website.',
+                link: 'q7',
             },
         ],
     },
+    
     q2: {
         id: 2,
         question:
-            "You're cautious and ask the employer how they found your profile and why they believe you're a good fit.",
+            "You ask Jamie how you met because you don't recall meeting them. Jamie replies:\n\nJamie:\nWe met at the student orientation mixer! Anyway, you can see the photos here.\n\n[Link provided]\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Ask for more specific details about where they found your profile.',
-                link: 'q7',
+                text: 'Trust Jamie and click on the link.',
+                link: 'q1', // Reusing q1
             },
             {
-                text: "Ask why they're reaching out if you haven't applied for jobs recently.",
-                link: 'q8',
-            },
-            {
-                text: 'Express suspicion and end the conversation.',
+                text: 'Remain cautious and decide not to click the link.',
                 link: 'q6',
+            },
+            {
+                text: "Report Jamie's account as suspicious.",
+                link: 'q4', // Reusing q4
             },
         ],
     },
+    
     q3: {
         id: 3,
         question:
-            "You decide to ignore the message and block the fake employer. You've heard about job scams before and don't want to take any chances. Furthermore, you also reported stating that this might be a scam account.\n\n**Conculsion:** By reporting the scam account, you help to make social media safer for everyone.",
-        answers: [],
+            "You ignore the message from Jamie. However, you wonder if you should adjust your privacy settings to prevent unsolicited messages from strangers.\n\nDo you want to adjust your messaging settings?",
+        answers: [
+            {
+                text: 'Yes, adjust messaging settings for more privacy.',
+                link: 'q8',
+            },
+            {
+                text: 'No, leave settings as they are.',
+                link: 'q9',
+            },
+        ],
     },
+    
     q4: {
         id: 4,
         question:
-            "You agree to provide the information and proceed with the 'hiring process.' The employer continues to ask for more personal details, such as your Social Security number, credit card information, or passwords.",
+            "You decide to report Jamie's account as suspicious to the platform administrators.\n\nOn which platform do you want to report Jamie's account?",
         answers: [
             {
-                text: "Provide the information, trusting the employer's promises of a high-paying job.",
-                link: 'q9',
+                text: 'Facebook',
+                link: 'q4Facebook',
             },
             {
-                text: 'Become suspicious and refuse to provide any more information.',
-                link: 'q10',
+                text: 'Instagram',
+                link: 'q4Instagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q4TikTok',
             },
         ],
     },
+
+    q4Facebook: {
+        id: 4,
+        question:
+            "You report Jamie's account on Facebook.\n\nGo to the profile that you want to report by clicking its name in your Feed or searching for it.\n\nClick **more ...** to the right.\n\nClick **Find support or report**.\n\nTo give feedback, click the option that best describes how this profile goes against our Community Standards.\n\n   **Note:** Depending on your feedback, you may then be able to submit a report to Meta. For some types of content, we don't ask you to submit a report, but we use your feedback to help our systems learn.\n\nClick **Done**.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
+        answers: [],
+    },
+
+    q4Instagram: {
+        id: 4,
+        question:
+            "You report Jamie's account on Instagram.\n\nClick their username from their Feed or story post, or click **explore** and search their username to go to their profile.\n\nClick **more** actions next to their username.\n\nSelect **Report**, then select the type of account you want to report and follow the on-screen instructions.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
+        answers: [],
+    },
+
+    q4TikTok: {
+        id: 4,
+        question:
+            "You report Jamie's account on TikTok.\n\nIn the TikTok app, go to the person's profile.\n\nTap the **Share** button at the top.\n\nTap **Report**.\n\nTap **Report account**.\n\nSelect a reason for the report and tap **Submit**.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
+        answers: [],
+    },
+    
     q5: {
         id: 5,
         question:
-            "You ask for a company website or references to verify the legitimacy of the job offer. The employer avoids providing this information, claiming that the company is new or that they can't share it for confidentiality reasons.",
+            "You enter your login credentials to sign in. The page refreshes, but nothing happens. Later, you find that you're unable to access your account, and friends report receiving strange messages from your profile. You realize your account has been compromised.\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
+                text: 'Attempt to reset your password immediately.',
                 link: 'q10',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Contact the platform’s support for help.',
+                link: 'q11',
+            },
+            {
+                text: 'Do nothing and hope the issue resolves itself.',
+                link: 'q12',
             },
         ],
     },
+    
     q6: {
         id: 6,
         question:
-            "You express suspicion and decide not to continue the conversation and block the fake employer from gaining your personal information. Furthermore, you also reported stating that this might be a scam account.\n\n**Conculsion:** By reporting the scam account, you help to make social media and the community safer for everyone.",
-        answers: [],
+            "You realize something is off and decide not to click the link or enter any information. You suspect this might be a phishing attempt.\n\nWhat do you do next?",
+        answers: [
+            {
+                text: "Report Jamie's account as suspicious.",
+                link: 'q4',
+            },
+            {
+                text: 'Inform your friends about the potential scam.',
+                link: 'q13',
+            },
+            {
+                text: 'Enable two-factor authentication (2FA) on your account for added security.',
+                link: 'q14',
+            },
+        ],
     },
+    
     q7: {
         id: 7,
         question:
-            "You ask for more specific details about where they found your profile. The employer provides a vague answer, such as 'a job board' or 'a database of resumes.'",
+            "You check the URL and notice that it doesn't match the official website—it has slight misspellings or extra characters.\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
-                link: 'q10',
+                text: "Avoid entering any information and close the page.",
+                link: 'q6',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Proceed anyway, thinking it might be safe.',
+                link: 'q5',
             },
         ],
     },
+    
     q8: {
         id: 8,
         question:
-            "You ask why they're reaching out if you haven't applied for jobs recently. The employer claims that they were impressed by your profile and think you'd be a great fit.",
+            "You adjust your messaging settings to limit who can send you direct messages.\n\nOn which platform do you want to adjust your messaging settings?",
         answers: [
             {
-                text: 'Continue to press for more information, suspecting something is wrong.',
-                link: 'q10',
+                text: 'Facebook',
+                link: 'q8Facebook',
             },
             {
-                text: 'Trust their explanation and proceed with the job offer.',
-                link: 'q4',
+                text: 'Instagram',
+                link: 'q8Instagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q8TikTok',
             },
         ],
     },
+
+    q8Facebook: {
+        id: 8,
+        question:
+            "You adjust your messaging settings on Facebook.\n\nOpen your Messenger app.\n\nClick your profile picture in the bottom left, then click **Preferences**.\n\nTap **Privacy & safety**.\n\nTap **Message delivery**.\n\nTap on the group you want to control messages for.\n\nChoose to deliver their messages to your Chats list or to your message requests folder. Or tap **Don't receive requests** to stop receiving their messages entirely.\n\nNew group chat message requests won't be delivered to your Chats list.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
+        answers: [],
+    },
+
+    q8Instagram: {
+        id: 8,
+        question:
+            "You adjust your messaging settings on Instagram.\n\nClick **☰ More** in the bottom left, then click **Settings**.\n\nBelow **How others can interact with you**, click **Messages and story replies**.\n\nClick **Message controls**.\n\nChoose whether message requests from people on Instagram go to your Message Requests folder or whether to receive them at all.\n\nNote that you’ll need to accept message requests in your Message Requests folder before they appear in your Chats list. Messages from people you follow on Instagram will appear in your Chats list.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
+        answers: [],
+    },
+
+    q8TikTok: {
+        id: 8,
+        question:
+            "You adjust your messaging settings on TikTok.\n\nIn the TikTok app, tap Profile at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Privacy**\n\n.Tap **Direct messages**, then choose from the list of options who can send you messages:\n\n   ༚  **Everyone:** Anyone can send you a direct message. Messages from mutual friends and people you follow appear in your inbox.\n\n   ༚  **Suggested friends:** Matched friends, including synced Facebook friends and phone contacts, and followers who you follow back, can send you a direct message.\n\n   ༚  **Friends:** Any followers that you follow back can send you a direct message.\n\n   ༚  **No one:** You can't receive direct messages from anyone. Keep in mind that if you choose this setting, you can't receive direct messages. You can still access your message history in your inbox, but you can't receive new direct messages in those chats.\n\nKeep in mind that some of these options are not available to everyone.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
+        answers: [],
+    },
+    
     q9: {
         id: 9,
         question:
-            "You provide the information, trusting the employer's promises of a high-paying job. The employer disappears after receiving your personal information. \n\n**Conculsion:** You find out the person is a scammer who only wants personal information, and you decide to report this issue through social media and the government platform. By reporting the scam, you help to make social media and the community safer. Always be cautious when sharing your personal information, especially if the person is someone you have never met before.",
+            "You decide not to adjust your messaging settings. Be aware that you may continue to receive unsolicited messages from strangers.\n\n**Conclusion:** Your account remains open to messages from anyone.\n\n**Feedback:** Consider adjusting your settings to enhance your privacy.",
         answers: [],
     },
+    
     q10: {
         id: 10,
         question:
-            "You decide not to continue the conversation and block the fake employer from gaining your personal information. Furthermore, you also reported stating that this might be a scam account.\n\n**Conculsion:** By reporting the scam account, you help to make social media and the community safer. Always be cautious when sharing your personal information, especially if the person is someone you have never met before.",
+            "You attempt to reset your password immediately. You're able to regain access to your account. To prevent future incidents, you consider enabling two-factor authentication (2FA).\n\nOn which platform do you want to enable 2FA?",
+        answers: [
+            {
+                text: 'Facebook',
+                link: 'q14Facebook',
+            },
+            {
+                text: 'Instagram',
+                link: 'q14Instagram',
+            },
+        ],
+    },
+    
+    q11: {
+        id: 11,
+        question:
+            "You contact the platform’s support team for help. They guide you through the process of securing your account. They also recommend enabling two-factor authentication (2FA).\n\nOn which platform do you want to enable 2FA?",
+        answers: [
+            {
+                text: 'Facebook',
+                link: 'q14Facebook',
+            },
+            {
+                text: 'Instagram',
+                link: 'q14Instagram',
+            },
+        ],
+    },
+    
+    q12: {
+        id: 12,
+        question:
+            "You do nothing, hoping the issue resolves itself. Unfortunately, the scammer uses your account to send phishing messages to your contacts, and your personal information may be compromised further.\n\n**Conclusion:** Ignoring the issue has led to more problems.\n\n**Feedback:** Always take immediate action if you suspect your account has been compromised.",
         answers: [],
     },
-}
+    
+    q13: {
+        id: 13,
+        question:
+            "You inform your friends about the potential scam, warning them not to click on suspicious links.\n\n**Conclusion:** You've helped others avoid falling victim to phishing attempts.\n\n**Feedback:** Excellent job looking out for your community!",
+        answers: [],
+    },
+    
+    q14Facebook: {
+        id: 14,
+        question:
+            "You enable two-factor authentication (2FA) on Facebook.\n\nClick on your profile picture in the top right, then click **Settings and privacy**.\n\nClick **Settings**.\n\nClick **Accounts Centre**, then click **Password and security**.\n\nClick **Two-factor authentication**, then click on the account that you'd like to update.\n\nChoose the security method that you want to add and follow the on-screen instructions.\n\n**Conclusion:** By enabling 2FA, you've added an extra layer of security to your account.\n\n**Feedback:** Excellent decision to protect your account!",
+        answers: [],
+    },
 
-export const personalInformation2 = {
+    q14Instagram: {
+        id: 14,
+        question:
+            "You enable two-factor authentication (2FA) on Instagram.\n\nClick **More** in the bottom left, then click **Settings**.\n\nClick **See more in Accounts Center**, then click **Password and security**.\n\nClick **Two-factor authentication**, then select an account.\n\nChoose the security method you want to add and follow the on-screen instructions.\n\n**Conclusion:** By enabling 2FA, you've added an extra layer of security to your account.\n\n**Feedback:** Excellent decision to protect your account!",
+        answers: [],
+    },
+    
+    q15: {
+        id: 15,
+        question:
+            "You decide not to enable 2FA at this time. Be aware that your account may be more vulnerable to unauthorized access.\n\n**Conclusion:** Without 2FA, your account relies solely on your password for security.\n\n**Feedback:** Consider enabling 2FA to enhance your account protection.",
+        answers: [],
+    },
+};
+
+export const personalInformation1 = {
     q0: {
         id: 0,
         question:

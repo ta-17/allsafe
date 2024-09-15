@@ -127,7 +127,7 @@ export const investment = {
             },
             {
                 text: 'Report the account to authorities or social media platforms for fraud.',
-                link: 'qEnd4',
+                link: 'q7Report',
             },
             {
                 text: 'Walk away without engaging further.',
@@ -135,6 +135,48 @@ export const investment = {
             },
         ],
     },
+    
+    q7Report: {
+        id: 7,
+        question:
+            "You decide to report EliteInvesting123's account to the platform. \n\nOn which platform do you want to report this account?",
+        answers: [
+            {
+                text: 'Facebook',
+                link: 'q7ReportFacebook',
+            },
+            {
+                text: 'Instagram',
+                link: 'q7ReportInstagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q7ReportTikTok',
+            },
+        ],
+    },
+
+    q7ReportFacebook: {
+        id: 7,
+        question:
+            "You report EliteInvesting123's account on Facebook.\n\nGo to the profile that you want to report by clicking its name in your Feed or searching for it.\n\nClick **more ...** to the right.\n\nClick **Find support or report**.\n\nTo give feedback, click the option that best describes how this profile goes against our Community Standards.\n\n   **Note:** Depending on your feedback, you may then be able to submit a report to Meta. For some types of content, we don't ask you to submit a report, but we use your feedback to help our systems learn.\n\nClick **Done**.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.",
+        answers: [],
+    },
+
+    q7ReportInstagram: {
+        id: 7,
+        question:
+            "You report EliteInvesting123's account on Instagram.\n\nClick their username from their Feed or story post, or click **explore** and search their username to go to their profile.\n\nClick **more** actions next to their username.\n\nSelect **Report**, then select the type of account you want to report and follow the on-screen instructions.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.",
+        answers: [],
+    },
+
+    q7ReportTikTok: {
+        id: 7,
+        question:
+            "You report EliteInvesting123's account on TikTok.\n\nIn the TikTok app, go to the person's profile.\n\nTap the **Share** button at the top.\n\nTap **Report**.\n\nTap **Report account**.\n\nSelect a reason for the report and tap **Submit**.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.",
+        answers: [],
+    },
+    
     q8: {
         id: 8,
         question:
@@ -246,7 +288,7 @@ export const investment = {
     qEnd4: {
         id: 'End4',
         question:
-            'You reported the scammer to authorities and helped prevent others from falling victim.n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer. Always searching for information before you start the investment.',
+            'You reported the scammer to authorities and helped prevent others from falling victim.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer. Always searching for information before you start the investment.',
         answers: [],
     },
     qEnd5: {
