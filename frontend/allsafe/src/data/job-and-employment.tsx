@@ -2,124 +2,319 @@ export const jobAndEmployment = {
     q0: {
         id: 0,
         question:
-            'The scammer reaches out to the player with a direct message, claiming they found the player’s profile through a job posting platform, social media, or online résumé. The scammer’s offer seems attractive, offering a high salary for remote work or a part-time job that doesn’t require special qualifications.\n\nScammer (as Recruiter):\nHi [Player’s Name], I came across your profile, and I think you’d be a perfect fit for a remote position at our company. We offer flexible hours and a competitive salary of $5,000 a month working from home. Would you be interested?',
+            "You receive a message from someone named Alex Smith:\n\nAlex:\nHi! I came across your profile and thought you might be a great fit for a remote data entry position at our company. The job pays $30/hour, and you can set your own hours. Are you interested?\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Show interest and ask for more details about the job.',
+                text: 'Express interest and ask for more details about the job.',
                 link: 'q1',
             },
             {
-                text: 'Ask how they found your profile and why they think you’re a good fit.',
+                text: 'Politely decline the offer.',
                 link: 'q2',
             },
             {
-                text: 'Ignore the message and block the scammer.',
+                text: 'Ignore the message.',
                 link: 'q3',
+            },
+            {
+                text: 'Check Alex’s profile for legitimacy.',
+                link: 'q4',
             },
         ],
     },
+    
     q1: {
         id: 1,
         question:
-            'You express interest in the job offer and ask for more details. The scammer responds enthusiastically but quickly shifts focus to the next steps involving personal information.\n\nPlayer:\nThis sounds great! Can you tell me more about the position and the company?\n\nScammer (as Recruiter):\nIt’s a remote administrative role. We’ll need some basic details like your full name, address, and bank account information for payroll.',
+            "You express interest and ask for more details about the job. Alex replies:\n\nAlex:\nFantastic! We need someone to help with data entry and handling emails. To get you started, we'll need your full name, address, phone number, and a copy of your ID for verification and payroll setup.\n\nWhat do you do next?",
         answers: [
             {
-                text: "Agree to provide the information and proceed with the 'hiring process.'",
-                link: 'q4',
-            },
-            {
-                text: 'Ask for a company website or references to verify the legitimacy of the job offer.',
+                text: 'Provide the requested personal information.',
                 link: 'q5',
             },
             {
-                text: 'Recognize the red flags and stop responding.',
+                text: 'Ask why such sensitive information is needed.',
                 link: 'q6',
+            },
+            {
+                text: 'Decide not to proceed and consider reporting Alex.',
+                link: 'q7',
             },
         ],
     },
+    
     q2: {
         id: 2,
         question:
-            'You’re cautious and ask the scammer how they found your profile and why they believe you’re a good fit.\n\nPlayer:\nHow did you find my profile? I haven’t been applying for jobs recently.\n\nScammer (as Recruiter):\nWe found your profile through a job board we work with. Your experience seemed like a great fit for what we need.',
+            "You politely decline the offer. Alex responds:\n\nAlex:\nAre you sure? It's a flexible job with great pay. Let me know if you change your mind!\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Ask for more specific details about where they found your profile.',
-                link: 'q7',
+                text: 'Change your mind and express interest.',
+                link: 'q1', // Reusing q1
             },
             {
-                text: 'Ask why they’re reaching out if you haven’t applied for jobs recently.',
-                link: 'q8',
+                text: 'Ignore the message.',
+                link: 'q3', // Reusing q3
             },
             {
-                text: 'Express suspicion and end the conversation.',
-                link: 'q6',
+                text: 'Consider reporting Alex for unsolicited messages.',
+                link: 'q7', // Reusing q7
             },
         ],
     },
+    
     q3: {
         id: 3,
         question:
-            'You recognize the unsolicited job offer as suspicious from the beginning and decide to block the scammer.',
+            "You ignore the message from Alex. However, you wonder if you should adjust your privacy settings to prevent unsolicited messages in the future.\n\nDo you want to adjust your messaging settings?",
         answers: [
             {
-                text: 'You successfully protect yourself from potential harm.',
-                link: 'q6',
+                text: 'Yes, adjust messaging settings for more privacy.',
+                link: 'q8',
+            },
+            {
+                text: 'No, leave settings as they are.',
+                link: 'q9',
             },
         ],
     },
+    
     q4: {
         id: 4,
         question:
-            "You provide personal information, thinking it’s part of the hiring process. The scammer now asks for a small upfront payment to 'finalize' your onboarding.\n\nScammer (as Recruiter):\nGreat! There’s a small training fee of $100 to cover onboarding materials. Once you pay, we’ll get you started!",
+            "You check Alex's profile and notice it was created recently, has few friends, and minimal activity. This raises suspicion.\n\nWhat do you do next?",
         answers: [
             {
-                text: "Realize it's a scam and stop communication.",
-                link: 'q6',
+                text: 'Proceed to express interest in the job and ask for more details.',
+                link: 'q1', // Reusing q1
+            },
+            {
+                text: 'Decide not to respond and consider reporting Alex.',
+                link: 'q7', // Reusing q7
             },
         ],
     },
+    
     q5: {
         id: 5,
         question:
-            'You ask for verification. The scammer provides a link to a fake website or references that seem suspicious.\n\nScammer (as Recruiter):\nHere’s the link to our company website. We’re also on LinkedIn.\n\nThe website seems suspicious and raises doubts.',
+            "You provide the requested personal information to Alex. Shortly after, you notice unusual activity on your bank account and suspect identity theft.\n\nWhat do you do next?",
         answers: [
             {
-                text: 'Decide to investigate further or cut off communication.',
-                link: 'q6',
+                text: 'Report the incident to the authorities and your bank.',
+                link: 'q10',
+            },
+            {
+                text: 'Contact Alex to confront them.',
+                link: 'q11',
+            },
+            {
+                text: 'Do nothing and hope the issue resolves itself.',
+                link: 'q12',
             },
         ],
     },
+    
     q6: {
         id: 6,
         question:
-            'You’ve successfully recognized the scam and protected yourself from potential identity theft or financial loss.',
+            "You ask Alex why they need such sensitive information. Alex replies:\n\nAlex:\nWe need to verify your identity and set up direct deposit for your paychecks. It's standard HR procedure. Rest assured, your information will be secure.\n\nWhat do you do next?",
         answers: [
             {
-                text: 'End the conversation.',
-                link: 'q6',
+                text: 'Trust Alex and provide the information.',
+                link: 'q5', // Reusing q5
+            },
+            {
+                text: 'Express discomfort and decline to provide the information.',
+                link: 'q13',
+            },
+            {
+                text: 'Decide to stop communication and consider reporting Alex.',
+                link: 'q7', // Reusing q7
             },
         ],
     },
+    
     q7: {
         id: 7,
         question:
-            'You press the scammer for more details about where they found your profile.\n\nScammer (as Recruiter):\nI think it was from a general résumé database—we work with a lot of them, so I’m not sure which one exactly.',
+            "You decide to stop communication with Alex and consider reporting this account. Reporting can help prevent others from being targeted.\n\nDo you want to report Alex's account?",
         answers: [
             {
-                text: 'Realize their explanation is unreliable and stop responding.',
-                link: 'q6',
+                text: 'Yes, report the account.',
+                link: 'q14',
+            },
+            {
+                text: 'No, just block the account.',
+                link: 'q15',
             },
         ],
     },
+    
     q8: {
         id: 8,
         question:
-            'You ask why they’re reaching out if you haven’t applied for jobs recently.\n\nScammer (as Recruiter):\nWe reach out to potential candidates based on their skills, even if they haven’t applied.',
+            "You adjust your messaging settings to limit who can contact you.\n\nOn which platform do you want to learn how to adjust these settings?",
         answers: [
             {
-                text: 'Recognize their vague explanation and decide to stop responding.',
-                link: 'q6',
+                text: 'Facebook',
+                link: 'q8Facebook', 
+            },
+            {
+                text: 'Instagram',
+                link: 'q8Instagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q8TikTok',
             },
         ],
     },
-}
+    
+    q8Facebook: {
+        id: 8,
+        question:
+            "You adjust your messaging settings to limit who can contact you on Facebook.\n\nOpen your Messenger app.\n\nClick your profile picture in the bottom left, then click **Preferences**.\n\nTap **Privacy & safety**.\n\nTap **Message delivery**.\n\nTap on the group you want to control messages for.\n\nChoose to deliver their messages to your Chats list or to your message requests folder. Or tap **Don't receive requests** to stop receiving their messages entirely.\n\nNew group chat message requests won't be delivered to your Chats list.\n\n**Conclusion:** By adjusting your settings, you enhance your privacy and reduce unwanted messages.\n\n**Feedback:** Great job taking proactive steps to protect your privacy!",
+        answers: [],
+    },
+
+    q8Instagram: {
+        id: 8,
+        question:
+            "You adjust your messaging settings to limit who can contact you on Instagram.\n\nClick **☰ More** in the bottom left, then click **Settings**.\n\nBelow **How others can interact with you**, click **Messages and story replies**.\n\nClick **Message controls**.\n\nChoose whether message requests from people on Instagram go to your Message Requests folder or whether to receive them at all.\n\nNote that you’ll need to accept message requests in your Message Requests folder before they appear in your Chats list. Messages from people you follow on Instagram will appear in your Chats list.\n\n**Conclusion:** By adjusting your settings, you enhance your privacy and reduce unwanted messages.\n\n**Feedback:** Great job taking proactive steps to protect your privacy!",
+        answers: [],
+    },
+
+    q8TikTok: {
+        id: 8,
+        question:
+            "You adjust your messaging settings to limit who can contact you on TikTok.\n\nIn the TikTok app, tap Profile at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Privacy**\n\n.Tap **Direct messages**, then choose from the list of options who can send you messages:\n\n   ༚  **Everyone:** Anyone can send you a direct message. Messages from mutual friends and people you follow appear in your inbox.\n\n   ༚  **Suggested friends:** Matched friends, including synced Facebook friends and phone contacts, and followers who you follow back, can send you a direct message.\n\n   ༚  **Friends:** Any followers that you follow back can send you a direct message.\n\n   ༚  **No one:** You can't receive direct messages from anyone. Keep in mind that if you choose this setting, you can't receive direct messages. You can still access your message history in your inbox, but you can't receive new direct messages in those chats.\n\nKeep in mind that some of these options are not available to everyone.\n\n**Conclusion:** By adjusting your settings, you enhance your privacy and reduce unwanted messages.\n\n**Feedback:** Great job taking proactive steps to protect your privacy!",
+        answers: [],
+    },
+    
+    q9: {
+        id: 9,
+        question:
+            "You decide not to adjust your messaging settings. Be aware that this might lead to more unsolicited messages in the future.\n\n**Conclusion:** Without changing your settings, you may continue receiving unwanted messages.\n\n**Feedback:** Consider updating your privacy settings to enhance your online safety.",
+        answers: [],
+    },
+    
+    q10: {
+        id: 10,
+        question:
+            "You report the incident to the authorities and your bank. They advise you to monitor your accounts and may initiate an investigation.\n\n**Conclusion:** Reporting identity theft promptly can help mitigate damage.\n\n**Feedback:** You took the right steps to address the issue. Remember to be cautious with personal information online.",
+        answers: [],
+    },
+    
+    q11: {
+        id: 11,
+        question:
+            "You try to contact Alex, but the account has been deleted or has blocked you. Unfortunately, you cannot reach them.\n\n**Conclusion:** Scammers often disappear after obtaining what they want.\n\n**Feedback:** In the future, avoid sharing personal information with unknown individuals online.",
+        answers: [],
+    },
+    
+    q12: {
+        id: 12,
+        question:
+            "You decide to do nothing, hoping the issue resolves itself. Unfortunately, the unauthorized activity continues, potentially causing more harm.\n\n**Conclusion:** Ignoring identity theft can lead to serious consequences.\n\n**Feedback:** Always take immediate action if you suspect your personal information has been compromised.",
+        answers: [],
+    },
+    
+    q13: {
+        id: 13,
+        question:
+            "You express discomfort and decline to provide the information. Alex responds:\n\nAlex:\nIf you're not comfortable with our procedures, maybe this job isn't for you. Good luck elsewhere.\n\nFeeling uneasy, you consider your next steps.\n\nWhat do you do next?",
+        answers: [
+            {
+                text: 'Decide to end communication and report Alex.',
+                link: 'q7', // Reusing q7
+            },
+            {
+                text: 'Reconsider and decide to provide the information.',
+                link: 'q5', // Reusing q5
+            },
+        ],
+    },
+    
+    q14: {
+        id: 14,
+        question:
+            "You choose to report Alex's account.\n\nOn which platform do you want to learn how to report this account?",
+        answers: [
+            {
+                text: 'Facebook',
+                link: 'q14Facebook',
+            },
+            {
+                text: 'Instagram',
+                link: 'q14Instagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q14TikTok',
+            },
+        ],
+    },
+
+    q14Facebook: {
+        id: 14,
+        question:
+            "You choose to report Alex's account on Facebook.\n\nGo to the profile that you want to report by clicking its name in your Feed or searching for it.\n\nClick **more ...** to the right.\n\nClick **Find support or report**.\n\nTo give feedback, click the option that best describes how this profile goes against our Community Standards.\n\n   **Note:** Depending on your feedback, you may then be able to submit a report to Meta. For some types of content, we don't ask you to submit a report, but we use your feedback to help our systems learn.\n\nClick **Done**.\n\nFacebook acknowledges your report and will review the account.\n\n**Conclusion:** By reporting, you've helped protect others from potential scams.\n\n**Feedback:** Excellent decision! You've acted responsibly and contributed to a safer community.",
+        answers: [],
+    },
+
+    q14Instagram: {
+        id: 14,
+        question:
+            "You choose to report Alex's account on Instagram.\n\nClick their username from their Feed or story post, or click **explore** and search their username to go to their profile.\n\nClick **more** actions next to their username.\n\nSelect **Report**, then select the type of account you want to report and follow the on-screen instructions.\n\nInstagram acknowledges your report and will review the account.\n\n**Conclusion:** By reporting, you've helped protect others from potential scams.\n\n**Feedback:** Excellent decision! You've acted responsibly and contributed to a safer community.",
+        answers: [],
+    },
+
+    q14TikTok: {
+        id: 14,
+        question:
+            "You choose to report Alex's account on TikTok.\n\nIn the TikTok app, go to the person's profile.\n\nTap the **Share** button at the top.\n\nTap **Report**.\n\nTap **Report account**.\n\nSelect a reason for the report and tap **Submit**.\n\nTikTok acknowledges your report and will review the account.\n\n**Conclusion:** By reporting, you've helped protect others from potential scams.\n\n**Feedback:** Excellent decision! You've acted responsibly and contributed to a safer community.",
+        answers: [],
+    },
+    
+    q15: {
+        id: 15,
+        question:
+            "You decide not to report Alex but block the account.\n\nOn which platform do you want to learn how to block someone?",
+        answers: [
+            {
+                text: 'Facebook',
+                link: 'q15Facebook',
+            },
+            {
+                text: 'Instagram',
+                link: 'q15Instagram',
+            },
+            {
+                text: 'TikTok',
+                link: 'q15TikTok',
+            },
+        ],
+    },
+
+    q15Facebook: {
+        id: 15,
+        question:
+            "You block Alex on Facebook.\n\nClick your profile picture in the top right of Facebook.\n\nSelect **Settings and privacy**, then click **Settings**.\n\nIn the left column, under **Audience and visibility**, click **Blocking**\n\nIn the **Block users** section, click **Edit**\n\nClick **Add to blocked list**.\n\nType the name of the profile that you want to block.\n\nClick **Block** next to their name.\n\nClick **Confirm**.\n\nWhile you've stopped Alex from contacting you, they may continue to target others.\n\n**Conclusion:** Blocking protects you, but reporting helps protect others too.\n\n**Feedback:** Consider reporting in the future to help keep the community safe.",
+        answers: [],
+    },
+
+    q15Instagram: {
+        id: 15,
+        question:
+            "You block Alex on Instagram.\n\nClick **send** or **messenger** on the left.\n\nClick the chat with the person you want to block/unblock, then click **more information** at the top.\n\nClick **Block/Unblock**, then click again to **confirm**.\n\nWhile you've stopped Alex from contacting you, they may continue to target others.\n\n**Conclusion:** Blocking protects you, but reporting helps protect others too.\n\n**Feedback:** Consider reporting in the future to help keep the community safe.",
+        answers: [],
+    },
+
+    q15TikTok: {
+        id: 15,
+        question:
+            "You block Alex on TikTok.\n\nIn the TikTok app, go to the person's profile.\n\nTap the **Share** button at the top.\n\nTap **Block** to confirm.\n\nWhile you've stopped Alex from contacting you, they may continue to target others.\n\n**Conclusion:** Blocking protects you, but reporting helps protect others too.\n\n**Feedback:** Consider reporting in the future to help keep the community safe.",
+        answers: [],
+    },
+};
