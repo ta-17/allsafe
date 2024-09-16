@@ -14,6 +14,7 @@ import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH1 } from '@/typography/h1'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Insights = () => {
     useEffect(() => {
@@ -30,7 +31,7 @@ const Insights = () => {
     }, [])
 
     return (
-        <div className="flex flex-col w-full p-6 gap-y-12 max-w-full">
+        <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
             <section
                 id="scam-trend-section"
                 className="flex flex-col justify-between min-h-screen max-w-full"
@@ -230,6 +231,29 @@ const Insights = () => {
             </section>
 
             <div id="tooltip"></div>
+
+            <section className="flex flex-col justify-center items-center w-full gap-y-8 py-6">
+                <TypographyH1>
+                    Explore More with Our Scam Simulation Game!
+                </TypographyH1>
+                <TypographyLead>
+                    Dive deeper into the world of scams and test your knowledge
+                    with our interactive game!
+                    {/* Why Play? Sort and Analyze: */}
+                    {/* <br />
+                    Sort scenarios based on different scam categories and
+                    amounts lost.
+                    <br />
+                    Test Your Skills: Challenge yourself to identify and
+                    understand various scam types.
+                    <br />
+                    Learn & Protect: Gain valuable insights that can help you
+                    recognize and avoid scams in real life. */}
+                </TypographyLead>
+                <Link href="/game" className="underline">
+                    Play the Scam Simulation Game
+                </Link>
+            </section>
         </div>
     )
 }
