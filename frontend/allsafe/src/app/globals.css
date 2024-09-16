@@ -88,3 +88,20 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+.text span {
+  opacity: 0;
+}
+
+.text span.revealed {
+  opacity: 1;
+}
+
+.text span.green {
+  color: #27ae60;
+}
+
+.text span.red {
+  color: #ff0000;
+}
+

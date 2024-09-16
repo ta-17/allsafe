@@ -119,7 +119,7 @@ export default function TikTokReportingGuide() {
                         </ol>
                     </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-3">
+                <AccordionItem value="item-4">
                     <AccordionTrigger> Report an account</AccordionTrigger>
                     <AccordionContent>
                         <p className="mb-2">To report an account:</p>

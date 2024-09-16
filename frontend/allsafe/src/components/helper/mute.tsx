@@ -63,7 +63,12 @@ export default function AudioControl() {
 
     return (
         <div className="flex items-center space-x-2">
-            <audio ref={audioRef} src="/music.mp3" loop={true} preload="auto" />
+            <audio
+                ref={audioRef}
+                src="/Evening Mood.ogg"
+                loop={true}
+                preload="auto"
+            />
 
             <Button
                 className="flex items-center justify-center"
