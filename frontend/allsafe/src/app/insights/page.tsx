@@ -34,16 +34,13 @@ const Insights = () => {
         <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
             <section
                 id="scam-trend-section"
-                className="flex flex-col justify-between min-h-screen max-w-full"
+                className="flex flex-col flex-wrap w-full min-h-screen justify-around items-center"
             >
                 <TypographyH1>
                     Do you know how fast the scam growth in the past few years?
                 </TypographyH1>
-                <div className="flex flex-col justify-around sm:flex-row w-full">
-                    <div
-                        id="line-chart-container"
-                        className="overflow-y-scroll w-full sm:w-1/2"
-                    >
+                <div className="relative flex flex-col justify-around sm:flex-row w-full">
+                    <div id="line-chart-container" className="w-11/12 sm:w-1/2">
                         <div id="scam-line-chart" className="chart"></div>
                     </div>
                     <p className="text-left sm:w-1/3">
@@ -82,7 +79,7 @@ const Insights = () => {
                     Have you ever received this kind of message?
                 </TypographyH2>
                 <div className="flex flex-col justify-around items-center sm:flex-row w-full">
-                    <div id="word-cloud" className="w-5/12">
+                    <div id="word-cloud" className="sm:w-5/12 pb-8">
                         {/* <Image
                             src={'/wordcloud.png'}
                             alt="Word Cloud Image"

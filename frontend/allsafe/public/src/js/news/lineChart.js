@@ -1,4 +1,3 @@
-// create line chart
 export function createLineChart(data, containerId) {
     console.log('Creating line chart...')
 
@@ -7,12 +6,10 @@ export function createLineChart(data, containerId) {
     const { width: containerWidth, height: containerHeight } =
         container.getBoundingClientRect()
 
-    const lineMargin = { top: 40, right: 100, bottom: 30, left: 100 }
+    const lineMargin = { top: 40, right: 0, bottom: 60, left: 100 }
     const width = containerWidth
     const height = containerHeight
     const totalWidth = width * 5
-
-    // console.log(width, height);
 
     // aggregate data by month
     function aggData(data) {
@@ -32,8 +29,6 @@ export function createLineChart(data, containerId) {
     // get data
     const monthData = aggData(data)
     const sortData = monthData.sort((a, b) => d3.ascending(a.date, b.date))
-
-    // console.log(sortData);
 
     // set x scale
     const x = d3
@@ -62,15 +57,18 @@ export function createLineChart(data, containerId) {
         .attr('width', lineMargin.left)
         .attr('height', height)
         .style('position', 'absolute')
-        .style('left', '30px')
-        .style('top', '68px')
+        .style('left', '0px') // Adjust to ensure it's always visible
+        .style('top', '0px') // Adjust to ensure it's aligned properly
 
     // create y-axis
     const yAxis = d3.axisLeft(y).ticks(12)
 
-    const yAxisGroup = yAxisSvg
+    yAxisSvg
         .append('g')
-        .attr('transform', `translate(${lineMargin.left - 50}, 30)`)
+        .attr(
+            'transform',
+            `translate(${lineMargin.left - 50}, ${lineMargin.top})`
+        )
         .call(yAxis)
         .style('font-size', '16px')
         .call((g) => g.select('.domain').remove())
@@ -78,14 +76,14 @@ export function createLineChart(data, containerId) {
             g
                 .append('text')
                 .attr('x', -50)
-                .attr('y', 0)
+                .attr('y', -20)
                 .style('font-size', '16px')
                 .attr('fill', 'currentColor')
                 .attr('text-anchor', 'start')
                 .text('No of Reports')
         )
 
-    // create svg
+    // create main svg
     const mainSvg = d3
         .create('svg')
         .attr('class', 'chart-svg')
@@ -94,10 +92,12 @@ export function createLineChart(data, containerId) {
         .attr('viewBox', `0 0 ${totalWidth} ${height}`)
 
     // create x-axis
-    const xAxis = d3
-        .axisBottom(x)
+    const axis = fc
+        .axisOrdinalBottom(x)
         .ticks(d3.timeMonth.every(1))
         .tickFormat(d3.timeFormat('%b %Y'))
+
+    const xAxis = fc.axisLabelRotate(axis).labelRotate(30) // You can adjust this angle as needed
 
     mainSvg
         .append('g')
@@ -166,13 +166,11 @@ export function createLineChart(data, containerId) {
     // set mouse event handler
     function handleMouseOver() {
         linePath.style('opacity', 0.8)
-        // areaPath.style("opacity", 0.2);
         dots.style('opacity', 0.5)
     }
 
     function handleMouseOut() {
         linePath.style('opacity', 0.4)
-        // areaPath.style("opacity", 0.4);
         dots.style('opacity', 0.8)
     }
 
@@ -189,21 +187,9 @@ export function createLineChart(data, containerId) {
         const maxDate = d3.max(data, (d) => d.date)
         const totalReports = d3.sum(data, (d) => d.no_of_reports)
 
-        // const reportsByYear = d3.group(data, d => d.year);
-        // const yearReports = [2020, 2021, 2022, 2023].map(year =>
-        //     d3.sum((reportsByYear.get(year) || []), d => d.no_of_reports)
-        // );
-
-        // const currentYearReports = d3.sum(
-        //     (reportsByYear.get(new Date().getFullYear()) || []),
-        //     d => d.no_of_reports
-        // );
-
         return {
             duration: `Duration: ${d3.timeFormat('%Y/%m')(minDate)} - ${d3.timeFormat('%Y/%m')(maxDate)}`,
             totalReports,
-            // yearReports,
-            // currentYearReports
         }
     }
 
@@ -290,10 +276,7 @@ export function createLineChart(data, containerId) {
     container.scrollLeft = scrollToDate - containerCenter + lineMargin.left
 
     // ensure scrolling correctly after a slight delay
-    setTimeout(
-        () =>
-            (container.scrollLeft =
-                scrollToDate - containerCenter + lineMargin.left),
-        100
-    )
+    setTimeout(() => {
+        container.scrollLeft = scrollToDate - containerCenter + lineMargin.left
+    }, 100)
 }
