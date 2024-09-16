@@ -2,7 +2,7 @@ import { gameData } from '@/data/gameData'
 import React, { useState, useRef, useEffect } from 'react'
 import { Button } from '../ui/button'
 import { Card, CardHeader, CardDescription, CardContent } from '../ui/card'
-import gifImg from '@/components/assets/Isometric Bar Snowing.gif'
+// import gifImg from ''
 import Image from 'next/image'
 import Link from 'next/link'
 import { TypographyH1 } from '@/typography/h1'
@@ -70,7 +70,15 @@ const BranchingNarrativeComponent = ({
 
     return (
         <div className="flex flex-col justify-end items-end gap-y-6 w-full pb-12">
-            <div className="relative w-full max-w-[90%] mx-auto p-4 border-b-[1vw] leading-tight text-[6vw] word-spacing-wide shadow-lg">
+            <Image
+                src="/Retro Gaming Pixel 8.gif"
+                alt={'background gif'}
+                layout="fill"
+                objectFit="cover"
+                priority={true} // Ensures the GIF is prioritized for loading
+                className="absolute top-0 left-0 w-full h-full z-0" // Positions the GIF correctly as a background
+            />
+            <div className="flex flex-col sm:justify-end sm:items-end relative w-full sm:max-w-[60%] max-h-96 py-6 sm:ml-0 sm:mr-6 p-4 border-b-[1vw] bg-white leading-tight text-[6vw] word-spacing-wide shadow-lg">
                 <Card className="flex flex-col h-50 overflow-y-scroll w-full justify-between z-10 border-0 shadow-none">
                     <CardHeader>
                         <CardDescription>{scenarios[scenario]}</CardDescription>
@@ -147,70 +155,6 @@ const BranchingNarrativeComponent = ({
                     <path d="M35 3.5L65 6.5V62L0 0L35 3.5Z" fill="white" />
                 </svg>
             </div>
-
-            {/* <Card className="flex flex-col h-50 overflow-y-scroll w-full justify-between z-10">
-                <CardHeader>
-                    <CardDescription>{scenarios[scenario]}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col items-end gap-y-2">
-                    {!navAnswer && <h2>{currentQuestionData.question}</h2>}
-                    {navAnswer && (
-                        <div className="flex flex-col gap-y-4 w-full">
-                            {currentQuestionData.answers.map(
-                                (
-                                    answer: {
-                                        link: any
-                                        text:
-                                            | string
-                                            | number
-                                            | bigint
-                                            | boolean
-                                            | React.ReactElement<
-                                                  any,
-                                                  | string
-                                                  | React.JSXElementConstructor<any>
-                                              >
-                                            | Iterable<React.ReactNode>
-                                            | React.ReactPortal
-                                            | Promise<React.AwaitedReactNode>
-                                            | null
-                                            | undefined
-                                    },
-                                    index: React.Key | null | undefined
-                                ) => (
-                                    <Button
-                                        variant="secondary"
-                                        key={index}
-                                        onClick={() =>
-                                            handleAnswerClick(answer.link)
-                                        }
-                                    >
-                                        {answer.text}
-                                    </Button>
-                                )
-                            )}
-                        </div>
-                    )}
-                </CardContent>
-                {!navAnswer && currentQuestionData.answers.length > 0 && (
-                    <Button
-                        className="m-6 self-end"
-                        variant="ghost"
-                        onClick={() => setNavAnswer(true)}
-                    >
-                        Continue
-                    </Button>
-                )}
-                {!navAnswer && currentQuestionData.answers.length === 0 && (
-                    <Button
-                        className="m-6 self-end"
-                        variant="ghost"
-                        onClick={() => setGameOver(true)}
-                    >
-                        End
-                    </Button>
-                )}
-            </Card> */}
         </div>
     )
 }
