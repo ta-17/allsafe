@@ -20,9 +20,30 @@ export default function Mute() {
     }
 
     return (
-        <div className="fixed top-8 right-8 z-10">
-            <Button variant="outline" onClick={() => onMute(!mute)}>
-                {mute ? <Volume1 /> : <VolumeOff />}
+        <div className="flex items-center space-x-2">
+            <audio
+                ref={audioRef}
+                src="/Evening Mood.ogg"
+                loop={true}
+                preload="auto"
+            />
+
+            <Button
+                className="flex items-center justify-center"
+                variant="outline"
+                onClick={toggleMute}
+            >
+                <VolumeIcon />
+            </Button>
+
+            <Button variant="outline" onClick={() => changeVolume(-10)}>
+                -
+            </Button>
+
+            <span className="w-8 text-center">{volume}</span>
+
+            <Button variant="outline" onClick={() => changeVolume(10)}>
+                +
             </Button>
         </div>
     )
