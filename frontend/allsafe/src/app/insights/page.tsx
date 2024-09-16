@@ -80,17 +80,24 @@ const Insights = () => {
                 <TypographyH2 className="text-center border-0">
                     Have you ever received this kind of message?
                 </TypographyH2>
-                <div className="flex flex-wrap justify-center sm:justify-around gap-y-8">
-                    <div id="word-cloud">
-                        <Image
+                <div className="flex flex-col justify-around items-center sm:flex-row w-full">
+                    <div id="word-cloud" className="w-5/12">
+                        {/* <Image
                             src={'/wordcloud.png'}
                             alt="Word Cloud Image"
                             width={0}
                             height={0}
                             sizes="100vw"
-                            style={{ width: '100%', height: 'auto' }} // optional
-                            className="w-full"
-                        />
+                            style={{ width: 'auto', height: '100%' }} // optional
+                        /> */}
+                        <Image
+                            src="/wordcloud.png"
+                            alt="Word Cloud Image"
+                            width="0"
+                            height="0"
+                            sizes="100vw"
+                            className="w-full h-auto"
+                        ></Image>
                     </div>
                     <p className="sm:w-1/3">
                         This word cloud highlights the most common words
