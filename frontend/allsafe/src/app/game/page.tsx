@@ -3,6 +3,8 @@
 import BranchingNarrativeComponent from '@/components/game/branchingnarrativecomponent'
 import QuestionAnswer from '@/components/game/question-answer'
 import Start from '@/components/game/start'
+import GoBack from '@/components/helper/go-back'
+import Mute from '@/components/helper/mute'
 import {
     Card,
     CardContent,

@@ -13,6 +13,8 @@ import GoBack from '@/components/helper/go-back'
 import Mute from '@/components/helper/mute'
 import Script from 'next/script'
 
+import { ReactLenis, useLenis } from 'lenis/react'
+
 const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata: Metadata = {
@@ -50,8 +52,6 @@ export default function RootLayout({
                 </main>
                 <FooterWrapper />
                 <Top />
-                <GoBack />
-                <Mute />
             </body>
         </html>
     )

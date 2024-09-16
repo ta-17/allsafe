@@ -13,7 +13,7 @@ import { TypographyBlockquote } from '@/typography/blockqoute'
 
 export default function DataSource() {
     return (
-        <div className="flex-1">
+        <div className="flex flex-col flex-1 items-center justify-center w-full">
             <Header
                 title="Data Sources"
                 subtitle="We aim to provide transparency on where our data comes from."

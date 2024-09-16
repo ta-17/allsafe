@@ -11,21 +11,40 @@ import { Button } from '@/components/ui/button'
 import { Container, Section } from '@/components/craft'
 import { TypographyH2 } from '@/typography/h2'
 import { TypographyH4 } from '@/typography/h4'
+import { useInView } from 'framer-motion'
+import { useRef, useEffect } from 'react'
 
 const CTA = () => {
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+
+    useEffect(() => {
+        console.log('Element is in view: ', isInView)
+    }, [isInView])
+
     return (
-        <Section>
-            <Container className="flex flex-col gap-6">
-                <TypographyH2 className="!my-0 border-hidden">
-                    Protect Yourself from Online Scams.
-                </TypographyH2>
-                <TypographyH4 className="text-muted-foreground">
-                    <Balancer>
-                        Use AllSafe today and equip yourself with the knowledge
-                        and tools to navigate the internet confidently.
-                    </Balancer>
-                </TypographyH4>
-                {/* <div className="not-prose flex items-center gap-2">
+        <div ref={ref}>
+            <Section>
+                <Container className="flex flex-col gap-6">
+                    <div
+                        style={{
+                            transform: isInView ? 'none' : 'translateY(200px)',
+                            opacity: isInView ? 1 : 0,
+                            transition:
+                                'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+                        }}
+                    >
+                        <TypographyH2 className="!my-0 border-hidden">
+                            Protect Yourself from Online Scams.
+                        </TypographyH2>
+                        <TypographyH4 className="text-muted-foreground">
+                            <Balancer>
+                                Use AllSafe today and equip yourself with the
+                                knowledge and tools to navigate the internet
+                                confidently.
+                            </Balancer>
+                        </TypographyH4>
+                        {/* <div className="not-prose flex items-center gap-2">
                     <Button asChild>
                         <Link href="#">Get Started</Link>
                     </Button>
@@ -33,8 +52,10 @@ const CTA = () => {
                         <Link href="#">Learn More {'->'}</Link>
                     </Button>
                 </div> */}
-            </Container>
-        </Section>
+                    </div>
+                </Container>
+            </Section>
+        </div>
     )
 }
 

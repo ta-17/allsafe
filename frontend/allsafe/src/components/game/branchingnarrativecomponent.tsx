@@ -16,45 +16,19 @@ const BranchingNarrativeComponent = ({
     const [gameBegan, setGameBegan] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState('q0')
     const [navAnswer, setNavAnswer] = useState(false)
-    const [isPlaying, setIsPlaying] = useState(false)
     const choice = gameData[scenario - 1]
-
-    const audioRef = useRef<HTMLAudioElement | null>(null) // Ref to control the audio element
 
     const handleAnswerClick = (link: React.SetStateAction<string>) => {
         if (choice[currentQuestion as keyof typeof choice]) {
             setCurrentQuestion(link)
             setNavAnswer(false)
             setGameBegan(true)
-            if (audioRef.current && !isPlaying) {
-                audioRef.current.play()
-                setIsPlaying(true)
-            }
         } else {
             console.error(`Question with link "${link}" not found in gameData.`)
         }
     }
 
-    const togglePlayPause = () => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                audioRef.current.pause()
-            } else {
-                audioRef.current.play()
-            }
-            setIsPlaying(!isPlaying)
-        }
-    }
-
     const currentQuestionData = choice[currentQuestion as keyof typeof choice]
-
-    useEffect(() => {
-        // Automatically play music when the game begins
-        if (gameBegan && audioRef.current) {
-            audioRef.current.play()
-            setIsPlaying(true)
-        }
-    }, [gameBegan])
 
     if (!currentQuestionData && gameBegan) {
         return (
@@ -91,8 +65,6 @@ const BranchingNarrativeComponent = ({
 
     return (
         <div className="flex flex-col justify-end items-end gap-y-6 w-full">
-            <audio ref={audioRef} src="/music.mp3" loop={true} preload="auto" />
-
             <Image
                 src={gifImg}
                 alt={'background gif'}
@@ -155,14 +127,6 @@ const BranchingNarrativeComponent = ({
                     </Button>
                 )}
             </Card>
-            {/* Play/Pause Button */}
-            <Button
-                onClick={togglePlayPause}
-                className="fixed top-20 right-10 z-20"
-                variant="ghost"
-            >
-                {isPlaying ? 'Pause Music' : 'Play Music'}
-            </Button>
         </div>
     )
 }

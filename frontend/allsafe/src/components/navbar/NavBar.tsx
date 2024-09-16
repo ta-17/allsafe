@@ -17,6 +17,7 @@ import {
 import { usePathname } from 'next/navigation'
 import NavbarLinks from './link-components'
 import { Menu, X } from 'lucide-react'
+import { Button } from '../ui/button'
 
 // const components: { title: string; href: string; description: string }[] = [
 //     {
@@ -77,7 +78,7 @@ const resources: { title: string; href: string; description: string }[] = [
     },
     {
         title: 'Get help',
-        href: '/data-sources',
+        href: '/help/post',
         description:
             'Guides on securing your accounts, and taking steps to recover from fraudulent activities',
     },
@@ -108,153 +109,123 @@ const NavBar: React.FC = () => {
     }
 
     return (
-        <div>
-            <div className="hidden sm:flex items-center justify-around w-full p-2">
-                <div className="text-xl font-bold">
-                    <Link href="/">AllSafe</Link>
-                </div>
-                <NavigationMenu>
-                    <NavigationMenuList className="flex justify-center">
-                        {/* Add flex and justify-center */}
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>
-                                Insights
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                    {/* <li className="row-span-3">
-                                        <NavigationMenuLink asChild>
-                                            <a
-                                                className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                                href="/"
-                                            >
-                                                <Icons.logo className="h-6 w-6" />
-                                                <div className="mb-2 mt-4 text-lg font-medium">
-                                                    shadcn/ui
-                                                </div>
-                                                <p className="text-sm leading-tight text-muted-foreground">
-                                                    Beautifully designed
-                                                    components that you can copy
-                                                    and paste into your apps.
-                                                    Accessible. Customizable.
-                                                    Open Source.
-                                                </p>
-                                            </a>
-                                        </NavigationMenuLink>
-                                    </li> */}
-                                    <ListItem
-                                        href="/insights"
-                                        title="Historical Data"
-                                    >
-                                        Historical data insights on scams.
-                                    </ListItem>
-                                    <ListItem
-                                        href="/scams"
-                                        title="Scam Tactics"
-                                    >
-                                        Learn and familiarize yourself with
-                                        different types of scams.
-                                    </ListItem>
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                        {/* <NavigationMenuItem>
-                            <Link href="/scams" legacyBehavior passHref>
-                                <NavigationMenuLink
-                                    className={navigationMenuTriggerStyle()}
-                                >
-                                    Scam Tactics
-                                </NavigationMenuLink>
+        <div className="z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between h-16">
+                    <div className="flex">
+                        <div className="flex-shrink-0 flex items-center">
+                            <Link href="/" className="text-xl font-bold">
+                                AllSafe
                             </Link>
-                        </NavigationMenuItem> */}
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>
-                                Playground
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                    <li className="row-span-3">
-                                        <NavigationMenuLink asChild>
-                                            <a
-                                                className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                                href="/"
-                                            >
-                                                <Icons.logo className="h-6 w-6" />
-                                                <div className="mb-2 mt-4 text-lg font-medium">
-                                                    shadcn/ui
-                                                </div>
-                                                <p className="text-sm leading-tight text-muted-foreground">
-                                                    Beautifully designed
-                                                    components that you can copy
-                                                    and paste into your apps.
-                                                    Accessible. Customizable.
-                                                    Open Source.
-                                                </p>
-                                            </a>
-                                        </NavigationMenuLink>
-                                    </li>
-                                    {/* <ListItem href="/docs" title="Introduction">
-                                    Re-usable components built using Radix UI
-                                    and Tailwind CSS.
-                                </ListItem> */}
-                                    <ListItem href="/quiz" title="Quiz">
-                                        Test your ability to detect scams.
-                                    </ListItem>
-                                    <ListItem href="/game" title="Game">
-                                        Play the AllSafe game. Immerse yourself
-                                        in realistic scenarios.
-                                    </ListItem>
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>
-                                Resources
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                    {resources.map((component) => (
-                                        <ListItem
-                                            key={component.title}
-                                            title={component.title}
-                                            href={component.href}
-                                        >
-                                            {component.description}
-                                        </ListItem>
-                                    ))}
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <Link href="/about" legacyBehavior passHref>
-                                <NavigationMenuLink
-                                    className={navigationMenuTriggerStyle()}
-                                >
-                                    About Us
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                </NavigationMenu>
-            </div>
-            <div className="flex flex-col sm:hidden w-full">
-                <div className="container mx-auto flex justify-between items-center py-4">
-                    <div className="text-xl font-bold">
-                        <Link href="/">AllSafe</Link>
-                    </div>
-                    <div className="md:hidden">
-                        <button onClick={toggleMenu} className="">
-                            {isOpen ? <X /> : <Menu />}
-                        </button>
-                    </div>
-                </div>
-                {isOpen && (
-                    <div className="md:hidden">
-                        <div className="flex flex-col items-end px-9 pt-2 pb-3 space-y-1">
-                            <NavbarLinks setIsOpen={funOpen} />
                         </div>
                     </div>
-                )}
+                    <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <NavigationMenu>
+                            <NavigationMenuList className="flex justify-center">
+                                {/* Add flex and justify-center */}
+                                <NavigationMenuItem>
+                                    <Link href="/scams" legacyBehavior passHref>
+                                        <NavigationMenuLink
+                                            className={navigationMenuTriggerStyle()}
+                                        >
+                                            Scam Tactics
+                                        </NavigationMenuLink>
+                                    </Link>
+                                </NavigationMenuItem>
+                                {/* <NavigationMenuItem>
+                                    <NavigationMenuTrigger>
+                                        Playground
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                            <li className="row-span-3">
+                                                <NavigationMenuLink asChild>
+                                                    <a
+                                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                                        href="/"
+                                                    >
+                                                        <Icons.logo className="h-6 w-6" />
+                                                        <div className="mb-2 mt-4 text-lg font-medium">
+                                                            shadcn/ui
+                                                        </div>
+                                                        <p className="text-sm leading-tight text-muted-foreground">
+                                                            Beautifully designed
+                                                            components that you
+                                                            can copy and paste
+                                                            into your apps.
+                                                            Accessible.
+                                                            Customizable. Open
+                                                            Source.
+                                                        </p>
+                                                    </a>
+                                                </NavigationMenuLink>
+                                            </li>
+                                            <ListItem href="/quiz" title="Quiz">
+                                                Test your ability to detect
+                                                scams.
+                                            </ListItem>
+                                            <ListItem href="/game" title="Game">
+                                                Play the AllSafe game. Immerse
+                                                yourself in realistic scenarios.
+                                            </ListItem>
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem> */}
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger>
+                                        Resources
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                            {resources.map((component) => (
+                                                <ListItem
+                                                    key={component.title}
+                                                    title={component.title}
+                                                    href={component.href}
+                                                >
+                                                    {component.description}
+                                                </ListItem>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <Link href="/about" legacyBehavior passHref>
+                                        <NavigationMenuLink
+                                            className={navigationMenuTriggerStyle()}
+                                        >
+                                            About Us
+                                        </NavigationMenuLink>
+                                    </Link>
+                                </NavigationMenuItem>
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                    </div>
+                    <div className="-mr-2 flex items-center sm:hidden">
+                        <Button variant="ghost" onClick={toggleMenu}>
+                            <span className="sr-only">Open main menu</span>
+                            {isOpen ? (
+                                <X
+                                    className="block h-6 w-6"
+                                    aria-hidden="true"
+                                />
+                            ) : (
+                                <Menu
+                                    className="block h-6 w-6"
+                                    aria-hidden="true"
+                                />
+                            )}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            {/* Mobile menu */}
+            <div
+                className={`bg-white w-full sm:hidden ${isOpen ? 'absolute' : 'hidden'}`}
+            >
+                <div className="pt-2 pb-3 space-y-1">
+                    <NavbarLinks setIsOpen={funOpen} />
+                </div>
             </div>
         </div>
     )
