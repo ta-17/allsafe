@@ -1,14 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import * as d3 from 'd3'
 
-import parseData from 'barChart'
-import createLineChart from 'lineChart'
-import createSunbrustChart from 'sunbrustChart'
-import createBarChart from 'barChart'
 import '../style.css' // Assuming your CSS is in the src/styles folder
-import Script from 'next/script'
 import { cn } from '@/lib/utils'
 import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
