@@ -23,8 +23,10 @@ def random_scam_sms(request):
 
 def all_historical_scam(request):
     with connection.cursor() as cursor:
-        # Execute raw SQL to fetch all data from 'historical_scam' table
-        cursor.execute("SELECT * FROM historical_scam")
+        # Execute raw SQL to fetch filtered data from 'historical_scam' table
+        cursor.execute(
+            "SELECT * FROM historical_scam WHERE age IN ('18 - 24', '25 - 34')"
+        )
         columns = [col[0] for col in cursor.description]  # Get column names
         data = [
             dict(zip(columns, row))
