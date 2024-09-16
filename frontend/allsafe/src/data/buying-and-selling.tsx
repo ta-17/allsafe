@@ -86,7 +86,7 @@ export const buyingAndSelling = {
     q4: {
         id: 4,
         question:
-            "You conduct your own research on the seller. You find that their profile is new and lacks previous activity. There are no reviews or feedback from other buyers. This raises suspicion.\n\nWhat do you do next?",
+            'You conduct your own research on the seller. You find that their profile is new and lacks previous activity. There are no reviews or feedback from other buyers. This raises suspicion.\n\nWhat do you do next?',
         answers: [
             {
                 text: 'Proceed with caution and ask the seller for verification or more details.',
@@ -138,7 +138,7 @@ export const buyingAndSelling = {
     q7: {
         id: 7,
         question:
-            "You decide not to proceed with the purchase and ignore the seller. However, you wonder if you should report this person to prevent others from being scammed.\n\nDo you want to report the seller?",
+            'You decide not to proceed with the purchase and ignore the seller. However, you wonder if you should report this person to prevent others from being scammed.\n\nDo you want to report the seller?',
         answers: [
             {
                 text: 'Yes, report the seller to the marketplace platform.',
@@ -170,7 +170,7 @@ export const buyingAndSelling = {
     q9: {
         id: 9,
         question:
-            "You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?",
+            'You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?',
         answers: [
             {
                 text: 'Facebook Marketplace',
@@ -192,6 +192,7 @@ export const buyingAndSelling = {
         question:
             "You report the seller on Facebook Marketplace.\n\nOpen your Facebook app.\n\nIn the bottom right, tap **☰ Menu**, then tap **Marketplace**.\n\nTap a listing from the seller that you want to report, then tap the seller's name below Seller information.\n\nTap **more**, then tap **Report**.\n\nFollow the on-screen instructions.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
+        end: true,
     },
 
     q9Instagram: {
@@ -199,6 +200,7 @@ export const buyingAndSelling = {
         question:
             "You report the seller on Instagram Marketplace.\n\nGo to the profile of the seller that you want to report.\n\nTap **… (iPhone)** or **︙(Android)** in the top right.\n\nTap **Report**, then tap **Report account**.\n\nTap **It's posting content that shouldn't be on Instagram**.\n\nScroll down, then select **Misleading or possible scam**.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
+        end: true,
     },
 
     q9TikTok: {
@@ -206,6 +208,7 @@ export const buyingAndSelling = {
         question:
             "You report the seller on TikTok Marketplace.\n\nIn the TikTok app, tap **Profile** at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Report a problem**. From here, you can:\n\n   ༚  Select a **Topic**. You might be prompted to select a subtopic within each topic. Follow the instructions to resolve the problem. If the suggested steps don't resolve your issue, tap **No** to the question **Is your problem resolved?**, then tap **Need more help?** to contact us with further details.\n\n   ༚  Scroll down and tap **Chat with us**.\n\nChat with our helpdesk to resolve the problem.\n\nThe platform acknowledges your report and promises to investigate. You've taken the right step to protect yourself and others from potential scams.\n\n**Conclusion:** By reporting the suspicious seller, you help make the online marketplace safer for everyone. Always be cautious when deals seem too good to be true, and prefer secure payment methods.",
         answers: [],
+        end: true,
     },
 
     q10: {
@@ -225,7 +228,7 @@ export const buyingAndSelling = {
     q12: {
         id: 12,
         question:
-            "You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?",
+            'You report the seller to the marketplace platform.\n\nOn which platform do you want to learn how to report this seller?',
         answers: [
             {
                 text: 'Facebook Marketplace',
@@ -261,7 +264,7 @@ export const buyingAndSelling = {
     q14: {
         id: 14,
         question:
-            "You decide not to take any further action. The seller may continue to operate on the platform and potentially scam others.\n\n**Conclusion:** By not reporting, others may fall victim to the same scam. Consider reporting in the future to help protect the community.\n\n**Feedback:** Next time, reporting suspicious activity can make a significant difference in preventing scams.",
+            'You decide not to take any further action. The seller may continue to operate on the platform and potentially scam others.\n\n**Conclusion:** By not reporting, others may fall victim to the same scam. Consider reporting in the future to help protect the community.\n\n**Feedback:** Next time, reporting suspicious activity can make a significant difference in preventing scams.',
         answers: [],
-    }
-};
+    },
+}
