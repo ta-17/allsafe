@@ -41,10 +41,10 @@ const BranchingNarrativeComponent = ({
                     <TypographyLead>Play again?</TypographyLead>
                 </div>
                 <div className="flex gap-x-2">
-                    <Link href="/game" passHref>
-                        <Button size="lg">Yes</Button>
-                    </Link>
-                    <Link href="/app" passHref>
+                    <Button size="lg" onClick={() => location.reload()}>
+                        Yes
+                    </Button>
+                    <Link href="/" passHref>
                         <Button variant="outline" size="lg">
                             No
                         </Button>
