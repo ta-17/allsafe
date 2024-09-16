@@ -11,6 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 import GoBack from '@/components/helper/go-back'
 import Mute from '@/components/helper/mute'
+import Script from 'next/script'
 
 import { ReactLenis, useLenis } from 'lenis/react'
 
@@ -33,6 +34,9 @@ export default function RootLayout({
                     http-equiv="Content-Security-Policy"
                     content="upgrade-insecure-requests"
                 />
+                <meta name="viewport" content="user-scalable=yes" />
+                <Script src="https://d3js.org/d3.v7.min.js"></Script>
+                <Script src="https://unpkg.com/d3fc"></Script>
             </head>
             <body
                 className={cn(

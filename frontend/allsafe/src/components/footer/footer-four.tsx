@@ -29,8 +29,8 @@ export default function Footer() {
     }, [isInView])
 
     return (
-        <footer className=" snap-start" ref={ref}>
-            <Section className="w-full bg-black text-background">
+        <footer className="p-0" ref={ref}>
+            <Section className="w-full bg-black text-background m-0">
                 <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr_0.5fr]">
                     <div className="not-prose flex flex-col gap-6">
                         <Link href="/">
