@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
     return (
         <div className="flex flex-1 flex-col w-full">
-            <nav className="flex justify-between p-6">
+            <nav className="flex justify-between p-6 z-10">
                 <GoBack />
                 <Mute />
             </nav>

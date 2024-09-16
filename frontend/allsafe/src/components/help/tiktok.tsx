@@ -10,7 +10,12 @@ export default function TikTokReportingGuide() {
             <h1 className="text-2xl font-bold mb-4">TikTok Reporting Guide</h1>
 
             <p className="mb-4 italic">
-                https://support.tiktok.com/en/safety-hc/report-a-problem
+                <a
+                    href="https://support.tiktok.com/en/safety-hc/report-a-problem"
+                    className="text-blue-500 visited:text-blue-800"
+                >
+                    https://support.tiktok.com/en/safety-hc/report-a-problem
+                </a>
             </p>
 
             <Accordion type="multiple" className="w-full">

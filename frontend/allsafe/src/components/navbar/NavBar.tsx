@@ -124,21 +124,34 @@ const NavBar: React.FC = () => {
                             <NavigationMenuList className="flex justify-center">
                                 {/* Add flex and justify-center */}
                                 <NavigationMenuItem>
-                                    <Link href="/scams" legacyBehavior passHref>
-                                        <NavigationMenuLink
-                                            className={navigationMenuTriggerStyle()}
-                                        >
-                                            Scam Tactics
-                                        </NavigationMenuLink>
-                                    </Link>
+                                    <NavigationMenuTrigger>
+                                        Insights
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                            <ListItem
+                                                href="/scams"
+                                                title="Scam Tactics"
+                                            >
+                                                Learn about the top 5 scams.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/insights"
+                                                title="Historical Insights"
+                                            >
+                                                Historical insights on the scams
+                                                of the past 2 years.
+                                            </ListItem>
+                                        </ul>
+                                    </NavigationMenuContent>
                                 </NavigationMenuItem>
-                                {/* <NavigationMenuItem>
+                                <NavigationMenuItem>
                                     <NavigationMenuTrigger>
                                         Playground
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
                                         <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                            <li className="row-span-3">
+                                            {/* <li className="row-span-3">
                                                 <NavigationMenuLink asChild>
                                                     <a
                                                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
@@ -159,7 +172,7 @@ const NavBar: React.FC = () => {
                                                         </p>
                                                     </a>
                                                 </NavigationMenuLink>
-                                            </li>
+                                            </li> */}
                                             <ListItem href="/quiz" title="Quiz">
                                                 Test your ability to detect
                                                 scams.
@@ -170,7 +183,7 @@ const NavBar: React.FC = () => {
                                             </ListItem>
                                         </ul>
                                     </NavigationMenuContent>
-                                </NavigationMenuItem> */}
+                                </NavigationMenuItem>
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger>
                                         Resources

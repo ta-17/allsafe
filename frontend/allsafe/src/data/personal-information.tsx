@@ -22,7 +22,7 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q1: {
         id: 1,
         question:
@@ -42,7 +42,7 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q2: {
         id: 2,
         question:
@@ -62,11 +62,11 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q3: {
         id: 3,
         question:
-            "You ignore the message from Jamie. However, you wonder if you should adjust your privacy settings to prevent unsolicited messages from strangers.\n\nDo you want to adjust your messaging settings?",
+            'You ignore the message from Jamie. However, you wonder if you should adjust your privacy settings to prevent unsolicited messages from strangers.\n\nDo you want to adjust your messaging settings?',
         answers: [
             {
                 text: 'Yes, adjust messaging settings for more privacy.',
@@ -78,7 +78,7 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q4: {
         id: 4,
         question:
@@ -104,6 +104,7 @@ export const personalInformation2 = {
         question:
             "You report Jamie's account on Facebook.\n\nGo to the profile that you want to report by clicking its name in your Feed or searching for it.\n\nClick **more ...** to the right.\n\nClick **Find support or report**.\n\nTo give feedback, click the option that best describes how this profile goes against our Community Standards.\n\n   **Note:** Depending on your feedback, you may then be able to submit a report to Meta. For some types of content, we don't ask you to submit a report, but we use your feedback to help our systems learn.\n\nClick **Done**.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
         answers: [],
+        end: true,
     },
 
     q4Instagram: {
@@ -111,6 +112,7 @@ export const personalInformation2 = {
         question:
             "You report Jamie's account on Instagram.\n\nClick their username from their Feed or story post, or click **explore** and search their username to go to their profile.\n\nClick **more** actions next to their username.\n\nSelect **Report**, then select the type of account you want to report and follow the on-screen instructions.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
         answers: [],
+        end: true,
     },
 
     q4TikTok: {
@@ -118,8 +120,9 @@ export const personalInformation2 = {
         question:
             "You report Jamie's account on TikTok.\n\nIn the TikTok app, go to the person's profile.\n\nTap the **Share** button at the top.\n\nTap **Report**.\n\nTap **Report account**.\n\nSelect a reason for the report and tap **Submit**.\n\n**Conclusion:** You've reported the suspicious account. The platform will review your report.\n\n**Feedback:** Good job taking action to protect yourself and others from potential scams!",
         answers: [],
+        end: true,
     },
-    
+
     q5: {
         id: 5,
         question:
@@ -139,11 +142,11 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q6: {
         id: 6,
         question:
-            "You realize something is off and decide not to click the link or enter any information. You suspect this might be a phishing attempt.\n\nWhat do you do next?",
+            'You realize something is off and decide not to click the link or enter any information. You suspect this might be a phishing attempt.\n\nWhat do you do next?',
         answers: [
             {
                 text: "Report Jamie's account as suspicious.",
@@ -159,14 +162,14 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q7: {
         id: 7,
         question:
             "You check the URL and notice that it doesn't match the official website—it has slight misspellings or extra characters.\n\nWhat do you do next?",
         answers: [
             {
-                text: "Avoid entering any information and close the page.",
+                text: 'Avoid entering any information and close the page.',
                 link: 'q6',
             },
             {
@@ -175,11 +178,11 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q8: {
         id: 8,
         question:
-            "You adjust your messaging settings to limit who can send you direct messages.\n\nOn which platform do you want to adjust your messaging settings?",
+            'You adjust your messaging settings to limit who can send you direct messages.\n\nOn which platform do you want to adjust your messaging settings?',
         answers: [
             {
                 text: 'Facebook',
@@ -201,6 +204,7 @@ export const personalInformation2 = {
         question:
             "You adjust your messaging settings on Facebook.\n\nOpen your Messenger app.\n\nClick your profile picture in the bottom left, then click **Preferences**.\n\nTap **Privacy & safety**.\n\nTap **Message delivery**.\n\nTap on the group you want to control messages for.\n\nChoose to deliver their messages to your Chats list or to your message requests folder. Or tap **Don't receive requests** to stop receiving their messages entirely.\n\nNew group chat message requests won't be delivered to your Chats list.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
         answers: [],
+        end: true,
     },
 
     q8Instagram: {
@@ -208,6 +212,7 @@ export const personalInformation2 = {
         question:
             "You adjust your messaging settings on Instagram.\n\nClick **☰ More** in the bottom left, then click **Settings**.\n\nBelow **How others can interact with you**, click **Messages and story replies**.\n\nClick **Message controls**.\n\nChoose whether message requests from people on Instagram go to your Message Requests folder or whether to receive them at all.\n\nNote that you’ll need to accept message requests in your Message Requests folder before they appear in your Chats list. Messages from people you follow on Instagram will appear in your Chats list.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
         answers: [],
+        end: true,
     },
 
     q8TikTok: {
@@ -215,15 +220,16 @@ export const personalInformation2 = {
         question:
             "You adjust your messaging settings on TikTok.\n\nIn the TikTok app, tap Profile at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Privacy**\n\n.Tap **Direct messages**, then choose from the list of options who can send you messages:\n\n   ༚  **Everyone:** Anyone can send you a direct message. Messages from mutual friends and people you follow appear in your inbox.\n\n   ༚  **Suggested friends:** Matched friends, including synced Facebook friends and phone contacts, and followers who you follow back, can send you a direct message.\n\n   ༚  **Friends:** Any followers that you follow back can send you a direct message.\n\n   ༚  **No one:** You can't receive direct messages from anyone. Keep in mind that if you choose this setting, you can't receive direct messages. You can still access your message history in your inbox, but you can't receive new direct messages in those chats.\n\nKeep in mind that some of these options are not available to everyone.\n\n**Conclusion:** By adjusting your settings, you've enhanced your privacy and reduced the risk of receiving unsolicited messages.\n\n**Feedback:** Great job taking control of your online experience!",
         answers: [],
+        end: true,
     },
-    
+
     q9: {
         id: 9,
         question:
-            "You decide not to adjust your messaging settings. Be aware that you may continue to receive unsolicited messages from strangers.\n\n**Conclusion:** Your account remains open to messages from anyone.\n\n**Feedback:** Consider adjusting your settings to enhance your privacy.",
+            'You decide not to adjust your messaging settings. Be aware that you may continue to receive unsolicited messages from strangers.\n\n**Conclusion:** Your account remains open to messages from anyone.\n\n**Feedback:** Consider adjusting your settings to enhance your privacy.',
         answers: [],
     },
-    
+
     q10: {
         id: 10,
         question:
@@ -239,11 +245,11 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q11: {
         id: 11,
         question:
-            "You contact the platform’s support team for help. They guide you through the process of securing your account. They also recommend enabling two-factor authentication (2FA).\n\nOn which platform do you want to enable 2FA?",
+            'You contact the platform’s support team for help. They guide you through the process of securing your account. They also recommend enabling two-factor authentication (2FA).\n\nOn which platform do you want to enable 2FA?',
         answers: [
             {
                 text: 'Facebook',
@@ -255,26 +261,27 @@ export const personalInformation2 = {
             },
         ],
     },
-    
+
     q12: {
         id: 12,
         question:
-            "You do nothing, hoping the issue resolves itself. Unfortunately, the scammer uses your account to send phishing messages to your contacts, and your personal information may be compromised further.\n\n**Conclusion:** Ignoring the issue has led to more problems.\n\n**Feedback:** Always take immediate action if you suspect your account has been compromised.",
+            'You do nothing, hoping the issue resolves itself. Unfortunately, the scammer uses your account to send phishing messages to your contacts, and your personal information may be compromised further.\n\n**Conclusion:** Ignoring the issue has led to more problems.\n\n**Feedback:** Always take immediate action if you suspect your account has been compromised.',
         answers: [],
     },
-    
+
     q13: {
         id: 13,
         question:
             "You inform your friends about the potential scam, warning them not to click on suspicious links.\n\n**Conclusion:** You've helped others avoid falling victim to phishing attempts.\n\n**Feedback:** Excellent job looking out for your community!",
         answers: [],
     },
-    
+
     q14Facebook: {
         id: 14,
         question:
             "You enable two-factor authentication (2FA) on Facebook.\n\nClick on your profile picture in the top right, then click **Settings and privacy**.\n\nClick **Settings**.\n\nClick **Accounts Centre**, then click **Password and security**.\n\nClick **Two-factor authentication**, then click on the account that you'd like to update.\n\nChoose the security method that you want to add and follow the on-screen instructions.\n\n**Conclusion:** By enabling 2FA, you've added an extra layer of security to your account.\n\n**Feedback:** Excellent decision to protect your account!",
         answers: [],
+        end: true,
     },
 
     q14Instagram: {
@@ -282,15 +289,16 @@ export const personalInformation2 = {
         question:
             "You enable two-factor authentication (2FA) on Instagram.\n\nClick **More** in the bottom left, then click **Settings**.\n\nClick **See more in Accounts Center**, then click **Password and security**.\n\nClick **Two-factor authentication**, then select an account.\n\nChoose the security method you want to add and follow the on-screen instructions.\n\n**Conclusion:** By enabling 2FA, you've added an extra layer of security to your account.\n\n**Feedback:** Excellent decision to protect your account!",
         answers: [],
+        end: true,
     },
-    
+
     q15: {
         id: 15,
         question:
-            "You decide not to enable 2FA at this time. Be aware that your account may be more vulnerable to unauthorized access.\n\n**Conclusion:** Without 2FA, your account relies solely on your password for security.\n\n**Feedback:** Consider enabling 2FA to enhance your account protection.",
+            'You decide not to enable 2FA at this time. Be aware that your account may be more vulnerable to unauthorized access.\n\n**Conclusion:** Without 2FA, your account relies solely on your password for security.\n\n**Feedback:** Consider enabling 2FA to enhance your account protection.',
         answers: [],
     },
-};
+}
 
 export const personalInformation1 = {
     q0: {
@@ -406,7 +414,7 @@ export const personalInformation1 = {
     q1a1b1b: {
         id: 8,
         question:
-        'Even though you may feel uncomfortable questioning why Andy tries to gain your detailed information, you manage to protect your personal information and stay safe on social media. \n\n**Conclusion:** The scammers may try to gain your details from different angles in the future, so keep being cautious when someone you do not know is trying to ask for your personal information',
+            'Even though you may feel uncomfortable questioning why Andy tries to gain your detailed information, you manage to protect your personal information and stay safe on social media. \n\n**Conclusion:** The scammers may try to gain your details from different angles in the future, so keep being cautious when someone you do not know is trying to ask for your personal information',
         answers: [],
     },
     q1a1b2: {
@@ -600,7 +608,7 @@ export const personalInformation1 = {
     q2a1a1: {
         id: 26,
         question:
-        'Keep revealing personal information can lead to identity theft or fraud.\n\n**Conculsion:** You should be more cautious when sharing personal information with other people to prevent scams in the future. Moreover, leveraging the knowledge about scams can also help you to identify potential scams in the future.',
+            'Keep revealing personal information can lead to identity theft or fraud.\n\n**Conculsion:** You should be more cautious when sharing personal information with other people to prevent scams in the future. Moreover, leveraging the knowledge about scams can also help you to identify potential scams in the future.',
         answers: [],
     },
     q2a1a2: {
@@ -627,7 +635,7 @@ export const personalInformation1 = {
     q2a2a: {
         id: 29,
         question:
-        'You manage to protect your personal information and stay safe on social media. \n\n**Conclusion:** Verifying their information can help you identify if the person is a scammer or not. If you find that this is a scam, reporting to the platform and the government can help to make social media and the community safer. Always be cautious when sharing your personal information, especially if the person is someone you have never met before.',
+            'You manage to protect your personal information and stay safe on social media. \n\n**Conclusion:** Verifying their information can help you identify if the person is a scammer or not. If you find that this is a scam, reporting to the platform and the government can help to make social media and the community safer. Always be cautious when sharing your personal information, especially if the person is someone you have never met before.',
         answers: [],
     },
     q2a2b: {
