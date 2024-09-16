@@ -94,57 +94,84 @@ const BranchingNarrativeComponent = ({
             <audio ref={audioRef} src="/music.mp3" loop={true} preload="auto" />
 
             <Image
-                src={gifImg}
+                src="/background/Retro Gaming Pixel 8.gif"
                 alt={'background gif'}
                 layout="fill"
                 objectFit="cover"
                 priority={true} // Ensures the GIF is prioritized for loading
                 className="absolute top-0 left-0 w-full h-full z-0" // Positions the GIF correctly as a background
             />
-            <Card className="flex flex-col h-50 overflow-y-scroll w-full justify-between z-10">
+
+            {/* Character portrait positioned outside the Card */}
+            {/*<div
+                className="relative z-20"
+                style={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                }}
+            >
+                <Image
+                    src="/character/Bridget_normal.png" // Ensure this path is correct
+                    alt="Character Portrait"
+                    width={400}
+                    height={400}
+                    priority={true}
+                    style={{ marginBottom: '-24px' }} // Positioned on the left-hand side of the text box
+                />
+            </div>*/}
+
+            <Card className="flex flex-col h-50 overflow-y-scroll w-full justify-between z-10 relative">
                 <CardHeader>
                     <CardDescription>{scenarios[scenario]}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col items-end gap-y-2">
-                    {!navAnswer && <h2>{currentQuestionData.question}</h2>}
-                    {navAnswer && (
-                        <div className="flex flex-col gap-y-4 w-full">
-                            {currentQuestionData.answers.map(
-                                (
-                                    answer: {
-                                        link: any
-                                        text:
-                                            | string
-                                            | number
-                                            | bigint
-                                            | boolean
-                                            | React.ReactElement<
-                                                  any,
-                                                  | string
-                                                  | React.JSXElementConstructor<any>
-                                              >
-                                            | Iterable<React.ReactNode>
-                                            | React.ReactPortal
-                                            | Promise<React.AwaitedReactNode>
-                                            | null
-                                            | undefined
-                                    },
-                                    index: React.Key | null | undefined
-                                ) => (
-                                    <Button
-                                        variant="secondary"
-                                        key={index}
-                                        onClick={() =>
-                                            handleAnswerClick(answer.link)
-                                        }
-                                    >
-                                        {answer.text}
-                                    </Button>
-                                )
-                            )}
-                        </div>
-                    )}
+
+                {/* Question/Answer Section */}
+                <CardContent className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col w-full text-center">
+                        {!navAnswer && <h2>{currentQuestionData.question}</h2>}
+                        {navAnswer && (
+                            <div className="flex flex-col gap-y-4 w-full">
+                                {currentQuestionData.answers.map(
+                                    (
+                                        answer: {
+                                            link: any
+                                            text:
+                                                | string
+                                                | number
+                                                | bigint
+                                                | boolean
+                                                | React.ReactElement<
+                                                      any,
+                                                      | string
+                                                      | React.JSXElementConstructor<any>
+                                                  >
+                                                | Iterable<React.ReactNode>
+                                                | React.ReactPortal
+                                                | Promise<React.AwaitedReactNode>
+                                                | null
+                                                | undefined
+                                        },
+                                        index: React.Key | null | undefined
+                                    ) => (
+                                        <Button
+                                            variant="secondary"
+                                            key={index}
+                                            onClick={() =>
+                                                handleAnswerClick(answer.link)
+                                            }
+                                        >
+                                            {answer.text}
+                                        </Button>
+                                    )
+                                )}
+                                {/* Pixelated Textbox */}
+                                <textarea className="pixel-textbox"></textarea>
+                            </div>
+                        )}
+                    </div>
                 </CardContent>
+
                 {!navAnswer && (
                     <Button
                         className="m-6 self-end"
