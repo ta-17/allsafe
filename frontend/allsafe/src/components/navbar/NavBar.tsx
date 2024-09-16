@@ -117,6 +117,48 @@ const NavBar: React.FC = () => {
                     <NavigationMenuList className="flex justify-center">
                         {/* Add flex and justify-center */}
                         <NavigationMenuItem>
+                            <NavigationMenuTrigger>
+                                Insights
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                    {/* <li className="row-span-3">
+                                        <NavigationMenuLink asChild>
+                                            <a
+                                                className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                                href="/"
+                                            >
+                                                <Icons.logo className="h-6 w-6" />
+                                                <div className="mb-2 mt-4 text-lg font-medium">
+                                                    shadcn/ui
+                                                </div>
+                                                <p className="text-sm leading-tight text-muted-foreground">
+                                                    Beautifully designed
+                                                    components that you can copy
+                                                    and paste into your apps.
+                                                    Accessible. Customizable.
+                                                    Open Source.
+                                                </p>
+                                            </a>
+                                        </NavigationMenuLink>
+                                    </li> */}
+                                    <ListItem
+                                        href="/insights"
+                                        title="Historical Data"
+                                    >
+                                        Historical data insights on scams.
+                                    </ListItem>
+                                    <ListItem
+                                        href="/scams"
+                                        title="Scam Tactics"
+                                    >
+                                        Learn and familiarize yourself with
+                                        different types of scams.
+                                    </ListItem>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        {/* <NavigationMenuItem>
                             <Link href="/scams" legacyBehavior passHref>
                                 <NavigationMenuLink
                                     className={navigationMenuTriggerStyle()}
@@ -124,7 +166,7 @@ const NavBar: React.FC = () => {
                                     Scam Tactics
                                 </NavigationMenuLink>
                             </Link>
-                        </NavigationMenuItem>
+                        </NavigationMenuItem> */}
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>
                                 Playground
