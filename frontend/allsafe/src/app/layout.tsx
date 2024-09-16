@@ -32,6 +32,7 @@ export default function RootLayout({
                     http-equiv="Content-Security-Policy"
                     content="upgrade-insecure-requests"
                 />
+                <meta name="viewport" content="user-scalable=yes" />
                 <Script src="https://d3js.org/d3.v7.min.js"></Script>
             </head>
             <body
