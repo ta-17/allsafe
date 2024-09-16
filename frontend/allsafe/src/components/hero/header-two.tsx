@@ -1,3 +1,5 @@
+'use client'
+
 // Third-party library imports
 import Balancer from 'react-wrap-balancer'
 
