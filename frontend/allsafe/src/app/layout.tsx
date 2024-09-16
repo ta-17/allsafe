@@ -34,6 +34,7 @@ export default function RootLayout({
                 />
                 <meta name="viewport" content="user-scalable=yes" />
                 <Script src="https://d3js.org/d3.v7.min.js"></Script>
+                <Script src="https://unpkg.com/d3fc"></Script>
             </head>
             <body
                 className={cn(

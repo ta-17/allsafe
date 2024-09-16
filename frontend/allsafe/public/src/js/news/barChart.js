@@ -22,7 +22,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
     const { width: containerWidth, height: containerHeight } =
         container.getBoundingClientRect()
 
-    const margin = { top: 30, right: 100, bottom: 30, left: 70 }
+    const margin = { top: 30, right: 100, bottom: 130, left: 70 }
     const width = containerWidth - margin.left - margin.right
     const height = containerHeight - margin.top - margin.bottom
 
@@ -98,6 +98,9 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         new Set(allYearData.map((d) => d.category_level2))
     )
 
+    const axis = fc.axisOrdinalBottom(x).tickSize(5).tickPadding(5)
+    const rotatedAxis = fc.axisLabelRotate(axis).labelRotate(30) // You can adjust this angle as needed
+
     // set color scale
     const color = d3.scaleOrdinal(
         d3.quantize(d3.interpolateRainbow, scamTypes.length)
@@ -110,7 +113,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
 
     svg.append('g')
         .attr('transform', `translate(${margin.left},${height + margin.top})`)
-        .call(d3.axisBottom(x).tickSizeOuter(0))
+        .call(rotatedAxis)
         .append('text')
         .attr('x', width + 30)
         .attr('y', 16)
