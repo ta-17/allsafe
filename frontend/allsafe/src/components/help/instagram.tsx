@@ -16,6 +16,14 @@ export default function InstagramReportingGuide() {
                 you&apos;re reporting an intellectual property infringement. The
                 account you reported won&apos;t see who reported them.
             </p>
+            <p className="mb-4 italic">
+                <a
+                    href="https://help.instagram.com/2922067214679225/?helpref=related_articles"
+                    className="text-blue-500 visited:text-blue-800"
+                >
+                    https://help.instagram.com/2922067214679225/?helpref=related_articles{' '}
+                </a>
+            </p>
 
             <Accordion type="multiple" className="w-full">
                 <AccordionItem value="item-1">

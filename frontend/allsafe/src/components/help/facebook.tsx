@@ -12,7 +12,12 @@ export default function FacebookReportingGuide() {
             </h1>
 
             <p className="mb-4 italic">
-                https://www.facebook.com/help/263149623790594
+                <a
+                    href="https://www.facebook.com/help/263149623790594"
+                    className="text-blue-500 visited:text-blue-800"
+                >
+                    https://www.facebook.com/help/263149623790594
+                </a>
             </p>
             <Accordion type="multiple" className="w-full">
                 <AccordionItem value="item-1">
