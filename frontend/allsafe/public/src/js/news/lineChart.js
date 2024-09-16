@@ -6,10 +6,10 @@ export function createLineChart(data, containerId) {
     const { width: containerWidth, height: containerHeight } =
         container.getBoundingClientRect()
 
-    const lineMargin = { top: 40, right: 0, bottom: 60, left: 100 }
+    const lineMargin = { top: 40, right: 0, bottom: 100, left: 100 }
     const width = containerWidth
     const height = containerHeight
-    const totalWidth = width * 5
+    const totalWidth = width * 15
 
     // aggregate data by month
     function aggData(data) {
@@ -63,23 +63,39 @@ export function createLineChart(data, containerId) {
     // create y-axis
     const yAxis = d3.axisLeft(y).ticks(12)
 
+    // yAxisSvg
+    //     .append('g')
+    //     .attr(
+    //         'transform',
+    //         `translate(${lineMargin.left - 50}, ${lineMargin.bottom - 10})`
+    //     )
+    //     .call(yAxis)
+    //     .style('font-size', '16px')
+    //     .call((g) => g.select('.domain').remove())
+    //     .call((g) =>
+    //         g
+    //             .append('text')
+    //             .attr('x', -50)
+    //             .attr('y', -20)
+    //             .style('font-size', '16px')
+    //             .attr('fill', 'currentColor')
+    //             .attr('text-anchor', 'start')
+    //             .text('No of Reports')
+    //     )
+
     yAxisSvg
         .append('g')
-        .attr(
-            'transform',
-            `translate(${lineMargin.left - 50}, ${lineMargin.top})`
-        )
-        .call(yAxis)
+        .attr('transform', `translate(${lineMargin.left},0)`)
         .style('font-size', '16px')
+        .call(yAxis)
         .call((g) => g.select('.domain').remove())
         .call((g) =>
             g
                 .append('text')
-                .attr('x', -50)
-                .attr('y', -20)
-                .style('font-size', '16px')
-                .attr('fill', 'currentColor')
+                .attr('x', -lineMargin.left + 20)
+                .attr('y', lineMargin.top - 20)
                 .attr('text-anchor', 'start')
+                .attr('font-weight', 'bold')
                 .text('No of Reports')
         )
 
@@ -103,7 +119,7 @@ export function createLineChart(data, containerId) {
         .append('g')
         .attr('transform', `translate(0,${height - lineMargin.bottom})`)
         .call(xAxis)
-        .style('font-size', '20px')
+        .style('font-size', '16px')
 
     // define gradient
     const defs = mainSvg.append('defs')

@@ -59,6 +59,14 @@ const BranchingNarrativeComponent = ({
                             Help Section
                         </Link>
                     </p>
+                    {/* <p>
+                        Brush up on your knowledge by visiting the scam tactics
+                        page{' '}
+                        <Link href="/scams" passHref className="underline">
+                            {' '}
+                            scam tactics page
+                        </Link>
+                    </p> */}
                 </div>
             </div>
         )
