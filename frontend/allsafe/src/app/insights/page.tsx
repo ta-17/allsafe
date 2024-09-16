@@ -125,7 +125,11 @@ const Insights = () => {
                             Click inside each section to discover more.
                         </TypographyLead>
                         <section id="year-filter-section">
-                            <select id="year-dropdown" className="dropdown">
+                            <select
+                                id="year-dropdown"
+                                className="dropdown"
+                                defaultValue="2024"
+                            >
                                 <option value="all">Filter By Year</option>
                                 <option value="2024">2024</option>
                             </select>
