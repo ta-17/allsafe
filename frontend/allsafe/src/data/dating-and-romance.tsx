@@ -110,7 +110,7 @@ export const datingAndRomance = {
     q3TikTok: {
         id: 3,
         question:
-            'You choose to make your TikTok account private.\n\nIn the TikTok app, tap **Profil**e at the bottom.\n\nTap the **Menu ☰** button at the top.\n\nTap **Settings and privacy**, then tap **Privacy**.\n\nTurn **Private account** on or off.\n\n**Conclusion:** By making your account private, you control who can see your posts and contact you.\n\n**Feedback:** Great job enhancing your privacy!',
+            'You choose to make your TikTok account private.\n\nIn the TikTok app, tap **Profile** at the bottom.\n\nTap the **Menu ☰** button at the top.\n\nTap **Settings and privacy**, then tap **Privacy**.\n\nTurn **Private account** on or off.\n\n**Conclusion:** By making your account private, you control who can see your posts and contact you.\n\n**Feedback:** Great job enhancing your privacy!',
         answers: [],
         end: true,
     },

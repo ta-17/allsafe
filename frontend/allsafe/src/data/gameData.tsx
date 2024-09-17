@@ -6,8 +6,8 @@ import { personalInformation2 } from './personal-information'
 
 export const gameData = [
     buyingAndSelling,
-    personalInformation2,
-    jobAndEmployment,
-    investment,
     datingAndRomance,
+    personalInformation2,
+    investment,
+    jobAndEmployment,
 ]
