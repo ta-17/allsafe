@@ -120,12 +120,12 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d.totalAmount))
         .attr("fill", d => color(d.category_level2))
-        .style("opacity", 0.6)  // Set initial opacity for all bars
+        .style("opacity", 0.7)  // Set initial opacity for all bars
         // Set mouse events
         .on("mouseover", function(event, d) {
             if (selectedBar !== this) {  // Only apply hover effect if this bar is not selected
-                bars.style("opacity", 0.4);  // Fade all bars
-                d3.select(this).style("opacity", 0.8);  // Highlight the hovered bar
+                bars.style("opacity", 0.2);  // Fade all bars
+                d3.select(this).style("opacity", 0.95);  // Highlight the hovered bar
             }
 
             // Show tooltip content
@@ -141,11 +141,11 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         .on("mouseout", function() {
             // Reset hover effect only if no bar is selected
             if (selectedBar === null) {
-                bars.style("opacity", 0.6);  // Reset all bars to normal opacity
+                bars.style("opacity", 0.7);  // Reset all bars to normal opacity
             } else if (selectedBar !== this) {
                 // Keep the selected bar highlighted, and others faded
-                bars.style("opacity", 0.4);
-                d3.select(selectedBar).style("opacity", 0.8);
+                bars.style("opacity", 0.2);
+                d3.select(selectedBar).style("opacity", 0.95);
             }
 
             tooltip.style("opacity", 0);  // Hide tooltip
@@ -156,7 +156,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                 console.log("Deseleted bar")
                 // Deselect the currently selected bar and reset opacity
                 d3.select(this)
-                    .style("opacity", 0.6);   // Reset opacity
+                    .style("opacity", 0.7);   // Reset opacity
                 
                 console.log("Deselecting the same bar, reset it.");
                 
@@ -173,7 +173,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                 // Existing logic for new bar selection
                 if (selectedBar === null) {
                     d3.select(selectedBar)
-                        .style("opacity", 0.8);  // Reset opacity
+                        .style("opacity", 0.95);  // Reset opacity
                     console.log("Bar color changed")
                 }
         
@@ -199,21 +199,21 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                 // Simulate the bar click behavior
                 if (selectedBar === this) {
                     // Deselect the bar
-                    bars.style("opacity", 0.6);  // Reset all bars to normal opacity
-                    d3.select(this).style("opacity", 0.6);
+                    bars.style("opacity", 0.7);  // Reset all bars to normal opacity
+                    d3.select(this).style("opacity", 0.7);
                     selectedBar = null;
                 } else {
                     // Fade all other bars
-                    bars.style("opacity", 0.4);
+                    bars.style("opacity", 0.2);
     
                     // Deselect previously selected bar
                     if (selectedBar) {
-                        d3.select(selectedBar).style("opacity", 0.4);
+                        d3.select(selectedBar).style("opacity", 0.2);
                     }
     
                     // Highlight the newly clicked bar
                     d3.select(this)
-                        .style("opacity", 0.8);
+                        .style("opacity", 0.95);
     
                     selectedBar = this;  // Update the selected bar reference
                 }
@@ -226,7 +226,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         console.log('Bar Chart Received Reset Event');  // Log the received event
         
         // Reset all bars to their default state (e.g., remove highlighting)
-        bars.style("opacity", 0.6);  // Reset all bars' opacity and color
+        bars.style("opacity", 0.7);  // Reset all bars' opacity and color
     
         // Clear the selected bar reference
         selectedBar = null;
