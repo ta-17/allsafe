@@ -33,7 +33,7 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 3;
+    const radius = Math.min(width, height) / 5;
 
     // Get the Data
     // Step 1: Group the data by category_level2 and sum up the values
