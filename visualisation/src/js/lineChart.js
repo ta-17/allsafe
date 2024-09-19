@@ -1,28 +1,28 @@
 // create line chart
 export function createLineChart(data, containerId) {
     console.log("Creating line chart...");
-
+    
     // set up dimensions and margins of the graph
     const container = document.getElementById(containerId);
-    const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
-
-    const lineMargin = { top: 40, right: 100, bottom: 30, left: 100 };
+    const { width: containerWidth, height: containerHeight } = 
+        container.getBoundingClientRect();
+    
+    const lineMargin = { top: 40, right: 30, bottom: 30, left: 70 }
     const width = containerWidth;
     const height = containerHeight;
-    const totalWidth = width * 5;
 
     // console.log(width, height);
 
     // aggregate data by month
     function aggData(data) {
         const grouped = d3.group(data, d => `${d.year}-${d.month}`);
+
         return Array.from(grouped, ([key, value]) => {
-            const [year, month] = key.split('-').map(Number);
+            const [year, month] = key.split('-');
             const no_of_reports = d3.sum(value, d => d.no_of_reports);
             return {
-                year,
-                month,
-                date: new Date(year, month - 1),
+                year: +year,
+                month: +month,
                 no_of_reports
             };
         });
@@ -30,170 +30,200 @@ export function createLineChart(data, containerId) {
 
     // get data
     const monthData = aggData(data);
-    const sortData = monthData.sort((a, b) => d3.ascending(a.date, b.date));
+    // const monthData2024 = monthData.filter(d => d.year === 2024).sort((a, b) => a.month - b.month);
 
-    // console.log(sortData);
+    console.log(monthData);
+
+    // get unique years
+    // const allYears = Array.from(new Set(monthData.map(d => d.year)));
+    
+    // get needed years
+    const years = [2024, 2022, 2020]
+
+    // filtere data by required years & sort by month
+    const filteredData = monthData.filter(d => years.includes(d.year))
+                                  .sort((a, b) => a.year - b.year || a.month - b.month);
+
 
     // set x scale
-    const x = d3.scaleTime()
-                .domain(d3.extent(sortData, d => d.date))
-                .range([lineMargin.left, totalWidth - lineMargin.right]);
-
+    const x = d3.scaleLinear()
+                .domain([1,12])
+                .range([lineMargin.left, width - lineMargin.right]);
+    
     // set y scale
     const y = d3.scaleLinear()
-                .domain([0, d3.max(sortData, d => d.no_of_reports)])
+                .domain([0, d3.max(filteredData, d => d.no_of_reports)])
                 .nice()
                 .range([height - lineMargin.bottom, lineMargin.top]);
 
     // create line
     const line = d3.line()
-                   .x(d => x(d.date))
-                   .y(d => y(d.no_of_reports))
+                   .x((d) => x(d.month))
+                   .y((d) => y(d.no_of_reports))
                    .curve(d3.curveCatmullRom.alpha(0.5));
-
-    // create y-axis svg
-    const yAxisSvg = d3.create("svg")
-                       .attr("class", "y-axis-svg")
-                       .attr("width", lineMargin.left)
-                       .attr("height", height)
-                       .style("position", "absolute")
-                       .style("left", "30px")
-                       .style("top", "68px");
-
-    // create y-axis
-    const yAxis = d3.axisLeft(y)
-                    .ticks(12);
-
-    const yAxisGroup = yAxisSvg.append("g")
-                    .attr("transform", `translate(${lineMargin.left - 50}, 30)`)
-                    .call(yAxis)
-                    .style("font-size", "16px")
-                    .call(g => g.select(".domain").remove())
-                    .call(g => g.append("text")
-                        .attr("x", -50)
-                        .attr("y", 0)
-                        .style("font-size", "16px")
-                        .attr("fill", "currentColor")
-                        .attr("text-anchor", "start")
-                        .text("No of Reports"));
 
     // create svg
-    const mainSvg = d3.create("svg")
-                      .attr("class", "chart-svg")
-                      .attr("width", totalWidth)
-                      .attr("height", height)
-                      .attr("viewBox", `0 0 ${totalWidth} ${height}`);
+    // const svg = d3.select(`#${containerId}`).append("svg")
+    //     .attr("viewBox", [0, 0, width, height])
+    //     .style("font", "10px sans-serif");
 
-    // create x-axis
-    const xAxis = d3.axisBottom(x)
-                    .ticks(d3.timeMonth.every(1))
-                    .tickFormat(d3.timeFormat("%b %Y"));
+    const svg = d3.create("svg")
+        .attr("width", width + lineMargin.left + lineMargin.right)
+        .attr("height", height + lineMargin.top + lineMargin.bottom);    
 
-    mainSvg.append("g")
-           .attr("transform", `translate(0,${height - lineMargin.bottom})`)
-           .call(xAxis)
-           .style("font-size", "20px");
+    // add x-axis
+    svg.append("g")
+        .attr("transform", `translate(0,${height - lineMargin.bottom})`)
+        .call(d3.axisBottom(x).ticks(12).tickFormat(d => d3.timeFormat("%b")(new Date(2000, d - 1, 1))))
+        .style("font-size", "20px")
+        // .call((g) =>
+        //     g
+        //       .append("text")
+        //       .attr("x", width -lineMargin.right + 15)
+        //       .attr("y", 10)
+        //       .attr("fill", "currentColor")
+        //       .attr("text-anchor", "start")
+        //       .text("Month")
+        //   );
 
-    // define gradient
-    const defs = mainSvg.append("defs");
-    const gradientId = 'gradient-line-area';
+    // add y-axis
+    svg.append("g")
+        .attr("transform", `translate(${lineMargin.left}, 0)`)
+        .call(d3.axisLeft(y))
+        .style("font-size", "20px")
+        .call((g) => g.select(".domain").remove())
+        .call((g) => g.selectAll(".tick line").clone()
+                    .attr("x2", width - lineMargin.left - 100)
+                    .attr("stroke-opacity", 0.1))
+        .call((g) => g.append("text")
+                      .attr("x", 5 - lineMargin.left)
+                      .attr("y", 15)
+                      .attr("fill", "currentColor")
+                      .attr("text-anchor", "start")
+                      .text("↑ Number of Reports"));
+
+    // create color scale
+    const color = {2020: '#1976d2', 2022: '#f57c00', 2024: '#d32f2f'};
+
+    // // draw the line
+    // const linePath = svg.append("path")
+    //                     .datum(filteredData)
+    //                     .attr("fill", "none")
+    //                     // .attr("stroke", color[year] || '#000000')
+    //                     .attr("stroke-width", 3)
+    //                     .attr("d", line);
+
+    // create legend
+    // const legend = svg.append("g")
+    //                   .attr("transform", `translate(${width - lineMargin.right + 20}, ${lineMargin.top})`)
+    //                   .style("font-size", "20px")
+    //                   .style("anchor-text", "right bottom");
+
+    // years.forEach((year, i) => {
+    //     const legendItem = legend.append("g")
+    //                              .attr("transform", `translate(0, ${i * 30})`);
+        
+    //     legendItem.append("rect")
+    //               .attr("x", 0)
+    //               .attr("width", 18)
+    //               .attr("height", 18)
+    //               .attr("fill", color[year] || '#000000')
+    //               .style("opacity", 0.8);
+
+    //     legendItem.append("text")
+    //               .attr("x", 25)
+    //               .attr("y", 9)
+    //               .attr("dy", ".35em")
+    //               .text(year);
+    // });
+
     
-
-    const gradient = defs.append('linearGradient')
-                         .attr('id', gradientId)
-                         .attr('x1', '0%')
-                         .attr('x2', '100%')
-                         .attr('y1', '50%')
-                         .attr('y2', '50%');
-
-    // gradient start
-    gradient.append('stop')
-            .attr('offset', '0%')
-            .attr('stop-color', '#f57c00');
-
-    // gradient end
-    gradient.append('stop')
-            .attr('offset', '100%')
-            .attr('stop-color', '#d32f2f');
-            
-    // draw the line
-    const linePath = mainSvg.append("path")
-                            .datum(sortData)
-                            .attr("fill", "none")
-                            .attr("stroke", `url(#${gradientId})`)
-                            .style("stroke-width", 5)
-                            .style("opacity", 0.4)
-                            .attr("d", line);
-
     // create area
     const area = d3.area()
-                   .x(d => x(d.date))
+                   .x((d) => x(d.month))
                    .y0(y(0))
-                   .y1(d => y(d.no_of_reports))
+                   .y1((d) => y(d.no_of_reports))
                    .curve(d3.curveCatmullRom.alpha(0.5));
 
-    const areaPath = mainSvg.append("path")
-                            .datum(sortData)
-                            .attr("fill", `url(#${gradientId})`)
-                            .attr("stroke", "none")
-                            .attr("d", area)
-                            .style("opacity", 0.2);
 
-    // create dots    
-    const dots = mainSvg.append("g")
-                        .selectAll("circle")
-                        .data(sortData)
-                        .enter()
-                        .append("circle")
-                        .attr("class", "line-chart-dot")
-                        .attr("r", 8)
-                        .attr("fill", '#d32f2f')
-                        .style("opacity", 0.8)
-                        .attr("cx", d => x(d.date))
-                        .attr("cy", d => y(d.no_of_reports));
 
-    // set mouse event handler
-    function handleMouseOver() {
-        linePath.style("opacity", 0.8);
-        // areaPath.style("opacity", 0.2);
-        dots.style("opacity", 0.5);
-    }
 
-    function handleMouseOut() {
-        linePath.style("opacity", 0.4);
-        // areaPath.style("opacity", 0.4);
-        dots.style("opacity", 0.8);
-    }
+    // define gradient
+    const defs = svg.append("defs");
+    years.forEach(year => {
+        const gradientId = `gradient-${year}`;
+    // const gradientId = 'gradient-area';
+        const gradient = defs.append('linearGradient')
+                            .attr('id', gradientId)
+                            .attr('x1', '0%')
+                            .attr('x2', '0%')
+                            .attr('y1', '0%')
+                            .attr('y2', '100%');
+    
+        // gradient start
+        gradient.append('stop')
+                .attr('offset', '0%')
+                .attr('stop-color',  d3.color(color[year]).brighter(0.3).toString())
+                .attr('stop-opacity', 0.4);
 
-    // update tooltip position
-    function updateTooltipPosition(event) {
-        tooltip.style("left", `${event.pageX + 5}px`)
-               .style("top", `${event.pageY - 28}px`);
-    }
+        // gradient ends
+        gradient.append('stop')
+                .attr('offset', '70%')
+                .attr('stop-color', color[year])
+                .attr('stop-opacity', 0.1);
+    });
 
-    // get the tooltip data for area (sum the report numbers)
-    function calculateTooltipData(data) {
-        const minDate = d3.min(data, d => d.date);
-        const maxDate = d3.max(data, d => d.date);
-        const totalReports = d3.sum(data, d => d.no_of_reports);
+    // create map for interaction between lines and areas
+    const lineMap = new Map();
+    const areaMap = new Map();
 
-        // const reportsByYear = d3.group(data, d => d.year);
-        // const yearReports = [2020, 2021, 2022, 2023].map(year => 
-        //     d3.sum((reportsByYear.get(year) || []), d => d.no_of_reports)
-        // );
+    // draw lines and areas
+    years.forEach(year => {
+        const dataForYear = filteredData.filter(d => d.year === year);
 
-        // const currentYearReports = d3.sum(
-        //     (reportsByYear.get(new Date().getFullYear()) || []),
-        //     d => d.no_of_reports
-        // );
+        // draw lines
+        const lines = svg.append("path")
+                            .datum(dataForYear)
+                            .attr("fill", "none")
+                            .attr("stroke", color[year] || '#000000')
+                            .attr("stroke-width", 4)
+                            .style("opacity", 0)
+                            .attr("d", line);
 
-        return {
-            duration: `Duration: ${d3.timeFormat("%Y/%m")(minDate)} - ${d3.timeFormat("%Y/%m")(maxDate)}`,
-            totalReports
-            // yearReports,
-            // currentYearReports
-        };
-    }
+                        // add highlight
+                        lines.on("mouseover", () => {
+                        svg.selectAll("path").style("opacity", 0.2);
+                        lines.style("opacity", 1);
+                        areaMap.get(year).style("opacity", 1);
+
+                        })
+                        .on("mouseout", () => {
+                        svg.selectAll("path").style("opacity", 1)
+                        lines.style("opacity", 0.8);
+                        areaMap.get(year).style("opacity", 0.8);
+                        });
+        lines.transition().duration(2000).style("opacity", 0.8)
+        lineMap.set(year, lines);
+
+        // draw areas
+        const areas = svg.append("path")
+                        .datum(dataForYear)
+                        .attr("fill", `url(#gradient-${year})`) // Use gradient fill
+                        .attr("stroke", "none") // No stroke for area
+                        .attr("d", area)
+                        .on("mouseover", () => {
+                            svg.selectAll("path").style("opacity", 0.2);
+                            areas.style("opacity", 1);
+                            lineMap.get(year).style("opacity", 1);
+                        })
+                        .on("mouseout", () => {
+                            svg.selectAll("path").style("opacity", 1);
+                            areas.style("opacity", 0.8);
+                            lineMap.get(year).style("opacity", 0.8);
+                        });
+        areaMap.set(year, areas);
+
+    });
 
     // get tooltip
     const tooltip = d3.select("body")
@@ -201,74 +231,52 @@ export function createLineChart(data, containerId) {
                       .attr("class", "tooltip")
                       .style("opacity", 0);
 
-    // tooltip functions
-    function showTooltip(event) {
-        const data = sortData;
-        const tooltipData = calculateTooltipData(data);
-
-        tooltip.style("opacity", 1)
-               .html(`
-                   ${tooltipData.duration}<br>
-                   Total reports: ${formatNumber.format(tooltipData.totalReports)}
-               `)
-               .style("left", `${event.pageX + 5}px`)
-               .style("top", `${event.pageY - 28}px`);
-    }
-
-    function hideTooltip() {
-        tooltip.style("opacity", 0);
-    }
-
-    // tooltip events
-    areaPath.on("mouseover", (event) => {
-        showTooltip(event);
-    })
-    .on("mousemove", (event) => {
-        updateTooltipPosition(event);
-    })
-    .on("mouseout", hideTooltip);
-
-    dots.on("mouseover", (event, d) => {
-        handleMouseOver();
-        d3.select(event.currentTarget).style("opacity", 1);
-        tooltip.style("opacity", 1)
-               .html(`Date: ${d3.timeFormat("%b %Y")(d.date)}<br>Number of Reports: ${formatNumber.format(d.no_of_reports)}`)
-               .style("left", `${event.pageX + 5}px`)
-               .style("top", `${event.pageY - 28}px`);
-    })
-    .on("mousemove", (event) => {
-        updateTooltipPosition(event);
-    })
-    .on("mouseout", () => {
-        handleMouseOut();
-        tooltip.style("opacity", 0);
-    });
-
     // update report number format
     const formatNumber = new Intl.NumberFormat();
 
+
+    // add dots with showing data details
+    const dots = svg.append("g")
+                    .selectAll("circle")
+                    .data(filteredData)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "line-chart-dot")
+                    .attr("r", 8)
+                    .attr("fill", d => color[d.year] || '#000000')
+                    .style("opacity", 0)
+                    .attr("cx", d => x(d.month))
+                    .attr("cy", d => y(d.no_of_reports))
+                    .on("mouseover", (event, d) => {
+                        // change opacity
+                        svg.selectAll("path")
+                           .style("opacity", 0.5);
+                        // areaPath.style("opacity", 0.5);
+                        dots.style("opacity", 0.5);
+
+                        // highlight the current dot
+                        d3.select(event.currentTarget).style("opacity", 1);
+
+                        // tooltip content
+                        tooltip.style("opacity", 1)
+                               .html(`Date: ${d.year}/${d.month}<br>Report Numbers: ${formatNumber.format(d.no_of_reports)}`)
+                               .style("left", `${event.pageX + 5}px`)
+                               .style("top", `${event.pageY - 28}px`);
+                    })
+                    .on("mousemove", (event) => {
+                        tooltip.style("left", `${event.pageX + 5}px`)
+                               .style("top", `${event.pageY - 28}px`);
+                    })
+                    .on("mouseout", () => {
+                        // reset opacity
+                        svg.selectAll().style("opacity", 1);
+                        dots.style("opacity", 1);
+
+                        tooltip.style("opacity", 0);
+                    });
+    dots.transition().duration(3000).style("opacity", 0.8);
+
     // append the svg to the container
-    container.appendChild(mainSvg.node());
-    container.appendChild(yAxisSvg.node());
-
-    // set scrolling
-    container.style.overflowX = 'auto';
-    container.style.overflowY = 'hidden';
-    container.style.whiteSpace = 'nowrap';
-
-    // set main svg width
-    mainSvg.style('width', `${totalWidth}px`);
-
-    // get right most data
-    const rightmostDate = d3.max(sortData, d => d.date);
-
-    // get pixel position
-    const scrollToDate = x(rightmostDate);
-
-    // get container central position
-    const containerCenter = width / 2;
-    container.scrollLeft = scrollToDate - containerCenter + lineMargin.left;
-
-    // ensure scrolling correctly after a slight delay
-    setTimeout(() => container.scrollLeft = scrollToDate - containerCenter + lineMargin.left, 100);
+    container.appendChild(svg.node());
+    
 }

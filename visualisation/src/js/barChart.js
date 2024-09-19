@@ -20,7 +20,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
     const container = document.getElementById(containerId);
     const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
 
-    const margin = { top: 30, right: 100, bottom: 30, left: 70 }
+    const margin = { top: 30, right: 30, bottom: 30, left: 60 }
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
@@ -130,7 +130,7 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
 
             // Show tooltip content
             tooltip.style("opacity", 1)
-                .html(`Scam Type: ${d.category_level2}<br>Total Lost Amount: $${formatNumber.format(d.totalAmount)}`)
+                .html(`Scam Type: ${d.category_level2}<br>Total Lost: $${formatNumber.format(d.totalAmount)}`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 50}px`);
         })

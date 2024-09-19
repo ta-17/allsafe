@@ -20,10 +20,10 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
         .style("position", "absolute")
         .style("visibility", "hidden") 
         .style("background-color", "white")
-        .style("border", "1px solid black")
-        .style("border-radius", "5px")
-        .style("padding", "10px")
-        .style("font-size", "12px")
+        .style("border", "1px solid #ddd")
+        .style("border-radius", "3px")
+        .style("padding", "12px")
+        .style("font-size", "16px")
         .style("color", "black");
 
     // Get the container where the chart will be rendered
@@ -131,7 +131,7 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
         const percentage = ((d.value / parentValue) * 100).toFixed(2);  // 2 decimal places
 
         tooltip.style("visibility", "visible")
-            .html(`Scam Type: ${d.data.name}<br>Number of Reports: ${d.value}<br>Percentage: ${percentage}%`)
+            .html(`Scam Type: ${d.data.name}<br>Report Number: ${d.value}<br>Percentage: ${percentage}%`)
             .style("left", (event.pageX + 15) + "px")
             .style("top", (event.pageY - 28) + "px");
     })
