@@ -33,7 +33,7 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 6;
+    const radius = Math.min(width, height) / 5;
 
     // Get the Data
     // Step 1: Group the data by category_level2 and sum up the values
@@ -106,8 +106,11 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
 
     // Create the SVG container.
     const svg = d3.select(`#${containerId}`).append("svg")
-        .attr("viewBox", [-width / 2, -height / 2, width, height])
-        .style("font", "10px sans-serif");
+    .attr("viewBox", [-width / 2, -height / 2, width * 1.5, height * 1.5])
+    .attr("width", "100%")  // Ensure SVG takes full width of the container
+    .attr("height", "120%") // Ensure SVG takes full height of the container
+    .style("font", "10px sans-serif");
+
 
     // Append the arcs.
     // Append the arcs and add the tooltip interaction
