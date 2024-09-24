@@ -1,4 +1,4 @@
-export function createBarChart(data, containerId, selectedLevel2Category) {
+export function createBarChart(data, containerId) {
     console.log("Filtered data passed to Bar Chart:", data);  // Log the filtered data
 
     // Check if data is empty after filtering
@@ -18,11 +18,17 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
     
     // set up dimensions and margins of the graph
     const container = document.getElementById(containerId);
-    const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
+    
+    function getDimensions() {
+        const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
+        return {
+            width: containerWidth,
+            height: containerHeight > 400 ? containerHeight : 400 // Minimum height
+        };
+    }
 
-    const margin = { top: 30, right: 30, bottom: 30, left: 60 }
-    const width = containerWidth - margin.left - margin.right;
-    const height = containerHeight - margin.top - margin.bottom;
+    let { width, height } = getDimensions();
+    const margin = { top: 30, right: 50, bottom: 150, left: 80 }
 
     // flatten data by year and category_level2
     function flattenData(data) {
@@ -62,63 +68,105 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
 
     const x = d3.scaleBand()
         .domain(allYearData.map(d => d.category_level2))
-        .range([0, width])
+        .range([margin.left, width - margin.right]) 
         .padding(0.2);
 
     const y = d3.scaleLinear()
-        .domain([0, d3.max(allYearData, d => d.totalAmount)])
-        .nice()
-        .range([height, 0]);
+                .domain([0, d3.max(allYearData, d => d.totalAmount)])
+                .nice()
+                .range([height - margin.bottom, margin.top]); 
 
     const scamTypes = Array.from(new Set(allYearData.map(d => d.category_level2)));
 
     // set color scale
     const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length));
 
-    const svg = d3.create("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
+    const svg = d3.select(`#${containerId}`).append("svg")
+                    .attr("width", "100%")
+                    .attr("height", "100%")
+                    .attr("viewBox", `0 0 ${width} ${height}`);
 
-    svg.append("g")
-        .attr("transform", `translate(${margin.left},${height + margin.top})`)
-        .call(d3.axisBottom(x).tickSizeOuter(0))
-        .append("text")
-        .attr("x", width + 30)
-        .attr("y", 16)
+
+    const xAxisGroup = svg.append("g")
+        .attr("transform", `translate(0, ${height - margin.bottom})`)
+        .call(d3.axisBottom(x).tickSizeOuter(0));
+
+    xAxisGroup.selectAll("text")
+        .style("font-size", "14px")
+        .attr("transform", "rotate(-18)")
+        .attr("text-anchor", "end") 
+        .attr("dx", "-0.5em") 
+        .attr("dy", "0.5em"); 
+
+    const xAxisLabel = xAxisGroup.append("text")
+        .attr("class", "axis-label")
+        .attr("x", width - margin.right)
+        .attr("y", 35) 
         .attr("fill", "currentColor")
-        .attr("text-anchor", "end")
-        .text("Scam Types");
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("font-weight", "bold")
+        .text("Scam Type");
 
-    svg.append("g")
-        .attr("transform", `translate(${margin.left}, ${margin.top})`)
-        .call(d3.axisLeft(y))
-        .append("text")
-        .attr("x", -margin.left + 5)
-        .attr("y", -20)
+
+    // function for update x-label
+    function updateXAxisLabel() {
+        xAxisLabel.attr("x", width - margin.right) 
+                .attr("y", 25);}
+
+    const yAxisGroup = svg.append("g")
+                            .attr("transform", `translate(${margin.left},0)`)
+                            .call(d3.axisLeft(y));
+
+    yAxisGroup.selectAll("text")
+                .style("font-size", "14px");
+
+    yAxisGroup.append("text")
+        .attr("x", -margin.left) 
+        .attr("y", 15) 
         .attr("fill", "currentColor")
         .attr("text-anchor", "start")
-        .text("↑ Amount (AUD)");
+        .style("font-size", "14px")
+        .style("font-weight", "bold")
+        .text("↑ Amount (AUD)"); 
 
-    const tooltip = d3.select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+    // svg.append("g")
+    //     .attr("transform", `translate(${margin.left}, ${margin.top})`)
+    //     .call(d3.axisLeft(y))
+    //     .append("text")
+    //     .attr("x", -margin.left + 5)
+    //     .attr("y", -20)
+    //     .attr("fill", "currentColor")
+    //     .attr("text-anchor", "start")
+    //     .text("↑ Amount (AUD)");
 
-    const formatNumber = new Intl.NumberFormat();
+    // Create a tooltip
+    const tooltip = d3.select("#tooltip-bar")
+                        .style("position", "absolute")
+                        .style("padding", "12px")
+                        .style("text-align", "center")
+                        .style("font-size", "16px")
+                        .style("border", "1px solid #ddd")
+                        .style("border-radius", "3px")
+                        .style("transform", "translateX(15px)")
+                        .style("box-shadow", "0 0 5px rgba(0,0,0,0.2)");
+    
+    // Convert to integer
+    const formatNumber = new Intl.NumberFormat('en-US', {maximumFractionDigits: 0});
 
     // Create a variable to store the currently selected bar
     let selectedBar = null;
 
     // Draw bars
     const bars = svg.append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`)
+        .attr("transform", `translate(0,0)`)
         .selectAll("rect")
         .data(allYearData)
         .join("rect")
         .attr("x", d => x(d.category_level2))
         .attr("y", d => y(d.totalAmount))
         .attr("width", x.bandwidth())
-        .attr("height", d => height - y(d.totalAmount))
+        .attr("height", d => height - margin.bottom - y(d.totalAmount))
         .attr("fill", d => color(d.category_level2))
         .style("opacity", 0.7)  // Set initial opacity for all bars
         // Set mouse events
@@ -129,12 +177,13 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
             }
 
             // Show tooltip content
-            tooltip.style("opacity", 1)
-                .html(`Scam Type: ${d.category_level2}<br>Total Lost: $${formatNumber.format(d.totalAmount)}`)
+            tooltip.classed("hidden", false)
+                .style("visibility", "visible")
                 .style("left", `${event.pageX + 5}px`)
-                .style("top", `${event.pageY - 50}px`);
+                .style("top", `${event.pageY - 50}px`)
+                .html(`Scam Type: ${d.category_level2}<br>Total Lost: $${formatNumber.format(d.totalAmount)}`);
         })
-        .on("mousemove", (event) => {
+        .on("mousemove", (event,) => {
             tooltip.style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 50}px`);
         })
@@ -148,7 +197,8 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
                 d3.select(selectedBar).style("opacity", 0.95);
             }
 
-            tooltip.style("opacity", 0);  // Hide tooltip
+            tooltip.classed("hidden", true)
+                    .style("visibility", "hidden");
         })
         .on("click", function(event, d) {
             console.log("Clicked bar")
@@ -232,5 +282,30 @@ export function createBarChart(data, containerId, selectedLevel2Category) {
         selectedBar = null;
     });
 
+    // Update chart on resize
+    window.addEventListener("resize", () => {
+        const newDimensions = getDimensions();
+        svg.attr("viewBox", `0 0 ${newDimensions.width} ${newDimensions.height}`);
+
+        width = newDimensions.width;
+        height = newDimensions.height;
+
+        // Update scales
+        x.range([margin.left, width - margin.right]).padding(0.2);
+        y.range([height - margin.bottom, margin.top]);
+
+        // Update axes
+        xAxisGroup.attr("transform", `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).tickSizeOuter(0));
+        yAxisGroup.attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
+
+        // Update bars
+        bars.attr("x", d => x(d.category_level2))
+            .attr("y", d => y(d.totalAmount))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - margin.bottom - y(d.totalAmount));
+            
+        updateXAxisLabel();
+    });
+    
     container.appendChild(svg.node());
 }

@@ -2,86 +2,145 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historical Scam Information</title>
-    <link href="./style.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scam Insight</title>
+    <link href="./output.css" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    <!-- US3.2 Historical Scam Trend -->
-    <section id="scam-trend-section">
-        <h1>Do you know how fast the scam growth in the past few years?</h1>
-        <div id="line-chart-container">
-            <div id="scam-line-chart" class = "chart"  style="width: 100%"></div>
-          </div>
-        <p> From January 2020 to July 2024, there have been 18,714 reported social media scams affecting young adults in Australia. 
-            Comparing the whole year of 2023 and 2022, reported scams increased about 21%. The scam reported peak is in January 2023, with 621 scams reported in just a month.<br> 
-            Although the number of scam reports gradually decreased from then, the monthly reported scams in 2024 are still around 300.<br><br> 
-            If the scam is an unexploded boom without a trend for us to prevent, how will scams influence the digital era if we don't have related knowledge to take proper action<br><br>
-            [optional text: depends on if we need the user guide] 
-            User Guide: Scroll to the left to discover the trend of social media scams that have occurred with young adults since 2020; hover over the graph to find the number of scams in each month and throughout the whole period.
-        </p> 
-    </section>
+    <!-- Introduction Section -->
+    <header class="text-center py-16 relative bg-gray">
+        <h1 class="text-5xl md:text-8xl font-bold text-black p-4 md:p-20 pb-0 leading-tight">
+            Social media scams among young adults are not fake issues. It’s truly happening…
+        </h1>
 
-    <!-- US3.1 Word Cloud -->
-    <section id="word-cloud-section">
-        <h1>Have you ever received this kind of message?</h1>
-        <div id="word-cloud">
-            <img src="wordcloud.png" alt="Word Cloud Image"  style="width: 100%">
+        <!-- Set up pillars to link with graphs -->
+         <!-- Link to Section Trend - Line chart -->
+        <div class="pillars flex flex-col md:flex-row justify-around items-center flex-wrap mt-12 mx-4 md:mx-40 space-y-4 md:space-y-0">
+            <a href="#section-trend" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">26%</h2>
+                <h3 class="text-xl md:text-2xl text-gray-600 mt-2">reported scams in various age groups increased between 2023 and 2022</h3>
+                <div class="flex flex-col items-center mt-4">
+                    <span class="text-lg md:text-xl text-gray-500">Click to explore</span>
+                </div>
+            </a>
+
+            <!-- Link to Section Sunburst - Sunburst chart -->
+            <a href="#section-sunburst" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">18%</h2>
+                <h3 class="text-xl md:text-2xl text-gray-600 mt-2">scams among young adults are contacted via social media</h3>
+                <div class="flex flex-col items-center mt-4">
+                    <span class="text-lg md:text-xl text-gray-500">Click to explore</span>
+                </div>
+            </a>
+
+            <!-- Link to Section Bar - Bar chart-->
+            <a href="#section-bar" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">$3.17M</h2>
+                <h3 class="text-xl md:text-2xl text-gray-600 mt-2">scammed money lost among young adults on social media in 2024</h3>
+                <div class="flex flex-col items-center mt-4">
+                    <span class="text-lg md:text-xl text-gray-500">Click to explore</span>
+                </div>
+            </a>
         </div>
-        <p>
-            Have you ever received a message that seemed too good to be true? Did it make you pause and wonder if you might get easy money, or did it leave you feeling unsure? Scammers use these tricks to either get you to pay for something or steal your personal information.<br><br> 
-            These word highlights the most common words scammers use to make their messages sound personal, urgent, or convincing. They are designed to trick you into responding or taking action based on false promises.<br><br> 
-            Take a look at the words. Can you spot the types of scams that appear most often?<br><br> 
+    </header>
+
+    <!-- Line Chart -->
+    <section id="section-trend" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+            Do you know how fast the scam growth in the past few years?
+        </h2>
+        <p class="px-4 md:px-0">
+            From January 2020 to July 2024, there have been 18,714 reported social media scams affecting young adults in Australia. Comparing the whole year of 2023 and 2022, reported scams increased about 21%. The scam reported peak is in January 2023, with 621 scams reported in just a month.<br>
+            Although the number of scam reports gradually decreased from then, the monthly reported scams in 2024 are still around 300.<br><br>
         </p>
+        <!-- Get the chart -->
+        <div id="line-chart" class="chart h-[400px] md:h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
+
     </section>
 
-    <!-- Slogan -->
-    <section id="slogan-section" class="slogan">
-        <h2>Click Inside Each Section To Discover More!!!</h2>
+    <!-- Word Cloud -->
+    <section id="section-word-cloud" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+            Have you ever received messages with these words?
+        </h2>
+        <div class="flex flex-col md:flex-row items-center">
+            <!-- Get the image -->
+            <img src="wordcloud.png" alt="Word Cloud" class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
+            <div class="w-full md:w-1/2">
+                <p class="px-4 md:px-0">
+                    Have you ever received a message that seemed too good to be true? Did it make you pause and wonder if you might get easy money, or did it leave you feeling unsure? Scammers use these tricks to either get you to pay for something or steal your personal information.<br><br>
+                    These words highlight the most common words scammers use to make their messages sound personal, urgent, or convincing. They are designed to trick you into responding or taking action based on false promises.<br><br>
+                    Take a look at the words. Can you spot the types of scams that appear most often?<br><br>
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Slogan Section -->
+    <section class="slogan my-5 text-center">
+        <h2 class="text-orange-500 text-4xl font-bold">Click Inside Each Section To Discover More!!!</h2>
     </section>
 
-     <!-- Drop-down Menu for Year Filter -->
-     <section id="year-filter-section">
-        <select id="year-dropdown" class="dropdown">
+    <!-- Drop-down Menu for Year Filter -->
+    <section id="year-filter-section" class="my-5 text-center">
+        <select id="year-dropdown" class="p-2 text-lg rounded border border-gray-300 bg-gray-100 cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-500 focus:outline-none focus:bg-gray-300 focus:border-gray-800">
             <option value="2024">2024</option>
             <option value="all">All Years</option>
         </select>
     </section>
 
-    <!-- US3.3 Other Insights -->
-    <h1>Which one is more crucial: Higher number of reports or higher money lost?</h1>
-    <h1>The answer is BOTH!</h1>
-    <section id="scam-category-section">
-        <h2><br>Do you know what are the top 5 scams in number of reports?</h2>
-        <div id="scam-sunbrust-chart" class = "chart" style="width: 100%"></div>
-        <p> The sunburst chart shows the top 5 scams by the number of reports, with each section showing their percentage and sub-types. <br><br>
-            "Buying or Selling" scams are the most common, making up over 44% of the total and over 427 reports within 2024. "Online Shopping Scams" being the largest sub-type at around 41% and having 1369 reports over the years. <br><br>
-            Meanwhile, The smallest section, "Mobile Premium Service Scams," only contributes about 1% which also among the "Buying or Selling". "Personal Information" scams are the second-largest, with 1643 reports all over the year. "Investment Scams" in the same time treated as the main sub-type. <br><br>
-            This highlights how common online shopping scams and personal data fraud are becoming.<br><br>
-        </p>
+    <!-- Sunburst Chart -->
+    <section id="section-sunburst" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+            Do you know what are the top 5 scams in number of reports?
+        </h2>
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
+                <!-- Get the chart -->
+                <div id="sunburst-chart" class="chart w-full h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <p class="px-4 md:px-0">
+                    The sunburst chart shows the top 5 scams by the number of reports, with each section showing their percentage and sub-types.<br><br>
+                    Buying or Selling scams are the most common, making up over 44% of the total and over 427 reports within 2024. Online Shopping Scams being the largest sub-type at around 41% and having 1369 reports over the years.<br><br>
+                    Meanwhile, the smallest section, Mobile Premium Service Scams, only contributes about 1%, which also among the Buying or Selling. Personal Information scams are the second-largest, with 1643 reports all over the year. Investment Scams in the same time treated as the main sub-type.<br><br>
+                    This highlights how common online shopping scams and personal data fraud are becoming.
+                </p>
+            </div>
+        </div>
     </section>
 
-    <section id="scam-reports-money-section">
-        <h2>Does the money lost follow a similar pattern as the number of reports?</h2>
-
-        <div id="money-bar-chart" class = "chart" style="width: 100%"></div>
-        <p>While the top 5 most frequent scams align with the top 5 scams causing the most financial loss, their patterns have some differences.<br><br>
-            In 2024, the top 5 scams alone accounted for approximately AUD 3,003,916 in losses, representing about 94.74% of the total amount lost on social media scams with young adults. 
-            Among these years, investment scams have the highest financial impact, making up 50.4% of the total losses, followed by dating and romance scams, which account for around 17.4%.<br><br>
-            The different patterns from the number of reports and money loss indicate that no matter which type of scam you are facing, the potential loss can accumulate into a vast amount and continuously influence our daily lives.<br><br>
-            [optional text: depends on if we need the user guide] User Guide: Click on the bars to explore more detailed information about money lost among the 5 scam types.
-                   </p>
-        <h1> So what's next? </h1>
-        <p>
-            
-        </p>
+    <!-- Bar Chart -->
+    <section id="section-bar" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+            Does the money lost follow a similar pattern as the number of reports?
+        </h2>
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
+                <!-- Get the chart -->
+                <div id="bar-chart" class="chart w-full h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <p class="px-4 md:px-0">
+                    While the top 5 most frequent scams align with the top 5 scams causing the most financial loss, their patterns have some differences.<br><br>
+                    In 2024, the top 5 scams alone accounted for approximately AUD 3,003,916 in losses, representing about 94.74% of the total amount lost on social media scams with young adults. Among these years, investment scams have the highest financial impact, making up 50.4% of the total losses, followed by dating and romance scams, which account for around 17.4%.<br><br>
+                    The different patterns from the number of reports and money loss indicate that no matter which type of scam you are facing, the potential loss can accumulate into a vast amount and continuously influence our daily lives.<br><br>
+                </p>
+            </div>
+        </div>
     </section>
 
-    <div id="tooltip"></div>
+    <!-- Add tooltips for three graphs -->
+    <div id="tooltip-line" class="tooltip absolute hidden bg-white"></div>
+    <div id="tooltip-sunburst" class="tooltip absolute hidden bg-white"></div>
+    <div id="tooltip-bar" class="tooltip absolute hidden bg-white"></div>
+    
+    
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="script.js" type="module"></script>
 </body>
+
 </html>
