@@ -1,5 +1,5 @@
-// create sunburst chart
-export function createSunbrustChart(data, containerId, selectedLevel2Category) {
+// Create sunburst chart
+export function createSunburstChart(data, containerId, selectedLevel2Category) {
     console.log("Filtered data passed to Sunburst Chart:", data);  // Log the filtered data
 
     // Check if data is empty after filtering
@@ -13,27 +13,32 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
             .style("color", "red");
         return;
     }
-
-    // Create a tooltip div that is initially hidden
-    const tooltip = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("position", "absolute")
-        .style("visibility", "hidden") 
-        .style("background-color", "white")
-        .style("border", "1px solid #ddd")
-        .style("border-radius", "3px")
-        .style("padding", "12px")
-        .style("font-size", "16px")
-        .style("color", "black");
+    // Create a tooltip
+    const tooltip = d3.select("#tooltip-sunburst")
+                        .style("position", "absolute")
+                        .style("padding", "12px")
+                        .style("text-align", "center")
+                        .style("font-size", "16px")
+                        .style("border", "1px solid #ddd")
+                        .style("border-radius", "3px")
+                        .style("transform", "translateX(15px)")
+                        .style("box-shadow", "0 0 5px rgba(0,0,0,0.2)");
+    
 
     // Get the container where the chart will be rendered
     const container = document.getElementById(containerId);
-    const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
+    
+    function getDimensions() {
+        const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
+        return {
+            width: containerWidth,
+            height: containerHeight > 400 ? containerHeight : 400 // Minimum height
+        };
+    }
 
-    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-    const width = containerWidth - margin.left - margin.right;
-    const height = containerHeight - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 5;
+    let { width, height } = getDimensions();
+
+    const radius = Math.min(width, height) / 6;
 
     // Get the Data
     // Step 1: Group the data by category_level2 and sum up the values
@@ -106,11 +111,14 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
 
     // Create the SVG container.
     const svg = d3.select(`#${containerId}`).append("svg")
-    .attr("viewBox", [-width / 2, -height / 2, width * 1.5, height * 1.5])
+    .attr("viewBox", `-${width / 2} -${height / 3} ${width} ${height / 1.5}`)
     .attr("width", "100%")  // Ensure SVG takes full width of the container
-    .attr("height", "120%") // Ensure SVG takes full height of the container
+    .attr("height", "100%") // Ensure SVG takes full height of the container
     .style("font", "10px sans-serif");
 
+
+    // Update report number format
+    const formatNumber = new Intl.NumberFormat();
 
     // Append the arcs.
     // Append the arcs and add the tooltip interaction
@@ -133,8 +141,9 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
         const parentValue = d.parent ? d.parent.value : root.value;  // If there's a parent, use its value, else use root
         const percentage = ((d.value / parentValue) * 100).toFixed(2);  // 2 decimal places
 
-        tooltip.style("visibility", "visible")
-            .html(`Scam Type: ${d.data.name}<br>Report Number: ${d.value}<br>Percentage: ${percentage}%`)
+        tooltip.classed("hidden", false)
+            .style("visibility", "visible")
+            .html(`Scam Type: ${d.data.name}<br>Report Number: ${formatNumber.format(d.value)}<br>Percentage: ${percentage}%`)
             .style("left", (event.pageX + 15) + "px")
             .style("top", (event.pageY - 28) + "px");
     })
@@ -142,7 +151,10 @@ export function createSunbrustChart(data, containerId, selectedLevel2Category) {
         tooltip.style("left", (event.pageX + 15) + "px")
             .style("top", (event.pageY - 28) + "px");
     })
-    .on("mouseout", () => tooltip.style("visibility", "hidden"))
+    .on("mouseout", () => 
+        tooltip.classed("hidden", true)
+            .style("visibility", "hidden"))
+            
     // Add the click event handler
     .on("click", clicked);  // Attach the click event
 

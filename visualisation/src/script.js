@@ -1,10 +1,9 @@
 import { parseData } from "./data.js";
 import { createLineChart } from "./js/lineChart.js";
-import { createSunbrustChart } from "./js/sunbrustChart.js";
-// import { createPieChart } from "./js/pieChart.js";
+import { createSunburstChart } from "./js/sunburstChart.js";
 import { createBarChart } from "./js/barChart.js";
 
-let selectedLevel2Category = null;
+// let selectedLevel2Category = null;
 
 let originalData; // Store the original dataset globally for filtering
 
@@ -12,21 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Historical Scam Information Page Loaded");
 
     // Load the dataset
-    d3.csv("historical_scam.csv").then(function (data) {
-        originalData = data;  // Store the original dataset
+    d3.csv("historical_scam.csv").then(data => {
+        originalData = data;// Store the original dataset
 
         parseData(data);
-
-        // Initially display all data (on page load)
-        createLineChart(data, "scam-line-chart");
-        createSunbrustChart(data, "scam-sunbrust-chart");
-        // createPieChart(data, "report-pie-chart");
-        createBarChart(data, "money-bar-chart");
+        renderCharts(data);
 
         // Add drop-down event listener for year selection (affect only Sunburst and Bar chart)
         document.getElementById("year-dropdown").addEventListener("change", function() {
             const selectedYear = this.value;
-            
             let filteredData;
             if (selectedYear === "2024") {
                 // Filter data for the year 2024
@@ -39,24 +32,38 @@ document.addEventListener("DOMContentLoaded", () => {
             // Log filtered data to verify it's correct
             console.log(`Filtered Data for ${selectedYear}:`, filteredData);
 
-            // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data
+            // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data            
             updateSunburstAndBarCharts(filteredData);
         });
-    }).catch((error) => {
+
+        // Regenerate the graphs when resizing the window        
+        window.addEventListener("resize", () => renderCharts(originalData));
+    }).catch(error => {
         console.error('Error loading or parsing data:', error);
     });
 });
 
 // Function to update only Sunburst and Bar Charts with filtered data
 function updateSunburstAndBarCharts(filteredData) {
-
     console.log("Filtered Data for 2024:", filteredData);  // Log the filtered data
 
-    // Clear the Sunburst and Bar Charts
-    d3.select("#scam-sunbrust-chart").selectAll("*").remove();
-    d3.select("#money-bar-chart").selectAll("*").remove();
+    // Clear existing charts for Sunburst and Bar charts
+    d3.select("#sunburst-chart").selectAll("*").remove();
+    d3.select("#bar-chart").selectAll("*").remove();
+    
+    // Re-create the Sunburst and Bar charts with the filtered data    
+    createSunburstChart(filteredData, "sunburst-chart");
+    createBarChart(filteredData, "bar-chart");
+}
 
-    // Re-create the Sunburst and Bar charts with the filtered data
-    createSunbrustChart(filteredData, "scam-sunbrust-chart", selectedLevel2Category);
-    createBarChart(filteredData, "money-bar-chart", selectedLevel2Category);
+// Funtion to create new charts for initalise charts usage
+function renderCharts(data) {
+    // Clear existing charts before rendering
+    d3.select("#line-chart").selectAll("*").remove();
+    d3.select("#sunburst-chart").selectAll("*").remove();
+    d3.select("#bar-chart").selectAll("*").remove();
+
+    createLineChart(data, "line-chart");
+    createSunburstChart(data, "sunburst-chart");
+    createBarChart(data, "bar-chart");
 }

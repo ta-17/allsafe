@@ -4,12 +4,17 @@ export function createLineChart(data, containerId) {
     
     // set up dimensions and margins of the graph
     const container = document.getElementById(containerId);
-    const { width: containerWidth, height: containerHeight } = 
-        container.getBoundingClientRect();
     
-    const lineMargin = { top: 40, right: 30, bottom: 30, left: 70 }
-    const width = containerWidth;
-    const height = containerHeight;
+    function getDimensions() {
+        const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
+        return {
+            width: containerWidth,
+            height: containerHeight > 400 ? containerHeight : 400 // Minimum height
+        };
+    }
+
+    let { width, height } = getDimensions();
+    const lineMargin = { top: 40, right: 30, bottom: 50, left: 70 }; // Increased bottom margin for x-axis label
 
     // console.log(width, height);
 
@@ -51,10 +56,11 @@ export function createLineChart(data, containerId) {
                 .range([lineMargin.left, width - lineMargin.right]);
     
     // set y scale
+    const yMax = d3.max(monthData, d => d.no_of_reports) || 0;
     const y = d3.scaleLinear()
-                .domain([0, d3.max(filteredData, d => d.no_of_reports)])
-                .nice()
-                .range([height - lineMargin.bottom, lineMargin.top]);
+                .domain([0, Math.ceil(yMax / 100) * 100]) // Round up to the nearest hundred
+                .nice() // Optional: for nicer tick intervals
+                .range([height - lineMargin.bottom - 40, lineMargin.top]);
 
     // create line
     const line = d3.line()
@@ -63,43 +69,51 @@ export function createLineChart(data, containerId) {
                    .curve(d3.curveCatmullRom.alpha(0.5));
 
     // create svg
-    // const svg = d3.select(`#${containerId}`).append("svg")
-    //     .attr("viewBox", [0, 0, width, height])
-    //     .style("font", "10px sans-serif");
+    const svg = d3.select(`#${containerId}`).append("svg")
+                    .attr("width", "100%")
+                    .attr("height", "100%")
+                    .attr("viewBox", `0 0 ${width} ${height}`);
 
-    const svg = d3.create("svg")
-        .attr("width", width + lineMargin.left + lineMargin.right)
-        .attr("height", height + lineMargin.top + lineMargin.bottom);    
+    // const svg = d3.create("svg")
+    //     .attr("width", width + lineMargin.left + lineMargin.right)
+    //     .attr("height", height + lineMargin.top + lineMargin.bottom);    
 
     // add x-axis
-    svg.append("g")
-        .attr("transform", `translate(0,${height - lineMargin.bottom})`)
-        .call(d3.axisBottom(x).ticks(12).tickFormat(d => d3.timeFormat("%b")(new Date(2000, d - 1, 1))))
-        .style("font-size", "20px")
-        // .call((g) =>
-        //     g
-        //       .append("text")
-        //       .attr("x", width -lineMargin.right + 15)
-        //       .attr("y", 10)
-        //       .attr("fill", "currentColor")
-        //       .attr("text-anchor", "start")
-        //       .text("Month")
-        //   );
+    const xAxisGroup = svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0,${height - lineMargin.bottom - 40})`)
+        .call(d3.axisBottom(x).ticks(12)) // Show numbers from 1 to 12
+        .style("font-size", "14px");
+
+    // add x-axis label
+    svg.append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", width / 2)
+        .attr("y", height - lineMargin.bottom + 30) // Adjust this value for better positioning
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("font-weight", "bold")
+        .text("Month");
 
     // add y-axis
-    svg.append("g")
+    const yAxisGroup = svg.append("g")
+        .attr("class", "y-axis")
         .attr("transform", `translate(${lineMargin.left}, 0)`)
-        .call(d3.axisLeft(y))
-        .style("font-size", "20px")
-        .call((g) => g.select(".domain").remove())
-        .call((g) => g.selectAll(".tick line").clone()
-                    .attr("x2", width - lineMargin.left - 100)
+        .call(d3.axisLeft(y)
+            .ticks(Math.ceil(yMax / 100)) // Ensure proper tick count
+            .tickValues(d3.range(0, Math.ceil(yMax / 100) * 100 + 1, 100)) // Set ticks at intervals of 100
+    )
+        .style("font-size", "14px")
+        .call(g => g.select(".domain").remove())
+        .call(g => g.selectAll(".tick line").clone()
+                    .attr("x2", width - lineMargin.left - 40)
                     .attr("stroke-opacity", 0.1))
-        .call((g) => g.append("text")
+        .call(g => g.append("text")
                       .attr("x", 5 - lineMargin.left)
                       .attr("y", 15)
                       .attr("fill", "currentColor")
                       .attr("text-anchor", "start")
+                      .style("font-weight", "bold")
                       .text("↑ Number of Reports"));
 
     // create color scale
@@ -275,6 +289,27 @@ export function createLineChart(data, containerId) {
                         tooltip.style("opacity", 0);
                     });
     dots.transition().duration(3000).style("opacity", 0.8);
+
+    window.addEventListener("resize", () => {
+        const newDimensions = getDimensions();
+        svg.attr("viewBox", `0 0 ${newDimensions.width} ${newDimensions.height}`);
+        width = newDimensions.width;
+        height = newDimensions.height;
+
+        x.range([lineMargin.left, width - lineMargin.right]);
+        y.range([height - lineMargin.bottom, lineMargin.top]);
+
+        // Update axes
+        xAxisGroup.attr("transform", `translate(0,${height - lineMargin.bottom})`).call(d3.axisBottom(x).ticks(12));
+        yAxisGroup.call(d3.axisLeft(y));
+
+        // Update x-axis label
+        svg.select(".x-axis-label")
+            .attr("x", width / 2)
+            .attr("y", height - lineMargin.bottom + 50);
+
+        updateChart();
+    });
 
     // append the svg to the container
     container.appendChild(svg.node());
