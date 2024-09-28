@@ -68,7 +68,6 @@ const NavbarLinks = ({
                     </AccordionItem>
                 </Accordion>
             </div>
-            {/* <PopoverInteractive className="hidden sm:block" /> */}
             <div className="w-full px-6">
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1" className="w-full">
