@@ -18,6 +18,10 @@ import { usePathname } from 'next/navigation'
 import NavbarLinks from './link-components'
 import { Menu, X } from 'lucide-react'
 import { Button } from '../ui/button'
+import { motion, useCycle } from 'framer-motion'
+import { MenuToggle } from './MenuToggle'
+import { useRef } from 'react'
+import { useDimensions } from '@/lib/use-dimensions'
 
 // const components: { title: string; href: string; description: string }[] = [
 //     {
@@ -90,16 +94,44 @@ const resources: { title: string; href: string; description: string }[] = [
     // },
 ]
 
+const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: '-100%' },
+}
+
+const sidebar = {
+    open: (height = 1000) => ({
+        // clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+        transition: {
+            type: 'spring',
+            stiffness: 20,
+            restDelta: 2,
+        },
+    }),
+    closed: {
+        // clipPath: 'circle(30px at 40px 40px)',
+        transition: {
+            delay: 0.5,
+            type: 'spring',
+            stiffness: 400,
+            damping: 40,
+        },
+    },
+}
+
 const NavBar: React.FC = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
+    // const [isOpen, setIsOpen] = React.useState(false)
+    const [isOpen, toggleOpen] = useCycle(false, true)
+    const containerRef = useRef(null)
+    const { height } = useDimensions(containerRef)
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen)
-    }
+    // const toggleMenu = () => {
+    //     setIsOpen(!isOpen)
+    // }
 
-    const funOpen = (open: boolean) => {
-        setIsOpen(open)
-    }
+    // const funOpen = (open: boolean) => {
+    //     setIsOpen(open)
+    // }
 
     const pathname = usePathname()
     const isGamePage = pathname === '/game'
@@ -137,10 +169,10 @@ const NavBar: React.FC = () => {
                                             </ListItem>
                                             <ListItem
                                                 href="/insights"
-                                                title="Historical Insights"
+                                                title="Data Insights"
                                             >
                                                 Historical insights on the scams
-                                                of the past 2 years.
+                                                of the past few years.
                                             </ListItem>
                                         </ul>
                                     </NavigationMenuContent>
@@ -214,31 +246,29 @@ const NavBar: React.FC = () => {
                             </NavigationMenuList>
                         </NavigationMenu>
                     </div>
-                    <div className="-mr-2 flex items-center sm:hidden">
-                        <Button variant="ghost" onClick={toggleMenu}>
-                            <span className="sr-only">Open main menu</span>
-                            {isOpen ? (
-                                <X
-                                    className="block h-6 w-6"
-                                    aria-hidden="true"
-                                />
-                            ) : (
-                                <Menu
-                                    className="block h-6 w-6"
-                                    aria-hidden="true"
-                                />
-                            )}
-                        </Button>
+                    <div className="sm:hidden">
+                        <MenuToggle toggle={() => toggleOpen()} />
                     </div>
                 </div>
             </div>
             {/* Mobile menu */}
+            <div className="sm:hidden">
+                <MenuToggle isOpen={isOpen} toggle={() => toggleOpen()} />
+            </div>
+
             <div
                 className={`bg-white w-full sm:hidden ${isOpen ? 'absolute' : 'hidden'}`}
             >
-                <div className="pt-2 pb-3 space-y-1">
-                    <NavbarLinks setIsOpen={funOpen} />
-                </div>
+                <motion.nav
+                    initial={false}
+                    animate={isOpen ? 'open' : 'closed'}
+                    custom={height}
+                    ref={containerRef}
+                    className="bg-slate-300"
+                >
+                    <motion.div className="background" variants={sidebar} />
+                    <NavbarLinks />
+                </motion.nav>
             </div>
         </div>
     )
