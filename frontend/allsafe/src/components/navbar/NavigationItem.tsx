@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { motion } from 'framer-motion'
 import { MenuItem } from './MenuItem'
-import Link from 'next/link'
 
 const variants = {
     open: {
@@ -12,24 +11,31 @@ const variants = {
     },
 }
 
-export const Navigation = ({ toggle }: { toggle: any }) => {
+export const Navigation = ({
+    isOpen,
+    toggle,
+}: {
+    isOpen: boolean
+    toggle: any
+}) => {
     return (
-        <div>
-            <motion.ul variants={variants} className="p-6 top-24">
-                {navItems.map((item, index) => (
-                    <MenuItem
-                        item={item}
-                        key={index}
-                        index={index}
-                        toggle={toggle}
-                    />
-                ))}
-            </motion.ul>
-        </div>
+        <motion.ul
+            variants={variants}
+            className="p-6 top-24"
+            initial="closed"
+            animate={isOpen ? 'open' : 'closed'}
+        >
+            {navItems.map((item, index) => (
+                <MenuItem
+                    item={item}
+                    key={index}
+                    index={index}
+                    toggle={toggle}
+                />
+            ))}
+        </motion.ul>
     )
 }
-
-const itemIds = [0, 1, 2, 3, 4, 5]
 
 const navItems = [
     {

@@ -286,7 +286,12 @@ const NavBar: React.FC = () => {
                             toggle={() => toggleOpen()}
                         />
                     </div>
-                    {isOpen && <Navigation toggle={() => toggleOpen()} />}
+                    {isOpen && (
+                        <Navigation
+                            isOpen={isOpen}
+                            toggle={() => toggleOpen()}
+                        />
+                    )}
                 </div>
             </motion.nav>
         </div>
