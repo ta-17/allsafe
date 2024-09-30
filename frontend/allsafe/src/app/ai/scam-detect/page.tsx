@@ -185,12 +185,13 @@ export default function ScamDetect() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                        {/* <Button
+                        <Button
                             variant="outline"
                             onClick={() => setSubmit(false)}
                         >
                             Check another message
                         </Button>
+                        {/*
                         <div>
                             <TypographyH3 className="text-center">
                                 Is it as scam?
