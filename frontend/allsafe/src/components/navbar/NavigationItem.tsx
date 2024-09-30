@@ -12,7 +12,7 @@ const variants = {
     },
 }
 
-export const Navigation = ({ toggle }) => {
+export const Navigation = ({ toggle }: { toggle: any }) => {
     return (
         <div>
             <motion.ul variants={variants} className="p-6 top-24">
