@@ -2,6 +2,7 @@ import { parseData } from "./data.js";
 import { createLineChart } from "./js/lineChart.js";
 import { createSunburstChart } from "./js/sunburstChart.js";
 import { createBarChart } from "./js/barChart.js";
+import { createModelBarChart } from "./js/ModelbarChart.js";
 
 // let selectedLevel2Category = null;
 
@@ -41,6 +42,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }).catch(error => {
         console.error('Error loading or parsing data:', error);
     });
+
+    // Add event listener for user input (assumes an input form with id 'scam-input-form')
+    document.getElementById("scam-input-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get the input value
+        const scamExperience = document.getElementById('scam-experience').value;
+
+        // Process the input (this function would split and count word frequency)
+        const wordFrequency = calculateWordFrequency(scamExperience);
+
+        // Clear the existing model bar chart if necessary
+        d3.select("#model-bar-chart").selectAll("*").remove();
+
+        // Render the new bar chart based on the input
+        createModelBarChart(wordFrequency, 'model-bar-chart');
+    });
 });
 
 // Function to update only Sunburst and Bar Charts with filtered data
@@ -67,3 +85,22 @@ function renderCharts(data) {
     createSunburstChart(data, "sunburst-chart");
     createBarChart(data, "bar-chart");
 }
+
+// Function to calculate word frenquency
+function calculateWordFrequency(input) {
+    const words = input.split(/\s+/); // Split input into words
+    const frequency = {};
+
+    words.forEach(word => {
+        const sanitizedWord = word.toLowerCase(); // Convert to lowercase for consistency
+        if (sanitizedWord) {
+            frequency[sanitizedWord] = (frequency[sanitizedWord] || 0) + 1;
+        }
+    });
+
+    return Object.keys(frequency).map(word => ({
+        word: word,
+        count: frequency[word]
+    }));
+}
+
