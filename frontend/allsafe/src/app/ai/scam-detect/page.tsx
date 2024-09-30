@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TypographyH1 } from '@/typography/h1'
@@ -16,6 +17,10 @@ import {
     TableRow,
 } from '@/components/ui/table'
 import { TypographyH3 } from '@/typography/h3'
+import { detectScam } from '@/actions/detect-scam'
+import { AlertCircle, ChevronDown, ChevronUp } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const Breakdown = [
     { factor: 'Suspicious links', present: true },
@@ -25,24 +30,47 @@ const Breakdown = [
 ]
 
 export default function ScamDetect() {
-    const [msg, setMsg] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [showMore, setShowMore] = useState(false)
-    const [submit, setSubmit] = useState(false)
-    const [result, setResult] = useState(0)
+    const [msg, setMsg] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
+    const [showMore, setShowMore] = useState<boolean>(false)
+    const [submit, setSubmit] = useState<boolean>(false)
+    const [result, setResult] = useState<any | null>(null)
+    const [error, setError] = useState<string | null>(null)
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setLoading(true)
-        // Simulate API call
-        setTimeout(() => {
-            setLoading(false)
+        setError(null)
+
+        try {
+            const data = await detectScam(msg) // API call
+            setResult(data)
             setSubmit(true)
-            setResult(Math.floor(Math.random() * 100))
-        }, 1500)
+            console.log('Result: ', data)
+        } catch (error) {
+            setError(
+                'An error occurred while processing your request. Please try again.'
+            )
+            setSubmit(false)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
+        <div
+            className={cn(
+                'grid min-h-screen p-6 w-full',
+                error && 'grid-rows-[max-content_1fr]'
+            )}
+            onClick={() => setError(null)}
+        >
+            {error !== null && (
+                <Alert variant="destructive" className="self-start">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                </Alert>
+            )}
             <AnimatePresence mode="wait">
                 {!submit ? (
                     <motion.div
@@ -50,13 +78,16 @@ export default function ScamDetect() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center gap-6 w-full max-w-2xl"
+                        className="flex flex-col self-center justify-self-center gap-12 w-full max-w-4xl"
                     >
-                        <TypographyH1>Is it a scam?</TypographyH1>
-                        <span className="text-center">
-                            Our in-house AI model is trained to detect online
-                            scams. Just enter the text and hit submit.
-                        </span>
+                        <div className="flex flex-col items-center gap-6 w-full">
+                            <TypographyH1>Is it a scam?</TypographyH1>
+                            <span className="text-center">
+                                Our in-house AI model is trained to detect
+                                online scams. Just enter the text and hit
+                                submit.
+                            </span>
+                        </div>
                         <Textarea
                             value={msg}
                             placeholder="Enter message here"
@@ -66,9 +97,7 @@ export default function ScamDetect() {
                         {loading ? (
                             <ButtonLoading />
                         ) : (
-                            <Button type="submit" onClick={handleSubmit}>
-                                Submit
-                            </Button>
+                            <Button onClick={handleSubmit}>Submit</Button>
                         )}
                     </motion.div>
                 ) : (
@@ -77,14 +106,35 @@ export default function ScamDetect() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center gap-6 w-full max-w-2xl"
+                        className="flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl"
                     >
+                        <TypographyH3 className="">Result</TypographyH3>
+                        <TypographyH1
+                            className={cn(
+                                'text-muted-foreground',
+                                result.label === 'spam'
+                                    ? 'text-red-500'
+                                    : 'text-green-500'
+                            )}
+                        >
+                            {result.label.toUpperCase()}
+                        </TypographyH1>
                         <TypographyH3 className="">
                             The likelihood of the message being a scam is{' '}
-                            <strong>{result}%</strong>
+                            <strong>
+                                {parseFloat(result.probability.toFixed(3)) *
+                                    100}
+                                %
+                            </strong>
                         </TypographyH3>
-                        <Button onClick={() => setShowMore(!showMore)}>
-                            {showMore ? 'Show less' : 'Show more'}
+                        <Button
+                            variant="ghost"
+                            onClick={() => setShowMore(!showMore)}
+                        >
+                            <p className="pr-2">
+                                {showMore ? 'Show less' : 'Show more'}
+                            </p>
+                            {showMore ? <ChevronUp /> : <ChevronDown />}
                         </Button>
                         <AnimatePresence>
                             {showMore && (
@@ -95,6 +145,9 @@ export default function ScamDetect() {
                                     transition={{ duration: 0.3 }}
                                     className="w-full overflow-hidden"
                                 >
+                                    <TypographyH3 className="pb-2">
+                                        What we found:
+                                    </TypographyH3>
                                     <span className="text-muted-foreground block mb-4">
                                         These factors suggest that the message
                                         could be a scam.
@@ -132,9 +185,25 @@ export default function ScamDetect() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                        <Button onClick={() => setSubmit(false)}>
+                        {/* <Button
+                            variant="outline"
+                            onClick={() => setSubmit(false)}
+                        >
                             Check another message
                         </Button>
+                        <div>
+                            <TypographyH3 className="text-center">
+                                Is it as scam?
+                            </TypographyH3>
+                            <p>
+                                Go to the help center to learn more about
+                                reporting or what to do if you or someone you
+                                know fell victim to it.
+                            </p>
+                            <Button variant="secondary" asChild>
+                                <Link href="/help">Help Center</Link>
+                            </Button>
+                        </div> */}
                     </motion.div>
                 )}
             </AnimatePresence>
