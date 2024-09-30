@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { cn } from '@/lib/utils'
+import { cn, useDimensions } from '@/lib/utils'
 import { Icons } from '@/components/icons'
 import {
     NavigationMenu,
@@ -21,7 +21,6 @@ import { Button } from '../ui/button'
 import { motion, useCycle } from 'framer-motion'
 import { MenuToggle } from './MenuToggle'
 import { useRef } from 'react'
-import { useDimensions } from '@/lib/use-dimensions'
 import { Navigation } from './NavigationItem'
 import {
     Accordion,
