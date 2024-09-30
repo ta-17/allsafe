@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { cn, useDimensions } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { Icons } from '@/components/icons'
 import {
     NavigationMenu,
@@ -28,6 +28,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from '../ui/accordion'
+import { useDimensions } from '@/libs/use-dimensions'
 
 // const components: { title: string; href: string; description: string }[] = [
 //     {

@@ -17,7 +17,7 @@ import { TypographyLead } from '@/typography/lead'
 import { TypographyH2 } from '@/typography/h2'
 import FlickeringGrid from '../magicui/flickering-grid'
 import AnimatedGridPattern from '../magicui/animated-grid-pattern'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 

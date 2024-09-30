@@ -7,7 +7,7 @@ import * as Craft from '@/components/craft'
 import { Button } from '@/components/ui/button'
 import { TypographyH2 } from '@/typography/h2'
 import { TypographyH3 } from '@/typography/h3'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
