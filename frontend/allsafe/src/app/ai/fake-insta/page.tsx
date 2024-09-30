@@ -1,11 +1,21 @@
+'use client'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function FakeInstaDetect() {
+    const [file, setFile] = useState<any>()
+
+    const submit = () => {
+        console.log('file ', file)
+    }
+
     return (
         <div>
             <TypographyH1>
@@ -14,7 +24,13 @@ export default function FakeInstaDetect() {
             <TypographyLead>Take a screenshot of the account</TypographyLead>
             <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label htmlFor="screenshot">Screenshot</Label>
-                <Input id="screenshot" type="file" />
+                <Input
+                    id="screenshot"
+                    type="file"
+                    onChange={(e) => {
+                        if (e.target.files !== null) setFile(e.target.files[0])
+                    }}
+                />
             </div>
             <div className="flex flex-col">
                 <div className="flex">
@@ -58,6 +74,13 @@ export default function FakeInstaDetect() {
                     </div>
                 </div>
             </div>
+            <Button
+                onClick={() => {
+                    submit
+                }}
+            >
+                Submit
+            </Button>
         </div>
     )
 }
