@@ -19,7 +19,7 @@ import {
 import { TypographyH3 } from '@/typography/h3'
 import { detectScam } from '@/actions/detect-scam'
 import { AlertCircle, ChevronDown, ChevronUp } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import Link from 'next/link'
 
 const Breakdown = [
