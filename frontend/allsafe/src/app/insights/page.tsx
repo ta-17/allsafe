@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 
 import '../style.css' // Assuming your CSS is in the src/styles folder
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH1 } from '@/typography/h1'
