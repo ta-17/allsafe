@@ -10,10 +10,13 @@
     },
     "dependencies": {
         "@d3fc/d3fc-axis": "^3.0.7",
+        "@hookform/resolvers": "^3.9.0",
         "@radix-ui/react-accordion": "^1.2.0",
+        "@radix-ui/react-checkbox": "^1.1.1",
         "@radix-ui/react-label": "^2.1.0",
         "@radix-ui/react-navigation-menu": "^1.2.0",
         "@radix-ui/react-popover": "^1.1.1",
+        "@radix-ui/react-radio-group": "^1.2.0",
         "@radix-ui/react-slot": "^1.1.0",
         "@radix-ui/react-tabs": "^1.1.0",
         "@tailwindcss/typography": "^0.5.14",
@@ -32,12 +35,15 @@
         "npm": "^10.8.3",
         "react": "^18",
         "react-dom": "^18",
+        "react-hook-form": "^7.53.0",
         "react-resizable-panels": "^2.1.1",
         "react-wrap-balancer": "^1.1.1",
         "sharp": "^0.33.5",
         "swr": "^2.2.5",
         "tailwind-merge": "^2.5.2",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "tesseract.js": "^5.1.1",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
         "@babel/core": "^7.17.10",
