@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Section, Container } from '@/components/craft'
 import { Button } from '@/components/ui/button'
 import { TypographyH3 } from '@/typography/h3'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 

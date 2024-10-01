@@ -8,7 +8,7 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import Link from 'next/link'
 import { PopoverArrow } from '@radix-ui/react-popover'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import React from 'react'
 
 export function PopoverHelp({ className }: { className?: string }) {
