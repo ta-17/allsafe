@@ -122,9 +122,7 @@ export default function ScamDetect() {
                         <TypographyH3 className="">
                             The likelihood of the message being a scam is{' '}
                             <strong>
-                                {parseFloat(result.probability.toFixed(3)) *
-                                    100}
-                                %
+                                {parseFloat(result.probability) * 100}%
                             </strong>
                         </TypographyH3>
                         <Button

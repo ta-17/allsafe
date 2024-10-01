@@ -9,7 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 export default function FakeInstaDetect() {
     const [file, setFile] = useState<File | null>()
@@ -17,66 +17,77 @@ export default function FakeInstaDetect() {
     const submit = () => {
         console.log('file ', file)
         if (file === null) return
-        const file_sharp = sharp(file)
-        console.log('to sharp ', file_sharp)
+        // const file_sharp = sharp(file)
+        // console.log('to sharp ', file_sharp)
     }
 
     return (
-        <div>
-            <TypographyH1>
-                Identify if that Instagram account is fake.
-            </TypographyH1>
-            <TypographyLead>Take a screenshot of the account</TypographyLead>
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="screenshot">Screenshot</Label>
-                <Input
-                    id="screenshot"
-                    type="file"
-                    onChange={(e) => {
-                        if (e.target.files !== null) setFile(e.target.files[0])
-                    }}
-                    accept="image/*"
-                />
+        <div className="flex flex-col gap-y-8">
+            <div className="flex flex-col gap-y-4">
+                <TypographyH1>
+                    Identify if that Instagram account is fake.
+                </TypographyH1>
+                <TypographyLead>
+                    Take a screenshot of the account
+                </TypographyLead>
+                <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="screenshot">Screenshot</Label>
+                    <Input
+                        id="screenshot"
+                        type="file"
+                        onChange={(e) => {
+                            if (e.target.files !== null)
+                                setFile(e.target.files[0])
+                        }}
+                        accept="image/*"
+                    />
+                </div>
             </div>
-            <div className="flex flex-col">
-                <div className="flex">
-                    <div>
-                        <Checkbox id="terms" />
-                        <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            Accept terms and conditions
-                        </label>
-                    </div>
-                    <div>
-                        <Checkbox id="terms" />
-                        <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            Accept terms and conditions
-                        </label>
+            <div className="flex flex-col gap-y-16">
+                <div className="flex flex-col">
+                    <p>Is there a profile picture?</p>
+                    <div className="flex justify-around w-full">
+                        <div>
+                            <Checkbox id="terms" />
+                            <label
+                                htmlFor="terms"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Yes
+                            </label>
+                        </div>
+                        <div>
+                            <Checkbox id="terms" />
+                            <label
+                                htmlFor="terms"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                No
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div className="flex">
-                    <div>
-                        <Checkbox id="terms" />
-                        <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            Accept terms and conditions
-                        </label>
-                    </div>
-                    <div>
-                        <Checkbox id="terms" />
-                        <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            Accept terms and conditions
-                        </label>
+                <div className="flex flex-col">
+                    <p>Is the account private</p>
+                    <div className="flex justify-around w-full">
+                        <div>
+                            <Checkbox id="terms" />
+                            <label
+                                htmlFor="terms"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Yes
+                            </label>
+                        </div>
+                        <div>
+                            <Checkbox id="terms" />
+                            <label
+                                htmlFor="terms"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                No
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
