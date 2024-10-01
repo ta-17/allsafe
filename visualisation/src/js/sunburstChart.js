@@ -197,7 +197,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
                 line.push(word);
                 tspan.text(line.join(" "));
                 const tspanWidth = tspan.node().getComputedTextLength();
-                const maxWidth = radius * 0.4;  // Adjust this based on sector size
+                const maxWidth = radius * 0.5;  // Adjust this based on sector size
     
                 if (tspanWidth > maxWidth) {
                     line.pop();
