@@ -56,6 +56,12 @@ export default function ScamDetect() {
         }
     }
 
+    const percent = () => {
+        if (!result) return 0
+        const float = parseFloat(result.probability.toFixed(4))
+        return (float * 100).toFixed(2)
+    }
+
     return (
         <div
             className={cn(
@@ -121,9 +127,7 @@ export default function ScamDetect() {
                         </TypographyH1>
                         <TypographyH3 className="">
                             The likelihood of the message being a scam is{' '}
-                            <strong>
-                                {parseFloat(result.probability) * 100}%
-                            </strong>
+                            <strong>{percent()}%</strong>
                         </TypographyH3>
                         <Button
                             variant="ghost"
