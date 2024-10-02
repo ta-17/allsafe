@@ -2,13 +2,22 @@ import { parseData } from "./data.js";
 import { createLineChart } from "./js/lineChart.js";
 import { createSunburstChart } from "./js/sunburstChart.js";
 import { createBarChart } from "./js/barChart.js";
+import { createModelBarChart } from "./js/ModelbarChart.js";
 
 // let selectedLevel2Category = null;
 
 let originalData; // Store the original dataset globally for filtering
+let wordFrequencyDict = {}
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Historical Scam Information Page Loaded");
+
+    // Load word percentage JSON data
+    d3.json('word_percentage.json').then(data => {
+        console.log('Word Frequency Data Loaded:', data);
+
+        wordFrequencyDict = data;  // Store the word frequency dictionary
+    });
 
     // Load the dataset
     d3.csv("historical_scam.csv").then(data => {
@@ -48,6 +57,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }).catch(error => {
         console.error('Error loading or parsing data:', error);
     });
+
+    // Add event listener for user input (assumes an input form with id 'scam-input-form')
+    document.getElementById("scam-input-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (Object.keys(wordFrequencyDict).length === 0) {
+            console.error('Word Frequency Dictionary is not yet loaded');
+            return;
+        }
+
+        // Get the input value
+        const scamExperience = document.getElementById('scam-experience').value;
+
+        // Process the input (this function would split and count word frequency)
+        const wordFrequency = calculateWordFrequency(scamExperience, wordFrequencyDict);  // Pass wordFrequencyDict
+
+        // Log the word frequency to ensure it's correct
+        console.log('Word Frequency Data:', wordFrequency);
+
+        // Clear the existing model bar chart if necessary
+        d3.select("#model-bar-chart").selectAll("*").remove();
+
+        // Render the new bar chart based on the input
+        createModelBarChart(wordFrequency, 'model-bar-chart');
+    });
+
 });
 
 // Function to update only Sunburst and Bar Charts with filtered data
@@ -99,3 +134,25 @@ function initCarousel(carouselSelector, prevButtonId, nextButtonId) {
     // Initial with the first card
     showItem(currentIndex);
 }
+
+// Function to calculate word frequency from user input and match against the word frequency dictionary
+function calculateWordFrequency(input, wordFrequencyDict) {
+    const words = input.split(/\s+/);  // Tokenize input by splitting on spaces
+    const matchedWords = {};
+
+    // Check each word if it exists in the pre-existing word frequency dictionary
+    words.forEach(word => {
+        const sanitizedWord = word.toLowerCase().replace(/[^\w]/g, '');  // Sanitize word
+        if (sanitizedWord && wordFrequencyDict[sanitizedWord]) {
+            matchedWords[sanitizedWord] = (matchedWords[sanitizedWord] || 0) + 1;
+        }
+    });
+
+    // Return array of matched words with their frequencies and percentages
+    return Object.keys(matchedWords).map(word => ({
+        word: word,
+        frequency: wordFrequencyDict[word]  // Use the percentage from the original dictionary
+    }));
+}
+
+
