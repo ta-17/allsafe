@@ -1,8 +1,8 @@
-// create line chart
+// Create line chart
 export function createLineChart(data, containerId) {
     console.log("Creating line chart...");
-    
-    // set up dimensions and margins of the graph
+
+    // Set up dimensions and margins of the graph
     const container = document.getElementById(containerId);
     
     function getDimensions() {
@@ -13,305 +13,300 @@ export function createLineChart(data, containerId) {
         };
     }
 
+    // Get dimension
     let { width, height } = getDimensions();
-    const lineMargin = { top: 40, right: 30, bottom: 50, left: 70 }; // Increased bottom margin for x-axis label
+    // Set up margin
+    const lineMargin = { top: 40, right: 30, bottom: 30, left: 70 };
 
-    // console.log(width, height);
-
-    // aggregate data by month
+    // Aggregate data by quarter
     function aggData(data) {
-        const grouped = d3.group(data, d => `${d.year}-${d.month}`);
+        const grouped = d3.group(data, d => {
+            const quarter = Math.ceil(d.month / 3); // Count quarters
+            return `${d.year}-Q${quarter}`; // Group by year and quarter
+        });
 
         return Array.from(grouped, ([key, value]) => {
-            const [year, month] = key.split('-');
-            const no_of_reports = d3.sum(value, d => d.no_of_reports);
+            const [year, quarter] = key.split('-Q');
+            const no_of_reports = d3.sum(value, d => d.no_of_reports); // Sum by quarter
             return {
                 year: +year,
-                month: +month,
+                quarter: +quarter,
                 no_of_reports
             };
-        });
+        }).sort((a, b) => a.year - b.year || a.quarter - b.quarter); // Sorted by year and quarter to draw lines
     }
 
-    // get data
-    const monthData = aggData(data);
-    // const monthData2024 = monthData.filter(d => d.year === 2024).sort((a, b) => a.month - b.month);
+    // Get data
+    const quarterData = aggData(data);
+    // Check data
+    console.log(quarterData);
 
-    console.log(monthData);
+    // Get unique years
+    const years = Array.from(new Set(quarterData.map(d => d.year)));
 
-    // get unique years
-    // const allYears = Array.from(new Set(monthData.map(d => d.year)));
-    
-    // get needed years
-    const years = [2024, 2022, 2020]
-
-    // filtere data by required years & sort by month
-    const filteredData = monthData.filter(d => years.includes(d.year))
-                                  .sort((a, b) => a.year - b.year || a.month - b.month);
-
-
-    // set x scale
+    // Set x scale
     const x = d3.scaleLinear()
-                .domain([1,12])
-                .range([lineMargin.left, width - lineMargin.right]);
-    
-    // set y scale
-    const yMax = d3.max(monthData, d => d.no_of_reports) || 0;
+        .domain([1, 4]) // Quarter 1 - 4
+        .range([lineMargin.left, width - lineMargin.right]);
+
+    // Set y scale
+    const yMax = d3.max(quarterData, d => d.no_of_reports) || 0;
     const y = d3.scaleLinear()
-                .domain([0, Math.ceil(yMax / 100) * 100]) // Round up to the nearest hundred
-                .nice() // Optional: for nicer tick intervals
-                .range([height - lineMargin.bottom - 40, lineMargin.top]);
+        .domain([0, Math.ceil(yMax / 100) * 100]) // Round up to the nearest hundred
+        .nice() // Optional: for nicer tick intervals
+        .range([height - lineMargin.bottom, lineMargin.top]);
 
-    // create line
-    const line = d3.line()
-                   .x((d) => x(d.month))
-                   .y((d) => y(d.no_of_reports))
-                   .curve(d3.curveCatmullRom.alpha(0.5));
-
-    // create svg
+    // Create SVG
     const svg = d3.select(`#${containerId}`).append("svg")
-                    .attr("width", "100%")
-                    .attr("height", "100%")
-                    .attr("viewBox", `0 0 ${width} ${height}`);
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("viewBox", `0 0 ${width} ${height}`);
 
-    // const svg = d3.create("svg")
-    //     .attr("width", width + lineMargin.left + lineMargin.right)
-    //     .attr("height", height + lineMargin.top + lineMargin.bottom);    
-
-    // add x-axis
-    const xAxisGroup = svg.append("g")
-        .attr("class", "x-axis")
-        .attr("transform", `translate(0,${height - lineMargin.bottom - 40})`)
-        .call(d3.axisBottom(x).ticks(12)) // Show numbers from 1 to 12
+    // Create x-axis
+    const xAxis = d3.axisBottom(x)
+                    .ticks(4)
+                    .tickFormat(d => `Q${d}`); // Show as 'Q1, Q2, Q3, Q4'
+    
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0, ${height - lineMargin.bottom})`)
+        .call(xAxis)
         .style("font-size", "14px");
 
-    // add x-axis label
+    // Add x-axis label: Quarter
     svg.append("text")
         .attr("class", "x-axis-label")
         .attr("x", width / 2)
-        .attr("y", height - lineMargin.bottom + 30) // Adjust this value for better positioning
+        .attr("y", height +10) // Adjust this value for better positioning
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .style("font-weight", "bold")
-        .text("Month");
+        .text("Quarter");
 
-    // add y-axis
+    // Create y-axis
     const yAxisGroup = svg.append("g")
         .attr("class", "y-axis")
         .attr("transform", `translate(${lineMargin.left}, 0)`)
         .call(d3.axisLeft(y)
             .ticks(Math.ceil(yMax / 100)) // Ensure proper tick count
             .tickValues(d3.range(0, Math.ceil(yMax / 100) * 100 + 1, 100)) // Set ticks at intervals of 100
-    )
+            .tickFormat(d3.format("d")))
         .style("font-size", "14px")
         .call(g => g.select(".domain").remove())
         .call(g => g.selectAll(".tick line").clone()
                     .attr("x2", width - lineMargin.left - 40)
                     .attr("stroke-opacity", 0.1))
+
+        // Add y-axis label: ↑ Number of Reports
         .call(g => g.append("text")
                       .attr("x", 5 - lineMargin.left)
-                      .attr("y", 15)
+                      .attr("y", lineMargin.top)
                       .attr("fill", "currentColor")
                       .attr("text-anchor", "start")
                       .style("font-weight", "bold")
                       .text("↑ Number of Reports"));
 
-    // create color scale
-    const color = {2020: '#1976d2', 2022: '#f57c00', 2024: '#d32f2f'};
+    // Create color scale
+    const color = {2024: '#e52828', 2023: '#e58424', 2022: '#aa3dc0', 2021: '#3b67d4', 2020: '#4ecb57'};
 
-    // // draw the line
-    // const linePath = svg.append("path")
-    //                     .datum(filteredData)
-    //                     .attr("fill", "none")
-    //                     // .attr("stroke", color[year] || '#000000')
-    //                     .attr("stroke-width", 3)
-    //                     .attr("d", line);
-
-    // create legend
-    // const legend = svg.append("g")
-    //                   .attr("transform", `translate(${width - lineMargin.right + 20}, ${lineMargin.top})`)
-    //                   .style("font-size", "20px")
-    //                   .style("anchor-text", "right bottom");
-
-    // years.forEach((year, i) => {
-    //     const legendItem = legend.append("g")
-    //                              .attr("transform", `translate(0, ${i * 30})`);
-        
-    //     legendItem.append("rect")
-    //               .attr("x", 0)
-    //               .attr("width", 18)
-    //               .attr("height", 18)
-    //               .attr("fill", color[year] || '#000000')
-    //               .style("opacity", 0.8);
-
-    //     legendItem.append("text")
-    //               .attr("x", 25)
-    //               .attr("y", 9)
-    //               .attr("dy", ".35em")
-    //               .text(year);
-    // });
-
-    
-    // create area
+    // Draw area
     const area = d3.area()
-                   .x((d) => x(d.month))
-                   .y0(y(0))
-                   .y1((d) => y(d.no_of_reports))
-                   .curve(d3.curveCatmullRom.alpha(0.5));
+        .x(d => x(d.quarter))
+        .y0(y(0))
+        .y1(d => y(d.no_of_reports))
+        .curve(d3.curveCatmullRom.alpha(0.5));
 
+    // Create lines
+    const line = d3.line()
+        .x(d => x(d.quarter))
+        .y(d => y(d.no_of_reports))
+        .curve(d3.curveCatmullRom.alpha(0.5));
 
-
-
-    // define gradient
+    // Create gradients
     const defs = svg.append("defs");
+
     years.forEach(year => {
         const gradientId = `gradient-${year}`;
-    // const gradientId = 'gradient-area';
-        const gradient = defs.append('linearGradient')
-                            .attr('id', gradientId)
-                            .attr('x1', '0%')
-                            .attr('x2', '0%')
-                            .attr('y1', '0%')
-                            .attr('y2', '100%');
-    
-        // gradient start
-        gradient.append('stop')
-                .attr('offset', '0%')
-                .attr('stop-color',  d3.color(color[year]).brighter(0.3).toString())
-                .attr('stop-opacity', 0.4);
-
-        // gradient ends
-        gradient.append('stop')
-                .attr('offset', '70%')
-                .attr('stop-color', color[year])
-                .attr('stop-opacity', 0.1);
+        const gradient = defs.append("linearGradient")
+            .attr("id", gradientId)
+            .attr("x1", "0%")
+            .attr("x2", "10%")
+            .attr("y1", "0%")
+            .attr("y2", "100%");
+        
+        gradient.append("stop").attr("offset", "0%")
+                .attr("stop-color", color[year])
+                .attr("stop-opacity", 0.4);
+        
+        gradient.append("stop").attr("offset", "100%")
+                .attr("stop-color", color[year])
+                .attr("stop-opacity", 0);
     });
 
-    // create map for interaction between lines and areas
-    const lineMap = new Map();
-    const areaMap = new Map();
+    // Create a tooltip
+    const tooltip = d3.select("#tooltip-line")
+                        .style("position", "absolute")
+                        .style("padding", "12px")
+                        .style("text-align", "center")
+                        .style("font-size", "16px")
+                        .style("border", "1px solid #ddd")
+                        .style("border-radius", "3px")
+                        .style("transform", "translateX(15px)")
+                        .style("box-shadow", "0 0 5px rgba(0,0,0,0.2)");
 
-    // draw lines and areas
+    // Set checkbox container
+    const checkboxContainer = d3.select(`#${containerId}`).append("div")
+        .attr("class", "checkbox-container")
+        .style("font-size", "18px")
+        .style("margin", "8px");
+
+    // Create checkbox with default values
     years.forEach(year => {
-        const dataForYear = filteredData.filter(d => d.year === year);
+        const label = checkboxContainer.append("label")
+            .style("margin", "12px"); // Add margin to the label
 
-        // draw lines
-        const lines = svg.append("path")
-                            .datum(dataForYear)
-                            .attr("fill", "none")
-                            .attr("stroke", color[year] || '#000000')
-                            .attr("stroke-width", 4)
-                            .style("opacity", 0)
-                            .attr("d", line);
+        // Add checkbox
+        label.append("input")
+            .attr("type", "checkbox")
+            .attr("value", year)
+            .style("margin", "5px")
+            .property("checked", year === 2022 || year === 2023 || year === 2024)
+            .on("change", (event) => {
+                const checkedBoxes = checkboxContainer.selectAll("input:checked").nodes();
+                if (checkedBoxes.length > 3) {
+                    d3.select(event.target).property("checked", false);
+                } else {
+                    updateChart();
+                }
+            });
 
-                        // add highlight
-                        lines.on("mouseover", () => {
-                        svg.selectAll("path").style("opacity", 0.2);
-                        lines.style("opacity", 1);
-                        areaMap.get(year).style("opacity", 1);
-
-                        })
-                        .on("mouseout", () => {
-                        svg.selectAll("path").style("opacity", 1)
-                        lines.style("opacity", 0.8);
-                        areaMap.get(year).style("opacity", 0.8);
-                        });
-        lines.transition().duration(2000).style("opacity", 0.8)
-        lineMap.set(year, lines);
-
-        // draw areas
-        const areas = svg.append("path")
-                        .datum(dataForYear)
-                        .attr("fill", `url(#gradient-${year})`) // Use gradient fill
-                        .attr("stroke", "none") // No stroke for area
-                        .attr("d", area)
-                        .on("mouseover", () => {
-                            svg.selectAll("path").style("opacity", 0.2);
-                            areas.style("opacity", 1);
-                            lineMap.get(year).style("opacity", 1);
-                        })
-                        .on("mouseout", () => {
-                            svg.selectAll("path").style("opacity", 1);
-                            areas.style("opacity", 0.8);
-                            lineMap.get(year).style("opacity", 0.8);
-                        });
-        areaMap.set(year, areas);
-
+        // Set the text for the label
+        label.append("span").text(`${year}`); // Added "Year" before the year
     });
 
-    // get tooltip
-    const tooltip = d3.select("body")
-                      .append("div")
-                      .attr("class", "tooltip")
-                      .style("opacity", 0);
-
-    // update report number format
+    // Update report number format
     const formatNumber = new Intl.NumberFormat();
 
 
-    // add dots with showing data details
-    const dots = svg.append("g")
-                    .selectAll("circle")
-                    .data(filteredData)
-                    .enter()
-                    .append("circle")
-                    .attr("class", "line-chart-dot")
-                    .attr("r", 8)
-                    .attr("fill", d => color[d.year] || '#000000')
-                    .style("opacity", 0)
-                    .attr("cx", d => x(d.month))
-                    .attr("cy", d => y(d.no_of_reports))
-                    .on("mouseover", (event, d) => {
-                        // change opacity
-                        svg.selectAll("path")
-                           .style("opacity", 0.5);
-                        // areaPath.style("opacity", 0.5);
-                        dots.style("opacity", 0.5);
+    // Update the chart after different checkbox selection
+    function updateChart() {
+        svg.selectAll("path").remove();
+        svg.selectAll("circle").remove();
 
-                        // highlight the current dot
-                        d3.select(event.currentTarget).style("opacity", 1);
+        const selectedYears = Array.from(checkboxContainer.selectAll("input:checked").nodes())
+            .map(checkbox => +checkbox.value);
 
-                        // tooltip content
-                        tooltip.style("opacity", 1)
-                               .html(`Date: ${d.year}/${d.month}<br>Report Numbers: ${formatNumber.format(d.no_of_reports)}`)
-                               .style("left", `${event.pageX + 5}px`)
-                               .style("top", `${event.pageY - 28}px`);
-                    })
-                    .on("mousemove", (event) => {
-                        tooltip.style("left", `${event.pageX + 5}px`)
-                               .style("top", `${event.pageY - 28}px`);
-                    })
-                    .on("mouseout", () => {
-                        // reset opacity
-                        svg.selectAll().style("opacity", 1);
-                        dots.style("opacity", 1);
+        selectedYears.forEach(year => {
+            const dataForYear = quarterData.filter(d => d.year === year);
 
-                        tooltip.style("opacity", 0);
-                    });
-    dots.transition().duration(3000).style("opacity", 0.8);
+            // Draw the line
+            svg.append("path")
+                .datum(dataForYear)
+                .attr("fill", "none")
+                .attr("stroke", color[year])
+                .attr("stroke-width", 4)
+                .style("opacity", 0.8)
+                .attr("d", line)
+                .on("mouseover", () => highlightYear(year))
+                .on("mouseout", resetHighlight);
 
+            // Draw the area
+            svg.append("path")
+                .datum(dataForYear)
+                .attr("fill", `url(#gradient-${year})`)
+                .attr("stroke", "none")
+                .attr("d", area)
+                .style("opacity", 0.7)
+                .on("mouseover", (event) => {
+                    const totalReports = d3.sum(dataForYear, d => d.no_of_reports);
+                    tooltip.classed("hidden", false)
+                            .style("visibility", "visible")
+                            .html(`Year: ${year}<br>Number of Scam Reports: ${formatNumber.format(totalReports)}`)
+                            .style("left", `${event.pageX + 15}px`)
+                            .style("top", `${event.pageY - 28}px`);
+
+                    highlightYear(year);
+                })
+                .on("mousemove", (event) => {
+                    tooltip.style("left", (event.pageX + 15) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", () => {
+                    tooltip.classed("hidden", true)
+                            .style("visibility", "hidden");
+                    resetHighlight();
+                });
+
+            // Add dots for each data point
+            svg.selectAll(`.dot-${year}`)
+                .data(dataForYear)
+                .enter()
+                .append("circle")
+                .attr("class", `dot-${year}`)
+                .attr("cx", d => x(d.quarter))
+                .attr("cy", d => y(d.no_of_reports))
+                .attr("r", 5)
+                .attr("fill", color[year])
+                .on("mouseover", (event, d) => {
+                    tooltip.classed("hidden", false)
+                        .style("visibility", "visible")
+                        .html(`Date: ${d.year}/Q${d.quarter}<br>Number of Scam Reports: ${formatNumber.format(d.no_of_reports)}`)
+                        .style("left", `${event.pageX + 15}px`)
+                        .style("top", `${event.pageY - 28}px`);
+                    highlightYear(d.year);
+                    d3.select(event.currentTarget).transition().duration(100).attr("r", 7);
+                })
+                .on("mousemove", (event) => {
+                    tooltip.style("left", (event.pageX + 15) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", (event) => {
+                    tooltip.classed("hidden", true)
+                        .style("visibility", "hidden");
+                    resetHighlight();
+                    d3.select(event.currentTarget).transition().duration(100).attr("r", 5);
+                });
+        });
+    }
+
+    // Highlight function
+    function highlightYear(year) {
+        svg.selectAll("path").style("opacity", 0.2);
+        svg.selectAll("circle").style("opacity", 0.4);
+        svg.selectAll(`.dot-${year}`).style("opacity", 1);
+        svg.selectAll("path")
+            .filter((d) => d[0].year === year)
+            .style("opacity", 0.7);
+    }
+
+    // Reset highlight function
+    function resetHighlight() {
+        svg.selectAll("path").style("opacity", 0.8);
+        svg.selectAll("circle").style("opacity", 1);
+    }
+
+    // Update the chart
+    updateChart();
+
+    // Enable chart to be responsive
     window.addEventListener("resize", () => {
         const newDimensions = getDimensions();
         svg.attr("viewBox", `0 0 ${newDimensions.width} ${newDimensions.height}`);
         width = newDimensions.width;
         height = newDimensions.height;
 
+        // Update scales
         x.range([lineMargin.left, width - lineMargin.right]);
         y.range([height - lineMargin.bottom, lineMargin.top]);
 
         // Update axes
-        xAxisGroup.attr("transform", `translate(0,${height - lineMargin.bottom})`).call(d3.axisBottom(x).ticks(12));
-        yAxisGroup.call(d3.axisLeft(y));
+        svg.select(".x.axis").call(xAxis);
+        svg.select(".y-axis").call(d3.axisLeft(y).ticks(Math.ceil(yMax / 100)).tickFormat(d3.format("d")));
 
-        // Update x-axis label
-        svg.select(".x-axis-label")
-            .attr("x", width / 2)
-            .attr("y", height - lineMargin.bottom + 50);
-
+        // Update the chart
         updateChart();
     });
 
     // append the svg to the container
     container.appendChild(svg.node());
-    
 }

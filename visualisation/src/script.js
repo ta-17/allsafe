@@ -2,7 +2,6 @@ import { parseData } from "./data.js";
 import { createLineChart } from "./js/lineChart.js";
 import { createSunburstChart } from "./js/sunburstChart.js";
 import { createBarChart } from "./js/barChart.js";
-import { createModelBarChart } from "./js/ModelbarChart.js";
 
 // let selectedLevel2Category = null;
 
@@ -39,25 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Regenerate the graphs when resizing the window        
         window.addEventListener("resize", () => renderCharts(originalData));
+
+        // Initialize the carousel
+        initCarousel('.line-carousel-item', 'line-prev', 'line-next');
+        initCarousel('.wordCloud-carousel-item', 'wordCloud-prev', 'wordCloud-next');
+        initCarousel('.sunburst-carousel-item', 'sunburst-prev', 'sunburst-next');
+        initCarousel('.bar-carousel-item', 'bar-prev', 'bar-next');
+
     }).catch(error => {
         console.error('Error loading or parsing data:', error);
-    });
-
-    // Add event listener for user input (assumes an input form with id 'scam-input-form')
-    document.getElementById("scam-input-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        // Get the input value
-        const scamExperience = document.getElementById('scam-experience').value;
-
-        // Process the input (this function would split and count word frequency)
-        const wordFrequency = calculateWordFrequency(scamExperience);
-
-        // Clear the existing model bar chart if necessary
-        d3.select("#model-bar-chart").selectAll("*").remove();
-
-        // Render the new bar chart based on the input
-        createModelBarChart(wordFrequency, 'model-bar-chart');
     });
 });
 
@@ -86,21 +75,27 @@ function renderCharts(data) {
     createBarChart(data, "bar-chart");
 }
 
-// Function to calculate word frenquency
-function calculateWordFrequency(input) {
-    const words = input.split(/\s+/); // Split input into words
-    const frequency = {};
+// Function to initialize a specific carousel
+function initCarousel(carouselSelector, prevButtonId, nextButtonId) {
+    const items = document.querySelectorAll(carouselSelector);
+    let currentIndex = 0;
 
-    words.forEach(word => {
-        const sanitizedWord = word.toLowerCase(); // Convert to lowercase for consistency
-        if (sanitizedWord) {
-            frequency[sanitizedWord] = (frequency[sanitizedWord] || 0) + 1;
-        }
+    function showItem(index) {
+        items.forEach((item, i) => {
+            item.classList.toggle('hidden', i !== index); // Show only the current card
+        });
+    }
+
+    document.getElementById(nextButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length; // Move to next item
+        showItem(currentIndex);
     });
 
-    return Object.keys(frequency).map(word => ({
-        word: word,
-        count: frequency[word]
-    }));
-}
+    document.getElementById(prevButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length; // Move to previous item
+        showItem(currentIndex);
+    });
 
+    // Initial with the first card
+    showItem(currentIndex);
+}

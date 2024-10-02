@@ -27,7 +27,7 @@
             </a>
 
             <!-- Link to Section Sunburst - Sunburst chart -->
-            <a href="#section-sunburst" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
+            <a href="#slogan-section" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
                 <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">18%</h2>
                 <h3 class="text-xl md:text-2xl text-gray-600 mt-2">scams among young adults are contacted via social media</h3>
                 <div class="flex flex-col items-center mt-4">
@@ -37,7 +37,7 @@
 
             <!-- Link to Section Bar - Bar chart-->
             <a href="#section-bar" class="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center">
-                <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">$3.17M</h2>
+                <h2 class="text-5xl md:text-6xl text-orange-500 font-semibold">$3.52M</h2>
                 <h3 class="text-xl md:text-2xl text-gray-600 mt-2">scammed money lost among young adults on social media in 2024</h3>
                 <div class="flex flex-col items-center mt-4">
                     <span class="text-lg md:text-xl text-gray-500">Click to explore</span>
@@ -49,37 +49,113 @@
     <!-- Line Chart -->
     <section id="section-trend" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-            Do you know how fast the scam growth in the past few years?
+            Do you know how fast the scam growth in recent years?
         </h2>
-        <p class="px-4 md:px-0">
-            From January 2020 to July 2024, there have been 18,714 reported social media scams affecting young adults in Australia. Comparing the whole year of 2023 and 2022, reported scams increased about 21%. The scam reported peak is in January 2023, with 621 scams reported in just a month.<br>
-            Although the number of scam reports gradually decreased from then, the monthly reported scams in 2024 are still around 300.<br><br>
-        </p>
-        <!-- Get the chart -->
-        <div id="line-chart" class="chart h-[400px] md:h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
 
-    </section>
+        <!-- User Guide -->
+        <h3 class="text-xl md:text-xl font-bold text-gray-600 md:w-1/2">
+            Select 3 years to discover the trend across different years:
+        </h3>
 
-    <!-- Word Cloud -->
-    <section id="section-word-cloud" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-            Have you ever received messages with these words?
-        </h2>
-        <div class="flex flex-col md:flex-row items-center">
-            <!-- Get the image -->
-            <img src="wordcloud.png" alt="Word Cloud" class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
-            <div class="w-full md:w-1/2">
-                <p class="px-4 md:px-0">
-                    Have you ever received a message that seemed too good to be true? Did it make you pause and wonder if you might get easy money, or did it leave you feeling unsure? Scammers use these tricks to either get you to pay for something or steal your personal information.<br><br>
-                    These words highlight the most common words scammers use to make their messages sound personal, urgent, or convincing. They are designed to trick you into responding or taking action based on false promises.<br><br>
-                    Take a look at the words. Can you spot the types of scams that appear most often?<br><br>
-                </p>
+        <!-- Flex container for chart and carousel -->
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <!-- Get the chart -->
+            <div id="line-chart" class="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4 mb-4"></div>
+
+            <!-- Add text in carousel -->
+            <div class="relative overflow-hidden w-full md:w-1/2 px-8">
+                <div id="carousel" class="carousel w-full flex transition-transform duration-300">
+                    <!-- 1st Card -->
+                    <div class="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            From January 2020 to July 2024, there have been 
+                            <span class="text-xl font-bold text-orange-500">19,030</span> 
+                            reported social media scams affecting young adults in Australia.<br>
+                            <span class="text-sm text-gray-400"> *Data collected until August 2024</span>
+                        </p>
+                    </div>
+                
+                    <!-- 2nd Card -->
+                    <div class="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            Comparing the whole year of 2023 and 2022, reported scams 
+                            <span class="text-xl font-bold text-orange-500">increased about 21%</span>.
+                        </p>
+                    </div>
+                
+                    <!-- 3rd Card -->
+                    <div class="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            The scam reported peak is in Q1 2023, with 
+                            <span class="text-xl font-bold text-orange-500">1,677 scams reported in just first three months</span>.
+                        </p>
+                    </div>
+                
+                    <!-- 4th Card -->
+                    <div class="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            Although the number of scam reports gradually decreased from then, around
+                            <span class="text-xl font-bold text-orange-500">300 scams reported monthly</span>
+                            in 2024.
+                        </p>
+                    </div>
+                </div>
+            
+                <!-- Add button for carousel -->
+                <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="line-prev"> < </button>
+                <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="line-next"> > </button>
             </div>
         </div>
     </section>
+
+    <!-- Word Cloud -->
+    <section id="section-word-cloud" class="text-center w-full p-8 bg-gray-50 rounded-lg">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+            Have you ever received messages with these words?
+        </h2>
+        
+        <!-- Flex container for chart and carousel -->
+        <div class="flex flex-col md:flex-row items-center">
+            <!-- Get the image -->
+            <img src="wordcloud.png" alt="Word Cloud" class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
+
+            <!-- Add text in carousel -->
+            <div class="relative overflow-hidden w-full md:w-1/2 px-4 md:px-0">
+                <div class="carousel w-full">
+                    <!-- 1st Card -->
+                    <div class="carousel-item wordCloud-carousel-item active bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            These words highlight the most common words scammers use to make their messages  
+                            <span class="text-lg font-bold text-orange-500">sound personal, urgent, or convincing</span>.
+                        </p>
+                    </div>
+                    
+                    <!-- 2nd Card -->
+                    <div class="carousel-item wordCloud-carousel-item bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            They are designed to 
+                            <span class="text-lg font-bold text-orange-500">trick you into responding or taking action</span> based on false promises.
+                        </p>
+                    </div>
+                    
+                    <!-- 3rd Card -->
+                    <div class="carousel-item wordCloud-carousel-item bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            Take a look at the words, can you spot the types of scams that appear most often?
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Add button for carousel -->
+                <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="wordCloud-prev"> < </button>
+                <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="wordCloud-next"> > </button>
+            </div>
+        </div>
+    </section>
+
     
     <!-- Slogan Section -->
-    <section class="slogan my-5 text-center">
+    <section id="slogan-section" class="slogan my-5 text-center">
         <h2 class="text-orange-500 text-4xl font-bold">Click Inside Each Section To Discover More!!!</h2>
     </section>
 
@@ -92,46 +168,133 @@
     </section>
 
     <!-- Sunburst Chart -->
-    <section id="section-sunburst" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+    <section id="section-sunburst" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-4">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
             Do you know what are the top 5 scams in number of reports?
         </h2>
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
-                <!-- Get the chart -->
-                <div id="sunburst-chart" class="chart w-full h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
-            </div>
-            <div class="w-full md:w-1/2">
-                <p class="px-4 md:px-0">
-                    The sunburst chart shows the top 5 scams by the number of reports, with each section showing their percentage and sub-types.<br><br>
-                    Buying or Selling scams are the most common, making up over 44% of the total and over 427 reports within 2024. Online Shopping Scams being the largest sub-type at around 41% and having 1369 reports over the years.<br><br>
-                    Meanwhile, the smallest section, Mobile Premium Service Scams, only contributes about 1%, which also among the Buying or Selling. Personal Information scams are the second-largest, with 1643 reports all over the year. Investment Scams in the same time treated as the main sub-type.<br><br>
-                    This highlights how common online shopping scams and personal data fraud are becoming.
-                </p>
-            </div>
+
+        <!-- User Guide -->
+        <h3 class="text-xl md:text-xl font-bold mb-4 text-gray-400">
+            Use the drop-down menu to switch between 2024 and an overview from 2020 to 2024.
+        </h3>
+
+        <!-- Flex container for chart and carousel -->
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <!-- Get the chart -->
+            <div id="sunburst-chart" class="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4"></div>
+ 
+            <!-- Add text in carousel -->
+            <div class="relative overflow-hidden w-full md:w-1/2 px-8">
+                <div id="carousel" class="carousel w-full flex transition-transform duration-300">
+                    
+                    <!-- 1st Card -->
+                    <div class="carousel-item sunburst-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            The top 2 common social media scams in 2024 are <span class="text-lg font-bold">buying or selling</span> 
+                            and <span class="text-lg font-bold">gain personal information</span> scams.<br><br>
+                        </p>
+                    </div>
+                    
+                    <!-- 2nd Card -->
+                    <div class="carousel-item sunburst-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            <span class="text-lg font-bold">Buying or selling scams</span> are the most common, 
+                            making up over 
+                            <span class="text-lg font-bold text-orange-500">44%</span> 
+                            from 2020 till now, and over 427 reports within 2024.<br><br>
+                        </p>
+                    </div>
+
+                    <!-- 3rd Card -->
+                    <div class="carousel-item sunburst-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            Under buying or selling scams, 
+                            <span class="text-lg font-bold">online shopping scams</span> 
+                            being the largest type that took around <span class="text-xl font-bold text-orange-500">41%</span> 
+                            and having 1,392 reports over the period.
+                        </p>
+                    </div>
+
+                    <!-- 4th Card -->
+                    <div class="carousel-item sunburst-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            <span class="text-lg font-bold">Gain personal information scams</span> 
+                            are the second-largest, about
+                            <span class="text-lg font-bold text-orange-500">22%</span> 
+                            with 1,673 reports during the whole period.
+                        </p>
+                    </div>
+
+                    <!-- 5th Card -->
+                    <div class="carousel-item sunburst-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                        <p class="text-lg text-gray-600 text-center">
+                            Interact with the chart to see the number of reports of top 5 scams, 
+                            and click on a certain type to find detailed information.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Add button for carousel -->
+                <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="sunburst-prev"> < </button>
+                <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="sunburst-next"> > </button>
         </div>
     </section>
 
     <!-- Bar Chart -->
-    <section id="section-bar" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
+    <section id="section-bar" class="text-center w-full p-8 bg-gray-50 rounded-lg">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
             Does the money lost follow a similar pattern as the number of reports?
         </h2>
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4">
-                <!-- Get the chart -->
-                <div id="bar-chart" class="chart w-full h-[500px] bg-gray-50 mb-4 rounded-lg"></div>
+
+        <!-- Flex container for chart and carousel -->
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <!-- Get the chart -->
+            <div id="bar-chart" class="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4"></div>
+ 
+            <!-- Add text in carousel -->
+            <div class="relative overflow-hidden w-full md:w-1/2 px-8">
+                <div id="carousel" class="carousel w-full flex transition-transform duration-300">
+
+                <!-- 1st Card -->
+                <div class="carousel-item bar-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                    <p class="text-lg text-gray-600 text-center">
+                        While the top 5 most frequent scams align with the top 5 financial loss scams, the patterns have some differences.
+                    </p>
+                </div>
+
+                <!-- 2nd Card -->
+                <div class="carousel-item bar-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                    <p class="text-lg text-gray-600 text-center">
+                        In 2024, the <span class="text-lg font-bold">top 5 scams</span> alone accounted for approximately 
+                        <span class="text-lg font-bold text-orange-500">$3.27 million</span> in losses, representing 
+                        <span class="text-lg font-bold text-orange-500">more than 90%</span> of the total amount lost on social media scams with young adults.
+                    </p>
+                </div>
+
+                <!-- 3rd Card -->
+                <div class="carousel-item bar-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                    <p class="text-lg text-gray-600 text-center">
+                        Among these years, <span class="text-lg font-bold">investment scams</span> have the highest financial impact, making up 
+                        <span class="text-lg font-bold text-orange-500">50%</span> of the total losses.
+                        <span class="text-lg font-bold">Dating and romance scams</span> account for around <span class="text-lg font-bold text-orange-500">17%</span>.
+                    </p>
+                </div>
+
+                <!-- 4th Card -->
+                <div class="carousel-item bar-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                    <p class="text-lg text-gray-600 text-center">
+                        No matter which type of scam you are facing, the potential loss can accumulate into a vast amount and continuously influence our daily lives.
+                    </p>
+                </div>
             </div>
-            <div class="w-full md:w-1/2">
-                <p class="px-4 md:px-0">
-                    While the top 5 most frequent scams align with the top 5 scams causing the most financial loss, their patterns have some differences.<br><br>
-                    In 2024, the top 5 scams alone accounted for approximately AUD 3,003,916 in losses, representing about 94.74% of the total amount lost on social media scams with young adults. Among these years, investment scams have the highest financial impact, making up 50.4% of the total losses, followed by dating and romance scams, which account for around 17.4%.<br><br>
-                    The different patterns from the number of reports and money loss indicate that no matter which type of scam you are facing, the potential loss can accumulate into a vast amount and continuously influence our daily lives.<br><br>
-                </p>
-            </div>
+
+            <!-- Add button for carousel -->
+            <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="bar-prev"> < </button>
+            <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded" id="bar-next"> > </button>
         </div>
     </section>
 
+    <!-- For Epic 6 -->
     <!-- User Input Section for AI model-->
     <section id="user-input-section" class="text-center w-full p-8 bg-gray-50 rounded-lg mt-12">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
