@@ -62,10 +62,7 @@ const navItems = [
         ],
     },
     {
-        trigger: 'About',
-        links: [
-            { href: '/about', text: 'About' },
-            { href: '/contact', text: 'Contact' },
-        ],
+        trigger: '',
+        link: { href: '/ai/detect-scams', text: 'Detect Scam' },
     },
 ]

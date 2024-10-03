@@ -239,11 +239,15 @@ const NavBar: React.FC = () => {
                                     </NavigationMenuContent>
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
-                                    <Link href="/about" legacyBehavior passHref>
+                                    <Link
+                                        href="/ai/detect-scams"
+                                        legacyBehavior
+                                        passHref
+                                    >
                                         <NavigationMenuLink
                                             className={navigationMenuTriggerStyle()}
                                         >
-                                            About Us
+                                            Detect Scam
                                         </NavigationMenuLink>
                                     </Link>
                                 </NavigationMenuItem>

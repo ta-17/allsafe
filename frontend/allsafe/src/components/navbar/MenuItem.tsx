@@ -46,32 +46,47 @@ export const MenuItem = ({
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
         >
-            <Accordion type="single" collapsible className="w-full" key={index}>
-                <AccordionItem value={`item-${index}`} className="w-full">
-                    <AccordionTrigger>{item.trigger}</AccordionTrigger>
-                    {item.links.map(
-                        (
-                            link: {
-                                href: string
-                                text: string
-                            },
-                            linkIndex: number
-                        ) => (
-                            <AccordionContent
-                                key={linkIndex}
-                                onClick={() => toggle()}
-                            >
-                                <Link
-                                    href={link.href}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            {item.trigger !== '' ? (
+                <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full"
+                    key={index}
+                >
+                    <AccordionItem value={`item-${index}`} className="w-full">
+                        <AccordionTrigger>{item.trigger}</AccordionTrigger>
+                        {item.links.map(
+                            (
+                                link: {
+                                    href: string
+                                    text: string
+                                },
+                                linkIndex: number
+                            ) => (
+                                <AccordionContent
+                                    key={linkIndex}
+                                    onClick={() => toggle()}
                                 >
-                                    {link.text}
-                                </Link>
-                            </AccordionContent>
-                        )
-                    )}
-                </AccordionItem>
-            </Accordion>
+                                    <Link
+                                        href={link.href}
+                                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                                    >
+                                        {link.text}
+                                    </Link>
+                                </AccordionContent>
+                            )
+                        )}
+                    </AccordionItem>
+                </Accordion>
+            ) : (
+                <Link
+                    href={item.link.href}
+                    className="block py-2 rounded-md text-base font-medium"
+                    onClick={() => toggle()}
+                >
+                    {item.link.text}
+                </Link>
+            )}
         </motion.li>
     )
 }
