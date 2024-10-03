@@ -35,6 +35,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
             height: containerHeight > 400 ? containerHeight : 400 // Minimum height
         };
     }
+    
 
     let { width, height } = getDimensions();
 
@@ -104,10 +105,11 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
     const arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
-        .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+        .padAngle(0.01)  // Increase padding between sectors
         .padRadius(radius * 1.5)
         .innerRadius(d => d.y0 * radius)
         .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1));
+
 
     // Create the SVG container.
     const svg = d3.select(`#${containerId}`).append("svg")
@@ -164,7 +166,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
         .style("cursor", "pointer")
         .on("click", clicked);
 
-    const label = svg.append("g")
+        const label = svg.append("g")
         .attr("pointer-events", "none")
         .attr("text-anchor", "middle")
         .style("user-select", "none")
@@ -174,6 +176,10 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
         .attr("dy", "0.35em")
         .attr("fill-opacity", d => +labelVisible(d.current))
         .attr("transform", d => labelTransform(d.current))
+        .attr("font-size", d => {
+            const sectorWidth = (d.x1 - d.x0) * radius;  // Calculate the width of the sector
+            return sectorWidth < 50 ? "8px" : "10px";  // Adjust font size based on sector width
+        })
         .text(d => d.data.name);
     
     // Add the text wrapping after label creation
@@ -181,6 +187,10 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
 
     // Function to wrap text inside the arcs
     function wrapText(text, radius) {
+
+        const containerWidth = container.getBoundingClientRect().width;
+        const responsiveScaleFactor = containerWidth / 1200; // Assume 1200px as the base design size
+
         text.each(function() {
             const text = d3.select(this),
                   words = text.text().split(/\s+/).reverse(),
@@ -218,6 +228,20 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
         });
     }
 
+    // Listen for window resize events and adjust font size and layout accordingly
+    window.addEventListener("resize", function() {
+        const containerWidth = container.getBoundingClientRect().width;  // Get the current container width
+
+        // Adjust font size and radius based on the container width (for responsiveness)
+        if (containerWidth < 400) {  // For mobile screens
+            label.attr("font-size", "8px");  // Reduce font size
+            label.call(wrapText, radius * 0.8);  // Reduce radius for better fit
+        } else {
+            label.attr("font-size", "10px");  // Default font size for larger screens
+            label.call(wrapText, radius);  // Normal radius for larger screens
+        }
+    });
+    
     // Add hover effect for the parent circle (center of the chart)
     const parent = svg.append("circle")
     .datum(root)
@@ -352,8 +376,14 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
     }
 
     function labelTransform(d) {
-        const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
+        const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;  // Center the text in the sector
         const y = (d.y0 + d.y1) / 2 * radius;
-        return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
+    
+        // Detect narrow sectors and adjust position slightly to center text better
+        const sectorWidth = d.x1 - d.x0;
+        const offset = sectorWidth < 0.15 ? 5 : 0;  // Adjust for narrow sectors (adjust the threshold as needed)
+    
+        return `rotate(${x - 90 + offset}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
     }
+    
 }

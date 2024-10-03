@@ -7,9 +7,17 @@ import { createModelBarChart } from "./js/ModelbarChart.js";
 // let selectedLevel2Category = null;
 
 let originalData; // Store the original dataset globally for filtering
+let wordFrequencyDict = {}
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Historical Scam Information Page Loaded");
+
+    // Load word percentage JSON data
+    d3.json('word_percentage.json').then(data => {
+        console.log('Word Frequency Data Loaded:', data);
+
+        wordFrequencyDict = data;  // Store the word frequency dictionary
+    });
 
     // Load the dataset
     d3.csv("historical_scam.csv").then(data => {
@@ -39,6 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Regenerate the graphs when resizing the window        
         window.addEventListener("resize", () => renderCharts(originalData));
+
+        // Initialize the carousel
+        initCarousel('.line-carousel-item', 'line-prev', 'line-next');
+        initCarousel('.wordCloud-carousel-item', 'wordCloud-prev', 'wordCloud-next');
+        initCarousel('.sunburst-carousel-item', 'sunburst-prev', 'sunburst-next');
+        initCarousel('.bar-carousel-item', 'bar-prev', 'bar-next');
+
     }).catch(error => {
         console.error('Error loading or parsing data:', error);
     });
@@ -47,11 +62,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("scam-input-form").addEventListener("submit", function(event) {
         event.preventDefault();
 
+        if (Object.keys(wordFrequencyDict).length === 0) {
+            console.error('Word Frequency Dictionary is not yet loaded');
+            return;
+        }
+
         // Get the input value
         const scamExperience = document.getElementById('scam-experience').value;
 
         // Process the input (this function would split and count word frequency)
-        const wordFrequency = calculateWordFrequency(scamExperience);
+        const wordFrequency = calculateWordFrequency(scamExperience, wordFrequencyDict);  // Pass wordFrequencyDict
+
+        // Log the word frequency to ensure it's correct
+        console.log('Word Frequency Data:', wordFrequency);
 
         // Clear the existing model bar chart if necessary
         d3.select("#model-bar-chart").selectAll("*").remove();
@@ -59,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Render the new bar chart based on the input
         createModelBarChart(wordFrequency, 'model-bar-chart');
     });
+
 });
 
 // Function to update only Sunburst and Bar Charts with filtered data
@@ -86,21 +110,49 @@ function renderCharts(data) {
     createBarChart(data, "bar-chart");
 }
 
-// Function to calculate word frenquency
-function calculateWordFrequency(input) {
-    const words = input.split(/\s+/); // Split input into words
-    const frequency = {};
+// Function to initialize a specific carousel
+function initCarousel(carouselSelector, prevButtonId, nextButtonId) {
+    const items = document.querySelectorAll(carouselSelector);
+    let currentIndex = 0;
 
+    function showItem(index) {
+        items.forEach((item, i) => {
+            item.classList.toggle('hidden', i !== index); // Show only the current card
+        });
+    }
+
+    document.getElementById(nextButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length; // Move to next item
+        showItem(currentIndex);
+    });
+
+    document.getElementById(prevButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length; // Move to previous item
+        showItem(currentIndex);
+    });
+
+    // Initial with the first card
+    showItem(currentIndex);
+}
+
+// Function to calculate word frequency from user input and match against the word frequency dictionary
+function calculateWordFrequency(input, wordFrequencyDict) {
+    const words = input.split(/\s+/);  // Tokenize input by splitting on spaces
+    const matchedWords = {};
+
+    // Check each word if it exists in the pre-existing word frequency dictionary
     words.forEach(word => {
-        const sanitizedWord = word.toLowerCase(); // Convert to lowercase for consistency
-        if (sanitizedWord) {
-            frequency[sanitizedWord] = (frequency[sanitizedWord] || 0) + 1;
+        const sanitizedWord = word.toLowerCase().replace(/[^\w]/g, '');  // Sanitize word
+        if (sanitizedWord && wordFrequencyDict[sanitizedWord]) {
+            matchedWords[sanitizedWord] = (matchedWords[sanitizedWord] || 0) + 1;
         }
     });
 
-    return Object.keys(frequency).map(word => ({
+    // Return array of matched words with their frequencies and percentages
+    return Object.keys(matchedWords).map(word => ({
         word: word,
-        count: frequency[word]
+        frequency: wordFrequencyDict[word]  // Use the percentage from the original dictionary
     }));
 }
+
 
