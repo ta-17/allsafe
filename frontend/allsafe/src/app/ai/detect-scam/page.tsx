@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/table'
 import { TypographyH3 } from '@/typography/h3'
 import { detectScam } from '@/actions/detect-scam'
-import { AlertCircle, ChevronDown, ChevronUp } from 'lucide-react'
+import { AlertCircle, Check, ChevronDown, ChevronUp, X } from 'lucide-react'
 import { cn } from '@/libs/utils'
 import Link from 'next/link'
 
@@ -54,6 +54,12 @@ export default function ScamDetect() {
         } finally {
             setLoading(false)
         }
+    }
+
+    const percent = () => {
+        if (!result) return 0
+        const float = parseFloat(result.probability.toFixed(4))
+        return (float * 100).toFixed(2)
     }
 
     return (
@@ -109,7 +115,14 @@ export default function ScamDetect() {
                         className="flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl"
                     >
                         <TypographyH3 className="">Result</TypographyH3>
-                        <TypographyH1
+                        <div>
+                            {result.label === 'spam' ? (
+                                <X className="text-red-500 w-56 h-56" />
+                            ) : (
+                                <Check className="text-green-400 w-56 h-56" />
+                            )}
+                        </div>
+                        {/* <TypographyH1
                             className={cn(
                                 'text-muted-foreground',
                                 result.label === 'spam'
@@ -118,12 +131,12 @@ export default function ScamDetect() {
                             )}
                         >
                             {result.label.toUpperCase()}
-                        </TypographyH1>
+                            <Check className="text-green-400 w-full" />
+                        </TypographyH1> */}
                         <TypographyH3 className="">
-                            The likelihood of the message being a scam is{' '}
-                            <strong>
-                                {parseFloat(result.probability) * 100}%
-                            </strong>
+                            The likelihood of the message being{' '}
+                            {result.label === 'spam' ? 'a scam' : 'not a scam'}{' '}
+                            is <strong>{percent()}%</strong>
                         </TypographyH3>
                         <Button
                             variant="ghost"

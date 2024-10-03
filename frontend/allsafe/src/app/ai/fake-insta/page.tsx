@@ -4,22 +4,30 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { z } from 'zod'
 
 // import sharp from 'sharp'
 
 export default function FakeInstaDetect() {
     const [file, setFile] = useState<File | null>()
 
-    const submit = () => {
+    const submit = async () => {
         console.log('file ', file)
         if (file === null) return
+
+        console.log('file ', file)
+        // await asyncDetectFakeInstaAccount(file)
+
         // const file_sharp = sharp(file)
         // console.log('to sharp ', file_sharp)
     }
+
+    const formSchema = z.object({
+        username: z.string().min(2).max(50),
+    })
 
     return (
         <div className="flex flex-col gap-y-8">
