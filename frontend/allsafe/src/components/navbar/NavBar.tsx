@@ -28,7 +28,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from '../ui/accordion'
-import { useDimensions } from '@/libs/use-dimensions'
 
 // const components: { title: string; href: string; description: string }[] = [
 //     {
@@ -129,8 +128,6 @@ const sidebar = {
 const NavBar: React.FC = () => {
     // const [isOpen, setIsOpen] = React.useState(false)
     const [isOpen, toggleOpen] = useCycle(false, true)
-    const containerRef = useRef(null)
-    const { height } = useDimensions(containerRef)
 
     // const toggleMenu = () => {
     //     setIsOpen(!isOpen)
@@ -262,8 +259,6 @@ const NavBar: React.FC = () => {
             <motion.nav
                 initial={false}
                 animate={isOpen ? 'open' : 'closed'}
-                custom={height}
-                ref={containerRef}
                 className="flex flex-col w-full h-full sm:hidden items-start" // Use flex layout
             >
                 <motion.div
