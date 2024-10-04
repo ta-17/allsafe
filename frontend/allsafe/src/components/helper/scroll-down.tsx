@@ -17,7 +17,7 @@ export default function ScrollDown() {
     const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>()
 
     const handleScroll = () => {
-        const isScrolled = window.scrollY < window.innerHeight
+        const isScrolled = window.scrollY < window.innerHeight / 2
         if (isScrolled !== scrolled) {
             setScrolled(isScrolled)
         }

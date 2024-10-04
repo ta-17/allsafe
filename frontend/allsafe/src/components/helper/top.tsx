@@ -8,7 +8,7 @@ export default function Top() {
     const [scrolled, setScrolled] = useState(false)
 
     const handleScroll = () => {
-        const isScrolled = window.scrollY > window.innerHeight
+        const isScrolled = window.scrollY > window.screen.height / 2
         if (isScrolled !== scrolled) {
             setScrolled(isScrolled)
         }
@@ -26,7 +26,7 @@ export default function Top() {
         <>
             {scrolled && (
                 <Button
-                    className="fixed bottom-8 right-8"
+                    className="fixed bottom-6 right-6"
                     variant="outline"
                     size="icon"
                     onClick={scrollToTop}
