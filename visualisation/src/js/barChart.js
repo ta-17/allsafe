@@ -1,3 +1,4 @@
+// Create bar chart
 export function createBarChart(data, containerId) {
     console.log("Filtered data passed to Bar Chart:", data);  // Log the filtered data
 
@@ -13,10 +14,7 @@ export function createBarChart(data, containerId) {
         return;
     }
 
-    const flattenedData = flattenData(data);
-    console.log("Flattened data for Bar Chart:", flattenedData);  // Log the flattened data
-    
-    // set up dimensions and margins of the graph
+    // Set up container and dimensions of the graph
     const container = document.getElementById(containerId);
     
     function getDimensions() {
@@ -27,70 +25,84 @@ export function createBarChart(data, containerId) {
         };
     }
 
+    // Get dimension
     let { width, height } = getDimensions();
+
+    // Set up margin
     const margin = { top: 30, right: 50, bottom: 150, left: 80 }
 
-    // flatten data by year and category_level2
+    // Flatten data by year and category_level2
     function flattenData(data) {
         const grouped = d3.group(data, d => d.category_level2, d => d.category_level3);
         const flattened = [];
 
         for (const [level2, level3Map] of grouped) {
-            if (level2 === "Unexpected money" || level2 === "Threats and extortion") continue;
-
+            // Calculate total amount and report number
             let totalAmountForLevel2 = 0;
+            let totalReportNumber = 0;
             const level3Data = [];
 
+            // Iterate for calculation
             for (const [level3, values] of level3Map) {
                 const amount = d3.sum(values, d => d.amount);
                 totalAmountForLevel2 += amount;
+                const report = d3.sum(values, d => d.no_of_reports);
+                totalReportNumber += report;
                 level3Data.push({ category_level3: level3, amount });
             }
 
+            // Push the data to the list
             flattened.push({
                 category_level2: level2,
                 totalAmount: totalAmountForLevel2,
+                totalReport: totalReportNumber,
                 level3Data
             });
         }
 
-        const sortedData = flattened.sort((a, b) => b.totalAmount - a.totalAmount);
+        // Sort data by total report number for color mapping wiht sunburst
+        const sortedData = flattened.filter((d) => d.category_level2 !== "Other") 
+                                    .sort((a, b) => b.totalReport - a.totalReport);
 
-        if (!sortedData.some(d => d.category_level2 === 'Attempts to gain your personal information')) {
-            const attemptsData = flattened.find(d => d.category_level2 === 'Attempts to gain your personal information');
-            if (attemptsData) sortedData.push(attemptsData);
-        }
-
+        // Return data with choosing top 5 scams
         return sortedData.slice(0, 5);
     }
 
+    // Get data
     const allYearData = flattenData(data);
+    console.log("Flattened data for Bar Chart:", allYearData);  // Log the data
 
+    // Set x scale
     const x = d3.scaleBand()
         .domain(allYearData.map(d => d.category_level2))
         .range([margin.left, width - margin.right]) 
         .padding(0.2);
 
+    // Set x scale
     const y = d3.scaleLinear()
                 .domain([0, d3.max(allYearData, d => d.totalAmount)])
                 .nice()
                 .range([height - margin.bottom, margin.top]); 
 
-    const scamTypes = Array.from(new Set(allYearData.map(d => d.category_level2)));
+    // Get scam types
+    const scamTypes = allYearData.map(d => d.category_level2);
+    // console.log(scamTypes);
 
-    // set color scale
-    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length));
+    // Set color scale
+    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, scamTypes.length + 1));
 
+    // Create SVG
     const svg = d3.select(`#${containerId}`).append("svg")
                     .attr("width", "100%")
                     .attr("height", "100%")
                     .attr("viewBox", `0 0 ${width} ${height}`);
 
-
+    // Create x-axis
     const xAxisGroup = svg.append("g")
         .attr("transform", `translate(0, ${height - margin.bottom})`)
         .call(d3.axisBottom(x).tickSizeOuter(0));
-
+    
+    // Adjust x-axis texts
     xAxisGroup.selectAll("text")
         .style("font-size", "14px")
         .attr("transform", "rotate(-18)")
@@ -98,6 +110,7 @@ export function createBarChart(data, containerId) {
         .attr("dx", "-0.5em") 
         .attr("dy", "0.5em"); 
 
+    // Add x-axis label
     const xAxisLabel = xAxisGroup.append("text")
         .attr("class", "axis-label")
         .attr("x", width - margin.right)
@@ -109,18 +122,21 @@ export function createBarChart(data, containerId) {
         .text("Scam Type");
 
 
-    // function for update x-label
+    // Function for update x-label
     function updateXAxisLabel() {
         xAxisLabel.attr("x", width - margin.right) 
                 .attr("y", 25);}
 
+    // Create y-axis
     const yAxisGroup = svg.append("g")
                             .attr("transform", `translate(${margin.left},0)`)
                             .call(d3.axisLeft(y));
 
+    // Adjust y-axis texts
     yAxisGroup.selectAll("text")
                 .style("font-size", "14px");
 
+    // Add y-axis labels
     yAxisGroup.append("text")
         .attr("x", -margin.left) 
         .attr("y", 15) 
@@ -129,16 +145,6 @@ export function createBarChart(data, containerId) {
         .style("font-size", "14px")
         .style("font-weight", "bold")
         .text("↑ Amount (AUD)"); 
-
-    // svg.append("g")
-    //     .attr("transform", `translate(${margin.left}, ${margin.top})`)
-    //     .call(d3.axisLeft(y))
-    //     .append("text")
-    //     .attr("x", -margin.left + 5)
-    //     .attr("y", -20)
-    //     .attr("fill", "currentColor")
-    //     .attr("text-anchor", "start")
-    //     .text("↑ Amount (AUD)");
 
     // Create a tooltip
     const tooltip = d3.select("#tooltip-bar")
@@ -168,7 +174,7 @@ export function createBarChart(data, containerId) {
         .attr("width", x.bandwidth())
         .attr("height", d => height - margin.bottom - y(d.totalAmount))
         .attr("fill", d => color(d.category_level2))
-        .style("opacity", 0.7)  // Set initial opacity for all bars
+        .style("opacity", 0.6)  // Set initial opacity for all bars
         // Set mouse events
         .on("mouseover", function(event, d) {
             if (selectedBar !== this) {  // Only apply hover effect if this bar is not selected
@@ -236,7 +242,7 @@ export function createBarChart(data, containerId) {
         });                   
                             
         
-    // event listener for the click event from the sunburst chart
+    // Event listener for the click event from the sunburst chart
     window.addEventListener('sunburstClick', function(event) {
         const { level2Id } = event.detail;
         console.log('Bar Chart Received Sunburst Click Event, level2Id:', level2Id);  // Log the received event

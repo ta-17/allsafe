@@ -51,8 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Initialize the carousel
         initCarousel('.line-carousel-item', 'line-prev', 'line-next');
         initCarousel('.wordCloud-carousel-item', 'wordCloud-prev', 'wordCloud-next');
-        initCarousel('.sunburst-carousel-item', 'sunburst-prev', 'sunburst-next');
-        initCarousel('.bar-carousel-item', 'bar-prev', 'bar-next');
+        initCarousel('.top5-carousel-item', 'top5-prev', 'top5-next');
 
     }).catch(error => {
         console.error('Error loading or parsing data:', error);

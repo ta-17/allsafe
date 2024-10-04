@@ -25,7 +25,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
                         .style("box-shadow", "0 0 5px rgba(0,0,0,0.2)");
     
 
-    // Get the container where the chart will be rendered
+    // Set up container and dimensions of the graph
     const container = document.getElementById(containerId);
     
     function getDimensions() {
@@ -36,11 +36,12 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
         };
     }
     
-
+    // Get dimension
     let { width, height } = getDimensions();
 
     const radius = Math.min(width, height) / 6;
 
+    // Get the Data
     // Get the Data
     // Step 1: Group the data by category_level2 and sum up the values
     const level2Totals = Array.from(d3.rollup(data, 
@@ -68,9 +69,10 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
         key,
         values: Array.from(value, ([subKey, subValue]) => ({
             key: subKey,
-            value: subValue.length
+            report: d3.sum(subValue, d => d.no_of_reports)
         }))
     }));
+    
     console.log("Grouped Data for Top 5:", groupedData);
 
     // Step 5: Convert the grouped data into a hierarchical structure
@@ -80,7 +82,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
             name: level2.key,  // Level 2 category
             children: level2.values.map(level3 => ({
                 name: level3.key,  // Level 3 category
-                value: level3.value  // Count of occurrences
+                value: level3.report  // Count of occurrences
             }))
         }))
     };
@@ -90,7 +92,8 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
     //--------------------------------------- END OF DATA ---------------------------------------
     
     // Create the color scale.
-    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, hierarchicalData.children.length + 1));
+    // Create the color scale.
+    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, topLevel2Categories.length + 1)); // 使用 topLevel2Categories.length
 
     // Compute the layout.
     const hierarchy = d3.hierarchy(hierarchicalData)
