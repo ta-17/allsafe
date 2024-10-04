@@ -20,6 +20,8 @@ import AnimatedGridPattern from '../magicui/animated-grid-pattern'
 import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import { Input } from '../ui/input'
+import { ArrowDown, Search } from 'lucide-react'
 
 const Hero = () => {
     const ref = useRef(null)
@@ -33,13 +35,6 @@ const Hero = () => {
         <div ref={ref}>
             <Section className="md:mb-60">
                 <Container className="flex flex-col justify-center items-center text-center">
-                    {/* <Image
-          src={Logo}
-          width={172}
-          height={72}
-          alt="Company Logo"
-          className="not-prose mb-6 dark:invert md:mb-8"
-        /> */}
                     <TypographyH2 className="mb-6 dark:invert md:mb-8">
                         <Balancer>AllSafe</Balancer>
                     </TypographyH2>
@@ -53,16 +48,20 @@ const Hero = () => {
                             scams and other online threats.
                         </Balancer>
                     </TypographyLead>
-                    {/* <div className="not-prose mt-6 flex gap-2 md:mt-12">
-          <Button asChild>
-            <Link href="/">
-              Get Started
-            </Link>
-          </Button>
-          <Button variant={"ghost"} asChild>
-            <Link href="/posts">Learn More -{">"}</Link>
-          </Button>
-        </div> */}
+                    <div className="bg-white mt-6 flex gap-2 md:mt-12 w-1/2">
+                        <Input className="flex justify-between"></Input>
+                        <Button size="icon">
+                            <Search />
+                        </Button>
+                    </div>
+                    <div className="not-prose mt-6 flex gap-2 md:mt-12">
+                        <Button asChild>
+                            <Link href="/">Get Started</Link>
+                        </Button>
+                        <Button variant={'ghost'} asChild>
+                            <Link href="/posts">Learn More -{'>'}</Link>
+                        </Button>
+                    </div>
                 </Container>
                 <AnimatedGridPattern
                     numSquares={30}

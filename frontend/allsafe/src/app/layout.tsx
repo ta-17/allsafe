@@ -1,20 +1,15 @@
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import './style.css'
 import NavBar from '@/components/navbar/NavBar'
-import Footer from '@/components/footer/footer-four'
 import Top from '@/components/helper/top'
 import { cn } from '@/libs/utils'
-import { usePathname } from 'next/navigation'
 import FooterWrapper from '@/components/footer/footer-wrapper'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
-import GoBack from '@/components/helper/go-back'
-import Mute from '@/components/helper/mute'
 import Script from 'next/script'
 
-import { ReactLenis, useLenis } from 'lenis/react'
+import ScrollDown from '@/components/helper/scroll-down'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -52,6 +47,7 @@ export default function RootLayout({
                     <Analytics />
                 </main>
                 <FooterWrapper />
+                <ScrollDown />
                 <Top />
             </body>
         </html>
