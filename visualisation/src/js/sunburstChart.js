@@ -93,7 +93,7 @@ export function createSunburstChart(data, containerId, selectedLevel2Category) {
     
     // Create the color scale.
     // Create the color scale.
-    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, topLevel2Categories.length + 1)); // 使用 topLevel2Categories.length
+    const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, topLevel2Categories.length + 1)); // Use topLevel2Categories.length
 
     // Compute the layout.
     const hierarchy = d3.hierarchy(hierarchicalData)

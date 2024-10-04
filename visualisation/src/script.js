@@ -153,5 +153,3 @@ function calculateWordFrequency(input, wordFrequencyDict) {
         frequency: wordFrequencyDict[word]  // Use the percentage from the original dictionary
     }));
 }
-
-
