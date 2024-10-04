@@ -12,6 +12,7 @@ export default function ScrollDown() {
 
     const pathname = usePathname()
     const isGamePage = pathname === '/game'
+    const isHomePage = pathname === '/'
 
     const [scrolled, setScrolled] = useState(true)
     const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>()
@@ -36,17 +37,21 @@ export default function ScrollDown() {
     }
 
     return (
-        <div ref={ref} className="flex fixed bottom-0 pb-6 w-full">
-            {scrolled && (
-                <Button
-                    size="icon"
-                    variant="secondary"
-                    className="animate-bounce p-2 bottom-8 m-auto w-12 h-12 rounded-full"
-                    onClick={() => scrollToDown()}
-                >
-                    <ArrowDown />
-                </Button>
+        <>
+            {isHomePage && (
+                <div ref={ref} className="flex fixed bottom-0 pb-6 w-full">
+                    {scrolled && (
+                        <Button
+                            size="icon"
+                            variant="secondary"
+                            className="animate-bounce p-2 bottom-8 m-auto w-12 h-12 rounded-full"
+                            onClick={() => scrollToDown()}
+                        >
+                            <ArrowDown />
+                        </Button>
+                    )}
+                </div>
             )}
-        </div>
+        </>
     )
 }
