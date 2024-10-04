@@ -116,26 +116,15 @@ export default function ScamDetect() {
                     >
                         <TypographyH3 className="">Result</TypographyH3>
                         <div>
-                            {result.label === 'spam' ? (
+                            {result.label === 'scam' ? (
                                 <X className="text-red-500 w-56 h-56" />
                             ) : (
                                 <Check className="text-green-400 w-56 h-56" />
                             )}
                         </div>
-                        {/* <TypographyH1
-                            className={cn(
-                                'text-muted-foreground',
-                                result.label === 'spam'
-                                    ? 'text-red-500'
-                                    : 'text-green-500'
-                            )}
-                        >
-                            {result.label.toUpperCase()}
-                            <Check className="text-green-400 w-full" />
-                        </TypographyH1> */}
                         <TypographyH3 className="">
                             The likelihood of the message being{' '}
-                            {result.label === 'spam' ? 'a scam' : 'not a scam'}{' '}
+                            {result.label === 'scam' ? 'a scam' : 'not a scam'}{' '}
                             is <strong>{percent()}%</strong>
                         </TypographyH3>
                         <Button
