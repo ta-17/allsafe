@@ -101,8 +101,8 @@ def predict_xgboost(input_data, model, min_vals, max_vals, feature_columns):
     # Convert numpy types to Python native types for JSON serialization
     results = []
     for pred in predictions:
-        label = int(pred > 0.5)  # Convert to Python int
-        confidence = float(round(pred if label == 1 else (1 - pred), 4))  # Convert to Python float
+        label = "Fake" if pred > 0.5 else "Normal"  # Label as "Fake" or "Normal"
+        confidence = round(pred if label == "Fake" else (1 - pred), 4)  # Round confidence to 4 decimal places
         results.append({"label": label, "confidence": confidence})
 
     return results
