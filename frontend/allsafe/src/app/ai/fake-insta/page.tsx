@@ -1,163 +1,197 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+} from '@/components/ui/form'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
-import { Checkbox } from '@/components/ui/checkbox'
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { date, z } from 'zod'
-import { CloudUpload, Dot, File, Image, ImagePlus, X } from 'lucide-react'
+import { Dot, Image, ImagePlus, X } from 'lucide-react'
 import { detectFakeInstaAccount } from '@/actions/detect-fake-insta'
 
-// import sharp from 'sharp'
+const formSchema = z.object({
+    profileImage: z.any().optional(),
+    isProfilePic: z.boolean().default(false),
+    isPrivate: z.boolean().default(false),
+})
 
 export default function FakeInstaDetect() {
-    const [file, setFile] = useState<File | null>()
-    const [isPrivate, setIsPrivate] = useState(false)
-    const [isProfilePic, setIsProfilePic] = useState(false)
-    const [loading, onLoading] = useState(false)
-    const [result, setResult] = useState<any | null>(null)
-    const [error, setError] = useState<string | null>(null)
+    const [file, setFile] = useState<File | null>(null)
 
-    const submit = async () => {
-        console.log('file ', file)
-        if (file === null) return
-
-        console.log('file ', file)
-        // await asyncDetectFakeInstaAccount(file)
-        await detectFakeInstaAccount('string')
-
-        // const file_sharp = sharp(file)
-        // console.log('to sharp ', file_sharp)
-    }
-
-    const formSchema = z.object({
-        username: z.string().min(2).max(50),
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            isProfilePic: false,
+            isPrivate: false,
+        },
     })
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        // Here you would typically send the form data to your server
+        console.log(values)
+
+        // Example of how you might call your detection function
+        // Note: You'll need to adjust this based on how detectFakeInstaAccount is implemented
+        if (file) {
+            try {
+                const result = await detectFakeInstaAccount({
+                    file,
+                    isProfilePic: values.isProfilePic,
+                    isPrivate: values.isPrivate,
+                })
+                console.log(result)
+                // Handle the result (e.g., update state to show the result to the user)
+            } catch (error) {
+                console.error('Error detecting fake account:', error)
+                // Handle the error (e.g., show an error message to the user)
+            }
+        }
+    }
 
     return (
         <div className="flex flex-col gap-y-8">
-            <div className="flex flex-col gap-y-4">
-                <TypographyH1>
-                    Identify if that Instagram account is fake.
-                </TypographyH1>
-                <TypographyLead>
-                    Upload a screenshot of the profile (preferably mobile).
-                </TypographyLead>
-                <div className="flex flex-col w-full gap-y-8">
-                    <div className="flex flex-col justify-center items-center w-full bordered border-dashed border-2 rounded-md gap-y-6 px-4 py-12">
-                        {/* Upload Image  */}
-                        <div>
-                            <ImagePlus
-                                className="w-32 h-32"
-                                strokeWidth={1}
-                                strokeOpacity={0.8}
-                            />
-                        </div>
-                        <div className="flex items-center text-muted-foreground gap-x-1">
-                            <div className="text-lg">
-                                <Label
-                                    htmlFor="profile_pic"
-                                    className="text-lg underline"
-                                >
-                                    Click to upload
-                                </Label>
-                                <input
-                                    type="file"
-                                    id="profile_pic"
-                                    name="profile_pic"
-                                    accept="image/*"
-                                    onChange={(e) => {
-                                        if (e.target.files !== null)
-                                            setFile(e.target.files[0])
-                                    }}
-                                    hidden
+            <TypographyH1>
+                Identify if that Instagram account is fake.
+            </TypographyH1>
+            <TypographyLead>
+                Upload a screenshot of the profile (preferably mobile).
+            </TypographyLead>
+
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-col space-y-8 justify-end"
+                >
+                    <div className="flex flex-col justify-center w-full gap-y-8">
+                        <div className="flex flex-col justify-center items-center w-full bordered border-dashed border-2 rounded-md gap-y-6 px-4 py-12">
+                            <div>
+                                <ImagePlus
+                                    className="w-32 h-32"
+                                    strokeWidth={1}
+                                    strokeOpacity={0.8}
                                 />
                             </div>
-                            <p> or drag and drop here.</p>
+                            <div className="flex items-center text-muted-foreground gap-x-1">
+                                <div className="text-lg">
+                                    <label
+                                        htmlFor="profile_pic"
+                                        className="text-lg underline cursor-pointer"
+                                    >
+                                        Click to upload
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="profile_pic"
+                                        name="profile_pic"
+                                        accept="image/*"
+                                        onChange={(e) => {
+                                            const selectedFile =
+                                                e.target.files?.[0]
+                                            if (selectedFile) {
+                                                setFile(selectedFile)
+                                                form.setValue(
+                                                    'profileImage',
+                                                    selectedFile
+                                                )
+                                            }
+                                        }}
+                                        hidden
+                                    />
+                                </div>
+                                <p> or drag and drop here.</p>
+                            </div>
+                            <span className="text-muted-foreground">
+                                Maximum file size: 5MB
+                            </span>
                         </div>
-                        <span className="text-muted-foreground">
-                            Maximum file size: 5MB
-                        </span>
-                    </div>
-                    {file !== null && file !== undefined && (
-                        <div className="flex justify-between gap-x-6 w-full bordered border-2 rounded-md px-2 py-4">
-                            {/* File upload */}
-                            <div className="flex gap-x-6 w-full ">
-                                <Image className="w-12 h-12" />
-                                <div className="flex flex-col">
-                                    <p className="text-lg">{file.name}</p>
-                                    <div className="flex items-center">
-                                        <p className="text-sm text-muted-foreground">
-                                            {Math.round(file.size / 1000)} MB
-                                        </p>
-                                        <Dot className="w-8" />
-                                        <p className="text-sm text-muted-foreground">
-                                            {file.type}
-                                        </p>
+
+                        {file && (
+                            <div className="flex self-center gap-x-6 w-11/12 bordered border rounded-md px-2 py-4">
+                                <div className="flex gap-x-6 w-full">
+                                    <Image className="w-12 h-12" />
+                                    <div className="flex flex-col">
+                                        <p className="text-lg">{file.name}</p>
+                                        <div className="flex items-center">
+                                            <p className="text-sm text-muted-foreground">
+                                                {Math.round(file.size / 1000)}{' '}
+                                                KB
+                                            </p>
+                                            <Dot className="w-8" />
+                                            <p className="text-sm text-muted-foreground">
+                                                {file.type}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setFile(null)}
-                            >
-                                <X className="w-4 h-4" />
-                            </Button>
-                        </div>
-                    )}
-                    <div className="flex  flex-col gap-y-6">
-                        <div className="flex justify-between items-center gap-y-2 w-1/3">
-                            <p className="text-lg">
-                                Is there a profile picture?
-                            </p>
-                            <div className="flex items-center gap-x-2 w-6">
-                                <Checkbox
-                                    id="terms"
-                                    checked={isProfilePic}
-                                    onCheckedChange={(checked) =>
-                                        setIsProfilePic(checked === true)
-                                    }
-                                />
-                                <label
-                                    htmlFor="terms"
-                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => {
+                                        setFile(null)
+                                        form.setValue('profileImage', undefined)
+                                    }}
                                 >
-                                    {isProfilePic ? 'Yes' : 'No'}
-                                </label>
+                                    <X className="w-4 h-4" />
+                                </Button>
                             </div>
-                        </div>
-                        <div className="flex justify-between items-center gap-y-2 w-1/3">
-                            <p className="text-lg">Is the account private</p>
-                            <div className="flex items-center gap-x-2 w-6">
-                                <Checkbox
-                                    id="terms"
-                                    checked={isPrivate}
-                                    onCheckedChange={(checked) =>
-                                        setIsPrivate(checked === true)
-                                    }
-                                />
-                                <label
-                                    htmlFor="terms"
-                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                >
-                                    {isPrivate ? 'Yes' : 'No'}
-                                </label>
-                            </div>
-                        </div>
+                        )}
+
+                        <FormField
+                            control={form.control}
+                            name="isProfilePic"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Is there a profile picture?
+                                        </FormLabel>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="isPrivate"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Is the account private?
+                                        </FormLabel>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
                     </div>
-                    <Button
-                        onClick={() => {
-                            submit()
-                        }}
-                    >
+
+                    <Button className="self-end" type="submit">
                         Submit
                     </Button>
-                </div>
-            </div>
+                </form>
+            </Form>
         </div>
     )
 }
