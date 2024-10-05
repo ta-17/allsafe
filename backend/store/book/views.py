@@ -15,6 +15,7 @@ import xgboost as xgb
 import re
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.db import connection
 
 def random_scam_sms(request):
     # # Get the total count of rows in the table
@@ -46,72 +47,69 @@ def all_historical_scam(request):
 
     return JsonResponse(data, safe=False)
 
+# Precompile the regular expressions for efficiency
+pattern_potential_url = re.compile(r'(https?://)?([\w\-]+\.)+[a-zA-Z]{2,}(/[^\s]*)?')
+pattern_phone = re.compile(r'(\+?\d{1,2}[\s-]?)?(\(?\d{3}\)?[\s-]?)?\d{3}[\s-]?\d{4}')
+pattern_email = re.compile(r'((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$')
+pattern_bsb = re.compile(r'^\d{6}$')
+pattern_account = re.compile(r'^\d{8}$')
+pattern_nonstandard_space = re.compile(r'[\u00A0\u200B]+')
+pattern_extra_spaces = re.compile(r'\s+')
+
 def text_analysis(text):
-    check_url = False
-    check_phone = False
-    check_email = False
-    bank_bsb = False
-    bank_account = False
-    check_bank = False
+    # Initialize flags
+    check_url = check_phone = check_email = bank_bsb = bank_account = check_bank = sus_url = False
 
-    # Replace non-standard spaces (like non-breaking spaces) and control characters with a regular space
-    text = re.sub(r'[\u00A0\u200B]+', ' ', text)
+    # Replace non-standard spaces and multiple spaces with a single space
+    text = pattern_extra_spaces.sub(' ', pattern_nonstandard_space.sub(' ', text))
 
-    # Replace multiple spaces with a single space
-    text = re.sub(r'\s+', ' ', text)
+    # Split and clean words from input text
+    cleaned_words = [re.sub(r'[.,!?;:]+$', '', word) for word in text.split(" ")]
 
-    # Split words by a space from input text
-    words = text.split(" ")
+    # Extract potential URLs from the input text
+    potential_urls = [word for word in cleaned_words if pattern_potential_url.match(word)]
 
-    # Remove punctuation function
-    def remove_punctuation(word):
-        return re.sub(r'[.,!?;:]+$', '', word)
+    # Optimize the SQL query for suspicious URLs directly using a single IN clause
+    if potential_urls:
+        placeholders = ', '.join(['%s'] * len(potential_urls))
+        query = f"SELECT COUNT(*) FROM scam_url WHERE label = 1 AND url IN ({placeholders})"
+        with connection.cursor() as cursor:
+            cursor.execute(query, potential_urls)  # Use parameterized queries for better performance and security
+            result = cursor.fetchone()
+            if result and result[0] > 0:
+                sus_url = True
 
-    # Get cleaned words
-    cleaned_words = [remove_punctuation(word) for word in words]
-
-    ## Set patterns for content checking
-    # Set improved URL pattern
-    pattern_potential_url = r'(https?://)?([\w\-]+\.)+[a-zA-Z]{2,}(/[^\s]*)?'
-
-    # Updated phone pattern to match various phone formats
-    pattern_phone = r'(\+?\d{1,2}[\s-]?)?(\(?\d{3}\)?[\s-]?)?\d{3}[\s-]?\d{4}'
-
-    # Set email pattern
-    pattern_email = r'((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$'
-
-    # Set bank account pattern
-    pattern_bsb = r'^\d{6}$'
-    pattern_account = r'^\d{8}$'
-
-    # Check each word with different patterns
+    # Check each word with different patterns in a single loop
     for word in cleaned_words:
-
         # 1. Check if potential web link exists
-        if re.match(pattern_potential_url, word):
+        if pattern_potential_url.match(word):
             check_url = True
 
         # 2. Check if potential phone number is valid
-        elif re.match(pattern_phone, word):
+        if pattern_phone.match(word):
             check_phone = True
 
         # 3. Check if potential email is valid
-        elif re.match(pattern_email, word):
+        if pattern_email.match(word):
             check_email = True
 
         # 4. Check if potential bank account exists
-        elif re.match(pattern_bsb, word): # BSB
+        if pattern_bsb.match(word):
             bank_bsb = True
-
-        elif re.match(pattern_account, word): # Bank Account
+        elif pattern_account.match(word):
             bank_account = True
 
-    # 4. Final check if a potential bank account exists or not
-    if bank_bsb and bank_account:
-        check_bank = True
+    # Final check if a potential bank account exists or not
+    check_bank = bank_bsb and bank_account
 
-    # 5. Prepare the result dictionary
-    result_dict = {'link': check_url, 'phone': check_phone, 'email': check_email, 'bank_account': check_bank}
+    # Prepare the result dictionary with the new sus_url flag
+    result_dict = {
+        'link': check_url,
+        'phone': check_phone,
+        'email': check_email,
+        'bank_account': check_bank,
+        'sus_url': sus_url  # New flag for suspicious URL
+    }
 
     return result_dict
 
