@@ -12,6 +12,7 @@ import json
 import pandas as pd
 import numpy as np
 import xgboost as xgb
+import re
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -45,6 +46,75 @@ def all_historical_scam(request):
 
     return JsonResponse(data, safe=False)
 
+def text_analysis(text):
+    check_url = False
+    check_phone = False
+    check_email = False
+    bank_bsb = False
+    bank_account = False
+    check_bank = False
+
+    # Replace non-standard spaces (like non-breaking spaces) and control characters with a regular space
+    text = re.sub(r'[\u00A0\u200B]+', ' ', text)
+
+    # Replace multiple spaces with a single space
+    text = re.sub(r'\s+', ' ', text)
+
+    # Split words by a space from input text
+    words = text.split(" ")
+
+    # Remove punctuation function
+    def remove_punctuation(word):
+        return re.sub(r'[.,!?;:]+$', '', word)
+
+    # Get cleaned words
+    cleaned_words = [remove_punctuation(word) for word in words]
+
+    ## Set patterns for content checking
+    # Set improved URL pattern
+    pattern_potential_url = r'(https?://)?([\w\-]+\.)+[a-zA-Z]{2,}(/[^\s]*)?'
+
+    # Updated phone pattern to match various phone formats
+    pattern_phone = r'(\+?\d{1,2}[\s-]?)?(\(?\d{3}\)?[\s-]?)?\d{3}[\s-]?\d{4}'
+
+    # Set email pattern
+    pattern_email = r'((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$'
+
+    # Set bank account pattern
+    pattern_bsb = r'^\d{6}$'
+    pattern_account = r'^\d{8}$'
+
+    # Check each word with different patterns
+    for word in cleaned_words:
+
+        # 1. Check if potential web link exists
+        if re.match(pattern_potential_url, word):
+            check_url = True
+
+        # 2. Check if potential phone number is valid
+        elif re.match(pattern_phone, word):
+            check_phone = True
+
+        # 3. Check if potential email is valid
+        elif re.match(pattern_email, word):
+            check_email = True
+
+        # 4. Check if potential bank account exists
+        elif re.match(pattern_bsb, word): # BSB
+            bank_bsb = True
+
+        elif re.match(pattern_account, word): # Bank Account
+            bank_account = True
+
+    # 4. Final check if a potential bank account exists or not
+    if bank_bsb and bank_account:
+        check_bank = True
+
+    # 5. Prepare the result dictionary
+    result_dict = {'link': check_url, 'phone': check_phone, 'email': check_email, 'bank_account': check_bank}
+
+    return result_dict
+
 @csrf_exempt
 @require_POST
 def predict(request):
@@ -53,12 +123,14 @@ def predict(request):
         data = json.loads(request.body)
         scam_text = data.get("text", "")
 
-        # Add your prediction logic here using the input text
-        # For example, you might use a machine learning model to predict if it's a scam.
-        # result = predict_scam(scam_text)
-        
-        # Mock response (replace with your actual prediction result)
-        response = {"prediction": "scam", "confidence": 0.98}
+        # Run text analysis to check for URLs, phone numbers, emails, and bank account information
+        analysis_result = text_analysis(scam_text)
+
+        # Mock prediction response (replace with your actual prediction model)
+        prediction = {"prediction": "scam", "confidence": 0.98}
+
+        # Combine the prediction and text analysis results
+        response = {**prediction, **analysis_result}
 
         return JsonResponse(response)
     except Exception as e:
