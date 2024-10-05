@@ -126,11 +126,8 @@ def predict(request):
         # Run text analysis to check for URLs, phone numbers, emails, and bank account information
         analysis_result = text_analysis(scam_text)
 
-        # Mock prediction response (replace with your actual prediction model)
-        prediction = {"prediction": "scam", "confidence": 0.98}
-
         # Combine the prediction and text analysis results
-        response = {**prediction, **analysis_result}
+        response = {**analysis_result}
 
         return JsonResponse(response)
     except Exception as e:
