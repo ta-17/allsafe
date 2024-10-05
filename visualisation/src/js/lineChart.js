@@ -2,7 +2,7 @@
 export function createLineChart(data, containerId) {
     console.log("Creating line chart...");
 
-    // Set up dimensions and margins of the graph
+    // Set up container and dimensions of the graph
     const container = document.getElementById(containerId);
     
     function getDimensions() {
@@ -67,6 +67,7 @@ export function createLineChart(data, containerId) {
                     .ticks(4)
                     .tickFormat(d => `Q${d}`); // Show as 'Q1, Q2, Q3, Q4'
     
+    // Adjust x-axis texts
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", `translate(0, ${height - lineMargin.bottom})`)
@@ -107,7 +108,7 @@ export function createLineChart(data, containerId) {
                       .text("↑ Number of Reports"));
 
     // Create color scale
-    const color = {2024: '#e52828', 2023: '#e58424', 2022: '#aa3dc0', 2021: '#3b67d4', 2020: '#4ecb57'};
+    const color = {2024: '#aa3dc0', 2023: '#e52828', 2022: '#e58424', 2021: '#4ecb57', 2020: '#3b67d4'};
 
     // Draw area
     const area = d3.area()
@@ -125,6 +126,7 @@ export function createLineChart(data, containerId) {
     // Create gradients
     const defs = svg.append("defs");
 
+    // Set area gradients
     years.forEach(year => {
         const gradientId = `gradient-${year}`;
         const gradient = defs.append("linearGradient")
@@ -218,13 +220,16 @@ export function createLineChart(data, containerId) {
                 .attr("d", area)
                 .style("opacity", 0.7)
                 .on("mouseover", (event) => {
+                    // Aggrate data
                     const totalReports = d3.sum(dataForYear, d => d.no_of_reports);
+                    // Show tooltip
                     tooltip.classed("hidden", false)
                             .style("visibility", "visible")
                             .html(`Year: ${year}<br>Number of Scam Reports: ${formatNumber.format(totalReports)}`)
                             .style("left", `${event.pageX + 15}px`)
                             .style("top", `${event.pageY - 28}px`);
 
+                    // Set highlight
                     highlightYear(year);
                 })
                 .on("mousemove", (event) => {
@@ -232,8 +237,11 @@ export function createLineChart(data, containerId) {
                         .style("top", (event.pageY - 28) + "px");
                 })
                 .on("mouseout", () => {
+                    // Hide tooltip
                     tooltip.classed("hidden", true)
                             .style("visibility", "hidden");
+
+                    // Remove highlight
                     resetHighlight();
                 });
 
@@ -248,12 +256,14 @@ export function createLineChart(data, containerId) {
                 .attr("r", 5)
                 .attr("fill", color[year])
                 .on("mouseover", (event, d) => {
+                    // Show tooltip
                     tooltip.classed("hidden", false)
                         .style("visibility", "visible")
                         .html(`Date: ${d.year}/Q${d.quarter}<br>Number of Scam Reports: ${formatNumber.format(d.no_of_reports)}`)
                         .style("left", `${event.pageX + 15}px`)
                         .style("top", `${event.pageY - 28}px`);
                     highlightYear(d.year);
+                    // Set transition on the current dot for bigger size
                     d3.select(event.currentTarget).transition().duration(100).attr("r", 7);
                 })
                 .on("mousemove", (event) => {
@@ -261,9 +271,12 @@ export function createLineChart(data, containerId) {
                         .style("top", (event.pageY - 28) + "px");
                 })
                 .on("mouseout", (event) => {
+                    // Hide tooltip
                     tooltip.classed("hidden", true)
                         .style("visibility", "hidden");
+                    // Remove highlight
                     resetHighlight();
+                    // Set transition to original dot size
                     d3.select(event.currentTarget).transition().duration(100).attr("r", 5);
                 });
         });
