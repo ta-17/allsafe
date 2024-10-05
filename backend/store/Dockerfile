@@ -3,19 +3,18 @@ FROM python:alpine3.19
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# Keeps Python from buffering stdout and stderr to avoid situations where
-# the application crashes without emitting any logs due to buffering.
+# Keeps Python from buffering stdout and stderr.
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /store
 
-# Install required system dependencies
-RUN apt-get update && \
-    apt-get install -y python3-distutils build-essential && \
-    apt-get clean
-
-# Install MySQL development libraries and build tools
-RUN apk add --no-cache mariadb-connector-c-dev gcc musl-dev
+# Install MySQL development libraries and build tools along with necessary Python build tools
+RUN apk add --no-cache \
+    mariadb-connector-c-dev \
+    gcc \
+    musl-dev \
+    python3-dev \
+    libffi-dev
 
 # Upgrade pip
 RUN pip install --upgrade pip
