@@ -161,6 +161,19 @@ const NavBar: React.FC = () => {
                                         </NavigationMenuLink>
                                     </Link>
                                 </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <Link
+                                        href="/ai/fake-insta"
+                                        legacyBehavior
+                                        passHref
+                                    >
+                                        <NavigationMenuLink
+                                            className={navigationMenuTriggerStyle()}
+                                        >
+                                            Detect Fake Profile
+                                        </NavigationMenuLink>
+                                    </Link>
+                                </NavigationMenuItem>
                             </NavigationMenuList>
                         </NavigationMenu>
                     </div>

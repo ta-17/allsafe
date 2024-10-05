@@ -80,7 +80,7 @@ export const MenuItem = ({
             ) : (
                 <Link
                     href={item.link.href}
-                    className="block py-2 rounded-md text-base font-medium"
+                    className="block py-4 rounded-md text-base font-medium"
                     onClick={() => toggle()}
                 >
                     {item.link.text}

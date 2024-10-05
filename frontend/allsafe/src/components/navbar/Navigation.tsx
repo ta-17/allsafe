@@ -68,8 +68,8 @@ const navItems = [
     {
         trigger: '',
         link: {
-            href: '/ai/detect-fake-profile',
-            text: 'Fake Profile Detector',
+            href: '/ai/fake-insta',
+            text: 'Detect Fake Profile',
         },
     },
 ]
