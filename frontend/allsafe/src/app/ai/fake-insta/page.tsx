@@ -28,10 +28,6 @@ const formSchema = z.object({
     isPrivate: z.boolean().default(false),
 })
 
-function sleep(lf_ms) {
-    return new Promise((resolve) => setTimeout(resolve, lf_ms))
-}
-
 export default function FakeInstaDetect() {
     const [file, setFile] = useState<File | null>(null)
     const [msg, setMsg] = useState<string>('')
@@ -62,35 +58,23 @@ export default function FakeInstaDetect() {
                     isProfilePic: values.isProfilePic,
                     isPrivate: values.isPrivate,
                 })
-                // setTimeout(() => {
-                //     setLoading(false)
-                // }, 2000)
-                await sleep(10000)
+
                 setResult(data)
-                // setSubmit(true)
-                console.log('Loading?', loading)
-                console.log('Results', data)
-                // setLoading(false)
+                setSubmit(true)
+
                 // Handle the result (e.g., update state to show the result to the user)
             } catch (error) {
                 setError('Error detecting fake account please try again.')
                 setSubmit(false)
-                setLoading(false)
                 // Handle the error (e.g., show an error message to the user)
             } finally {
-                // setLoading(false)
+                setLoading(false)
             }
         }
     }
 
     return (
         <div className="flex flex-col gap-y-8">
-            <TypographyH1>
-                Identify if that Instagram account is fake.
-            </TypographyH1>
-            <TypographyLead>
-                Upload a screenshot of the profile (preferably mobile).
-            </TypographyLead>
             {error !== null && (
                 <Alert variant="destructive" className="self-start">
                     <AlertCircle className="h-4 w-4" />
@@ -107,6 +91,13 @@ export default function FakeInstaDetect() {
                         exit={{ opacity: 0 }}
                         className="flex flex-col self-center justify-self-center gap-12 w-full max-w-4xl"
                     >
+                        <TypographyH1>
+                            Identify if that Instagram account is fake.
+                        </TypographyH1>
+                        <TypographyLead>
+                            Upload a screenshot of the profile (preferably
+                            mobile).
+                        </TypographyLead>
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
@@ -257,43 +248,47 @@ export default function FakeInstaDetect() {
                         </Form>
                     </motion.div>
                 ) : (
-                    // <motion.div
-                    //     key="result"
-                    //     initial={{ opacity: 0 }}
-                    //     animate={{ opacity: 1 }}
-                    //     exit={{ opacity: 0 }}
-                    //     className="flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl"
-                    // >
-                    //     <TypographyH2 className="border-0">Result</TypographyH2>
-                    //     <div>
-                    //         {result.label === 'scam' ? (
-                    //             <X className="text-red-500 w-56 h-56" />
-                    //         ) : (
-                    //             <Check className="text-green-400 w-56 h-56" />
-                    //         )}
-                    //     </div>
-                    //     <Button
-                    //         variant="outline"
-                    //         onClick={() => setSubmit(false)}
-                    //     >
-                    //         Check another account?
-                    //     </Button>
-                    //     {/*
-                    //     <div>
-                    //         <TypographyH3 className="flex justify-center w-full text-center">
-                    //             Is it as scam?
-                    //         </TypographyH3>
-                    //         <p>
-                    //             Go to the help center to learn more about
-                    //             reporting or what to do if you or someone you
-                    //             know fell victim to it.
-                    //         </p>
-                    //         <Button variant="secondary" asChild>
-                    //             <Link href="/help">Help Center</Link>
-                    //         </Button>
-                    //     </div> */}
-                    // </motion.div>
-                    <p></p>
+                    <motion.div
+                        key="result"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl"
+                    >
+                        <TypographyH1 className="border-0">Result</TypographyH1>
+                        <TypographyLead>
+                            {result.label === 'scam'
+                                ? 'This profile a fake profile'
+                                : 'This profile is legit'}
+                        </TypographyLead>
+                        <div>
+                            {result.label === 'scam' ? (
+                                <X className="text-red-500 w-56 h-56" />
+                            ) : (
+                                <Check className="text-green-400 w-56 h-56" />
+                            )}
+                        </div>
+                        <Button
+                            variant="outline"
+                            onClick={() => setSubmit(false)}
+                        >
+                            Check another account?
+                        </Button>
+                        {/*
+                        <div>
+                            <TypographyH3 className="flex justify-center w-full text-center">
+                                Is it as scam?
+                            </TypographyH3>
+                            <p>
+                                Go to the help center to learn more about
+                                reporting or what to do if you or someone you
+                                know fell victim to it.
+                            </p>
+                            <Button variant="secondary" asChild>
+                                <Link href="/help">Help Center</Link>
+                            </Button>
+                        </div> */}
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>
