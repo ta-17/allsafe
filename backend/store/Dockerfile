@@ -8,13 +8,15 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /store
 
-# Install MySQL development libraries and build tools along with necessary Python build tools
+# Install necessary build tools and libraries
 RUN apk add --no-cache \
     mariadb-connector-c-dev \
     gcc \
     musl-dev \
     python3-dev \
-    libffi-dev
+    libffi-dev \
+    py3-setuptools \
+    py3-distutils
 
 # Upgrade pip
 RUN pip install --upgrade pip
