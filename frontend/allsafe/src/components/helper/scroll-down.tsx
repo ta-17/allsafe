@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Footer from '@/components/footer/footer-four'
 import { Button } from '../ui/button'
@@ -17,12 +17,12 @@ export default function ScrollDown() {
     const [scrolled, setScrolled] = useState(true)
     const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>()
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         const isScrolled = window.scrollY < window.innerHeight / 2
         if (isScrolled !== scrolled) {
             setScrolled(isScrolled)
         }
-    }
+    }, [scrolled])
 
     useEffect(() => {
         if (isHomePage) {
@@ -32,7 +32,7 @@ export default function ScrollDown() {
                 window.removeEventListener('scroll', handleScroll)
             }
         }
-    }, [isHomePage])
+    }, [isHomePage, handleScroll])
 
     const scrollDown = () => {
         window.scrollTo({

@@ -7,12 +7,12 @@ import { ChevronUp } from 'lucide-react'
 export default function Top() {
     const [scrolled, setScrolled] = useState(false)
 
-    const handleScroll = () => {
+    const handleScroll = React.useCallback(() => {
         const isScrolled = window.scrollY > window.screen.height / 2
         if (isScrolled !== scrolled) {
             setScrolled(isScrolled)
         }
-    }
+    }, [scrolled])
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
@@ -20,7 +20,7 @@ export default function Top() {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [handleScroll])
 
     const scrollToTop = () => {
         window.scrollTo({
