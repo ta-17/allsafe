@@ -6,7 +6,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from '@/components/ui/accordion'
-import { index } from 'd3'
 import Link from 'next/link'
 
 const variants = {
