@@ -19,13 +19,29 @@ import FlickeringGrid from '../magicui/flickering-grid'
 import AnimatedGridPattern from '../magicui/animated-grid-pattern'
 import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Input } from '../ui/input'
 import { ArrowDown, Search } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useDetectScamStore } from '@/data/store/detect-scam'
+import { set } from 'zod'
 
 const Hero = () => {
     const ref = useRef(null)
     const isInView = useInView(ref)
+
+    const router = useRouter()
+
+    const [msg, onMsg] = useState('')
+
+    const setSharedMsg = useDetectScamStore((state) => state.setSharedMsg)
+    const setSharedSubmit = useDetectScamStore((state) => state.setSharedSubmit)
+
+    const handleSubmit = () => {
+        setSharedMsg(msg)
+        setSharedSubmit()
+        router.push('/ai/detect-scams')
+    }
 
     useEffect(() => {
         console.log('Element is in view: ', isInView)
@@ -35,33 +51,45 @@ const Hero = () => {
         <div ref={ref}>
             <Section className="md:mb-60">
                 <Container className="flex flex-col justify-center items-center text-center">
-                    <TypographyH2 className="mb-6 dark:invert md:mb-8">
-                        <Balancer>AllSafe</Balancer>
-                    </TypographyH2>
-                    <TypographyH1 className="">
-                        <Balancer>Social Media Safety Hub</Balancer>
-                    </TypographyH1>
-                    <TypographyLead className="mt-4 text-muted-foreground">
-                        <Balancer>
-                            A platform dedicated to providing you with
-                            information and services to keep you protected from
-                            scams and other online threats.
-                        </Balancer>
-                    </TypographyLead>
-                    <div className="bg-white mt-6 flex gap-2 md:mt-12 w-1/2">
-                        <Input className="flex justify-between"></Input>
-                        <Button size="icon">
+                    <>
+                        <TypographyH2 className="mb-6 dark:invert md:mb-8">
+                            <Balancer>AllSafe</Balancer>
+                        </TypographyH2>
+                        <TypographyH1 className="">
+                            <Balancer>Social Media Safety Hub</Balancer>
+                        </TypographyH1>
+                        <TypographyLead className="mt-4 text-muted-foreground">
+                            <Balancer>
+                                A platform dedicated to providing you with
+                                information and services to keep you protected
+                                from scams and other online threats.
+                            </Balancer>
+                        </TypographyLead>
+                    </>
+                    <div className="flex w-2/3 z-10 gap-x-6 pt-24">
+                        <Input
+                            type="text"
+                            className="flex justify-between bg-white"
+                            value={msg}
+                            placeholder="Enter message here"
+                            onChange={(e) => onMsg(e.target.value)}
+                        />
+                        <Button
+                            onClick={() => {
+                                handleSubmit()
+                            }}
+                        >
                             <Search />
                         </Button>
                     </div>
-                    <div className="not-prose mt-6 flex gap-2 md:mt-12">
+                    {/* <div className="not-prose mt-6 flex gap-2 md:mt-12">
                         <Button asChild>
                             <Link href="/">Get Started</Link>
                         </Button>
                         <Button variant={'ghost'} asChild>
                             <Link href="/posts">Learn More -{'>'}</Link>
                         </Button>
-                    </div>
+                    </div> */}
                 </Container>
                 <AnimatedGridPattern
                     numSquares={30}

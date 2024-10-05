@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import { ChevronUp } from 'lucide-react'
 
@@ -13,7 +13,14 @@ export default function Top() {
             setScrolled(isScrolled)
         }
     }
-    window.addEventListener('scroll', handleScroll)
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        handleScroll() // Check initial scroll position
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
     const scrollToTop = () => {
         window.scrollTo({

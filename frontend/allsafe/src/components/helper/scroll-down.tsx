@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Footer from '@/components/footer/footer-four'
 import { Button } from '../ui/button'
@@ -23,9 +23,18 @@ export default function ScrollDown() {
             setScrolled(isScrolled)
         }
     }
-    window.addEventListener('scroll', handleScroll)
 
-    const scrollToDown = () => {
+    useEffect(() => {
+        if (isHomePage) {
+            window.addEventListener('scroll', handleScroll)
+            handleScroll() // Check initial scroll position
+            return () => {
+                window.removeEventListener('scroll', handleScroll)
+            }
+        }
+    }, [isHomePage])
+
+    const scrollDown = () => {
         window.scrollTo({
             top: window.innerHeight,
             behavior: 'smooth',
@@ -45,7 +54,7 @@ export default function ScrollDown() {
                             size="icon"
                             variant="secondary"
                             className="animate-bounce p-2 bottom-8 m-auto w-12 h-12 rounded-full"
-                            onClick={() => scrollToDown()}
+                            onClick={() => scrollDown()}
                         >
                             <ArrowDown />
                         </Button>
