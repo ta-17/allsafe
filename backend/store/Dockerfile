@@ -1,4 +1,4 @@
-FROM python:alpine3.19
+FROM python:alpine3.9.16
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
