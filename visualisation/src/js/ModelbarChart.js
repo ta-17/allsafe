@@ -16,6 +16,12 @@ export function createModelBarChart(data, containerId) {
         return;
     }
 
+    // Limit the number of bars to at most 10
+    const maxBars = 6;
+    const sortedData = data.sort((a, b) => b.frequency - a.frequency);  // Sort by frequency
+    const chartData = sortedData.slice(0, maxBars);  // Select the top 10
+
+
     // Function to get container dimensions (same as the Sunburst chart)
     function getDimensions() {
         const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
@@ -44,13 +50,13 @@ export function createModelBarChart(data, containerId) {
 
     // Define the x scale (band scale for words)
     const x = d3.scaleBand()
-        .domain(data.map(d => d.word))  // Words are the x-axis categories
+        .domain(chartData.map(d => d.word))  // Words are the x-axis categories
         .range([0, svgWidth])
-        .padding(0.2);
+        .padding(0.7);
 
-    // Define the y scale (linear scale for percentages, 0% to 50%)
+    // Define the y scale (linear scale for percentages, 0% to 20%)
     const y = d3.scaleLinear()
-        .domain([0, 50])  // From 0% to 50% since the highest word frequency is around 30%
+        .domain([0, 15])  // From 0% to 20% since the highest word frequency is around 14.6%
         .range([svgHeight, 0])
         .nice();  // Ensures that the axis is "rounded" nicely
 
@@ -60,12 +66,34 @@ export function createModelBarChart(data, containerId) {
         .call(d3.axisBottom(x))
         .selectAll("text")
         .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end");
+        .style("text-anchor", "end")
+        .style("font-size", "14px");
 
     // Append y-axis (with percentage formatting)
     svg.append("g")
-        .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));  // Format ticks as percentages
+        .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"))
+        .style("font-size", "14px");  // Format ticks as percentages
 
+    // ** Add X-Axis Label **
+    svg.append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", svgWidth / 2)
+        .attr("y", svgHeight + margin.bottom - 10)  // Position below the x-axis
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("font-weight", "bold")
+        .text("Words");  // X-axis label
+
+    // ** Add Y-Axis Label at the top **
+    svg.append("text")
+        .attr("class", "y-axis-label")
+        .attr("x", margin.left - 15)  // Position it near the y-axis, slightly to the left of the axis
+        .attr("y", -margin.top / 2)   // Position it above the y-axis at the top
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("font-weight", "bold")
+        .text("Frequency (%)");  // Y-axis label text
+    
     // Tooltip element creation
     const tooltip = d3.select("body")
         .append("div")
@@ -80,7 +108,7 @@ export function createModelBarChart(data, containerId) {
 
     // Create the bars
     svg.selectAll(".bar")
-        .data(data)
+        .data(chartData)
         .enter()
         .append("rect")
         .attr("class", "bar")

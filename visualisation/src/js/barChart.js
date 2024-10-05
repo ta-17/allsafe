@@ -162,6 +162,7 @@ export function createBarChart(data, containerId) {
 
     // Create a variable to store the currently selected bar
     let selectedBar = null;
+    
 
     // Draw bars
     const bars = svg.append("g")
