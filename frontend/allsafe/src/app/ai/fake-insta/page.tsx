@@ -39,8 +39,6 @@ export default function FakeInstaDetect() {
         // Here you would typically send the form data to your server
         console.log(values)
 
-        // Example of how you might call your detection function
-        // Note: You'll need to adjust this based on how detectFakeInstaAccount is implemented
         if (file) {
             try {
                 const result = await detectFakeInstaAccount({
