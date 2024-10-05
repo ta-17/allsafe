@@ -16,19 +16,19 @@ export function calculateNumericRatio(username: string): number {
     return Number(ratio.toFixed(2)) // Return the ratio rounded to 2 decimal places
 }
 
-export function checkForExternalUrl(text: string): boolean {
+export function checkForExternalUrl(text: string): number {
     if (text.length === 0) {
-        return false
+        return 0
     }
 
     const urlRegex =
         /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 
     if (urlRegex.test(text)) {
-        return true
+        return 1
     }
 
-    return false
+    return 0
 }
 
 export function handleModifier(text: string): number {
