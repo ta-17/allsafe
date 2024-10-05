@@ -6,7 +6,6 @@ import {
     handleModifier,
 } from '@/libs/utils'
 import { createWorker } from 'tesseract.js'
-import wordsToNumbers from '@codecompose/words-to-numbers'
 
 export async function detectFakeInstaAccount({
     file,
