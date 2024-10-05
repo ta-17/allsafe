@@ -9,13 +9,13 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /store
 
 # Install necessary build tools and libraries
-RUN apk add --no-cache \
-    mariadb-connector-c-dev \
+RUN apt-get update && apt-get install -y \
     gcc \
-    musl-dev \
-    python3-dev \
+    mariadb-client \
+    default-libmysqlclient-dev \
     libffi-dev \
-    py3-setuptools
+    python3-dev \
+    && apt-get clean
 
 # Upgrade pip
 RUN pip install --upgrade pip
