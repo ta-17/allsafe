@@ -189,6 +189,10 @@ def insta(request):
         # Use the XGBoost model to make a prediction
         prediction_result = predict_xgboost(input_df, xgb_model, min_vals, max_vals, feature_columns)
 
+        # Convert numpy.float32 or numpy.int32 types to native Python types
+        for result in prediction_result:
+            result["confidence"] = float(result["confidence"])  # Convert confidence to Python float
+
         # Return the prediction result
         return JsonResponse({"prediction": prediction_result})
     except Exception as e:
