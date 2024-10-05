@@ -1,3 +1,4 @@
+xgboost==1.7.6         # Added for using XGBoost models
 asgiref==3.7.2
 Django==4.2.9
 django-cors-headers==4.3.1
@@ -11,4 +12,3 @@ mysqlclient==2.1.1
 django-environ==0.11.2
 pandas==2.1.1          # Added for data manipulation
 numpy==1.24.4          # Added for numerical operations
-xgboost==1.7.6         # Added for using XGBoost models

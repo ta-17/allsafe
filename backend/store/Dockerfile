@@ -15,8 +15,7 @@ RUN apk add --no-cache \
     musl-dev \
     python3-dev \
     libffi-dev \
-    py3-setuptools \
-    py3-distutils
+    py3-setuptools
 
 # Upgrade pip
 RUN pip install --upgrade pip
