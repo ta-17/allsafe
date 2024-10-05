@@ -98,12 +98,13 @@ def predict_xgboost(input_data, model, min_vals, max_vals, feature_columns):
     # Get predictions from XGBoost
     predictions = model.predict(dmatrix)
 
-    # Prepare the response with label and probability
+    # Convert numpy types to Python native types for JSON serialization
     results = []
     for pred in predictions:
-        label = 1 if pred > 0.5 else 0
-        confidence = round(pred if label == 1 else (1 - pred), 4)
+        label = int(pred > 0.5)  # Convert to Python int
+        confidence = float(round(pred if label == 1 else (1 - pred), 4))  # Convert to Python float
         results.append({"label": label, "confidence": confidence})
+
     return results
 
 @csrf_exempt
