@@ -9,3 +9,6 @@ sqlparse==0.4.4
 typing_extensions==4.9.0
 mysqlclient==2.1.1
 django-environ==0.11.2
+pandas==2.1.1          # Added for data manipulation
+numpy==1.24.4          # Added for numerical operations
+xgboost==1.7.6         # Added for using XGBoost models
