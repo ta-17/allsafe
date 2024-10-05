@@ -65,4 +65,11 @@ const navItems = [
         trigger: '',
         link: { href: '/ai/detect-scams', text: 'Detect Scam' },
     },
+    {
+        trigger: '',
+        link: {
+            href: '/ai/detect-fake-profile',
+            text: 'Fake Profile Detector',
+        },
+    },
 ]
