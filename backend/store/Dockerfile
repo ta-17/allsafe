@@ -9,6 +9,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /store
 
+# Install required system dependencies
+RUN apt-get update && \
+    apt-get install -y python3-distutils build-essential && \
+    apt-get clean
+
 # Install MySQL development libraries and build tools
 RUN apk add --no-cache mariadb-connector-c-dev gcc musl-dev
 
