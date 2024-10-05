@@ -1,4 +1,4 @@
-'use server'
+'use client'
 
 import { createWorker } from 'tesseract.js'
 
@@ -8,7 +8,7 @@ export async function detectFakeInstaAccount(data: string) {
         const ret = await worker.recognize(
             'https://tesseract.projectnaptha.com/img/eng_bw.png'
         )
-        console.log(ret.data.text)
+        console.log('Tesseract: ', ret.data.text)
         await worker.terminate()
     })()
     // try {
