@@ -14,7 +14,7 @@ const Insights = () => {
     useEffect(() => {
         // This will run after the component mounts
         const script = document.createElement('script')
-        script.src = '/src/script.js'
+        script.src = '/visualisation/script.js'
         script.type = 'module'
         document.body.appendChild(script)
 
