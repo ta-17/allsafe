@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from book.views import random_scam_sms
-from book.views import all_historical_scam
+from book import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('quiz-data/', random_scam_sms, name='quiz-data'),
-    path('historical-scam/', all_historical_scam, name='historical-scam'),
+    path('quiz-data/', views.random_scam_sms, name='quiz-data'),
+    path('historical-scam/', views.all_historical_scam, name='historical-scam'),
+    path('predict/', views.predict, name='predict'),
+    path('insta/', views.insta, name='insta'),
 ]
 
 # Serve static and media files during development
