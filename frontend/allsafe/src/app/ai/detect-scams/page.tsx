@@ -25,6 +25,7 @@ import { useDetectScamStore } from '@/data/store/detect-scam'
 import { getAdditionalInfo } from '@/actions/detect-scam-aditional-info'
 import ScamDetectHindsight from '@/components/ai/hindsight'
 import { lab } from 'd3'
+import { TypographyH2 } from '@/typography/h2'
 
 const Breakdown = [
     { factor: 'Suspicious links', present: true },
@@ -155,7 +156,7 @@ export default function ScamDetect() {
                     >
                         <form
                             id="scam-input-form"
-                            className="flex flex-col items-center space-y-4"
+                            className="flex flex-col items-center space-y-4 h-full"
                             onSubmit={handleSubmit}
                         >
                             <Textarea
@@ -201,7 +202,9 @@ export default function ScamDetect() {
                 >
                     {result !== null && (
                         <>
-                            <TypographyH3 className="">Result</TypographyH3>
+                            <TypographyH2 className="border-0">
+                                Result
+                            </TypographyH2>
                             <div>
                                 {result.label === 'scam' ? (
                                     <X className="text-red-500 w-56 h-56" />
