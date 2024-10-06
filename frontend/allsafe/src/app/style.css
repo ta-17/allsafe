@@ -131,7 +131,7 @@ section {
 
 button {
     outline: none;
-    border: none;
+    /* border: none; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
