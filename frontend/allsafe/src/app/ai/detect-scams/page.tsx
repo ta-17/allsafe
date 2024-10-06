@@ -165,6 +165,11 @@ export default function ScamDetect() {
                                     onChange={(e) => setMsg(e.target.value)}
                                     className="w-full max-h-60"
                                 />
+                                {loading ? (
+                                    <ButtonLoading />
+                                ) : (
+                                    <Button>Submit</Button>
+                                )}
                                 <section
                                     id="model-bar-chart-section"
                                     className="text-center w-full p-8  rounded-lg mt-12"
@@ -178,12 +183,6 @@ export default function ScamDetect() {
                                         className="chart w-full h-[400px]  rounded-lg"
                                     ></div>
                                 </section>
-
-                                {loading ? (
-                                    <ButtonLoading />
-                                ) : (
-                                    <Button>Submit</Button>
-                                )}
                             </form>
                         </section>
                         {/* <!-- Bar Chart Section --> */}
