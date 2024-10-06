@@ -113,7 +113,7 @@ export default function ScamDetect() {
             // Remove the script when the component unmounts
             document.body.removeChild(script)
         }
-    }, [])
+    }, [submit])
 
     return (
         <div
@@ -131,217 +131,224 @@ export default function ScamDetect() {
                 </Alert>
             )}
             <AnimatePresence mode="wait">
-                {!submit ? (
-                    <motion.div
-                        key="input"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="flex flex-col self-center justify-self-center gap-12 w-full max-w-4xl"
+                {/* {!submit ? ( */}
+                <motion.div
+                    key="input"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cn(
+                        'flex flex-col self-center justify-self-center gap-12 w-full max-w-4xl',
+                        !submit ? 'visible' : 'invisible h-0'
+                    )}
+                >
+                    <div className="flex flex-col items-center gap-6 w-full">
+                        <TypographyH1>Is it a scam?</TypographyH1>
+                        <span className="flex justify-center w-full text-center">
+                            Our in-house AI model is trained to detect online
+                            scams. Just enter the text and hit submit.
+                        </span>
+                    </div>
+                    <section
+                        id="user-input-section"
+                        className="text-center w-full p-8  rounded-lg mt-12"
                     >
-                        <div className="flex flex-col items-center gap-6 w-full">
-                            <TypographyH1>Is it a scam?</TypographyH1>
-                            <span className="flex justify-center w-full text-center">
-                                Our in-house AI model is trained to detect
-                                online scams. Just enter the text and hit
-                                submit.
-                            </span>
-                        </div>
-                        <section
-                            id="user-input-section"
-                            className="text-center w-full p-8  rounded-lg mt-12"
+                        <form
+                            id="scam-input-form"
+                            className="flex flex-col items-center space-y-4"
+                            onSubmit={handleSubmit}
                         >
-                            <form
-                                id="scam-input-form"
-                                className="flex flex-col items-center space-y-4"
-                                onSubmit={handleSubmit}
-                            >
-                                <Textarea
-                                    id="scam-experience"
-                                    name="scam-experience"
-                                    // placeholder="Please put your scam text here"
-                                    value={msg}
-                                    placeholder="Enter message here"
-                                    onChange={(e) => setMsg(e.target.value)}
-                                    className="w-full max-h-60"
-                                />
-                                {loading ? (
-                                    <ButtonLoading />
-                                ) : (
-                                    <Button>Submit</Button>
-                                )}
-                                <section
-                                    id="model-bar-chart-section"
-                                    className="text-center w-full p-8  rounded-lg mt-12"
-                                >
-                                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                                        Word Frequency Bar Chart
-                                    </h2>
-                                    {/* <!-- Container for the chart --> */}
-                                    <div
-                                        id="model-bar-chart"
-                                        className="chart w-full h-[400px]  rounded-lg"
-                                    ></div>
-                                </section>
-                            </form>
-                        </section>
-                        {/* <!-- Bar Chart Section --> */}
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="result"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl"
-                    >
-                        <TypographyH3 className="">Result</TypographyH3>
-                        <div>
-                            {result.label === 'scam' ? (
-                                <X className="text-red-500 w-56 h-56" />
+                            <Textarea
+                                id="scam-experience"
+                                name="scam-experience"
+                                // placeholder="Please put your scam text here"
+                                value={msg}
+                                placeholder="Enter message here"
+                                onChange={(e) => setMsg(e.target.value)}
+                                className="w-full max-h-60"
+                            />
+                            {loading ? (
+                                <ButtonLoading />
                             ) : (
-                                <Check className="text-green-400 w-56 h-56" />
+                                <Button>Submit</Button>
                             )}
-                        </div>
-                        <TypographyH3 className="">
-                            The likelihood of the message being{' '}
-                            {result.label === 'scam' ? 'a scam' : 'not a scam'}{' '}
-                            is <strong>{percent()}%</strong>
-                        </TypographyH3>
-                        <Button
-                            variant="ghost"
-                            onClick={() => setShowMore(!showMore)}
-                        >
-                            <p className="pr-2">
-                                {showMore ? 'Show less' : 'Show more'}
-                            </p>
-                            {showMore ? <ChevronUp /> : <ChevronDown />}
-                        </Button>
-                        <AnimatePresence>
-                            {showMore && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="w-full overflow-hidden"
-                                >
-                                    <TypographyH3 className="pb-2">
-                                        What we found:
-                                    </TypographyH3>
-                                    <span className="text-muted-foreground block mb-4">
-                                        These factors suggest that the message
-                                        could be a scam.
-                                    </span>
-                                    <Table>
-                                        <TableCaption>
-                                            Presence of suspicious links or
-                                            other elements.
-                                        </TableCaption>
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead className="w-3/4">
-                                                    Factor
-                                                </TableHead>
-                                                <TableHead className="flex justify-center w-full text-center">
-                                                    Present in message
-                                                </TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            <TableRow>
-                                                <TableCell className="font-medium">
-                                                    Link(s)
-                                                </TableCell>
-                                                <TableCell className="flex justify-center w-full text-center">
-                                                    {addResult['link'] ? (
-                                                        <Check className="text-green-400" />
-                                                    ) : (
-                                                        <X className="text-red-500" />
-                                                    )}
-                                                </TableCell>
-                                            </TableRow>
-                                            {/* {result.label === 'scam' && ( */}
-                                            <TableRow>
-                                                <TableCell className="pl-8 font-medium text-muted-foreground">
-                                                    Suspicious Link Present
-                                                </TableCell>
-                                                <TableCell className="flex justify-center w-full text-center">
-                                                    {addResult['sus_url'] ? (
-                                                        <Check className="text-green-400" />
-                                                    ) : (
-                                                        <X className="text-red-500" />
-                                                    )}
-                                                </TableCell>
-                                            </TableRow>
-                                            {/* )} */}
-                                            <TableRow>
-                                                <TableCell className="font-medium">
-                                                    Phone number
-                                                </TableCell>
-                                                <TableCell className="flex justify-center w-full text-center">
-                                                    {addResult['phone'] ? (
-                                                        <Check className="text-green-400" />
-                                                    ) : (
-                                                        <X className="text-red-500" />
-                                                    )}
-                                                </TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell className="font-medium">
-                                                    Email address
-                                                </TableCell>
-                                                <TableCell className="flex justify-center w-full text-center">
-                                                    {addResult['email'] ? (
-                                                        <Check className="text-green-400" />
-                                                    ) : (
-                                                        <X className="text-red-500" />
-                                                    )}
-                                                </TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell className="font-medium">
-                                                    Bank account
-                                                </TableCell>
-                                                <TableCell className="flex justify-center w-full text-center">
-                                                    {addResult[
-                                                        'bank_account'
-                                                    ] ? (
-                                                        <Check className="text-green-400" />
-                                                    ) : (
-                                                        <X className="text-red-500" />
-                                                    )}
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                    <section
-                                        id="model-bar-chart-section"
-                                        className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
+                            {/* <section
+                                id="model-bar-chart-section"
+                                className="text-center w-full p-8  rounded-lg mt-12"
+                            >
+                                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                                    Word Frequency Bar Chart
+                                </h2>
+                                <div
+                                    id="model-bar-chart"
+                                    className="chart w-full h-[400px]  rounded-lg"
+                                ></div>
+                            </section> */}
+                        </form>
+                    </section>
+                    {/* <!-- Bar Chart Section --> */}
+                </motion.div>
+                {/* // ) : ( */}
+                <motion.div
+                    key="result"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cn(
+                        'flex flex-col items-center self-center justify-self-center gap-6 w-full max-w-4xl',
+                        submit ? 'visible' : 'invisible h-0'
+                    )}
+                >
+                    {result !== null && (
+                        <>
+                            <TypographyH3 className="">Result</TypographyH3>
+                            <div>
+                                {result.label === 'scam' ? (
+                                    <X className="text-red-500 w-56 h-56" />
+                                ) : (
+                                    <Check className="text-green-400 w-56 h-56" />
+                                )}
+                            </div>
+                            <TypographyH3 className="">
+                                The likelihood of the message being{' '}
+                                {result.label === 'scam'
+                                    ? 'a scam'
+                                    : 'not a scam'}{' '}
+                                is <strong>{percent()}%</strong>
+                            </TypographyH3>
+                            <Button
+                                variant="ghost"
+                                onClick={() => setShowMore(!showMore)}
+                            >
+                                <p className="pr-2">
+                                    {showMore ? 'Show less' : 'Show more'}
+                                </p>
+                                {showMore ? <ChevronUp /> : <ChevronDown />}
+                            </Button>
+                            <AnimatePresence>
+                                {showMore && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="w-full overflow-hidden"
                                     >
-                                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                                            Word Frequency Bar Chart
-                                        </h2>
-                                        {/* Container for the D3 chart */}
-                                        <div
-                                            id="model-bar-chart"
-                                            className="chart w-full h-[400px] bg-gray-50 rounded-lg"
-                                        ></div>
-                                    </section>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                                        <TypographyH3 className="pb-2">
+                                            What we found:
+                                        </TypographyH3>
+                                        <span className="text-muted-foreground block mb-4">
+                                            These factors suggest that the
+                                            message could be a scam.
+                                        </span>
+                                        <Table>
+                                            <TableCaption>
+                                                Presence of suspicious links or
+                                                other elements.
+                                            </TableCaption>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead className="w-3/4">
+                                                        Factor
+                                                    </TableHead>
+                                                    <TableHead className="flex justify-center w-full text-center">
+                                                        Present in message
+                                                    </TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell className="font-medium">
+                                                        Link(s)
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-center w-full text-center">
+                                                        {addResult['link'] ? (
+                                                            <Check className="text-green-400" />
+                                                        ) : (
+                                                            <X className="text-red-500" />
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                                {/* {result.label === 'scam' && ( */}
+                                                <TableRow>
+                                                    <TableCell className="pl-8 font-medium text-muted-foreground">
+                                                        Suspicious Link Present
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-center w-full text-center">
+                                                        {addResult[
+                                                            'sus_url'
+                                                        ] ? (
+                                                            <Check className="text-green-400" />
+                                                        ) : (
+                                                            <X className="text-red-500" />
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                                {/* )} */}
+                                                <TableRow>
+                                                    <TableCell className="font-medium">
+                                                        Phone number
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-center w-full text-center">
+                                                        {addResult['phone'] ? (
+                                                            <Check className="text-green-400" />
+                                                        ) : (
+                                                            <X className="text-red-500" />
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell className="font-medium">
+                                                        Email address
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-center w-full text-center">
+                                                        {addResult['email'] ? (
+                                                            <Check className="text-green-400" />
+                                                        ) : (
+                                                            <X className="text-red-500" />
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell className="font-medium">
+                                                        Bank account
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-center w-full text-center">
+                                                        {addResult[
+                                                            'bank_account'
+                                                        ] ? (
+                                                            <Check className="text-green-400" />
+                                                        ) : (
+                                                            <X className="text-red-500" />
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </>
+                    )}
 
-                        <Button
-                            variant="outline"
-                            onClick={() => setSubmit(false)}
-                        >
-                            Check another message?
-                        </Button>
-
-                        {/* <ScamDetectHindsight msg={msg} /> */}
-                    </motion.div>
-                )}
+                    <section
+                        id="model-bar-chart-section"
+                        className="text-center w-full p-8  rounded-lg mt-12"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                            Word Frequency Bar Chart
+                        </h2>
+                        <div
+                            id="model-bar-chart"
+                            className="chart w-full h-[400px]  rounded-lg"
+                        ></div>
+                    </section>
+                    <Button variant="outline" onClick={() => setSubmit(false)}>
+                        Check another message?
+                    </Button>
+                    {/* <ScamDetectHindsight msg={msg} /> */}
+                </motion.div>
+                {/* // )} */}
             </AnimatePresence>
         </div>
     )

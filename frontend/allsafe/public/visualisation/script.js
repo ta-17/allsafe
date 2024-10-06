@@ -108,7 +108,6 @@ document
         createModelBarChart(wordFrequency, 'model-bar-chart')
         console.log('It is finished')
     })
-
 // })
 
 // Function to update only Sunburst and Bar Charts with filtered data
