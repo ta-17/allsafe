@@ -1,7 +1,7 @@
 'use client'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TypographyH1 } from '@/typography/h1'
@@ -23,6 +23,8 @@ import { cn } from '@/libs/utils'
 import Link from 'next/link'
 import { useDetectScamStore } from '@/data/store/detect-scam'
 import { getAdditionalInfo } from '@/actions/detect-scam-aditional-info'
+import ScamDetectHindsight from '@/components/ai/hindsight'
+import { lab } from 'd3'
 
 const Breakdown = [
     { factor: 'Suspicious links', present: true },
@@ -31,21 +33,23 @@ const Breakdown = [
     { factor: 'Bank account', present: true },
 ]
 export default function ScamDetect() {
-    const [msg, setMsg] = useState<string>('')
+    const ref = useRef<HTMLFormElement>(null)
+
+    const [msg, setMsg] = useState<string>(
+        'Congratulations! You&apos;ve won a $1,000 Walmart gift bard. Go to http://bit.ly/123456 tp claim now.'
+    )
     const [loading, setLoading] = useState<boolean>(false)
     const [showMore, setShowMore] = useState<boolean>(false)
-    const [submit, setSubmit] = useState<boolean>(true)
-    const [result, setResult] = useState<any | null>({
-        label: 'scam',
-        probability: 0.9999,
-    })
-    const [addResult, setAddResult] = useState<any | null>(null)
+    const [submit, setSubmit] = useState<boolean>(false)
+    const [result, setResult] = useState<any | null>(null)
+    const [addResult, setAddResult] = useState<any | null>({})
     const [error, setError] = useState<string | null>(null)
 
     const sharedMsg = useDetectScamStore((state) => state.sharedMsg)
     const sharedSubmit = useDetectScamStore((state) => state.sharedSubmit)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault() // Prevent the default form submission behavior
         setLoading(true)
         setError(null)
 
@@ -54,14 +58,11 @@ export default function ScamDetect() {
             const additionalInfoData = await getAdditionalInfo(msg)
             setResult(msgData)
             setAddResult(additionalInfoData)
-            setSubmit(true)
-            console.log('Result: ', msgData)
-            console.log('Additional Info: ', additionalInfoData)
+            setSubmit(true) // Change this to true when the form is submitted successfully
         } catch (error) {
             setError(
                 'An error occurred while processing your request. Please try again.'
             )
-            setSubmit(false)
         } finally {
             setLoading(false)
         }
@@ -101,16 +102,15 @@ export default function ScamDetect() {
         if (sharedSubmit === true) submitFromHomepage()
     }, [sharedMsg, sharedSubmit])
 
+    // Dynamically load the external script when the component mounts
     useEffect(() => {
-        // This will run after the component mounts
-        // Adds the script js file to handle frequency logic
         const script = document.createElement('script')
         script.src = '/visualisation/script.js'
         script.type = 'module'
         document.body.appendChild(script)
 
         return () => {
-            // Clean up the script when the component unmounts
+            // Remove the script when the component unmounts
             document.body.removeChild(script)
         }
     }, [])
@@ -147,17 +147,46 @@ export default function ScamDetect() {
                                 submit.
                             </span>
                         </div>
-                        <Textarea
-                            value={msg}
-                            placeholder="Enter message here"
-                            onChange={(e) => setMsg(e.target.value)}
-                            className="w-full max-h-60"
-                        />
-                        {loading ? (
-                            <ButtonLoading />
-                        ) : (
-                            <Button onClick={handleSubmit}>Submit</Button>
-                        )}
+                        <section
+                            id="user-input-section"
+                            className="text-center w-full p-8  rounded-lg mt-12"
+                        >
+                            <form
+                                id="scam-input-form"
+                                className="flex flex-col items-center space-y-4"
+                                onSubmit={handleSubmit}
+                            >
+                                <Textarea
+                                    id="scam-experience"
+                                    name="scam-experience"
+                                    // placeholder="Please put your scam text here"
+                                    value={msg}
+                                    placeholder="Enter message here"
+                                    onChange={(e) => setMsg(e.target.value)}
+                                    className="w-full max-h-60"
+                                />
+                                <section
+                                    id="model-bar-chart-section"
+                                    className="text-center w-full p-8  rounded-lg mt-12"
+                                >
+                                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                                        Word Frequency Bar Chart
+                                    </h2>
+                                    {/* <!-- Container for the chart --> */}
+                                    <div
+                                        id="model-bar-chart"
+                                        className="chart w-full h-[400px]  rounded-lg"
+                                    ></div>
+                                </section>
+
+                                {loading ? (
+                                    <ButtonLoading />
+                                ) : (
+                                    <Button>Submit</Button>
+                                )}
+                            </form>
+                        </section>
+                        {/* <!-- Bar Chart Section --> */}
                     </motion.div>
                 ) : (
                     <motion.div
@@ -287,75 +316,31 @@ export default function ScamDetect() {
                                             </TableRow>
                                         </TableBody>
                                     </Table>
+                                    <section
+                                        id="model-bar-chart-section"
+                                        className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
+                                    >
+                                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                                            Word Frequency Bar Chart
+                                        </h2>
+                                        {/* Container for the D3 chart */}
+                                        <div
+                                            id="model-bar-chart"
+                                            className="chart w-full h-[400px] bg-gray-50 rounded-lg"
+                                        ></div>
+                                    </section>
                                 </motion.div>
                             )}
                         </AnimatePresence>
+
                         <Button
                             variant="outline"
                             onClick={() => setSubmit(false)}
                         >
                             Check another message?
                         </Button>
-                        <div>
-                            {/* Visualisation */}
 
-                            {/* <!-- User Input Section for AI model--> */}
-                            <section
-                                id="user-input-section"
-                                className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
-                            >
-                                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                                    Scam Detection
-                                </h2>
-                                <form
-                                    id="scam-input-form"
-                                    className="flex flex-col items-center space-y-4"
-                                >
-                                    <input
-                                        type="text"
-                                        id="scam-experience"
-                                        name="scam-experience"
-                                        placeholder="Please put your scam text here"
-                                        className="p-4 w-full md:w-1/2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="p-4 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-300"
-                                    >
-                                        Submit
-                                    </button>
-                                </form>
-                            </section>
-
-                            {/* <!-- Bar Chart Section --> */}
-                            <section
-                                id="model-bar-chart-section"
-                                className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
-                            >
-                                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                                    Word Frequency Bar Chart
-                                </h2>
-                                {/* <!-- Container for the chart --> */}
-                                <div
-                                    id="model-bar-chart"
-                                    className="chart w-full h-[400px] bg-gray-50 rounded-lg"
-                                ></div>
-                            </section>
-                        </div>
-                        {/*
-                        <div>
-                            <TypographyH3 className="flex justify-center w-full text-center">
-                                Is it as scam?
-                            </TypographyH3>
-                            <p>
-                                Go to the help center to learn more about
-                                reporting or what to do if you or someone you
-                                know fell victim to it.
-                            </p>
-                            <Button variant="secondary" asChild>
-                                <Link href="/help">Help Center</Link>
-                            </Button>
-                        </div> */}
+                        {/* <ScamDetectHindsight msg={msg} /> */}
                     </motion.div>
                 )}
             </AnimatePresence>
