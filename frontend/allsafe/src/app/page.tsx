@@ -81,11 +81,6 @@ export default function Homepage() {
                         link="/quiz/"
                     />
                 </div>
-                <div className="snap-start min-h-screen w-full flex flex-col">
-                    <div className="flex-grow flex items-center justify-center">
-                        <CTA />
-                    </div>
-                </div>
             </div>
         </ReactLenis>
     )
