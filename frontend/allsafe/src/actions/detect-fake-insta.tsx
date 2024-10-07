@@ -126,8 +126,8 @@ export async function detectFakeInstaAccount({
         }
 
         const data = await response.json()
-        // console.log('Fake account detection result: ', data)
-        return data
+        // console.log('Fake account detection result: ', data['prediction'][0])
+        return data['prediction'][0]
     } catch (error) {
         // console.error('Error detecting fake Instagram account:', error)
         throw error
