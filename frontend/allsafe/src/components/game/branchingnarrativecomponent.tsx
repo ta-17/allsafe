@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
 import ConvertContent from './ConvertContent'
+
 const BranchingNarrativeComponent = ({
     scenarios,
     scenario,
@@ -18,13 +19,22 @@ const BranchingNarrativeComponent = ({
     const [gameOver, setGameOver] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState('q0')
     const [navAnswer, setNavAnswer] = useState(false)
+    const [feedback, setFeedback] = useState('') // Store the feedback after selecting an answer
+    const [showFeedback, setShowFeedback] = useState(false) // Toggle the visibility of feedback
+
     const choice = gameData[scenario - 1]
 
-    const handleAnswerClick = (link: React.SetStateAction<string>) => {
+    // Modify this function to accept and store feedback and reset feedback for new questions
+    const handleAnswerClick = (
+        link: React.SetStateAction<string>,
+        feedbackText: string
+    ) => {
         if (choice[currentQuestion as keyof typeof choice]) {
             setCurrentQuestion(link)
             setNavAnswer(false)
             setGameBegan(true)
+            setFeedback(feedbackText) // Store feedback of the answer chosen
+            setShowFeedback(true) // Show feedback after clicking
         } else {
             console.error(`Question with link "${link}" not found in gameData.`)
         }
@@ -112,6 +122,7 @@ const BranchingNarrativeComponent = ({
                                                 | Promise<React.AwaitedReactNode>
                                                 | null
                                                 | undefined
+                                            feedback: string // Ensure the feedback property is part of the answer
                                         },
                                         index: React.Key | null | undefined
                                     ) => (
@@ -119,7 +130,10 @@ const BranchingNarrativeComponent = ({
                                             variant="secondary"
                                             key={index}
                                             onClick={() =>
-                                                handleAnswerClick(answer.link)
+                                                handleAnswerClick(
+                                                    answer.link,
+                                                    answer.feedback
+                                                )
                                             }
                                         >
                                             {answer.text}
@@ -129,11 +143,24 @@ const BranchingNarrativeComponent = ({
                             </div>
                         )}
                     </CardContent>
+
+                    {/* Display the feedback only after the answer is clicked */}
+                    {showFeedback && (
+                        <div className="text-sm text-gray-500 mt-4">
+                            <strong>Feedback:</strong> {feedback}
+                        </div>
+                    )}
+
+                    {/* Reset feedback and navigate to the next question */}
                     {!navAnswer && currentQuestionData.answers.length > 0 && (
                         <Button
                             className="m-6 self-end"
                             variant="ghost"
-                            onClick={() => setNavAnswer(true)}
+                            onClick={() => {
+                                setNavAnswer(true)
+                                setShowFeedback(false) // Reset the feedback when moving to the next question
+                                setFeedback('') // Clear previous feedback
+                            }}
                         >
                             Continue
                         </Button>
