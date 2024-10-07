@@ -33,9 +33,32 @@ d3.csv('/visualisation/historical_scam.csv')
         renderCharts(data)
 
         // Add drop-down event listener for year selection (affect only Sunburst and Bar chart)
+
+        function updateChartsBasedOnSelection() {
+            const selectedYear = document.getElementById('year-dropdown').value
+
+            let filteredData
+            if (selectedYear === '2024') {
+                // Filter data for the year 2024
+                filteredData = originalData.filter((d) => d.year === 2024)
+            } else {
+                // Use all data when "All" is selected
+                filteredData = originalData
+            }
+
+            // Log filtered data to verify it's correct
+            console.log(`Filtered Data for ${selectedYear}:`, filteredData)
+
+            // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data
+            updateSunburstAndBarCharts(filteredData)
+        }
+
+        updateChartsBasedOnSelection()
+
         document
             .getElementById('year-dropdown')
             .addEventListener('change', function () {
+                console.log('Year selected:', this.value)
                 const selectedYear = this.value
                 let filteredData
                 if (selectedYear === '2024') {

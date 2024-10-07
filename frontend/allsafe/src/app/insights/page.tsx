@@ -5,8 +5,6 @@ import { useEffect } from 'react'
 import '../style.css' // Assuming your CSS is in the src/styles folder
 import '../output.css'
 import '../input.css'
-import { cn } from '@/libs/utils'
-import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH1 } from '@/typography/h1'
 import Image from 'next/image'
@@ -27,15 +25,7 @@ import {
     CarouselPrevious,
     type CarouselApi,
 } from '@/components/ui/carousel'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
 
-import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const Insights = () => {
@@ -306,9 +296,10 @@ const Insights = () => {
                         <select
                             id="year-dropdown"
                             className="p-2 text-lg rounded border cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:border-gray-300 focus:outline-none focus:bg-gray-200 focus:border-gray-400"
+                            defaultValue="2024"
                         >
-                            <option value="2024">2024</option>
                             <option value="all">All Years</option>
+                            <option value="2024">2024</option>
                         </select>
 
                         <Carousel
