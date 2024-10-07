@@ -7,18 +7,26 @@ export const jobAndEmployment = {
             {
                 text: 'Express interest and ask for more details about the job.',
                 link: 'q1',
+                feedback:
+                    'You’ve expressed interest, but make sure to evaluate the offer carefully, especially when sensitive information is requested.',
             },
             {
                 text: 'Politely decline the offer.',
                 link: 'q2',
+                feedback:
+                    'You declined the offer, but Alex may still reach out to convince you.',
             },
             {
                 text: 'Ignore the message.',
                 link: 'q3',
+                feedback:
+                    'Ignoring messages like this can help avoid potential scams, but consider adjusting your privacy settings to prevent future unsolicited messages.',
             },
             {
                 text: 'Check Alex’s profile for legitimacy.',
                 link: 'q4',
+                feedback:
+                    'Checking profiles for legitimacy is a great first step to avoid potential scams.',
             },
         ],
     },
@@ -31,14 +39,20 @@ export const jobAndEmployment = {
             {
                 text: 'Provide the requested personal information.',
                 link: 'q5',
+                feedback:
+                    'Sharing personal information like this can expose you to identity theft and fraud. Be very cautious.',
             },
             {
                 text: 'Ask why such sensitive information is needed.',
                 link: 'q6',
+                feedback:
+                    'It’s smart to ask for more details when you feel uncomfortable. Understanding why sensitive information is required is essential.',
             },
             {
                 text: 'Decide not to proceed and consider reporting Alex.',
                 link: 'q7',
+                feedback:
+                    'If you suspect something is wrong, stopping communication and reporting the account can help protect others.',
             },
         ],
     },
@@ -50,15 +64,21 @@ export const jobAndEmployment = {
         answers: [
             {
                 text: 'Change your mind and express interest.',
-                link: 'q1', // Reusing q1
+                link: 'q1',
+                feedback:
+                    'You’ve reconsidered the offer. Proceed carefully and ensure the offer is legitimate.',
             },
             {
                 text: 'Ignore the message.',
-                link: 'q3', // Reusing q3
+                link: 'q3',
+                feedback:
+                    'Ignoring unsolicited messages like these can protect you from potential scams.',
             },
             {
                 text: 'Consider reporting Alex for unsolicited messages.',
-                link: 'q7', // Reusing q7
+                link: 'q7',
+                feedback:
+                    'Reporting suspicious activity can help protect others from falling victim to similar scams.',
             },
         ],
     },
@@ -71,10 +91,14 @@ export const jobAndEmployment = {
             {
                 text: 'Yes, adjust messaging settings for more privacy.',
                 link: 'q8',
+                feedback:
+                    'Adjusting your privacy settings can reduce unsolicited messages and enhance your online safety.',
             },
             {
                 text: 'No, leave settings as they are.',
                 link: 'q9',
+                feedback:
+                    'Leaving your settings unchanged means you may continue receiving unsolicited messages.',
             },
         ],
     },
@@ -86,11 +110,15 @@ export const jobAndEmployment = {
         answers: [
             {
                 text: 'Proceed to express interest in the job and ask for more details.',
-                link: 'q1', // Reusing q1
+                link: 'q1',
+                feedback:
+                    'Even though Alex’s profile looks suspicious, you’ve decided to proceed. Be cautious.',
             },
             {
                 text: 'Decide not to respond and consider reporting Alex.',
-                link: 'q7', // Reusing q7
+                link: 'q7',
+                feedback:
+                    'It’s wise to avoid interaction with accounts that seem suspicious and report them if necessary.',
             },
         ],
     },
@@ -103,14 +131,20 @@ export const jobAndEmployment = {
             {
                 text: 'Report the incident to the authorities and your bank.',
                 link: 'q10',
+                feedback:
+                    'Reporting identity theft to the authorities and your bank is the correct first step to mitigate damage.',
             },
             {
                 text: 'Contact Alex to confront them.',
                 link: 'q11',
+                feedback:
+                    'Confronting scammers is not advised. It’s best to report the issue to the authorities.',
             },
             {
                 text: 'Do nothing and hope the issue resolves itself.',
                 link: 'q12',
+                feedback:
+                    'Ignoring the issue can cause more damage. Always act quickly to protect yourself.',
             },
         ],
     },
@@ -122,15 +156,21 @@ export const jobAndEmployment = {
         answers: [
             {
                 text: 'Trust Alex and provide the information.',
-                link: 'q5', // Reusing q5
+                link: 'q5',
+                feedback:
+                    'Providing personal information to an unverified source is risky and can lead to fraud.',
             },
             {
                 text: 'Express discomfort and decline to provide the information.',
                 link: 'q13',
+                feedback:
+                    'Trust your instincts. If you feel uncomfortable, it’s always better to decline.',
             },
             {
                 text: 'Decide to stop communication and consider reporting Alex.',
-                link: 'q7', // Reusing q7
+                link: 'q7',
+                feedback:
+                    'If you feel something is wrong, stopping communication and reporting the account can help protect others.',
             },
         ],
     },
@@ -143,10 +183,14 @@ export const jobAndEmployment = {
             {
                 text: 'Yes, report the account.',
                 link: 'q14',
+                feedback:
+                    'Reporting suspicious accounts helps prevent others from becoming victims.',
             },
             {
                 text: 'No, just block the account.',
                 link: 'q15',
+                feedback:
+                    'Blocking the account prevents further contact, but reporting helps protect the wider community.',
             },
         ],
     },
@@ -190,7 +234,7 @@ export const jobAndEmployment = {
     q8TikTok: {
         id: 8,
         question:
-            "You adjust your messaging settings to limit who can contact you on TikTok.\n\nIn the TikTok app, tap Profile at the bottom.\n\nTap the **Menu ☰** button at the top, then select **Settings and privacy**.\n\nTap **Privacy**\n\n.Tap **Direct messages**, then choose from the list of options who can send you messages:\n\n   ༚  **Everyone:** Anyone can send you a direct message. Messages from mutual friends and people you follow appear in your inbox.\n\n   ༚  **Suggested friends:** Matched friends, including synced Facebook friends and phone contacts, and followers who you follow back, can send you a direct message.\n\n   ༚  **Friends:** Any followers that you follow back can send you a direct message.\n\n   ༚  **No one:** You can't receive direct messages from anyone. Keep in mind that if you choose this setting, you can't receive direct messages. You can still access your message history in your inbox, but you can't receive new direct messages in those chats.\n\nKeep in mind that some of these options are not available to everyone.\n\n**Conclusion:** By adjusting your settings, you enhance your privacy and reduce unwanted messages.\n\n**Feedback:** Great job taking proactive steps to protect your privacy!",
+            'You adjust your messaging settings to limit who can contact you on TikTok.\n\nIn the TikTok app, tap Profile at the bottom.\n\nTap the Menu ☰ button at the top, then select Settings and privacy.\n\nTap Privacy\n\n.Tap Direct messages, then choose from the list of options who can send you messages:\n\n   ༚  Everyone: Anyone can send you a direct message. Messages from mutual friends and people you follow appear in your inbox.\n\n   ༚  Suggested friends: Matched friends, including synced Facebook friends and phone contacts, and followers who you follow back, can send you a direct message.\n\n   ༚  Friends: Any followers that you follow back can send you a direct message.\n\n   ༚  No one: You can’t receive direct messages from anyone. Keep in mind that if you choose this setting, you can’t receive direct messages. You can still access your message history in your inbox, but you can’t receive new direct messages in those chats.\n\nKeep in mind that some of these options are not available to everyone.\n\nConclusion: By adjusting your settings, you enhance your privacy and reduce unwanted messages.\n\nFeedback: Great job taking proactive steps to protect your privacy!',
         answers: [],
         end: true,
     },
@@ -230,11 +274,15 @@ export const jobAndEmployment = {
         answers: [
             {
                 text: 'Decide to end communication and report Alex.',
-                link: 'q7', // Reusing q7
+                link: 'q7',
+                feedback:
+                    'It’s wise to stop communication when you feel uncomfortable. Reporting Alex can prevent others from falling victim.',
             },
             {
                 text: 'Reconsider and decide to provide the information.',
-                link: 'q5', // Reusing q5
+                link: 'q5',
+                feedback:
+                    'Providing sensitive information under pressure is risky. Always think carefully before doing so.',
             },
         ],
     },

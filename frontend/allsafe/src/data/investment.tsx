@@ -7,10 +7,14 @@ export const investment = {
             {
                 text: 'Ignore the message.',
                 link: 'qEnd1',
+                feedback:
+                    'You’ve successfully avoided a potential scam. Ignoring messages like this is a safe approach when something feels off.',
             },
             {
                 text: 'Ask for more details about the investment.',
                 link: 'q1',
+                feedback:
+                    'It’s always good to gather more information, but be cautious with offers that sound too good to be true.',
             },
         ],
     },
@@ -22,14 +26,20 @@ export const investment = {
             {
                 text: 'Ask for more information about the company.',
                 link: 'q2',
+                feedback:
+                    'Asking for more information is smart. Always verify companies before making any financial commitments.',
             },
             {
                 text: 'Conduct your own research on “EliteInvesting123.”',
                 link: 'q7',
+                feedback:
+                    'Doing your own research is essential when it comes to potential investments. It helps uncover any red flags.',
             },
             {
                 text: 'Express interest and ask how to make the deposit.',
                 link: 'q3',
+                feedback:
+                    'Expressing interest without research can put you at risk of falling into a scam. Always verify before proceeding.',
             },
         ],
     },
@@ -41,10 +51,14 @@ export const investment = {
             {
                 text: 'Ask for official company documents and verify their legitimacy.',
                 link: 'q4',
+                feedback:
+                    'Asking for documentation is a step in the right direction. Always verify company claims independently.',
             },
             {
                 text: 'Ask for proof of successful transactions from real investors.',
                 link: 'q5',
+                feedback:
+                    'Requesting proof from real investors can help you determine if the company is legitimate or if it’s a scam.',
             },
         ],
     },
@@ -56,14 +70,20 @@ export const investment = {
             {
                 text: 'Send $200.',
                 link: 'q6',
+                feedback:
+                    'Sending money without proper verification puts you at risk. It’s better to be cautious with your investments.',
             },
             {
                 text: 'Ask for a refund policy before sending money.',
                 link: 'q9',
+                feedback:
+                    'Asking for a refund policy is wise, especially when dealing with online investments.',
             },
             {
                 text: 'Ask if you can start with a smaller amount.',
                 link: 'q10',
+                feedback:
+                    'Requesting to start with a smaller amount shows caution. However, watch out for high-pressure tactics.',
             },
         ],
     },
@@ -75,10 +95,14 @@ export const investment = {
             {
                 text: 'Confront EliteInvesting123 about the fake documents.',
                 link: 'qEnd2',
+                feedback:
+                    'Confronting scammers is one option, but walking away and reporting them might be safer.',
             },
             {
                 text: 'Trust them and proceed with the investment.',
                 link: 'q6',
+                feedback:
+                    'Proceeding with an investment after finding red flags is risky. It’s better to walk away at this point.',
             },
         ],
     },
@@ -90,14 +114,20 @@ export const investment = {
             {
                 text: 'Contact the “top investor” and ask about their experience.',
                 link: 'q6',
+                feedback:
+                    'Contacting someone recommended by a scammer is risky. They are likely part of the scam.',
             },
             {
                 text: 'Ask for more verifiable documentation of these transactions.',
                 link: 'q8',
+                feedback:
+                    'Asking for more proof can help you verify the legitimacy of the company, but be cautious of fake documents.',
             },
             {
                 text: 'Ignore the testimonials and conduct your own research.',
                 link: 'q7',
+                feedback:
+                    'Ignoring testimonials and doing your own research is a wise choice, as scammers often provide fake proof.',
             },
         ],
     },
@@ -109,10 +139,14 @@ export const investment = {
             {
                 text: 'Try to withdraw your money.',
                 link: 'q11',
+                feedback:
+                    'Trying to withdraw is smart, but beware of withdrawal fees and stall tactics.',
             },
             {
                 text: 'Reinvest the $600 for bigger returns.',
                 link: 'q12',
+                feedback:
+                    'Reinvesting without seeing proof of withdrawal can lead to further losses in scams like this.',
             },
         ],
     },
@@ -124,14 +158,20 @@ export const investment = {
             {
                 text: 'Immediately confront EliteInvesting123 and express your suspicion.',
                 link: 'qEnd3',
+                feedback:
+                    'Confronting scammers is one approach, but it’s safer to report and disengage.',
             },
             {
                 text: 'Report the account to authorities or social media platforms for fraud.',
                 link: 'q7Report',
+                feedback:
+                    'Reporting the account helps protect others from falling for the same scam.',
             },
             {
                 text: 'Walk away without engaging further.',
                 link: 'qEnd5',
+                feedback:
+                    'Walking away is a safe and smart move after identifying the scam.',
             },
         ],
     },
@@ -167,7 +207,7 @@ export const investment = {
     q7ReportInstagram: {
         id: 7,
         question:
-            "You report EliteInvesting123's account on Instagram.\n\nClick their username from their Feed or story post, or click **explore** and search their username to go to their profile.\n\nClick **more** actions next to their username.\n\nSelect **Report**, then select the type of account you want to report and follow the on-screen instructions.\n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.",
+            "You report EliteInvesting123's account on Instagram.\n\nClick their username from their Feed or story post, or click explore and search their username to go to their profile.\n\nClick more actions next to their username.\n\nSelect Report, then select the type of account you want to report and follow the on-screen instructions.\n\nConclusion: By reporting the scam, you can help to make social media and the community safer.",
         answers: [],
         end: true,
     },
@@ -188,10 +228,14 @@ export const investment = {
             {
                 text: 'Confront them and walk away.',
                 link: 'qEnd6',
+                feedback:
+                    'Confronting scammers can be risky. Walking away and reporting is a safer option.',
             },
             {
                 text: 'Trust them and proceed.',
                 link: 'q6',
+                feedback:
+                    'Trusting them at this stage is highly risky. Scam signs are clear.',
             },
         ],
     },
@@ -203,10 +247,14 @@ export const investment = {
             {
                 text: 'Accept the refund policy and proceed to send $200.',
                 link: 'q6',
+                feedback:
+                    'Accepting this policy is risky. Refund guarantees after profits are highly suspicious.',
             },
             {
                 text: 'Become suspicious due to the “no refunds after profits” clause and ask more questions.',
                 link: 'qEnd7',
+                feedback:
+                    'Your suspicion is valid—no legitimate investment would operate this way.',
             },
         ],
     },
@@ -218,10 +266,14 @@ export const investment = {
             {
                 text: 'Agree to invest the full $200.',
                 link: 'q6',
+                feedback:
+                    'Agreeing to invest without fully verifying is risky. Always ensure you’re confident in the offer.',
             },
             {
                 text: 'Walk away, sensing the aggressiveness as a red flag.',
                 link: 'qEnd8',
+                feedback:
+                    'Aggressiveness is a red flag. Walking away is the best decision.',
             },
         ],
     },
@@ -233,10 +285,14 @@ export const investment = {
             {
                 text: 'Pay the $50 withdrawal fee.',
                 link: 'q13',
+                feedback:
+                    'Paying withdrawal fees is a common scam tactic. Avoid this and demand your money back.',
             },
             {
                 text: 'Refuse and demand a full refund immediately.',
                 link: 'qEnd9',
+                feedback:
+                    'Refusing and demanding a refund shows you’re aware of the scam.',
             },
         ],
     },
@@ -248,10 +304,14 @@ export const investment = {
             {
                 text: 'Invest the additional $500 to unlock the next tier.',
                 link: 'q6',
+                feedback:
+                    'Requesting more money after your investment grows is a scam sign. Do not send additional funds.',
             },
             {
                 text: 'Refuse to pay any fees and demand your money back.',
                 link: 'qEnd10',
+                feedback:
+                    'Refusing to pay shows you’re taking control of the situation and avoiding further losses.',
             },
         ],
     },
@@ -263,10 +323,14 @@ export const investment = {
             {
                 text: 'Pay the additional $100 fee.',
                 link: 'qEnd11',
+                feedback:
+                    'Paying additional fees is a common scam trap. Avoid this and cut off communication.',
             },
             {
                 text: 'Refuse to pay the fee and ask to cancel the investment.',
                 link: 'qEnd12',
+                feedback:
+                    'Refusing to pay shows you’re avoiding further losses in the scam.',
             },
         ],
     },
@@ -342,14 +406,14 @@ export const investment = {
     qEnd11: {
         id: 'End11',
         question:
-            'You paid the additional fee, but the scammer disappeared with your money.\n\n**Conclusion:** The action you need to take is reporting the scam via government and the platform. By reporting the scam, you can help to make social media and the community safer. Always be cautious when the investment is high return without risks.',
+            'You paid the additional fee, but the scammer disappeared with your money.\n\n**Conclusion:** The action you need to take isreporting the scam via government and the platform. By reporting the scam, you can help to make social media and the community safer. Always be cautious when the investment is high return without risks.',
         answers: [],
         end: true,
     },
     qEnd12: {
         id: 'End12',
         question:
-            'You refused to pay the security fee, and the scammer blocked you from further communication. \n\n**Conclusion:** By reporting the scam, you can help to make social media and the community safer.',
+            'You refused to pay the security fee, and the scammer blocked you from further communication. \n\nConclusion: By reporting the scam, you can help to make social media and the community safer.',
         answers: [],
         end: true,
     },

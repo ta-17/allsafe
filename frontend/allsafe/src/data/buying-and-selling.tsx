@@ -7,18 +7,26 @@ export const buyingAndSelling = {
             {
                 text: 'Agree to buy the item at $200.',
                 link: 'q1',
+                feedback:
+                    'Proceeding with an online purchase through wire transfer may leave you without protections in case of scams.',
             },
             {
                 text: 'Ask for more details about the item and shipping process.',
                 link: 'q2',
+                feedback:
+                    'Asking for more information can help clarify if the seller is genuine or if the deal is suspicious.',
             },
             {
                 text: 'Ask to meet in person before buying.',
                 link: 'q3',
+                feedback:
+                    'Meeting in person is a safer option when buying high-value items to ensure you are not dealing with a scammer.',
             },
             {
                 text: 'Conduct your own research on the seller.',
                 link: 'q4',
+                feedback:
+                    'Researching the seller can reveal red flags such as new accounts, lack of reviews, or suspicious behavior.',
             },
         ],
     },
@@ -31,14 +39,20 @@ export const buyingAndSelling = {
             {
                 text: 'Proceed to send the payment via wire transfer.',
                 link: 'q5',
+                feedback:
+                    'Wire transfers lack buyer protection and may leave you vulnerable to scams. It is often not recoverable.',
             },
             {
                 text: 'Express concern about using wire transfer and ask for a more secure payment method.',
                 link: 'q6',
+                feedback:
+                    'A safer payment method like PayPal offers buyer protection and can help avoid potential scams.',
             },
             {
                 text: 'Decide not to proceed with the purchase and ignore the seller.',
                 link: 'q7',
+                feedback:
+                    'Choosing not to proceed can help protect you from potential fraud.',
             },
         ],
     },
@@ -51,14 +65,20 @@ export const buyingAndSelling = {
             {
                 text: 'Agree to proceed with the purchase via wire transfer.',
                 link: 'q5',
+                feedback:
+                    'Proceeding with a wire transfer is risky as it offers no buyer protection and can be hard to reverse if something goes wrong.',
             },
             {
                 text: 'Ask if you can use a more secure payment method like PayPal or meet in person.',
                 link: 'q6',
+                feedback:
+                    'Using a secure method protects you in case of disputes and gives you leverage if the deal goes wrong.',
             },
             {
                 text: 'Decide not to proceed with the purchase and ignore the seller.',
                 link: 'q7',
+                feedback:
+                    'Avoiding the transaction helps you avoid potential fraud.',
             },
         ],
     },
@@ -71,14 +91,20 @@ export const buyingAndSelling = {
             {
                 text: 'Proceed to agree and send the payment via wire transfer.',
                 link: 'q5',
+                feedback:
+                    'Wire transfers are irreversible, and there is no guarantee you will receive the item after payment.',
             },
             {
                 text: 'Insist on waiting until they return to meet in person.',
                 link: 'q8',
+                feedback:
+                    'Insisting on meeting in person reduces the risk of falling victim to a scam.',
             },
             {
                 text: 'Decide to cancel the transaction and ignore the seller.',
                 link: 'q7',
+                feedback:
+                    'Walking away from a suspicious deal can protect you from fraud.',
             },
         ],
     },
@@ -91,10 +117,13 @@ export const buyingAndSelling = {
             {
                 text: 'Proceed with caution and ask the seller for verification or more details.',
                 link: 'q2',
+                feedback:
+                    'Asking for verification helps assess the legitimacy of the seller and deal.',
             },
             {
                 text: 'Decide not to proceed with the purchase and ignore the seller.',
                 link: 'q7',
+                feedback: 'Ignoring the seller prevents potential fraud.',
             },
         ],
     },
@@ -107,14 +136,20 @@ export const buyingAndSelling = {
             {
                 text: 'Report the seller to the marketplace platform.',
                 link: 'q9',
+                feedback:
+                    'Reporting the scam helps the platform prevent similar incidents.',
             },
             {
                 text: 'Contact your bank to see if the transfer can be reversed.',
                 link: 'q10',
+                feedback:
+                    'Although wire transfers are difficult to reverse, it’s still important to report the issue to your bank for potential recovery.',
             },
             {
                 text: 'Do nothing and accept the loss.',
                 link: 'q11',
+                feedback:
+                    'Accepting the loss can be emotionally challenging, but serves as a lesson for future caution.',
             },
         ],
     },
@@ -127,10 +162,14 @@ export const buyingAndSelling = {
             {
                 text: 'Agree to proceed with the wire transfer despite your concerns.',
                 link: 'q5',
+                feedback:
+                    'Proceeding with the wire transfer increases your risk of falling victim to a scam without any buyer protections.',
             },
             {
                 text: 'Decide not to proceed with the purchase and ignore the seller.',
                 link: 'q7',
+                feedback:
+                    'Choosing not to proceed helps you avoid potential fraud.',
             },
         ],
     },
@@ -143,10 +182,14 @@ export const buyingAndSelling = {
             {
                 text: 'Yes, report the seller to the marketplace platform.',
                 link: 'q12',
+                feedback:
+                    'Reporting the seller helps protect others and makes the platform safer.',
             },
             {
                 text: 'No, do nothing further.',
                 link: 'q15',
+                feedback:
+                    'Choosing not to report may allow the seller to continue scamming others.',
             },
         ],
     },
@@ -159,10 +202,14 @@ export const buyingAndSelling = {
             {
                 text: 'Decide to proceed with the wire transfer to secure the deal.',
                 link: 'q5',
+                feedback:
+                    'Moving forward with the wire transfer may result in financial loss if the seller is not legitimate.',
             },
             {
                 text: 'Stick to your decision to meet in person, even if it means losing the deal.',
                 link: 'q7',
+                feedback:
+                    'Sticking to safer transaction methods reduces the risk of falling victim to scams.',
             },
         ],
     },
