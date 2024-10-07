@@ -7,18 +7,26 @@ export const datingAndRomance = {
             {
                 text: 'Reply and start a conversation with Alex.',
                 link: 'q1',
+                feedback:
+                    'Engaging with someone you don’t know can be risky. Be cautious about what personal information you share.',
             },
             {
                 text: "Check Alex's profile for legitimacy.",
                 link: 'q2',
+                feedback:
+                    "It's smart to verify someone's profile before engaging. Look for inconsistencies or signs of a fake account.",
             },
             {
                 text: 'Ignore the message.',
                 link: 'q3',
+                feedback:
+                    'Ignoring unsolicited messages can be a safe choice to avoid potential scams.',
             },
             {
                 text: "Block Alex's account.",
                 link: 'q4',
+                feedback:
+                    'Blocking suspicious accounts is a good way to prevent unwanted interactions and protect yourself from potential risks.',
             },
         ],
     },
@@ -31,18 +39,26 @@ export const datingAndRomance = {
             {
                 text: 'Offer to send Alex the money.',
                 link: 'q5',
+                feedback:
+                    'Sending money to someone you’ve never met in person is highly risky. This is a common scam tactic.',
             },
             {
                 text: 'Express sympathy but decline to send money.',
                 link: 'q6',
+                feedback:
+                    'It’s wise to refuse requests for money from strangers. Scammers often play on emotions to exploit trust.',
             },
             {
                 text: 'Feel suspicious and decide to stop communicating with Alex.',
                 link: 'q7',
+                feedback:
+                    'Trusting your instincts and cutting off communication can prevent further risk.',
             },
             {
                 text: "Report Alex's account.",
                 link: 'q8',
+                feedback:
+                    'Reporting suspicious accounts helps protect you and others from scams. This is the right step if you suspect fraud.',
             },
         ],
     },
@@ -55,18 +71,26 @@ export const datingAndRomance = {
             {
                 text: 'Decide to ignore the message.',
                 link: 'q3',
+                feedback:
+                    'Ignoring messages from suspicious accounts is a safe way to avoid potential scams.',
             },
             {
                 text: 'Proceed to block Alex’s account.',
                 link: 'q4',
+                feedback:
+                    'Blocking suspicious accounts protects you from unwanted contact and potential scams.',
             },
             {
                 text: 'Still decide to reply and start a conversation.',
                 link: 'q1',
+                feedback:
+                    'Engaging with suspicious accounts increases the risk of being scammed. It’s better to avoid communication.',
             },
             {
                 text: 'Adjust your account settings to make your profile private.',
                 link: 'q9',
+                feedback:
+                    'Making your profile private reduces your exposure to unsolicited messages from strangers.',
             },
         ],
     },
@@ -167,18 +191,26 @@ export const datingAndRomance = {
             {
                 text: 'Report the incident to the platform.',
                 link: 'q8',
+                feedback:
+                    'Reporting scams to the platform helps protect others and may lead to recovery of lost funds.',
             },
             {
                 text: 'Contact your bank to see if the transfer can be reversed.',
                 link: 'q11',
+                feedback:
+                    'Contacting your bank quickly increases the chances of reversing the transfer.',
             },
             {
                 text: 'Enable two-factor authentication (2FA) on your account.',
                 link: 'q12',
+                feedback:
+                    'Enabling 2FA strengthens your account security and protects against further breaches.',
             },
             {
                 text: 'Do nothing and accept the loss.',
                 link: 'q13',
+                feedback:
+                    'Doing nothing allows the scam to continue and leaves you unprotected.',
             },
         ],
     },
@@ -191,18 +223,26 @@ export const datingAndRomance = {
             {
                 text: 'Stand firm and politely decline again.',
                 link: 'q14',
+                feedback:
+                    'Standing firm is important to avoid manipulation and potential loss of money.',
             },
             {
                 text: 'Decide to send a smaller amount.',
                 link: 'q5',
+                feedback:
+                    'Even sending a small amount can lead to further demands or losses in a scam.',
             },
             {
                 text: 'Feel uncomfortable and decide to block Alex.',
                 link: 'q4',
+                feedback:
+                    'Blocking is a good step to protect yourself from further manipulation.',
             },
             {
                 text: "Report Alex's account.",
                 link: 'q8',
+                feedback:
+                    'Reporting scams helps protect others from being targeted.',
             },
         ],
     },
@@ -348,7 +388,7 @@ export const datingAndRomance = {
     q12Facebook: {
         id: 12,
         question:
-            "You enable two-factor authentication (2FA) on Facebook.\n\nClick on your profile picture in the top right, then click **Settings and privacy**.\n\nClick **Settings**.\n\nClick **Accounts Centre**, then click **Password and security**.\n\nClick **Two-factor authentication**, then click on the account that you'd like to update.\n\nChoose the security method that you want to add and follow the on-screen instructions.\n\n**Conclusion:** By enabling 2FA, you've added an extra layer of security to your account.\n\n**Feedback:** Excellent decision to protect your account!",
+            'You enable two-factor authentication (2FA) on Facebook.\n\nClick on your profile picture in the top right, then click Settings and privacy.\n\nClick Settings.\n\nClick Accounts Centre, then click Password and security.\n\nClick Two-factor authentication, then click on the account that you’d like to update.\n\nChoose the security method that you want to add and follow the on-screen instructions.\n\nConclusion: By enabling 2FA, you’ve added an extra layer of security to your account.\n\nFeedback: Excellent decision to protect your account!',
         answers: [],
         end: true,
     },
