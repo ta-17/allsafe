@@ -10,6 +10,9 @@ import quiz from '@/components/assets/homepage/feature3-quiz.jpg'
 import { useEffect, useRef } from 'react'
 import { MotionValue, useScroll, useTransform } from 'framer-motion'
 import { ReactLenis, useLenis } from 'lenis/react'
+import CTA from '@/components/cta/cta-one'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 function useParallax(value: MotionValue<number>, distance: number) {
     return useTransform(value, [0, 1], [-distance, distance])
@@ -41,11 +44,18 @@ export default function Homepage() {
                 <div className="snap-start min-h-screen w-full flex items-center justify-center">
                     <Hero />
                 </div>
-                <div className="snap-start min-h-screen w-full flex items-center justify-center">
+                <div className="snap-start min-h-screen w-full flex flex-col items-center justify-center">
                     <Header
-                        title="Scared of being scammed or targeted online?"
-                        subtitle="Our collection of resources, articles, and scam detector tools can help."
+                        title="Think you have spotted a fake account? "
+                        subtitle="Checkout out
+                            our AI tool that detects if the account is
+                            legitimate or not."
                     />
+                    <Button asChild>
+                        <Link href="/ai/fake-insta">
+                            Check Instagram Account
+                        </Link>
+                    </Button>
                 </div>
                 <div className="snap-start min-h-screen w-full flex items-center justify-center bg-slate-200">
                     <FeatureLeft
@@ -72,6 +82,9 @@ export default function Homepage() {
                         img={quiz}
                         link="/quiz/"
                     />
+                </div>
+                <div className="snap-start min-h-screen w-full flex items-center justify-center bg-slate-200">
+                    <CTA />
                 </div>
             </div>
         </ReactLenis>
