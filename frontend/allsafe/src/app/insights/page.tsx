@@ -3,12 +3,22 @@
 import { useEffect } from 'react'
 
 import '../style.css' // Assuming your CSS is in the src/styles folder
+import '../output.css'
+import '../input.css'
 import { cn } from '@/libs/utils'
 import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH1 } from '@/typography/h1'
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
 
 const Insights = () => {
     useEffect(() => {
@@ -28,77 +38,95 @@ const Insights = () => {
         <>
             <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
                 {/* <!-- Introduction Section --> */}
-                <header className="text-center py-16 relative bg-gray">
-                    <h1 className="text-5xl md:text-8xl font-bold text-black p-4 md:p-20 pb-0 leading-tight">
+                <header className="text-center py-16 relative">
+                    <h1 className="text-3xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
                         Social media scams among young adults are not fake
                         issues. It&apos;s truly happening…
                     </h1>
 
                     {/* <!-- Set up pillars to link with graphs --> */}
                     {/* <!-- Link to Section Trend - Line chart --> */}
-                    <div className="pillars flex flex-col md:flex-row justify-around items-center flex-wrap mt-12 mx-4 md:mx-40 space-y-4 md:space-y-0">
-                        <a
+                    <div className="pillars flex flex-col md:flex-row justify-around items-center flex-wrap mt-12 mx-4 md:mx-40 gap-4 md:space-y-0">
+                        <Link
                             href="#section-trend"
-                            className="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center"
+                            className="pillar flex-1 min-w-[250px]"
                         >
-                            <h2 className="text-5xl md:text-6xl text-orange-500 font-semibold">
-                                26%
-                            </h2>
-                            <h3 className="text-xl md:text-2xl text-gray-600 mt-2">
-                                reported scams in various age groups increased
-                                between 2023 and 2022
-                            </h3>
-                            <div className="flex flex-col items-center mt-4">
-                                <span className="text-lg md:text-xl text-gray-500">
-                                    Click to explore
-                                </span>
-                            </div>
-                        </a>
+                            <Card className="flex flex-col w-full justify-center shadow-md">
+                                <CardHeader>
+                                    <CardTitle className="text-5xl md:text-6xl text-orange-500 font-semibold">
+                                        26%
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="flex flex-col justify-center gap-y-2">
+                                    <CardDescription className="text-xl md:text-2xl text-gray-600">
+                                        reported scams in various age groups
+                                        increased between 2023 and 2022
+                                    </CardDescription>
+                                    <CardFooter className="text-center">
+                                        <span className="text-center text-lg md:text-xl text-gray-500 w-full">
+                                            Click to explore
+                                        </span>
+                                    </CardFooter>
+                                </CardContent>
+                            </Card>
+                        </Link>
 
                         {/* <!-- Link to Section Sunburst - Sunburst chart --> */}
-                        <a
+                        <Link
                             href="#section-top5"
-                            className="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center"
+                            className="pillar flex-1 min-w-[250px]"
                         >
-                            <h2 className="text-5xl md:text-6xl text-orange-500 font-semibold">
-                                18%
-                            </h2>
-                            <h3 className="text-xl md:text-2xl text-gray-600 mt-2">
-                                scams among young adults are contacted via
-                                social media
-                            </h3>
-                            <div className="flex flex-col items-center mt-4">
-                                <span className="text-lg md:text-xl text-gray-500">
-                                    Click to explore
-                                </span>
-                            </div>
-                        </a>
+                            <Card className="shadow">
+                                <CardHeader className="text-center">
+                                    <CardTitle className="text-5xl md:text-6xl text-orange-500 font-semibold">
+                                        18%
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="flex flex-col justify-center gap-y-2">
+                                    <CardDescription className="text-xl md:text-2xl text-gray-600">
+                                        scams among young adults are contacted
+                                        via social media
+                                    </CardDescription>
+                                    <CardFooter>
+                                        <span className="text-lg md:text-xl text-gray-500 w-full">
+                                            Click to explore
+                                        </span>
+                                    </CardFooter>
+                                </CardContent>
+                            </Card>
+                        </Link>
 
                         {/* <!-- Link to Section Bar - Bar chart--> */}
-                        <a
+                        <Link
                             href="#bar-chart"
-                            className="pillar flex-1 min-w-[250px] m-4 p-6 bg-white rounded-lg shadow-md text-center"
+                            className="pillar flex-1 min-w-[250px]"
                         >
-                            <h2 className="text-5xl md:text-6xl text-orange-500 font-semibold">
-                                $3.52M
-                            </h2>
-                            <h3 className="text-xl md:text-2xl text-gray-600 mt-2">
-                                scammed money lost among young adults on social
-                                media in 2024
-                            </h3>
-                            <div className="flex flex-col items-center mt-4">
-                                <span className="text-lg md:text-xl text-gray-500">
-                                    Click to explore
-                                </span>
-                            </div>
-                        </a>
+                            <Card className="shadow">
+                                <CardHeader>
+                                    <CardTitle className="text-5xl md:text-6xl text-orange-500 font-semibold">
+                                        $3.52M
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="flex flex-col justify-center gap-y-2">
+                                    <CardDescription className="text-xl md:text-2xl text-gray-600">
+                                        scammed money lost among young adults on
+                                        social media in 2024
+                                    </CardDescription>
+                                    <CardFooter>
+                                        <span className="text-lg md:text-xl text-gray-500 w-full">
+                                            Click to explore
+                                        </span>
+                                    </CardFooter>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     </div>
                 </header>
 
                 {/* <!-- Line Chart --> */}
                 <section
                     id="section-trend"
-                    className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
+                    className="text-center w-full p-16 bg-gray-50 rounded-lg mt-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Do you know how fast the scam growth in recent years?
@@ -200,7 +228,7 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="text-center w-full p-8 bg-gray-50 rounded-lg"
+                    className="text-center w-full p-16 bg-gray-50 rounded-lg"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
@@ -209,9 +237,11 @@ const Insights = () => {
                     {/* <!-- Flex container for chart and carousel --> */}
                     <div className="flex flex-col md:flex-row items-center">
                         {/* <!-- Get the image --> */}
-                        <img
-                            src="wordcloud.png"
+                        <Image
+                            src="/visualisation/wordcloud.png"
                             alt="Word Cloud"
+                            width={500}
+                            height={500}
                             className="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4"
                         />
 
@@ -274,7 +304,7 @@ const Insights = () => {
                 {/* <!-- Top 5 Scam Section (Sunburst & Bar Chart)--> */}
                 <section
                     id="section-top5"
-                    className="text-center w-full p-8 bg-gray-50 rounded-lg mt-4"
+                    className="text-center w-full p-16 bg-gray-50 rounded-lg mt-4"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Do you know what are the top 5 scams affecting young
