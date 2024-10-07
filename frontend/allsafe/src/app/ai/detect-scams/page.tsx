@@ -348,6 +348,11 @@ export default function ScamDetect() {
                     <Button variant="outline" onClick={() => setSubmit(false)}>
                         Check another message?
                     </Button>
+                    <p>
+                        Think you have spotted a fake account?{' '}
+                        <Button>Check Here</Button>
+                    </p>
+                    <Button>Think</Button>
                     {/* <ScamDetectHindsight msg={msg} /> */}
                 </motion.div>
                 {/* // )} */}
