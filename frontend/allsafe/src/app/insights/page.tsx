@@ -71,7 +71,7 @@ const Insights = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full p-6 max-w-full">
+            <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
                     <h1 className="text-3xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
@@ -337,30 +337,31 @@ const Insights = () => {
                 </section>
 
                 {/* <!-- Top 5 Scam Section (Sunburst & Bar Chart)--> */}
-                <section
-                    id="section-top5"
-                    className="flex flex-col justify-center items-center text-center w-full gap-y-2"
-                >
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                        Do you know what are the top 5 scams affecting young
-                        adults in Australia?
-                    </h2>
-
-                    {/* <!-- User Guide --> */}
-                    <h3 className="text-xl md:text-xl font-bold mb-4 text-gray-600">
-                        Use the drop-down menu to switch between 2024 and an
-                        overview from 2020 to 2024.
-                    </h3>
-
-                    {/* <!-- Drop-down Menu Button --> */}
-                    <select
-                        id="year-dropdown"
-                        className="p-2 text-lg rounded border cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:border-gray-300 focus:outline-none focus:bg-gray-200 focus:border-gray-400"
+                <div>
+                    <section
+                        id="section-top5"
+                        className="flex flex-col justify-center items-center text-center w-full gap-y-2"
                     >
-                        <option value="2024">2024</option>
-                        <option value="all">All Years</option>
-                    </select>
-                    {/* <Select>
+                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                            Do you know what are the top 5 scams affecting young
+                            adults in Australia?
+                        </h2>
+
+                        {/* <!-- User Guide --> */}
+                        <h3 className="text-xl md:text-xl font-bold mb-4 text-gray-600">
+                            Use the drop-down menu to switch between 2024 and an
+                            overview from 2020 to 2024.
+                        </h3>
+
+                        {/* <!-- Drop-down Menu Button --> */}
+                        <select
+                            id="year-dropdown"
+                            className="p-2 text-lg rounded border cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:border-gray-300 focus:outline-none focus:bg-gray-200 focus:border-gray-400"
+                        >
+                            <option value="2024">2024</option>
+                            <option value="all">All Years</option>
+                        </select>
+                        {/* <Select>
                         <SelectTrigger className="w-[180px]" id="year-dropdown">
                             <SelectValue placeholder="Theme" />
                         </SelectTrigger>
@@ -371,139 +372,144 @@ const Insights = () => {
                         </SelectContent>
                     </Select> */}
 
-                    <Carousel setApi={setApi} className="w-full md:max-w-7xl">
-                        <CarouselContent>
-                            <CarouselItem>
-                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        In 2024, the{' '}
-                                        <span className="text-lg font-bold">
-                                            top 5 scams
-                                        </span>{' '}
-                                        alone accounted for approximately
-                                        <span className="text-lg font-bold text-orange-500">
-                                            $3.27 million
-                                        </span>{' '}
-                                        in losses, representing
-                                        <span className="text-lg font-bold text-orange-500">
-                                            more than 90%
-                                        </span>{' '}
-                                        of the total amount lost on social media
-                                        scams with young adults.
-                                    </p>
-                                </div>
-                            </CarouselItem>
-                            <CarouselItem>
-                                {/* <!-- 2nd Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        <span className="text-lg font-bold">
-                                            Buying or selling scams
-                                        </span>{' '}
-                                        are the most common, making up over
-                                        <span className="text-lg font-bold text-orange-500">
-                                            56%
-                                        </span>
-                                        from 2020 till now.
-                                        <span className="text-lg font-bold">
-                                            Over 1,443 reports and $691k
-                                            financial lost
-                                        </span>{' '}
-                                        within 2024.
-                                        <br />
-                                    </p>
-                                </div>
-                            </CarouselItem>
-
-                            <CarouselItem>
-                                {/* <!-- 3rd Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        Among these years,{' '}
-                                        <span className="text-lg font-bold">
-                                            investment scams
-                                        </span>{' '}
-                                        have the highest financial impact,
-                                        making up
-                                        <span className="text-lg font-bold text-orange-500">
-                                            50%
-                                        </span>{' '}
-                                        of the total losses.
-                                        <br />
-                                        Whilst the report number only took
-                                        around 10 - 15%, it faced
-                                        <span className="text-lg font-bold">
-                                            the most severe money lost issue
-                                        </span>{' '}
-                                        among the top 5 scam types.
-                                    </p>
-                                </div>
-                            </CarouselItem>
-
-                            <CarouselItem>
-                                {/* <!-- 4th Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        <span className="text-lg font-bold">
-                                            Gain personal information scams
-                                        </span>
-                                        took about
-                                        <span className="text-lg font-bold text-orange-500">
-                                            14%
-                                        </span>
-                                        with 2,326 reports during the whole
-                                        period. <br />
-                                        Although it does not directly cause vast
-                                        money loss, it is more likely to face
-                                        other scams in the future when your
-                                        personal information is leaked.
-                                    </p>
-                                </div>
-                            </CarouselItem>
-
-                            <CarouselItem>
-                                {/* <!-- 5th Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        <span className="text-lg font-bold">
-                                            No matter which type of scam you are
-                                            facing, the potential loss can
-                                            accumulate into a vast amount and
-                                            continuously influence our daily
-                                            lives.
+                        <Carousel
+                            setApi={setApi}
+                            className="w-full md:max-w-7xl"
+                        >
+                            <CarouselContent>
+                                <CarouselItem>
+                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-gray-600 text-center">
+                                            In 2024, the{' '}
+                                            <span className="text-lg font-bold">
+                                                top 5 scams
+                                            </span>{' '}
+                                            alone accounted for approximately
+                                            <span className="text-lg font-bold text-orange-500">
+                                                $3.27 million
+                                            </span>{' '}
+                                            in losses, representing
+                                            <span className="text-lg font-bold text-orange-500">
+                                                more than 90%
+                                            </span>{' '}
+                                            of the total amount lost on social
+                                            media scams with young adults.
+                                        </p>
+                                    </div>
+                                </CarouselItem>
+                                <CarouselItem>
+                                    {/* <!-- 2nd Card --> */}
+                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-gray-600 text-center">
+                                            <span className="text-lg font-bold">
+                                                Buying or selling scams
+                                            </span>{' '}
+                                            are the most common, making up over
+                                            <span className="text-lg font-bold text-orange-500">
+                                                56%
+                                            </span>
+                                            from 2020 till now.
+                                            <span className="text-lg font-bold">
+                                                Over 1,443 reports and $691k
+                                                financial lost
+                                            </span>{' '}
+                                            within 2024.
                                             <br />
-                                        </span>
-                                        Interact with the chart to see the
-                                        number of reports of top 5 scams, and
-                                        click on a certain type to find detailed
-                                        information.
-                                    </p>
-                                </div>
-                            </CarouselItem>
-                        </CarouselContent>
-                        <div className="py-2 text-center text-sm text-muted-foreground">
-                            Slide {current} of {count}
-                        </div>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                </section>
+                                        </p>
+                                    </div>
+                                </CarouselItem>
 
-                {/* <!-- New Section for charts -->     */}
-                <section>
-                    <div className="flex flex-col md:flex-row items-center justify-between">
-                        {/* <!-- Get Sunburst Chart --> */}
-                        <div
-                            id="sunburst-chart"
-                            className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
-                        ></div>
-                        {/* <!-- Get Bar Chart --> */}
-                        <div
-                            id="bar-chart"
-                            className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
-                        ></div>
-                    </div>
-                </section>
+                                <CarouselItem>
+                                    {/* <!-- 3rd Card --> */}
+                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-gray-600 text-center">
+                                            Among these years,{' '}
+                                            <span className="text-lg font-bold">
+                                                investment scams
+                                            </span>{' '}
+                                            have the highest financial impact,
+                                            making up
+                                            <span className="text-lg font-bold text-orange-500">
+                                                50%
+                                            </span>{' '}
+                                            of the total losses.
+                                            <br />
+                                            Whilst the report number only took
+                                            around 10 - 15%, it faced
+                                            <span className="text-lg font-bold">
+                                                the most severe money lost issue
+                                            </span>{' '}
+                                            among the top 5 scam types.
+                                        </p>
+                                    </div>
+                                </CarouselItem>
+
+                                <CarouselItem>
+                                    {/* <!-- 4th Card --> */}
+                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-gray-600 text-center">
+                                            <span className="text-lg font-bold">
+                                                Gain personal information scams
+                                            </span>
+                                            took about
+                                            <span className="text-lg font-bold text-orange-500">
+                                                14%
+                                            </span>
+                                            with 2,326 reports during the whole
+                                            period. <br />
+                                            Although it does not directly cause
+                                            vast money loss, it is more likely
+                                            to face other scams in the future
+                                            when your personal information is
+                                            leaked.
+                                        </p>
+                                    </div>
+                                </CarouselItem>
+
+                                <CarouselItem>
+                                    {/* <!-- 5th Card --> */}
+                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-gray-600 text-center">
+                                            <span className="text-lg font-bold">
+                                                No matter which type of scam you
+                                                are facing, the potential loss
+                                                can accumulate into a vast
+                                                amount and continuously
+                                                influence our daily lives.
+                                                <br />
+                                            </span>
+                                            Interact with the chart to see the
+                                            number of reports of top 5 scams,
+                                            and click on a certain type to find
+                                            detailed information.
+                                        </p>
+                                    </div>
+                                </CarouselItem>
+                            </CarouselContent>
+                            <div className="py-2 text-center text-sm text-muted-foreground">
+                                Slide {current} of {count}
+                            </div>
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+                    </section>
+
+                    {/* <!-- New Section for charts -->     */}
+                    <section>
+                        <div className="flex flex-col md:flex-row items-center justify-between">
+                            {/* <!-- Get Sunburst Chart --> */}
+                            <div
+                                id="sunburst-chart"
+                                className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
+                            ></div>
+                            {/* <!-- Get Bar Chart --> */}
+                            <div
+                                id="bar-chart"
+                                className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
+                            ></div>
+                        </div>
+                    </section>
+                </div>
 
                 <section className="flex flex-col justify-center items-center w-full gap-y-8 py-6">
                     <TypographyH1>
