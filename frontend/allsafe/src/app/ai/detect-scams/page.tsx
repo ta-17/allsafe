@@ -322,14 +322,14 @@ export default function ScamDetect() {
 
                     <section
                         id="model-bar-chart-section"
-                        className="text-center w-full p-8  rounded-lg mt-12"
+                        className="model-bar-chart-section text-center w-full p-8  rounded-lg mt-12"
                     >
                         <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                             Word Frequency Bar Chart
                         </h2>
                         <div
                             id="model-bar-chart"
-                            className="chart w-full h-[400px]  rounded-lg"
+                            className="model-bar-chart chart w-full h-[400px]  rounded-lg"
                         ></div>
                     </section>
                     <p className="text-muted-foreground text-center">
@@ -345,12 +345,20 @@ export default function ScamDetect() {
                         servers immediately after the results are provided.
                         Please use these tools at your own discretion.
                     </p>
-                    <Button variant="outline" onClick={() => setSubmit(false)}>
+                    <Button
+                        variant="outline"
+                        onClick={() => {
+                            // setSubmit(false)
+                            window.location.reload()
+                        }}
+                    >
                         Check another message?
                     </Button>
                     <p>
                         Think you have spotted a fake account?{' '}
-                        <Button>Check Here</Button>
+                        <Button onClick={() => window.location.reload}>
+                            Check Here
+                        </Button>
                     </p>
                     <Button>Think</Button>
                     {/* <ScamDetectHindsight msg={msg} /> */}

@@ -120,6 +120,19 @@ document
         // Clear the existing model bar chart if necessary
         d3.select('#model-bar-chart').selectAll('*').remove()
 
+        await sleep(1000)
+
+        if (wordFrequency.length === 0) {
+            console.log('No data found')
+            document
+                .getElementById('model-bar-chart-section')
+                .classList.add('hidden')
+        } else {
+            document
+                .getElementById('model-bar-chart-section')
+                .classList.add('visible')
+        }
+
         // Render the new bar chart based on the input
         createModelBarChart(wordFrequency, 'model-bar-chart')
         console.log('It is finished')
