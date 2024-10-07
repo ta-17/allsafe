@@ -338,7 +338,7 @@ const Insights = () => {
                         >
                             <CarouselContent>
                                 <CarouselItem>
-                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             In 2024, the{' '}
                                             <span className="text-lg font-bold">
@@ -359,7 +359,7 @@ const Insights = () => {
                                 </CarouselItem>
                                 <CarouselItem>
                                     {/* <!-- 2nd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50   shadow-md h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Buying or selling scams
@@ -381,7 +381,7 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 3rd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50   shadow-md h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             Among these years,{' '}
                                             <span className="text-lg font-bold">
@@ -406,7 +406,7 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 4th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 shadow-md h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Gain personal information scams
@@ -428,7 +428,7 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 5th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 shadow-md h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 No matter which type of scam you
