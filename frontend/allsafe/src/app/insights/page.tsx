@@ -161,35 +161,35 @@ const Insights = () => {
                 {/* <!-- Line Chart --> */}
                 <section
                     id="section-trend"
-                    className="text-center w-full p-16 mt-12"
+                    className="flex flex-col justify-around text-center w-full p-16 mt-12 min-h-screen"
                 >
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                    <h2 className="self-center w-2/3 text-4xl md:text-5xl font-extrabold mb-4 text-gray-800">
                         Do you know how fast the scam growth in recent years?
                     </h2>
 
-                    {/* <!-- User Guide --> */}
-                    <h3 className="text-xl md:text-xl font-bold text-gray-600 md:w-1/2">
-                        Select 3 years to discover the trend across different
-                        years:
-                    </h3>
+                    <div className="w-full">
+                        <h3 className=" text-gray-600 md:w-1/2">
+                            Select 3 years to discover the trend across
+                            different years:
+                        </h3>
+                        {/* <!-- Flex container for chart and carousel --> */}
+                        <div className="flex flex-col md:flex-row items-center justify-between">
+                            {/* <!-- User Guide --> */}
 
-                    {/* <!-- Flex container for chart and carousel --> */}
-                    <div className="flex flex-col md:flex-row items-center justify-between">
-                        {/* <!-- Get the chart --> */}
-                        <div
-                            id="line-chart"
-                            className="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4 mb-4"
-                        ></div>
-
-                        {/* <!-- Add text in carousel --> */}
-                        <div className="relative overflow-hidden w-full md:w-1/2 px-8">
+                            {/* <!-- Get the chart --> */}
                             <div
-                                id="carousel"
-                                className="carousel w-full flex transition-transform duration-300"
-                            >
-                                {/* <!-- 1st Card --> */}
-                                <div className="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
+                                id="line-chart"
+                                className="chart h-[400px] md:h-[500px] w-full md:w-1/2 px-4 mb-4"
+                            ></div>
+
+                            {/* <!-- Add text in carousel --> */}
+                            <div className="relative bg-slate-50 w-full md:w-1/2 p-8 min-h-full">
+                                <div
+                                    id="carousel"
+                                    className="carousel flex flex-col justify-between items-start gap-y-8 h-full w-full"
+                                >
+                                    {/* <!-- 1st Card --> */}
+                                    <p className="text-start text-lg text-gray-600">
                                         From January 2020 to July 2024, there
                                         have been
                                         <span className="text-xl font-bold text-orange-500">
@@ -203,11 +203,9 @@ const Insights = () => {
                                             *Data collected until August 2024
                                         </span>
                                     </p>
-                                </div>
 
-                                {/* <!-- 2nd Card --> */}
-                                <div className="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
+                                    {/* <!-- 2nd Card --> */}
+                                    <p className="text-start text-lg text-gray-600">
                                         Comparing the whole year of 2023 and
                                         2022, reported scams
                                         <span className="text-xl font-bold text-orange-500">
@@ -215,11 +213,9 @@ const Insights = () => {
                                         </span>
                                         .
                                     </p>
-                                </div>
 
-                                {/* <!-- 3rd Card --> */}
-                                <div className="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
+                                    {/* <!-- 3rd Card --> */}
+                                    <p className="text-start text-lg text-gray-600">
                                         The scam reported peak is in Q1 2023,
                                         with
                                         <span className="text-xl font-bold text-orange-500">
@@ -228,11 +224,9 @@ const Insights = () => {
                                         </span>
                                         .
                                     </p>
-                                </div>
 
-                                {/* <!-- 4th Card --> */}
-                                <div className="carousel-item line-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
+                                    {/* <!-- 4th Card --> */}
+                                    <p className="text-start text-lg text-gray-600">
                                         Although the number of scam reports
                                         gradually decreased from then, around
                                         <span className="text-xl font-bold text-orange-500">
@@ -241,21 +235,21 @@ const Insights = () => {
                                         in 2024.
                                     </p>
                                 </div>
-                            </div>
 
-                            {/* <!-- Add button for carousel --> */}
-                            <button
-                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="line-prev"
-                            >
-                                {' '}
-                            </button>
-                            <button
-                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="line-next"
-                            >
-                                {' '}
-                            </button>
+                                {/* <!-- Add button for carousel --> */}
+                                <button
+                                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
+                                    id="line-prev"
+                                >
+                                    {' '}
+                                </button>
+                                <button
+                                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
+                                    id="line-next"
+                                >
+                                    {' '}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
