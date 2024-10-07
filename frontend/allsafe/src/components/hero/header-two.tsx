@@ -10,15 +10,18 @@ import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import { cn } from '@/libs/utils'
 
 const Header = ({
     title,
     subtitle,
     className = '',
+    textClassName = '',
 }: {
     title: string
     subtitle: string
     className?: string
+    textClassName?: string
 }) => {
     const ref = useRef(null)
     const isInView = useInView(ref)
@@ -40,7 +43,9 @@ const Header = ({
                                 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
                         }}
                     >
-                        <TypographyH1 className="!mb-0">{title}</TypographyH1>
+                        <TypographyH1 className={cn('!mb-0', textClassName)}>
+                            {title}
+                        </TypographyH1>
                         <TypographyLead className="text-muted-foreground">
                             <Balancer>{subtitle}</Balancer>
                         </TypographyLead>

@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/carousel'
 
 import React from 'react'
+import Header from '@/components/hero/header-two'
 
 const Insights = () => {
     const [api, setApi] = React.useState<CarouselApi>()
@@ -64,10 +65,16 @@ const Insights = () => {
             <div className="flex flex-col  w-full p-6 gap-y-20 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
-                    <h1 className="text-5xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
+                    {/* <h1 className="text-5xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
                         Social media scams among young adults are not fake
                         issues. It&apos;s truly happening…
-                    </h1>
+                    </h1> */}
+                    <Header
+                        title="Social media scams among young adults are not fake
+                        issues. It's truly happening…"
+                        subtitle=""
+                        textClassName="text-5xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight"
+                    />
 
                     {/* <!-- Set up pillars to link with graphs --> */}
                     {/* <!-- Link to Section Trend - Line chart --> */}

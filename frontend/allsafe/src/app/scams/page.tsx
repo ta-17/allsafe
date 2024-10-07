@@ -20,7 +20,7 @@ export default function ScamInfo() {
                 <Header
                     title="Scams"
                     subtitle="A collection of the top 5 most common scam types."
-                    className="p-0"
+                    textClassName="p-0"
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     <div className="row-span-1 max-w-lg">
