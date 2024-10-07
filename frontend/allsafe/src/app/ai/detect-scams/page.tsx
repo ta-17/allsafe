@@ -47,7 +47,7 @@ export default function ScamDetect() {
     const sharedMsg = useDetectScamStore((state) => state.sharedMsg)
     const sharedSubmit = useDetectScamStore((state) => state.sharedSubmit)
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault() // Prevent the default form submission behavior
         setLoading(true)
         setError(null)
