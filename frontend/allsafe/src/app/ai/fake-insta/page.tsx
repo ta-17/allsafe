@@ -268,6 +268,20 @@ export default function FakeInstaDetect() {
                                 <Check className="text-green-400 w-56 h-56" />
                             )}
                         </div>
+                        <p className="text-muted-foreground text-center">
+                            <strong>Disclaimer</strong> Our website uses AI
+                            models to provide this service. While these models
+                            are trained to identify patterns and generate
+                            predictions, they may not always produce accurate
+                            results. Therefore, the predictions should be
+                            considered as guidance only and not as definitive
+                            decisions. We value your privacy and do not store or
+                            retain any user data. All inputted information is
+                            temporarily used for generating predictions and is
+                            automatically deleted from our servers immediately
+                            after the results are provided. Please use these
+                            tools at your own discretion.
+                        </p>
                         <Button
                             variant="outline"
                             onClick={() => setSubmit(false)}

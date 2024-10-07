@@ -36,9 +36,7 @@ const Breakdown = [
 export default function ScamDetect() {
     const ref = useRef<HTMLFormElement>(null)
 
-    const [msg, setMsg] = useState<string>(
-        'Congratulations! You&apos;ve won a $1,000 Walmart gift bard. Go to http://bit.ly/123456 tp claim now.'
-    )
+    const [msg, setMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [showMore, setShowMore] = useState<boolean>(false)
     const [submit, setSubmit] = useState<boolean>(false)
@@ -166,25 +164,13 @@ export default function ScamDetect() {
                                 value={msg}
                                 placeholder="Enter message here"
                                 onChange={(e) => setMsg(e.target.value)}
-                                className="w-full max-h-60"
+                                className="w-full h-48"
                             />
                             {loading ? (
                                 <ButtonLoading />
                             ) : (
                                 <Button>Submit</Button>
                             )}
-                            {/* <section
-                                id="model-bar-chart-section"
-                                className="text-center w-full p-8  rounded-lg mt-12"
-                            >
-                                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                                    Word Frequency Bar Chart
-                                </h2>
-                                <div
-                                    id="model-bar-chart"
-                                    className="chart w-full h-[400px]  rounded-lg"
-                                ></div>
-                            </section> */}
                         </form>
                     </section>
                     {/* <!-- Bar Chart Section --> */}
@@ -346,6 +332,19 @@ export default function ScamDetect() {
                             className="chart w-full h-[400px]  rounded-lg"
                         ></div>
                     </section>
+                    <p className="text-muted-foreground text-center">
+                        <strong>Disclaimer</strong> Our website uses AI models
+                        to provide this service. While these models are trained
+                        to identify patterns and generate predictions, they may
+                        not always produce accurate results. Therefore, the
+                        predictions should be considered as guidance only and
+                        not as definitive decisions. We value your privacy and
+                        do not store or retain any user data. All inputted
+                        information is temporarily used for generating
+                        predictions and is automatically deleted from our
+                        servers immediately after the results are provided.
+                        Please use these tools at your own discretion.
+                    </p>
                     <Button variant="outline" onClick={() => setSubmit(false)}>
                         Check another message?
                     </Button>
