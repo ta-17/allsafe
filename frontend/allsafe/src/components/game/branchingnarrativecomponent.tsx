@@ -1,13 +1,12 @@
 import { gameData } from '@/data/gameData'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { Card, CardHeader, CardDescription, CardContent } from '../ui/card'
-// import gifImg from ''
 import Image from 'next/image'
 import Link from 'next/link'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
-
+import ConvertContent from './ConvertContent'
 const BranchingNarrativeComponent = ({
     scenarios,
     scenario,
@@ -59,14 +58,6 @@ const BranchingNarrativeComponent = ({
                             Help Section
                         </Link>
                     </p>
-                    {/* <p>
-                        Brush up on your knowledge by visiting the scam tactics
-                        page{' '}
-                        <Link href="/scams" passHref className="underline">
-                            {' '}
-                            scam tactics page
-                        </Link>
-                    </p> */}
                 </div>
             </div>
         )
@@ -94,7 +85,10 @@ const BranchingNarrativeComponent = ({
                     <CardContent className="flex flex-col items-end gap-y-2">
                         {!navAnswer && (
                             <span className="text-base transition-opacity duration-300 revealed:opacity-100 green:text-[#27ae60] red:text-[#ff0000]">
-                                {currentQuestionData.question}
+                                {/* Use the ConvertContent component here to display formatted text */}
+                                <ConvertContent
+                                    text={currentQuestionData.question}
+                                />
                             </span>
                         )}
                         {navAnswer && (
