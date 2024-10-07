@@ -19,8 +19,43 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+    type CarouselApi,
+} from '@/components/ui/carousel'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
+
+import { Button } from '@/components/ui/button'
+import React from 'react'
 
 const Insights = () => {
+    const [api, setApi] = React.useState<CarouselApi>()
+    const [current, setCurrent] = React.useState(0)
+    const [count, setCount] = React.useState(0)
+
+    useEffect(() => {
+        if (!api) {
+            return
+        }
+
+        setCount(api.scrollSnapList().length)
+        setCurrent(api.selectedScrollSnap() + 1)
+
+        api.on('select', () => {
+            setCurrent(api.selectedScrollSnap() + 1)
+        })
+    }, [api])
+
     useEffect(() => {
         // This will run after the component mounts
         const script = document.createElement('script')
@@ -36,7 +71,7 @@ const Insights = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
+            <div className="flex flex-col w-full p-6 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
                     <h1 className="text-3xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
@@ -126,7 +161,7 @@ const Insights = () => {
                 {/* <!-- Line Chart --> */}
                 <section
                     id="section-trend"
-                    className="text-center w-full p-16 bg-gray-50 rounded-lg mt-12"
+                    className="text-center w-full p-16 mt-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Do you know how fast the scam growth in recent years?
@@ -228,7 +263,7 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="text-center w-full p-16 bg-gray-50 rounded-lg"
+                    className="text-center w-full p-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
@@ -304,7 +339,7 @@ const Insights = () => {
                 {/* <!-- Top 5 Scam Section (Sunburst & Bar Chart)--> */}
                 <section
                     id="section-top5"
-                    className="text-center w-full p-16 bg-gray-50 rounded-lg mt-4"
+                    className="flex flex-col justify-center items-center text-center w-full gap-y-2"
                 >
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
                         Do you know what are the top 5 scams affecting young
@@ -320,22 +355,16 @@ const Insights = () => {
                     {/* <!-- Drop-down Menu Button --> */}
                     <select
                         id="year-dropdown"
-                        className="p-2 text-lg rounded border border-gray-300 bg-gray-100 cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-500 focus:outline-none focus:bg-gray-300 focus:border-gray-800"
+                        className="p-2 text-lg rounded border cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:border-gray-300 focus:outline-none focus:bg-gray-200 focus:border-gray-400"
                     >
                         <option value="2024">2024</option>
                         <option value="all">All Years</option>
                     </select>
 
-                    {/* <!-- Flex container for carousel --> */}
-                    <div className="flex flex-col md:flex-row items-center justify-between">
-                        {/* <!-- Add text in carousel --> */}
-                        <div className="relative overflow-hidden w-full px-8">
-                            <div
-                                id="carousel"
-                                className="carousel w-full flex transition-transform duration-300"
-                            >
-                                {/* <!-- 1st Card --> */}
-                                <div className="carousel-item top5-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                    <Carousel setApi={setApi} className="w-full md:max-w-7xl">
+                        <CarouselContent>
+                            <CarouselItem>
+                                <div className="flex-shrink-0 w-full bg-gray-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         In 2024, the{' '}
                                         <span className="text-lg font-bold">
@@ -353,9 +382,10 @@ const Insights = () => {
                                         scams with young adults.
                                     </p>
                                 </div>
-
+                            </CarouselItem>
+                            <CarouselItem>
                                 {/* <!-- 2nd Card --> */}
-                                <div className="carousel-item top5-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50   shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             Buying or selling scams
@@ -373,9 +403,11 @@ const Insights = () => {
                                         <br />
                                     </p>
                                 </div>
+                            </CarouselItem>
 
+                            <CarouselItem>
                                 {/* <!-- 3rd Card --> */}
-                                <div className="carousel-item top5-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50   shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         Among these years,{' '}
                                         <span className="text-lg font-bold">
@@ -393,12 +425,14 @@ const Insights = () => {
                                         <span className="text-lg font-bold">
                                             the most severe money lost issue
                                         </span>{' '}
-                                        amoung the top 5 scam types.
+                                        among the top 5 scam types.
                                     </p>
                                 </div>
+                            </CarouselItem>
 
+                            <CarouselItem>
                                 {/* <!-- 4th Card --> */}
-                                <div className="carousel-item top5-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             Gain personal information scams
@@ -415,9 +449,11 @@ const Insights = () => {
                                         personal information is leaked.
                                     </p>
                                 </div>
+                            </CarouselItem>
 
+                            <CarouselItem>
                                 {/* <!-- 5th Card --> */}
-                                <div className="carousel-item top5-carousel-item flex-shrink-0 w-full bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             No matter which type of scam you are
@@ -433,23 +469,14 @@ const Insights = () => {
                                         information.
                                     </p>
                                 </div>
-                            </div>
-
-                            {/* <!-- Add button for carousel --> */}
-                            <button
-                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="top5-prev"
-                            >
-                                {' '}
-                            </button>
-                            <button
-                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="top5-next"
-                            >
-                                {' '}
-                            </button>
+                            </CarouselItem>
+                        </CarouselContent>
+                        <div className="py-2 text-center text-sm text-muted-foreground">
+                            Slide {current} of {count}
                         </div>
-                    </div>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </section>
 
                 {/* <!-- New Section for charts -->     */}
@@ -458,12 +485,12 @@ const Insights = () => {
                         {/* <!-- Get Sunburst Chart --> */}
                         <div
                             id="sunburst-chart"
-                            className="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4"
+                            className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
                         ></div>
                         {/* <!-- Get Bar Chart --> */}
                         <div
                             id="bar-chart"
-                            className="chart h-[400px] md:h-[500px] bg-gray-50 rounded-lg w-full md:w-1/2 px-4"
+                            className="chart h-[400px] md:h-[500px]  w-full md:w-1/2 px-4"
                         ></div>
                     </div>
                 </section>
