@@ -86,7 +86,7 @@ const Insights = () => {
                             href="#section-trend"
                             className="pillar flex-1 min-w-[250px]"
                         >
-                            <Card className="flex flex-col w-full justify-center shadow-md">
+                            <Card className="flex flex-col w-full justify-center rounded-xl">
                                 <CardHeader>
                                     <CardTitle className="text-5xl md:text-6xl text-orange-500 font-semibold">
                                         26%
@@ -173,82 +173,62 @@ const Insights = () => {
                             different years:
                         </h3>
                         {/* <!-- Flex container for chart and carousel --> */}
-                        <div className="flex flex-col md:flex-row items-center justify-between">
+                        <div className="flex flex-col flex-grow md:flex-row justify-between items-stretch">
                             {/* <!-- User Guide --> */}
 
                             {/* <!-- Get the chart --> */}
                             <div
                                 id="line-chart"
-                                className="chart h-[400px] md:h-[500px] w-full md:w-1/2 px-4 mb-4"
+                                className="chart h-[400px] md:h-[500px] w-full md:w-1/2 px-4 m-0"
                             ></div>
 
                             {/* <!-- Add text in carousel --> */}
-                            <div className="relative bg-slate-50 w-full md:w-1/2 p-8 min-h-full">
-                                <div
-                                    id="carousel"
-                                    className="carousel flex flex-col justify-between items-start gap-y-8 h-full w-full"
-                                >
-                                    {/* <!-- 1st Card --> */}
-                                    <p className="text-start text-lg text-gray-600">
-                                        From January 2020 to July 2024, there
-                                        have been
-                                        <span className="text-xl font-bold text-orange-500">
-                                            19,030
-                                        </span>
-                                        reported social media scams affecting
-                                        young adults in Australia.
-                                        <br />
-                                        <span className="text-sm text-gray-400">
-                                            {' '}
-                                            *Data collected until August 2024
-                                        </span>
-                                    </p>
+                            <div className="flex flex-grow flex- flex-col justify-around bg-slate-50 rounded-lg w-full md:w-1/2 p-8">
+                                {/* <!-- 1st Card --> */}
+                                <p className="text-start text-lg text-gray-600">
+                                    From January 2020 to July 2024, there have
+                                    been{' '}
+                                    <span className="text-xl font-bold text-orange-500">
+                                        19,030
+                                    </span>{' '}
+                                    reported social media scams affecting young
+                                    adults in Australia.
+                                    <br />
+                                    <span className="text-sm text-gray-400">
+                                        {' '}
+                                        *Data collected until August 2024
+                                    </span>
+                                </p>
 
-                                    {/* <!-- 2nd Card --> */}
-                                    <p className="text-start text-lg text-gray-600">
-                                        Comparing the whole year of 2023 and
-                                        2022, reported scams
-                                        <span className="text-xl font-bold text-orange-500">
-                                            increased about 21%
-                                        </span>
-                                        .
-                                    </p>
+                                {/* <!-- 2nd Card --> */}
+                                <p className="text-start text-lg text-gray-600">
+                                    Comparing the whole year of 2023 and 2022,
+                                    reported scams{' '}
+                                    <span className="text-xl font-bold text-orange-500">
+                                        increased about 21%
+                                    </span>
+                                    .
+                                </p>
 
-                                    {/* <!-- 3rd Card --> */}
-                                    <p className="text-start text-lg text-gray-600">
-                                        The scam reported peak is in Q1 2023,
-                                        with
-                                        <span className="text-xl font-bold text-orange-500">
-                                            1,677 scams reported in just first
-                                            three months
-                                        </span>
-                                        .
-                                    </p>
+                                {/* <!-- 3rd Card --> */}
+                                <p className="text-start text-lg text-gray-600">
+                                    The scam reported peak is in Q1 2023, with{' '}
+                                    <span className="text-xl font-bold text-orange-500">
+                                        1,677 scams reported in just first three
+                                        months
+                                    </span>
+                                    .
+                                </p>
 
-                                    {/* <!-- 4th Card --> */}
-                                    <p className="text-start text-lg text-gray-600">
-                                        Although the number of scam reports
-                                        gradually decreased from then, around
-                                        <span className="text-xl font-bold text-orange-500">
-                                            300 scams reported monthly
-                                        </span>
-                                        in 2024.
-                                    </p>
-                                </div>
-
-                                {/* <!-- Add button for carousel --> */}
-                                <button
-                                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                    id="line-prev"
-                                >
-                                    {' '}
-                                </button>
-                                <button
-                                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                    id="line-next"
-                                >
-                                    {' '}
-                                </button>
+                                {/* <!-- 4th Card --> */}
+                                <p className="text-start text-lg text-gray-600">
+                                    Although the number of scam reports
+                                    gradually decreased from then, around{' '}
+                                    <span className="text-xl font-bold text-orange-500">
+                                        300 scams reported monthly
+                                    </span>{' '}
+                                    in 2024.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -257,9 +237,9 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="flex flex-col justify-around items-center text-center p-16 min-h-screen w-full"
+                    className="flex flex-col justify-around items-stretch text-center p-16 min-h-screen w-full"
                 >
-                    <h1 className="text-4xl md:text-5xl md: w-2/3 font-extrabold mb-4 text-gray-800">
+                    <h1 className="self-center text-4xl md:text-5xl md: w-2/3 font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
                     </h1>
 
@@ -272,16 +252,15 @@ const Insights = () => {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            style={{ width: '100%', height: 'auto' }}
+                            style={{ width: '66%', height: 'auto' }}
                             className="bg-white p-6 w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4"
                         />
 
-                        {/* <!-- Add text in carousel --> */}
-                        <div className="flex flex-col bg-slate-50 rounded-lg h-full w-full md:w-1/2 px-4 p-6 gap-y-12">
+                        <div className="flex flex-col bg-slate-50 rounded-lg h-full w-full md:w-1/2 px-4 p-8 gap-y-12">
                             {/* <!-- 1st Card --> */}
                             <p className="text-start text-lg text-gray-600">
                                 These words highlight the most common words
-                                scammers use to make their messages
+                                scammers use to make their messages{' '}
                                 <span className="text-lg font-bold text-orange-500">
                                     sound personal, urgent, or convincing
                                 </span>
@@ -290,7 +269,7 @@ const Insights = () => {
 
                             {/* <!-- 2nd Card --> */}
                             <p className="text-start text-lg text-gray-600">
-                                They are designed to
+                                They are designed to{' '}
                                 <span className="text-lg font-bold text-orange-500">
                                     trick you into responding or taking action
                                 </span>{' '}
@@ -338,19 +317,19 @@ const Insights = () => {
                         >
                             <CarouselContent>
                                 <CarouselItem>
-                                    <div className="flex-shrink-0 w-full bg-slate-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 rounded-xl h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             In 2024, the{' '}
                                             <span className="text-lg font-bold">
                                                 top 5 scams
                                             </span>{' '}
-                                            alone accounted for approximately
+                                            alone accounted for approximately{' '}
                                             <span className="text-lg font-bold text-orange-500">
-                                                $3.27 million
+                                                $3.27 million{' '}
                                             </span>{' '}
-                                            in losses, representing
+                                            in losses, representing{' '}
                                             <span className="text-lg font-bold text-orange-500">
-                                                more than 90%
+                                                more than 90%{' '}
                                             </span>{' '}
                                             of the total amount lost on social
                                             media scams with young adults.
@@ -359,16 +338,16 @@ const Insights = () => {
                                 </CarouselItem>
                                 <CarouselItem>
                                     {/* <!-- 2nd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50   shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50  rounded-xl h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Buying or selling scams
                                             </span>{' '}
-                                            are the most common, making up over
+                                            are the most common, making up over{' '}
                                             <span className="text-lg font-bold text-orange-500">
                                                 56%
-                                            </span>
-                                            from 2020 till now.
+                                            </span>{' '}
+                                            from 2020 till now.{' '}
                                             <span className="text-lg font-bold">
                                                 Over 1,443 reports and $691k
                                                 financial lost
@@ -378,24 +357,23 @@ const Insights = () => {
                                         </p>
                                     </div>
                                 </CarouselItem>
-
                                 <CarouselItem>
                                     {/* <!-- 3rd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50   shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50   rounded-xl h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             Among these years,{' '}
                                             <span className="text-lg font-bold">
                                                 investment scams
                                             </span>{' '}
                                             have the highest financial impact,
-                                            making up
+                                            making up{' '}
                                             <span className="text-lg font-bold text-orange-500">
                                                 50%
                                             </span>{' '}
                                             of the total losses.
                                             <br />
                                             Whilst the report number only took
-                                            around 10 - 15%, it faced
+                                            around 10 - 15%, it faced{' '}
                                             <span className="text-lg font-bold">
                                                 the most severe money lost issue
                                             </span>{' '}
@@ -403,18 +381,17 @@ const Insights = () => {
                                         </p>
                                     </div>
                                 </CarouselItem>
-
                                 <CarouselItem>
                                     {/* <!-- 4th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 rounded-xl h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Gain personal information scams
-                                            </span>
-                                            took about
+                                            </span>{' '}
+                                            took about{' '}
                                             <span className="text-lg font-bold text-orange-500">
                                                 14%
-                                            </span>
+                                            </span>{' '}
                                             with 2,326 reports during the whole
                                             period. <br />
                                             Although it does not directly cause
@@ -425,10 +402,9 @@ const Insights = () => {
                                         </p>
                                     </div>
                                 </CarouselItem>
-
                                 <CarouselItem>
                                     {/* <!-- 5th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-slate-50 shadow-md h-48 flex items-center justify-center p-4">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 rounded-xl h-48 flex items-center justify-center p-4">
                                         <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 No matter which type of scam you
