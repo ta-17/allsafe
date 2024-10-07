@@ -44,6 +44,16 @@ const CTA = () => {
                                 confidently.
                             </Balancer>
                         </TypographyH4>
+                        <TypographyH2 className="border-0">
+                            <p>
+                                Think you have spotted a fake account? Checkout
+                                out our AI tool that detects if the account is
+                                legitimate or not.
+                            </p>
+                        </TypographyH2>
+                        <Button asChild>
+                            <Link href="/ai/fake-insta">Check Here</Link>
+                        </Button>
                         {/* <div className="not-prose flex items-center gap-2">
                     <Button asChild>
                         <Link href="#">Get Started</Link>

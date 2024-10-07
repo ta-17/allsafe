@@ -57,7 +57,7 @@ const Hero = () => {
                         </TypographyH2>
                         <TypographyH1 className="">
                             <Balancer>
-                                Are you getting sick from getting scam online?
+                                Are you sick of getting scammed online?
                             </Balancer>
                         </TypographyH1>
                         <TypographyLead className="mt-4 text-muted-foreground">
