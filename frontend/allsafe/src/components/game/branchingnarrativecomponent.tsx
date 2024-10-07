@@ -106,23 +106,9 @@ const BranchingNarrativeComponent = ({
                                 {currentQuestionData.answers.map(
                                     (
                                         answer: {
-                                            link: any
-                                            text:
-                                                | string
-                                                | number
-                                                | bigint
-                                                | boolean
-                                                | React.ReactElement<
-                                                      any,
-                                                      | string
-                                                      | React.JSXElementConstructor<any>
-                                                  >
-                                                | Iterable<React.ReactNode>
-                                                | React.ReactPortal
-                                                | Promise<React.AwaitedReactNode>
-                                                | null
-                                                | undefined
-                                            feedback: string // Ensure the feedback property is part of the answer
+                                            link: string
+                                            text: string
+                                            feedback?: string
                                         },
                                         index: React.Key | null | undefined
                                     ) => (
@@ -132,7 +118,7 @@ const BranchingNarrativeComponent = ({
                                             onClick={() =>
                                                 handleAnswerClick(
                                                     answer.link,
-                                                    answer.feedback
+                                                    answer.feedback!
                                                 )
                                             }
                                         >
