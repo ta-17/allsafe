@@ -56,13 +56,16 @@ const Hero = () => {
                             <Balancer>AllSafe</Balancer>
                         </TypographyH2>
                         <TypographyH1 className="">
-                            <Balancer>Social Media Safety Hub</Balancer>
+                            <Balancer>
+                                Are you getting sick from getting scam online?
+                            </Balancer>
                         </TypographyH1>
                         <TypographyLead className="mt-4 text-muted-foreground">
                             <Balancer>
-                                A platform dedicated to providing you with
-                                information and services to keep you protected
-                                from scams and other online threats.
+                                Our AI model is designed to assist in
+                                identifying whether a message you received may
+                                be a scam. Kindly input the message below for
+                                analysis.
                             </Balancer>
                         </TypographyLead>
                     </>
