@@ -360,11 +360,21 @@ const Insights = () => {
                         <option value="2024">2024</option>
                         <option value="all">All Years</option>
                     </select>
+                    {/* <Select>
+                        <SelectTrigger className="w-[180px]" id="year-dropdown">
+                            <SelectValue placeholder="Theme" />
+                        </SelectTrigger>
+                        <SelectContent id="year-dropdown">
+                            <SelectItem value="2024">2024</SelectItem>
+                            <SelectItem value="all">All Years</SelectItem>
+                            <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                    </Select> */}
 
                     <Carousel setApi={setApi} className="w-full md:max-w-7xl">
                         <CarouselContent>
                             <CarouselItem>
-                                <div className="flex-shrink-0 w-full bg-gray-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         In 2024, the{' '}
                                         <span className="text-lg font-bold">
@@ -385,7 +395,7 @@ const Insights = () => {
                             </CarouselItem>
                             <CarouselItem>
                                 {/* <!-- 2nd Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50   shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             Buying or selling scams
@@ -407,7 +417,7 @@ const Insights = () => {
 
                             <CarouselItem>
                                 {/* <!-- 3rd Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50   shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         Among these years,{' '}
                                         <span className="text-lg font-bold">
@@ -432,7 +442,7 @@ const Insights = () => {
 
                             <CarouselItem>
                                 {/* <!-- 4th Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             Gain personal information scams
@@ -453,7 +463,7 @@ const Insights = () => {
 
                             <CarouselItem>
                                 {/* <!-- 5th Card --> */}
-                                <div className="flex-shrink-0 w-full bg-gray-50 shadow-md h-48 flex items-center justify-center p-4">
+                                <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
                                     <p className="text-lg text-gray-600 text-center">
                                         <span className="text-lg font-bold">
                                             No matter which type of scam you are
