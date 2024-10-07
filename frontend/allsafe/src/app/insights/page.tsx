@@ -71,7 +71,7 @@ const Insights = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full p-6 gap-y-24 max-w-full">
+            <div className="flex flex-col  w-full p-6 gap-y-24 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
                     <h1 className="text-3xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
@@ -257,7 +257,7 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="flex flex-col justify-around items-center text-center  p-16 min-h-screen w-full"
+                    className="flex flex-col justify-around items-center text-center p-16 min-h-screen w-full"
                 >
                     <h1 className="text-4xl md:text-5xl md: w-2/3 font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
@@ -269,63 +269,39 @@ const Insights = () => {
                         <Image
                             src="/visualisation/wordcloud.png"
                             alt="Word Cloud"
-                            width={500}
-                            height={500}
-                            className="w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{ width: '100%', height: 'auto' }}
+                            className="bg-white p-6 w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4"
                         />
 
                         {/* <!-- Add text in carousel --> */}
-                        <div className="relative overflow-hidden w-full md:w-1/2 px-4 md:px-0">
-                            <div className="carousel w-full">
-                                {/* <!-- 1st Card --> */}
-                                <div className="carousel-item wordCloud-carousel-item active bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        These words highlight the most common
-                                        words scammers use to make their
-                                        messages
-                                        <span className="text-lg font-bold text-orange-500">
-                                            sound personal, urgent, or
-                                            convincing
-                                        </span>
-                                        .
-                                    </p>
-                                </div>
+                        <div className="flex flex-col bg-slate-50 rounded-lg h-full w-full md:w-1/2 px-4 p-6 gap-y-12">
+                            {/* <!-- 1st Card --> */}
+                            <p className="text-start text-lg text-gray-600">
+                                These words highlight the most common words
+                                scammers use to make their messages
+                                <span className="text-lg font-bold text-orange-500">
+                                    sound personal, urgent, or convincing
+                                </span>
+                                .
+                            </p>
 
-                                {/* <!-- 2nd Card --> */}
-                                <div className="carousel-item wordCloud-carousel-item bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        They are designed to
-                                        <span className="text-lg font-bold text-orange-500">
-                                            trick you into responding or taking
-                                            action
-                                        </span>{' '}
-                                        based on false promises.
-                                    </p>
-                                </div>
+                            {/* <!-- 2nd Card --> */}
+                            <p className="text-start text-lg text-gray-600">
+                                They are designed to
+                                <span className="text-lg font-bold text-orange-500">
+                                    trick you into responding or taking action
+                                </span>{' '}
+                                based on false promises.
+                            </p>
 
-                                {/* <!-- 3rd Card --> */}
-                                <div className="carousel-item wordCloud-carousel-item bg-gray-100 bg-opacity-50 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                    <p className="text-lg text-gray-600 text-center">
-                                        Take a look at the words, can you spot
-                                        the types of scams that appear most
-                                        often?
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* <!-- Add button for carousel --> */}
-                            <button
-                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="wordCloud-prev"
-                            >
-                                {' '}
-                            </button>
-                            <button
-                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-100 bg-opacity-50 text-gray p-3 rounded"
-                                id="wordCloud-next"
-                            >
-                                {' '}
-                            </button>
+                            {/* <!-- 3rd Card --> */}
+                            <p className="text-start text-lg text-gray-600">
+                                Take a look at the words, can you spot the types
+                                of scams that appear most often?
+                            </p>
                         </div>
                     </div>
                 </section>
