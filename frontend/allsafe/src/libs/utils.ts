@@ -36,6 +36,10 @@ export function handleModifier(text: string): number {
 
     const textLower = text.toLowerCase()
 
+    if (isNaN(Number(text))) {
+        return 0
+    }
+
     if (text.length === 0) {
         return 0
     }
@@ -66,4 +70,26 @@ export function handleModifier(text: string): number {
     }
 
     return num
+}
+
+export function checkIfDescriptionIsEnded(text: string[]): number {
+    if (text.length === 0) {
+        return 0
+    }
+
+    let descriptionLength = 0
+
+    for (let i = 0; i < text.length; i++) {
+        if (
+            text[i].includes('This account is private') ||
+            text[i].includes('Follow') ||
+            text[i].includes('Followed by')
+        ) {
+            break
+        }
+
+        descriptionLength += text[i].length
+    }
+
+    return descriptionLength
 }
