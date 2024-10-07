@@ -1,22 +1,14 @@
 'use client'
 
-import Image from 'next/image'
-import NavBar from '../components/navbar/NavBar'
-import { TypographyH1 } from '@/typography/h1'
-import { TypographyLead } from '@/typography/lead'
-import { Button } from '@/components/ui/button'
-import Feature from '@/components/hero/feature'
 import Hero from '@/components/hero/hero-two'
 import FeatureLeft from '@/components/features/feature-three'
 import FeatureRight from '@/components/features/feature-four'
 import Header from '@/components/hero/header-two'
-import Footer from '@/components/footer/footer-four'
-import CTA from '@/components/cta/cta-one'
 import newspaper from '@/components/assets/homepage/feature1-newspaper.jpg'
 import aimodel from '@/components/assets/homepage/feature2-scams.jpg'
 import quiz from '@/components/assets/homepage/feature3-quiz.jpg'
 import { useEffect, useRef } from 'react'
-import { MotionValue, useInView, useScroll, useTransform } from 'framer-motion'
+import { MotionValue, useScroll, useTransform } from 'framer-motion'
 import { ReactLenis, useLenis } from 'lenis/react'
 
 function useParallax(value: MotionValue<number>, distance: number) {
