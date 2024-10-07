@@ -1,0 +1,14 @@
+{
+    "name": "allsafe-data-insight",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "postcss src/input.css -o src/output.css"
+    },
+    "devDependencies": {
+      "tailwindcss": "^latest-version",
+      "postcss": "^latest-version",
+      "autoprefixer": "^latest-version",
+      "postcss-cli": "^latest-version"
+    }
+  }
+  
