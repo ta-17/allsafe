@@ -96,8 +96,13 @@ export default function FakeInstaDetect() {
                             Identify if that Instagram account is fake.
                         </TypographyH1>
                         <TypographyLead>
-                            Upload a screenshot of the profile (preferably
-                            mobile).
+                            Upload a screenshot of the profile.
+                            <br />
+                            <p className="text-sm">
+                                (preferably mobile, make sure to exclude the
+                                sidebar from screenshot, retaining only the main
+                                profile in the screenshot)
+                            </p>
                         </TypographyLead>
                         <Form {...form}>
                             <form
