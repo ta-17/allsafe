@@ -263,11 +263,11 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="text-center w-full p-16"
+                    className="flex flex-col justify-around items-center text-center  p-16 min-h-screen w-full"
                 >
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                    <h1 className="text-4xl md:text-5xl md: w-2/3 font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
-                    </h2>
+                    </h1>
 
                     {/* <!-- Flex container for chart and carousel --> */}
                     <div className="flex flex-col md:flex-row items-center">
