@@ -76,18 +76,11 @@ document
     .getElementById('scam-input-form')
     .addEventListener('submit', async function (event) {
         event.preventDefault()
-        console.log('Here and now')
 
-        // await sleep(10000)
-
-        // console.info('Blah blah blah', e.detail.text)
-        console.log('Word frequency dict:', wordFrequencyDict)
         if (Object.keys(wordFrequencyDict).length === 0) {
             console.error('Word Frequency Dictionary is not yet loaded')
             return
         }
-
-        console.log('Another one dj khaled')
 
         // Get the input value
         const scamExperience = document.getElementById('scam-experience').value
