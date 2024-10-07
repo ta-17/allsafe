@@ -33,9 +33,32 @@ d3.csv('/visualisation/historical_scam.csv')
         renderCharts(data)
 
         // Add drop-down event listener for year selection (affect only Sunburst and Bar chart)
+
+        function updateChartsBasedOnSelection() {
+            const selectedYear = document.getElementById('year-dropdown').value
+
+            let filteredData
+            if (selectedYear === '2024') {
+                // Filter data for the year 2024
+                filteredData = originalData.filter((d) => d.year === 2024)
+            } else {
+                // Use all data when "All" is selected
+                filteredData = originalData
+            }
+
+            // Log filtered data to verify it's correct
+            console.log(`Filtered Data for ${selectedYear}:`, filteredData)
+
+            // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data
+            updateSunburstAndBarCharts(filteredData)
+        }
+
+        updateChartsBasedOnSelection()
+
         document
             .getElementById('year-dropdown')
             .addEventListener('change', function () {
+                console.log('Year selected:', this.value)
                 const selectedYear = this.value
                 let filteredData
                 if (selectedYear === '2024') {
@@ -76,18 +99,11 @@ document
     .getElementById('scam-input-form')
     .addEventListener('submit', async function (event) {
         event.preventDefault()
-        console.log('Here and now')
 
-        // await sleep(10000)
-
-        // console.info('Blah blah blah', e.detail.text)
-        console.log('Word frequency dict:', wordFrequencyDict)
         if (Object.keys(wordFrequencyDict).length === 0) {
             console.error('Word Frequency Dictionary is not yet loaded')
             return
         }
-
-        console.log('Another one dj khaled')
 
         // Get the input value
         const scamExperience = document.getElementById('scam-experience').value
@@ -103,6 +119,19 @@ document
 
         // Clear the existing model bar chart if necessary
         d3.select('#model-bar-chart').selectAll('*').remove()
+
+        await sleep(1000)
+
+        if (wordFrequency.length === 0) {
+            console.log('No data found')
+            document
+                .getElementById('model-bar-chart-section')
+                .classList.add('hidden')
+        } else {
+            document
+                .getElementById('model-bar-chart-section')
+                .classList.add('visible')
+        }
 
         // Render the new bar chart based on the input
         createModelBarChart(wordFrequency, 'model-bar-chart')

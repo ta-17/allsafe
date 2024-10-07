@@ -5,8 +5,6 @@ import { useEffect } from 'react'
 import '../style.css' // Assuming your CSS is in the src/styles folder
 import '../output.css'
 import '../input.css'
-import { cn } from '@/libs/utils'
-import { TypographyH2 } from '@/typography/h2'
 import { TypographyLead } from '@/typography/lead'
 import { TypographyH1 } from '@/typography/h1'
 import Image from 'next/image'
@@ -27,15 +25,7 @@ import {
     CarouselPrevious,
     type CarouselApi,
 } from '@/components/ui/carousel'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
 
-import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const Insights = () => {
@@ -74,7 +64,7 @@ const Insights = () => {
             <div className="flex flex-col  w-full p-6 gap-y-20 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
-                    <h1 className="text-6xl md:text-8xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
+                    <h1 className="text-5xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
                         Social media scams among young adults are not fake
                         issues. It&apos;s truly happening…
                     </h1>
@@ -306,9 +296,10 @@ const Insights = () => {
                         <select
                             id="year-dropdown"
                             className="p-2 text-lg rounded border cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:border-gray-300 focus:outline-none focus:bg-gray-200 focus:border-gray-400"
+                            defaultValue="2024"
                         >
-                            <option value="2024">2024</option>
                             <option value="all">All Years</option>
+                            <option value="2024">2024</option>
                         </select>
 
                         <Carousel
@@ -446,6 +437,19 @@ const Insights = () => {
                         </div>
                     </section>
                 </div>
+
+                <div
+                    id="tooltip-line"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
+                <div
+                    id="tooltip-sunburst"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
+                <div
+                    id="tooltip-bar"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
 
                 <section className="flex flex-col justify-center items-center w-full gap-y-8 py-6">
                     <TypographyH1>

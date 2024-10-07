@@ -21,6 +21,7 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ButtonLoading } from '@/components/skeleton/loading-button'
 import { TypographyH2 } from '@/typography/h2'
+import Link from 'next/link'
 
 const formSchema = z.object({
     profileImage: z.any().optional(),
@@ -74,7 +75,7 @@ export default function FakeInstaDetect() {
     }
 
     return (
-        <div className="flex flex-col gap-y-8">
+        <div className="flex flex-col gap-y-8 px-6 py-24">
             {error !== null && (
                 <Alert variant="destructive" className="self-start">
                     <AlertCircle className="h-4 w-4" />
@@ -284,24 +285,22 @@ export default function FakeInstaDetect() {
                         </p>
                         <Button
                             variant="outline"
-                            onClick={() => setSubmit(false)}
+                            onClick={() => {
+                                setSubmit(false)
+                                window.location.reload()
+                            }}
                         >
                             Check another account?
                         </Button>
-                        {/*
-                        <div>
-                            <TypographyH3 className="flex justify-center w-full text-center">
-                                Is it as scam?
-                            </TypographyH3>
-                            <p>
-                                Go to the help center to learn more about
-                                reporting or what to do if you or someone you
-                                know fell victim to it.
-                            </p>
-                            <Button variant="secondary" asChild>
+                        <div className="flex flex-col w-full items-center py-24 gap-y-6">
+                            <TypographyH2 className="border-0">
+                                Is this account illegitimate? Go to help section
+                                for steps on reporting the account.
+                            </TypographyH2>
+                            <Button asChild>
                                 <Link href="/help">Help Center</Link>
                             </Button>
-                        </div> */}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -1,110 +1,195 @@
-'use client'
+import { parseData } from './data.js'
+import { createLineChart } from './js/lineChart.js'
+import { createSunburstChart } from './js/sunburstChart.js'
+import { createBarChart } from './js/barChart.js'
+import { createModelBarChart } from './js/ModelbarChart.js'
 
-import { useEffect } from 'react'
-import { cn } from '@/libs/utils'
+// let selectedLevel2Category = null;
 
-export default function ScamDetect({ msg: string }) {
-    useEffect(() => {
-        // Dynamically load the external script when the component mounts
-        const script = document.createElement('script')
-        script.src = '/visualisation/script.js'
-        script.type = 'module'
-        document.body.appendChild(script)
+let originalData // Store the original dataset globally for filtering
+let wordFrequencyDict = {}
 
-        // Once the script is loaded, manually bind the event listener
-        script.onload = () => {
-            console.log('Script loaded successfully')
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Historical Scam Information Page Loaded')
 
-            // Manually attach the event listener to the form after React renders
-            const form = document.getElementById('scam-input-form')
-            if (form) {
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault()
-                    console.log('Form submitted!')
+    // Load word percentage JSON data
+    d3.json('word_percentage.json').then((data) => {
+        console.log('Word Frequency Data Loaded:', data)
 
-                    // Check if wordFrequencyDict is loaded
-                    if (
-                        window.wordFrequencyDict &&
-                        Object.keys(window.wordFrequencyDict).length > 0
-                    ) {
-                        const scamExperience =
-                            document.getElementById('scam-experience').value
-                        const wordFrequency = window.calculateWordFrequency(
-                            scamExperience,
-                            window.wordFrequencyDict
-                        )
+        wordFrequencyDict = data // Store the word frequency dictionary
+    })
 
-                        // Clear the existing model bar chart
-                        d3.select('#model-bar-chart').selectAll('*').remove()
+    // Load the dataset
+    d3.csv('historical_scam.csv')
+        .then((data) => {
+            originalData = data // Store the original dataset
 
-                        // Create the new bar chart
-                        window.createModelBarChart(
-                            wordFrequency,
-                            'model-bar-chart'
-                        )
-                        console.log(
-                            'Word frequency processed and chart rendered.'
+            parseData(data)
+            renderCharts(data)
+
+            // Set sunburst chart and bar chart data to 2024
+            function updateChartsBasedOnSelection() {
+                const selectedYear =
+                    document.getElementById('year-dropdown').value
+
+                let filteredData
+                if (selectedYear === '2024') {
+                    // Filter data for the year 2024
+                    filteredData = originalData.filter((d) => d.year === 2024)
+                } else {
+                    // Use all data when "All" is selected
+                    filteredData = originalData
+                }
+
+                // Log filtered data to verify it's correct
+                console.log(`Filtered Data for ${selectedYear}:`, filteredData)
+
+                // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data
+                updateSunburstAndBarCharts(filteredData)
+            }
+
+            updateChartsBasedOnSelection()
+
+            // Add drop-down event listener for year selection (affect only Sunburst and Bar chart)
+            document
+                .getElementById('year-dropdown')
+                .addEventListener('change', function () {
+                    const selectedYear = this.value
+                    let filteredData
+                    if (selectedYear === '2024') {
+                        // Filter data for the year 2024
+                        filteredData = originalData.filter(
+                            (d) => d.year === 2024
                         )
                     } else {
-                        console.error('Word Frequency Dictionary is not loaded')
+                        // Use all data when "All" is selected
+                        filteredData = originalData
                     }
+
+                    // Log filtered data to verify it's correct
+                    console.log(
+                        `Filtered Data for ${selectedYear}:`,
+                        filteredData
+                    )
+
+                    // Clear and re-render ONLY the Sunburst and Bar charts with the filtered data
+                    updateSunburstAndBarCharts(filteredData)
                 })
-            } else {
-                console.error('Form element not found!')
+
+            // Regenerate the graphs when resizing the window
+            window.addEventListener('resize', () => renderCharts(originalData))
+
+            // Initialize the carousel
+            initCarousel('.line-carousel-item', 'line-prev', 'line-next')
+            initCarousel(
+                '.wordCloud-carousel-item',
+                'wordCloud-prev',
+                'wordCloud-next'
+            )
+            initCarousel('.top5-carousel-item', 'top5-prev', 'top5-next')
+        })
+        .catch((error) => {
+            console.error('Error loading or parsing data:', error)
+        })
+
+    // Add event listener for user input (assumes an input form with id 'scam-input-form')
+    document
+        .getElementById('scam-input-form')
+        .addEventListener('submit', function (event) {
+            event.preventDefault()
+
+            if (Object.keys(wordFrequencyDict).length === 0) {
+                console.error('Word Frequency Dictionary is not yet loaded')
+                return
             }
+
+            // Get the input value
+            const scamExperience =
+                document.getElementById('scam-experience').value
+
+            // Process the input (this function would split and count word frequency)
+            const wordFrequency = calculateWordFrequency(
+                scamExperience,
+                wordFrequencyDict
+            ) // Pass wordFrequencyDict
+
+            // Log the word frequency to ensure it's correct
+            console.log('Word Frequency Data:', wordFrequency)
+
+            // Clear the existing model bar chart if necessary
+            d3.select('#model-bar-chart').selectAll('*').remove()
+
+            // Render the new bar chart based on the input
+            createModelBarChart(wordFrequency, 'model-bar-chart')
+        })
+})
+
+// Function to update only Sunburst and Bar Charts with filtered data
+function updateSunburstAndBarCharts(filteredData) {
+    console.log('Filtered Data for 2024:', filteredData) // Log the filtered data
+
+    // Clear existing charts for Sunburst and Bar charts
+    d3.select('#sunburst-chart').selectAll('*').remove()
+    d3.select('#bar-chart').selectAll('*').remove()
+
+    // Re-create the Sunburst and Bar charts with the filtered data
+    createSunburstChart(filteredData, 'sunburst-chart')
+    createBarChart(filteredData, 'bar-chart')
+}
+
+// Funtion to create new charts for initalise charts usage
+function renderCharts(data) {
+    // Clear existing charts before rendering
+    d3.select('#line-chart').selectAll('*').remove()
+    d3.select('#sunburst-chart').selectAll('*').remove()
+    d3.select('#bar-chart').selectAll('*').remove()
+
+    createLineChart(data, 'line-chart')
+    createSunburstChart(data, 'sunburst-chart')
+    createBarChart(data, 'bar-chart')
+}
+
+// Function to initialize a specific carousel
+function initCarousel(carouselSelector, prevButtonId, nextButtonId) {
+    const items = document.querySelectorAll(carouselSelector)
+    let currentIndex = 0
+
+    function showItem(index) {
+        items.forEach((item, i) => {
+            item.classList.toggle('hidden', i !== index) // Show only the current card
+        })
+    }
+
+    document.getElementById(nextButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length // Move to next item
+        showItem(currentIndex)
+    })
+
+    document.getElementById(prevButtonId).addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length // Move to previous item
+        showItem(currentIndex)
+    })
+
+    // Initial with the first card
+    showItem(currentIndex)
+}
+
+// Function to calculate word frequency from user input and match against the word frequency dictionary
+function calculateWordFrequency(input, wordFrequencyDict) {
+    const words = input.split(/\s+/) // Tokenize input by splitting on spaces
+    const matchedWords = {}
+
+    // Check each word if it exists in the pre-existing word frequency dictionary
+    words.forEach((word) => {
+        const sanitizedWord = word.toLowerCase().replace(/[^\w]/g, '') // Sanitize word
+        if (sanitizedWord && wordFrequencyDict[sanitizedWord]) {
+            matchedWords[sanitizedWord] = (matchedWords[sanitizedWord] || 0) + 1
         }
+    })
 
-        return () => {
-            // Remove the script when the component unmounts
-            document.body.removeChild(script)
-        }
-    }, [])
-
-    return (
-        <div className={cn('min-h-screen p-6 w-full')}>
-            <section
-                id="user-input-section"
-                className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
-            >
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                    Scam Detection
-                </h2>
-                {/* Keep the form structure and id as in index.html */}
-                <form
-                    id="scam-input-form"
-                    className="flex flex-col items-center space-y-4"
-                >
-                    <input
-                        type="text"
-                        id="scam-experience"
-                        name="scam-experience"
-                        placeholder="Please put your scam text here"
-                        value="Congratulations! You've won a $1,000 Walmart gift bard. Go to http://bit.ly/123456 tp claim now."
-                        className="p-4 w-full md:w-1/2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    />
-                    <button
-                        type="submit"
-                        className="p-4 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-300"
-                    >
-                        Submit
-                    </button>
-                </form>
-            </section>
-
-            {/* Bar Chart Section */}
-            <section
-                id="model-bar-chart-section"
-                className="text-center w-full p-8 bg-gray-50 rounded-lg mt-12"
-            >
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                    Word Frequency Bar Chart
-                </h2>
-                {/* Container for the D3 chart */}
-                <div
-                    id="model-bar-chart"
-                    className="chart w-full h-[400px] bg-gray-50 rounded-lg"
-                ></div>
-            </section>
-        </div>
-    )
+    // Return array of matched words with their frequencies and percentages
+    return Object.keys(matchedWords).map((word) => ({
+        word: word,
+        frequency: wordFrequencyDict[word], // Use the percentage from the original dictionary
+    }))
 }
