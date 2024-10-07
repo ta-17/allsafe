@@ -7,10 +7,10 @@ section {
     height: auto;
 }
 
-h1, h2, p {
+/* h1, h2, p {
     color: #333;
     text-align: center;
-  }
+  } */
 
 
 h1 {
@@ -28,13 +28,13 @@ h2 {
     text-align: center;
 }
 
-p {
+/* p {
     font-size: 1.7em; 
     line-height: 1.6; 
     color: #666;
     margin-bottom: 10px; 
     text-align: center; 
-}
+} */
 
 
 .chart {

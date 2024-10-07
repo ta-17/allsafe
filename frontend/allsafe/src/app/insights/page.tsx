@@ -312,13 +312,13 @@ const Insights = () => {
                         id="section-top5"
                         className="flex flex-col justify-center items-center text-center w-full gap-y-2"
                     >
-                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                        <h2 className="text-4xl md:text-5xl w-2/3 font-extrabold mb-4">
                             Do you know what are the top 5 scams affecting young
                             adults in Australia?
                         </h2>
 
                         {/* <!-- User Guide --> */}
-                        <h3 className="text-xl md:text-xl font-bold mb-4 text-gray-600">
+                        <h3 className="text-normal md:text-lg mb-4 text-gray-600">
                             Use the drop-down menu to switch between 2024 and an
                             overview from 2020 to 2024.
                         </h3>
@@ -331,16 +331,6 @@ const Insights = () => {
                             <option value="2024">2024</option>
                             <option value="all">All Years</option>
                         </select>
-                        {/* <Select>
-                        <SelectTrigger className="w-[180px]" id="year-dropdown">
-                            <SelectValue placeholder="Theme" />
-                        </SelectTrigger>
-                        <SelectContent id="year-dropdown">
-                            <SelectItem value="2024">2024</SelectItem>
-                            <SelectItem value="all">All Years</SelectItem>
-                            <SelectItem value="system">System</SelectItem>
-                        </SelectContent>
-                    </Select> */}
 
                         <Carousel
                             setApi={setApi}
@@ -348,8 +338,8 @@ const Insights = () => {
                         >
                             <CarouselContent>
                                 <CarouselItem>
-                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
-                                        <p className="text-lg text-gray-600 text-center">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 rounded-lg shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-center">
                                             In 2024, the{' '}
                                             <span className="text-lg font-bold">
                                                 top 5 scams
@@ -369,8 +359,8 @@ const Insights = () => {
                                 </CarouselItem>
                                 <CarouselItem>
                                     {/* <!-- 2nd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
-                                        <p className="text-lg text-gray-600 text-center">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Buying or selling scams
                                             </span>{' '}
@@ -391,8 +381,8 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 3rd Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
-                                        <p className="text-lg text-gray-600 text-center">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60   shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-center">
                                             Among these years,{' '}
                                             <span className="text-lg font-bold">
                                                 investment scams
@@ -416,8 +406,8 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 4th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
-                                        <p className="text-lg text-gray-600 text-center">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 Gain personal information scams
                                             </span>
@@ -438,8 +428,8 @@ const Insights = () => {
 
                                 <CarouselItem>
                                     {/* <!-- 5th Card --> */}
-                                    <div className="flex-shrink-0 w-full bg-gray-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
-                                        <p className="text-lg text-gray-600 text-center">
+                                    <div className="flex-shrink-0 w-full bg-slate-50 bg-opacity-60 shadow-md h-48 flex items-center justify-center p-4">
+                                        <p className="text-lg text-center">
                                             <span className="text-lg font-bold">
                                                 No matter which type of scam you
                                                 are facing, the potential loss
