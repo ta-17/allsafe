@@ -66,7 +66,11 @@ export function handleModifier(text: string): number {
             num = Number(textLower.replace('b', '')) * 1000000000
             break
         default:
-            num = Number(textLower)
+            try {
+                num = Number(textLower)
+            } catch {
+                num = 0
+            }
     }
 
     return num

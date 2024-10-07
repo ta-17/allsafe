@@ -24,7 +24,7 @@ export async function detectFakeInstaAccount({
         // OCR with Tesseract.js
         const ret = await worker.recognize(imageUrl)
 
-        console.log('OCR result: ', ret.data.text)
+        // console.log('OCR result: ', ret.data.text.split('\n'))
 
         // Parse username from text
         const username = ret.data.text
@@ -36,7 +36,11 @@ export async function detectFakeInstaAccount({
         // console.log('usernameRatio: ', username, usernameRatio)
 
         // Parse fullname from text
-        const name = ret.data.text.split('\n')[5]
+
+        const name =
+            ret.data.text.split('\n')[5] !== undefined
+                ? ret.data.text.split('\n')[5]
+                : ret.data.text.split('\n')[3]
         const numOfWords = name.split(' ').length
         const nameRatio = calculateNumericRatio(name)
 
@@ -65,7 +69,7 @@ export async function detectFakeInstaAccount({
             postsAsNumber = 0
         }
 
-        console.log('postsAsNumber: ', postsAsNumber)
+        // console.log('postsAsNumber: ', postsAsNumber)
 
         // Parse followers count
         let followersAsNumber = 0
@@ -122,10 +126,10 @@ export async function detectFakeInstaAccount({
         }
 
         const data = await response.json()
-        console.log('Fake account detection result: ', data)
+        // console.log('Fake account detection result: ', data)
         return data
     } catch (error) {
-        console.error('Error detecting fake Instagram account:', error)
+        // console.error('Error detecting fake Instagram account:', error)
         throw error
     }
 }
