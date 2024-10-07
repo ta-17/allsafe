@@ -71,17 +71,17 @@ const Insights = () => {
 
     return (
         <>
-            <div className="flex flex-col  w-full p-6 gap-y-24 max-w-full">
+            <div className="flex flex-col  w-full p-6 gap-y-20 max-w-full">
                 {/* <!-- Introduction Section --> */}
                 <header className="text-center py-16 relative">
-                    <h1 className="text-3xl md:text-7xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
+                    <h1 className="text-6xl md:text-8xl font-bold text-black p-4 md:p-28 pb-0 leading-tight">
                         Social media scams among young adults are not fake
                         issues. It&apos;s truly happening…
                     </h1>
 
                     {/* <!-- Set up pillars to link with graphs --> */}
                     {/* <!-- Link to Section Trend - Line chart --> */}
-                    <div className="pillars flex flex-col md:flex-row justify-around items-center flex-wrap mt-12 mx-4 md:mx-40 gap-4 md:space-y-0">
+                    <div className="pillars flex flex-col md:flex-row justify-around items-stretch flex-wrap mt-12 mx-4 md:mx-40 gap-4 md:space-y-0">
                         <Link
                             href="#section-trend"
                             className="pillar flex-1 min-w-[250px]"
@@ -161,7 +161,7 @@ const Insights = () => {
                 {/* <!-- Line Chart --> */}
                 <section
                     id="section-trend"
-                    className="flex flex-col justify-around text-center w-full p-16 mt-12 min-h-screen"
+                    className="flex flex-col justify-around text-center w-full min-h-screen"
                 >
                     <h2 className="self-center w-2/3 text-4xl md:text-5xl font-extrabold mb-4 text-gray-800">
                         Do you know how fast the scam growth in recent years?
@@ -173,7 +173,7 @@ const Insights = () => {
                             different years:
                         </h3>
                         {/* <!-- Flex container for chart and carousel --> */}
-                        <div className="flex flex-col flex-grow md:flex-row justify-between items-stretch">
+                        <div className="flex flex-col flex-grow gap-y-20 md:gap-y-0 md:flex-row justify-between items-stretch">
                             {/* <!-- User Guide --> */}
 
                             {/* <!-- Get the chart --> */}
@@ -237,7 +237,7 @@ const Insights = () => {
                 {/* <!-- Word Cloud --> */}
                 <section
                     id="section-word-cloud"
-                    className="flex flex-col justify-around items-stretch text-center p-16 min-h-screen w-full"
+                    className="flex flex-col justify-around items-stretch text-center min-h-screen w-full"
                 >
                     <h1 className="self-center text-4xl md:text-5xl md: w-2/3 font-extrabold mb-4 text-gray-800">
                         Have you ever received messages with these words?
@@ -252,7 +252,7 @@ const Insights = () => {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            style={{ width: '66%', height: 'auto' }}
+                            style={{ width: '100%', height: 'auto' }}
                             className="bg-white p-6 w-full md:w-1/2 h-auto rounded-lg mb-4 md:mb-0 md:mr-4"
                         />
 
@@ -313,7 +313,7 @@ const Insights = () => {
 
                         <Carousel
                             setApi={setApi}
-                            className="w-full md:max-w-7xl"
+                            className="w-full max-w-xs sm:max-w-md md:max-w-3xl lg:max-w-6xl"
                         >
                             <CarouselContent>
                                 <CarouselItem>
