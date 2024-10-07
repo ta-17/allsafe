@@ -22,6 +22,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ButtonLoading } from '@/components/skeleton/loading-button'
 import { TypographyH2 } from '@/typography/h2'
 import Link from 'next/link'
+import { TypographyH3 } from '@/typography/h3'
 
 const formSchema = z.object({
     profileImage: z.any().optional(),
@@ -72,6 +73,13 @@ export default function FakeInstaDetect() {
                 setLoading(false)
             }
         }
+    }
+
+    const percent = () => {
+        if (result === null || result === undefined) return '0'
+        if (result.confidence == undefined) return '0'
+        const float = parseFloat(result.confidence.toFixed(4))
+        return (float * 100).toFixed(2)
     }
 
     return (
@@ -263,17 +271,22 @@ export default function FakeInstaDetect() {
                     >
                         <TypographyH1 className="border-0">Result</TypographyH1>
                         <TypographyLead>
-                            {result.label === 'scam'
+                            {result.label === 'Fake'
                                 ? 'This profile a fake profile'
                                 : 'This profile is legit'}
                         </TypographyLead>
                         <div>
-                            {result.label === 'scam' ? (
+                            {result.label === 'Fake' ? (
                                 <X className="text-red-500 w-56 h-56" />
                             ) : (
                                 <Check className="text-green-400 w-56 h-56" />
                             )}
                         </div>
+                        <TypographyH3 className="">
+                            The likelihood of the profile being{' '}
+                            {result.label === 'Fake' ? 'fake' : 'legitimate'} is{' '}
+                            <strong>{percent()}%</strong>
+                        </TypographyH3>
                         <p className="text-muted-foreground text-center">
                             <strong>Disclaimer</strong> Our website uses AI
                             models to provide this service. While these models
