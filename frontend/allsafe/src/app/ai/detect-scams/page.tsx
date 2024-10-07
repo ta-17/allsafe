@@ -354,13 +354,19 @@ export default function ScamDetect() {
                     >
                         Check another message?
                     </Button>
-                    <p>
-                        Think you have spotted a fake account?{' '}
-                        <Button onClick={() => window.location.reload}>
-                            Check Here
+
+                    <div className="flex flex-col w-full items-center py-28 gap-y-6">
+                        <TypographyH2 className="border-0">
+                            <p>
+                                Think you have spotted a fake account? Checkout
+                                out our AI tool that detects if the account is
+                                legitimate or not.
+                            </p>
+                        </TypographyH2>
+                        <Button asChild>
+                            <Link href="/ai/fake-insta">Check Here</Link>
                         </Button>
-                    </p>
-                    <Button>Think</Button>
+                    </div>
                     {/* <ScamDetectHindsight msg={msg} /> */}
                 </motion.div>
                 {/* // )} */}

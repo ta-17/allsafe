@@ -5,7 +5,7 @@ export function TypographyH2({
     className,
 }: {
     children: any
-    className: string
+    className?: string
 }) {
     return (
         <h2
