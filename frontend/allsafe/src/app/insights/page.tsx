@@ -447,6 +447,19 @@ const Insights = () => {
                     </section>
                 </div>
 
+                <div
+                    id="tooltip-line"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
+                <div
+                    id="tooltip-sunburst"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
+                <div
+                    id="tooltip-bar"
+                    className="tooltip absolute hidden bg-white"
+                ></div>
+
                 <section className="flex flex-col justify-center items-center w-full gap-y-8 py-6">
                     <TypographyH1>
                         Explore More with Our Scam Simulation Game!
