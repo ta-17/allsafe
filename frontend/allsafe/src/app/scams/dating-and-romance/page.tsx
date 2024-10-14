@@ -57,7 +57,7 @@ export default function DatingAndRomance() {
                 <ScamDetail
                     imageSrc={dating}
                     altText="Always use image alt"
-                    heading="Dating and Romance"
+                    heading="5. Dating and Romance"
                     subheading="Subheading"
                     paragraphs={[
                         'Scammers usually build up trust with you in dating, romance or friend relationships. They usually set up attractive profiles using pictures of other people or even celebrities. Instead of texting you, they may make phone calls to make you feel inclusive. After building up trust and a relationship with you, it will be mentioned that they are facing an urgent situation and want you to help them by transferring money using your empathy.',

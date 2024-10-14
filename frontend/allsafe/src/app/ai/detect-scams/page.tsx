@@ -24,8 +24,9 @@ import Link from 'next/link'
 import { useDetectScamStore } from '@/data/store/detect-scam'
 import { getAdditionalInfo } from '@/actions/detect-scam-aditional-info'
 import ScamDetectHindsight from '@/components/ai/hindsight'
-import { lab } from 'd3'
+import d3, { lab } from 'd3'
 import { TypographyH2 } from '@/typography/h2'
+import { set } from 'zod'
 
 const Breakdown = [
     { factor: 'Suspicious links', present: true },
@@ -45,7 +46,9 @@ export default function ScamDetect() {
     const [error, setError] = useState<string | null>(null)
 
     const sharedMsg = useDetectScamStore((state) => state.sharedMsg)
+    const setSharedMsg = useDetectScamStore((state) => state.setSharedMsg)
     const sharedSubmit = useDetectScamStore((state) => state.sharedSubmit)
+    const setSharedSubmit = useDetectScamStore((state) => state.setSharedSubmit)
 
     const handleSubmit = async (e: any) => {
         e.preventDefault() // Prevent the default form submission behavior
@@ -58,6 +61,7 @@ export default function ScamDetect() {
             setResult(msgData)
             setAddResult(additionalInfoData)
             setSubmit(true) // Change this to true when the form is submitted successfully
+            window.localStorage.removeItem('detectScam')
         } catch (error) {
             setError(
                 'An error occurred while processing your request. Please try again.'
@@ -67,19 +71,18 @@ export default function ScamDetect() {
         }
     }
 
-    const submitFromHomepage = async () => {
+    const submitFromHomepage = async (storedMessage: string) => {
         setLoading(true)
         setError(null)
 
-        setMsg(sharedMsg)
-
         try {
-            const msgData = await detectScam(sharedMsg) // API call
-            const additionalInfoData = await getAdditionalInfo(sharedMsg)
+            const msgData = await detectScam(storedMessage) // API call
+            const additionalInfoData = await getAdditionalInfo(storedMessage)
             setResult(msgData)
             setAddResult(additionalInfoData)
             setSubmit(true)
             console.log('Result: ', msgData)
+            window.localStorage.removeItem('detectScam')
         } catch (error) {
             setError(
                 'An error occurred while processing your request. Please try again.'
@@ -97,10 +100,6 @@ export default function ScamDetect() {
         return (float * 100).toFixed(2)
     }
 
-    useEffect(() => {
-        if (sharedSubmit === true) submitFromHomepage()
-    }, [sharedMsg, sharedSubmit])
-
     // Dynamically load the external script when the component mounts
     useEffect(() => {
         const script = document.createElement('script')
@@ -113,6 +112,35 @@ export default function ScamDetect() {
             document.body.removeChild(script)
         }
     }, [submit])
+
+    console.log('result: ', sharedMsg)
+
+    const [isRendered, setIsRendered] = useState(false)
+
+    // useEffect(() => {
+    //     // This will run once after the component is rendered
+    //     setIsRendered(true)
+
+    //     if (isRendered) {
+    //     }
+    // }, [isRendered]) // Dependency array ensures this runs after the initial render
+
+    useEffect(() => {
+        const storedMessage = window.localStorage.getItem('detectScam')
+
+        if (sharedSubmit === true && storedMessage !== null && !isRendered) {
+            console.log('Reloading the page...')
+            setIsRendered(true)
+            setSharedSubmit()
+            window.location.reload()
+        }
+        setMsg(storedMessage || '')
+        setSharedMsg('')
+        setSharedSubmit()
+        setMsg(window.localStorage.getItem('detectScam') || '')
+        // if (storedMessage) submitFromHomepage(storedMessage)
+        // window.localStorage.setItem('detectScam', msg)
+    }, [isRendered])
 
     return (
         <div
@@ -169,7 +197,13 @@ export default function ScamDetect() {
                             {loading ? (
                                 <ButtonLoading />
                             ) : (
-                                <Button>Submit</Button>
+                                <Button
+                                    onClick={(e) => {
+                                        if (msg.length === 0) e.preventDefault()
+                                    }}
+                                >
+                                    Submit
+                                </Button>
                             )}
                         </form>
                     </section>
@@ -177,6 +211,7 @@ export default function ScamDetect() {
                 </motion.div>
                 {/* // ) : ( */}
                 <motion.div
+                    id="result"
                     key="result"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

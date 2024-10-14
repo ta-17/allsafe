@@ -57,7 +57,7 @@ export default function Investment() {
                 <ScamDetail
                     imageSrc={investment}
                     altText="Always use image alt"
-                    heading="Investment"
+                    heading="3. Investment"
                     subheading="Subheading"
                     paragraphs={[
                         'Scammers usually build up trust with you by chatting unrelated to investment from the beginning. They often offer the opportunity with high returns within a short period. Commonly, they have many “successful” cases to share with you to convince people they are not scamming. It usually starts with a positive outcome from the beginning and turns out negative after you increase the amount of your investment.',

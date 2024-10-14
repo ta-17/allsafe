@@ -12,16 +12,19 @@ export async function detectFakeInstaAccount({
     file,
     isProfilePic,
     isPrivate,
+    fileType,
 }: {
-    file: File
+    file: ArrayBuffer
     isProfilePic: boolean
     isPrivate: boolean
+    fileType: string
 }) {
     try {
         const worker = await createWorker('eng')
-        const imageUrl = URL.createObjectURL(file)
 
-        // OCR with Tesseract.js
+        const blob = new Blob([file], { type: fileType })
+        const imageUrl = URL.createObjectURL(blob)
+
         const ret = await worker.recognize(imageUrl)
 
         // console.log('OCR result: ', ret.data.text.split('\n'))

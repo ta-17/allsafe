@@ -48,7 +48,7 @@ export default function BuyingOrSelling() {
                 <ScamDetail
                     imageSrc={buySell}
                     altText="Always use image alt"
-                    heading="Buying or Selling"
+                    heading="1. Buying or Selling"
                     subheading="Online Shopping | Classified | False Billing"
                     paragraphs={[
                         ' Different kinds of buying or selling scams can happen through social media. The most popular ways are related to online shopping and classified and false billing tricks. Scammers will pretend there are payment differences, offer an unreasonable price, or pretend the business you made an order before. People fall into the trap because it sounds like the truth without confirming the information again with their previous action or buying/ selling things urgently.',

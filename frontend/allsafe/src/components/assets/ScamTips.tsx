@@ -42,7 +42,14 @@ const Card: React.FC<CardProps> = ({ asset, title, body }) => {
             <div
                 style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
             >
-                <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold' }}>
+                <h2
+                    style={{
+                        textAlign: 'left',
+                        margin: 0,
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                    }}
+                >
                     {title}
                 </h2>
                 <p
@@ -67,58 +74,54 @@ interface ScamTipsProps {
 const ScamTips = ({ cards }: { cards: any }) => {
     return (
         <div className="flex flex-col w-full">
-            <TypographyLead className={'mt-8'}>Tips to avoid:</TypographyLead>
-            <Carousel
+            <TypographyLead className={'mt-8 pb-4'}>
+                Tips to avoid:
+            </TypographyLead>
+            {/* <Carousel
                 opts={{
                     align: 'start',
                 }}
                 className="self-center w-60 md:w-3/4 lg:2/3"
-            >
-                <CarouselContent>
-                    {cards.map(
-                        (
-                            card: {
-                                asset:
-                                    | string
-                                    | number
-                                    | bigint
-                                    | boolean
-                                    | React.ReactElement<
-                                          any,
-                                          | string
-                                          | React.JSXElementConstructor<any>
-                                      >
-                                    | Iterable<React.ReactNode>
-                                    | React.ReactPortal
-                                    | Promise<React.AwaitedReactNode>
-                                    | null
-                                    | undefined
-                                title: string
-                                body: string
-                            },
-                            index: React.Key | null | undefined
-                        ) => (
-                            <CarouselItem key={index} className="md:min-h-36">
-                                {/* <Card>
-                                        <CardContent className="flex aspect-square items-center justify-center p-6">
-                                            <span className="text-3xl font-semibold">
-                                                {index + 1}
-                                            </span>
-                                        </CardContent>
-                                    </Card> */}
-                                <Card
-                                    key={index}
-                                    asset={card.asset}
-                                    title={card.title}
-                                    body={card.body}
-                                />
-                            </CarouselItem>
-                        )
-                    )}
-                </CarouselContent>
+            > */}
+            {/* <CarouselContent> */}
+            <div className="flex flex-col gap-y-4">
+                {cards.map(
+                    (
+                        card: {
+                            asset:
+                                | string
+                                | number
+                                | bigint
+                                | boolean
+                                | React.ReactElement<
+                                      any,
+                                      string | React.JSXElementConstructor<any>
+                                  >
+                                | Iterable<React.ReactNode>
+                                | React.ReactPortal
+                                | Promise<React.AwaitedReactNode>
+                                | null
+                                | undefined
+                            title: string
+                            body: string
+                        },
+                        index: React.Key | null | undefined
+                    ) => (
+                        // <CarouselItem key={index} className="md:min-h-36">
+                        <Card
+                            key={index}
+                            asset={card.asset}
+                            title={card.title}
+                            body={card.body}
+                        />
+                        // </CarouselItem>
+                    )
+                )}
+            </div>
+            {/* </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
-            </Carousel>
+            </Carousel> */}
         </div>
     )
 }

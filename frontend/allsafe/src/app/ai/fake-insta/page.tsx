@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -15,14 +15,17 @@ import {
 } from '@/components/ui/form'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
-import { AlertCircle, Check, Dot, Image, ImagePlus, X } from 'lucide-react'
+import { AlertCircle, Check, Dot, ImageIcon, ImagePlus, X } from 'lucide-react'
 import { detectFakeInstaAccount } from '@/actions/detect-fake-insta'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ButtonLoading } from '@/components/skeleton/loading-button'
 import { TypographyH2 } from '@/typography/h2'
 import Link from 'next/link'
+import Image from 'next/image'
 import { TypographyH3 } from '@/typography/h3'
+import Dropzone, { useDropzone } from 'react-dropzone'
+import { clear } from 'console'
 
 const formSchema = z.object({
     profileImage: z.any().optional(),
@@ -31,6 +34,7 @@ const formSchema = z.object({
 })
 
 export default function FakeInstaDetect() {
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null)
     const [file, setFile] = useState<File | null>(null)
     const [msg, setMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
@@ -48,39 +52,78 @@ export default function FakeInstaDetect() {
         },
     })
 
+    const onDrop = useCallback(
+        (acceptedFiles: File[]) => {
+            if (acceptedFiles.length > 0) {
+                const selectedFile = acceptedFiles[0]
+                setFile(selectedFile)
+                form.setValue('profileImage', selectedFile)
+
+                // Generate preview URL
+                const objectUrl = URL.createObjectURL(selectedFile)
+                setPreviewUrl(objectUrl)
+            }
+        },
+        [form]
+    )
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: {
+            'image/*': ['.jpeg', '.jpg', '.png', '.gif'],
+        },
+        maxSize: 5 * 1024 * 1024, // 5MB
+        multiple: false,
+    })
+
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setLoading(true)
         setError(null)
-        console.log('please load')
 
         if (file) {
             try {
+                const filebuffer = await file.arrayBuffer()
                 const data = await detectFakeInstaAccount({
-                    file,
+                    file: filebuffer,
                     isProfilePic: values.isProfilePic,
                     isPrivate: values.isPrivate,
+                    fileType: file.type,
                 })
 
                 setResult(data)
                 setSubmit(true)
-
-                // Handle the result (e.g., update state to show the result to the user)
             } catch (error) {
-                setError('Error detecting fake account please try again.')
+                setError('Error detecting fake account. Please try again.')
                 setSubmit(false)
-                // Handle the error (e.g., show an error message to the user)
             } finally {
                 setLoading(false)
             }
         }
     }
 
+    const clearFile = () => {
+        setFile(null)
+        form.setValue('profileImage', undefined)
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl)
+            setPreviewUrl(null)
+        }
+    }
+
     const percent = () => {
         if (result === null || result === undefined) return '0'
-        if (result.confidence == undefined) return '0'
+        if (result.confidence === undefined) return '0'
         const float = parseFloat(result.confidence.toFixed(4))
         return (float * 100).toFixed(2)
     }
+
+    useEffect(() => {
+        return () => {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl)
+            }
+        }
+    }, [previewUrl])
 
     return (
         <div className="flex flex-col gap-y-8 px-6 py-24">
@@ -106,11 +149,11 @@ export default function FakeInstaDetect() {
                         <TypographyLead>
                             Upload a screenshot of the profile.
                             <br />
-                            <p className="text-sm">
+                            <span className="text-sm">
                                 (preferably mobile, make sure to exclude the
                                 sidebar from screenshot, retaining only the main
                                 profile in the screenshot)
-                            </p>
+                            </span>
                         </TypographyLead>
                         <Form {...form}>
                             <form
@@ -118,44 +161,43 @@ export default function FakeInstaDetect() {
                                 className="flex flex-col space-y-8 justify-end"
                             >
                                 <div className="flex flex-col justify-center w-full gap-y-8">
-                                    <div className="flex flex-col justify-center items-center w-full bordered border-dashed border-2 rounded-md gap-y-6 px-4 py-12">
-                                        <div>
-                                            <ImagePlus
-                                                className="w-32 h-32"
-                                                strokeWidth={1}
-                                                strokeOpacity={0.8}
+                                    <div
+                                        {...getRootProps()}
+                                        className={`flex flex-col justify-center items-center w-full bordered border-dashed border-2 rounded-md gap-y-6 px-4 py-12 cursor-pointer ${
+                                            isDragActive ? 'bg-gray-100' : ''
+                                        }`}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {previewUrl ? (
+                                            <Image
+                                                src={previewUrl}
+                                                alt="Preview"
+                                                width={0}
+                                                height={0}
+                                                sizes="100vw"
+                                                style={{
+                                                    width: '100%',
+                                                    height: 'auto',
+                                                }} // optional
+                                                className="max-w-full h-auto max-h-64 object-contain"
                                             />
-                                        </div>
-                                        <div className="flex items-center text-muted-foreground gap-x-1">
-                                            <div className="text-lg">
-                                                <label
-                                                    htmlFor="profile_pic"
-                                                    className="text-lg underline cursor-pointer"
-                                                >
-                                                    Click to upload
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    id="profile_pic"
-                                                    name="profile_pic"
-                                                    accept="image/*"
-                                                    onChange={(e) => {
-                                                        const selectedFile =
-                                                            e.target.files?.[0]
-                                                        if (selectedFile) {
-                                                            setFile(
-                                                                selectedFile
-                                                            )
-                                                            form.setValue(
-                                                                'profileImage',
-                                                                selectedFile
-                                                            )
-                                                        }
-                                                    }}
-                                                    hidden
+                                        ) : (
+                                            <div>
+                                                <ImagePlus
+                                                    className="w-32 h-32"
+                                                    strokeWidth={1}
+                                                    strokeOpacity={0.8}
                                                 />
                                             </div>
-                                            <p> or drag and drop here.</p>
+                                        )}
+                                        <div className="flex items-center text-muted-foreground gap-x-1">
+                                            <p className="text-lg">
+                                                {isDragActive
+                                                    ? 'Drop the file here'
+                                                    : previewUrl
+                                                      ? 'Click or drag to replace the image'
+                                                      : 'Drag and drop a file here, or click to select a file'}
+                                            </p>
                                         </div>
                                         <span className="text-muted-foreground">
                                             Maximum file size: 5MB
@@ -165,7 +207,7 @@ export default function FakeInstaDetect() {
                                     {file && (
                                         <div className="flex self-center gap-x-6 w-11/12 bordered border rounded-md px-2 py-4">
                                             <div className="flex gap-x-6 w-full">
-                                                <Image className="w-12 h-12" />
+                                                <ImageIcon className="w-12 h-12" />
                                                 <div className="flex flex-col">
                                                     <p className="text-lg">
                                                         {file.name}
@@ -189,13 +231,7 @@ export default function FakeInstaDetect() {
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => {
-                                                    setFile(null)
-                                                    // setLoading(false)
-                                                    // setSubmit(false)
-                                                    form.setValue(
-                                                        'profileImage',
-                                                        undefined
-                                                    )
+                                                    clearFile()
                                                 }}
                                             >
                                                 <X className="w-4 h-4" />
@@ -254,7 +290,13 @@ export default function FakeInstaDetect() {
                                         <ButtonLoading />
                                     </div>
                                 ) : (
-                                    <Button className="self-end" type="submit">
+                                    <Button
+                                        className="self-end"
+                                        type="submit"
+                                        onClick={(e) => {
+                                            if (!file) e.preventDefault()
+                                        }}
+                                    >
                                         Submit
                                     </Button>
                                 )}
