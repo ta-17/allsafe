@@ -9,6 +9,7 @@ import { TypographyH3 } from '@/typography/h3'
 import { cn } from '@/libs/utils'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import { TypographyH2 } from '@/typography/h2'
 
 // Asset imports
 // import Placeholder from "@/public/placeholder.jpg";
@@ -51,7 +52,9 @@ const FeatureRight = ({
                                 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
                         }}
                     >
-                        <TypographyH3 className="!my-0">{title}</TypographyH3>
+                        <TypographyH2 className="!my-0 text-left">
+                            {title}
+                        </TypographyH2>
                         <p className="font-light leading-[1.4] opacity-70">
                             {body}
                         </p>
@@ -60,13 +63,15 @@ const FeatureRight = ({
                             <Link href="#">Get Started</Link>
                         </Button> */}
                             {link !== undefined && (
-                                <Button
-                                    className="w-fit"
-                                    variant="link"
-                                    asChild
-                                >
-                                    <Link href={link}>Learn More {'->'}</Link>
-                                </Button>
+                                // <Button
+                                //     className="w-fit"
+                                //     variant="link"
+                                //     asChild
+                                // >
+                                <Link href={link} className="underline">
+                                    Explore {'->'}
+                                </Link>
+                                // </Button>
                             )}
                         </div>
                     </div>
