@@ -15,13 +15,14 @@ import {
 } from '@/components/ui/form'
 import { TypographyH1 } from '@/typography/h1'
 import { TypographyLead } from '@/typography/lead'
-import { AlertCircle, Check, Dot, Image, ImagePlus, X } from 'lucide-react'
+import { AlertCircle, Check, Dot, ImageIcon, ImagePlus, X } from 'lucide-react'
 import { detectFakeInstaAccount } from '@/actions/detect-fake-insta'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ButtonLoading } from '@/components/skeleton/loading-button'
 import { TypographyH2 } from '@/typography/h2'
 import Link from 'next/link'
+import Image from 'next/image'
 import { TypographyH3 } from '@/typography/h3'
 import Dropzone, { useDropzone } from 'react-dropzone'
 import { clear } from 'console'
@@ -148,11 +149,11 @@ export default function FakeInstaDetect() {
                         <TypographyLead>
                             Upload a screenshot of the profile.
                             <br />
-                            <p className="text-sm">
+                            <span className="text-sm">
                                 (preferably mobile, make sure to exclude the
                                 sidebar from screenshot, retaining only the main
                                 profile in the screenshot)
-                            </p>
+                            </span>
                         </TypographyLead>
                         <Form {...form}>
                             <form
@@ -168,9 +169,16 @@ export default function FakeInstaDetect() {
                                     >
                                         <input {...getInputProps()} />
                                         {previewUrl ? (
-                                            <img
+                                            <Image
                                                 src={previewUrl}
                                                 alt="Preview"
+                                                width={0}
+                                                height={0}
+                                                sizes="100vw"
+                                                style={{
+                                                    width: '100%',
+                                                    height: 'auto',
+                                                }} // optional
                                                 className="max-w-full h-auto max-h-64 object-contain"
                                             />
                                         ) : (
@@ -199,7 +207,7 @@ export default function FakeInstaDetect() {
                                     {file && (
                                         <div className="flex self-center gap-x-6 w-11/12 bordered border rounded-md px-2 py-4">
                                             <div className="flex gap-x-6 w-full">
-                                                <Image className="w-12 h-12" />
+                                                <ImageIcon className="w-12 h-12" />
                                                 <div className="flex flex-col">
                                                     <p className="text-lg">
                                                         {file.name}
