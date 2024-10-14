@@ -290,7 +290,13 @@ export default function FakeInstaDetect() {
                                         <ButtonLoading />
                                     </div>
                                 ) : (
-                                    <Button className="self-end" type="submit">
+                                    <Button
+                                        className="self-end"
+                                        type="submit"
+                                        onClick={(e) => {
+                                            if (!file) e.preventDefault()
+                                        }}
+                                    >
                                         Submit
                                     </Button>
                                 )}
