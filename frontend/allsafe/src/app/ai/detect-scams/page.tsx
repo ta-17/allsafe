@@ -169,7 +169,13 @@ export default function ScamDetect() {
                             {loading ? (
                                 <ButtonLoading />
                             ) : (
-                                <Button>Submit</Button>
+                                <Button
+                                    onClick={(e) => {
+                                        if (msg.length === 0) e.preventDefault()
+                                    }}
+                                >
+                                    Submit
+                                </Button>
                             )}
                         </form>
                     </section>
