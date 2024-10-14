@@ -2,6 +2,7 @@ name: Create vercel preview URL on pull request
 on:
     pull_request:
         branches: [main, master, release/**]
+        paths: ['frontend/allsafe/**']
 permissions:
     pull-requests: write
 jobs:
