@@ -34,7 +34,7 @@ const Breakdown = [
     { factor: 'Email address', present: true },
     { factor: 'Bank account', present: true },
 ]
-export default function ScamDetect(fromHomepage: boolean) {
+export default function ScamDetect() {
     const ref = useRef<HTMLFormElement>(null)
 
     const [msg, setMsg] = useState<string>('')
