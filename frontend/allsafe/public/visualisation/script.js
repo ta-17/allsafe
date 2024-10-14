@@ -120,7 +120,7 @@ document
         // Clear the existing model bar chart if necessary
         d3.select('#model-bar-chart').selectAll('*').remove()
 
-        await sleep(1000)
+        await sleep(800)
 
         if (wordFrequency.length === 0) {
             console.log('No data found')

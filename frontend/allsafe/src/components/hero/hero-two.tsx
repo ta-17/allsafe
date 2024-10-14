@@ -1,3 +1,5 @@
+'use client'
+
 // React and Next.js imports
 import Link from 'next/link'
 import Image from 'next/image'
@@ -38,7 +40,17 @@ const Hero = () => {
     const setSharedSubmit = useDetectScamStore((state) => state.setSharedSubmit)
 
     const handleSubmit = () => {
+        // window.localStorage.getItem('detectScam')
+        const message = window.localStorage.getItem('detectScam')
+
         setSharedMsg(msg)
+
+        if (message !== null && message.length > 0) {
+            setSharedMsg(message)
+        } else {
+            window.localStorage.setItem('detectScam', msg)
+        }
+
         setSharedSubmit()
         router.push('/ai/detect-scams')
     }
@@ -82,7 +94,8 @@ const Hero = () => {
                                 handleSubmit()
                             }}
                         >
-                            <Search />
+                            Check for Scams
+                            {/* <Search /> */}
                         </Button>
                     </div>
                     {/* <div className="not-prose mt-6 flex gap-2 md:mt-12">
