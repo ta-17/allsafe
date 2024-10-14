@@ -62,7 +62,7 @@ export default function Homepage() {
                         title="Explore Scam Trends with Data Insights"
                         body="Dive into our data visualization section, where we present insightful analytics related to scams. This interactive feature offers a visual representation of various scam trends, allowing you to better understand the current landscape. With regularly updated charts and graphs, you can explore the data that informs our community and enhances your awareness of prevalent scams."
                         img={visualizations}
-                        link="/resources/news"
+                        link="/insights"
                     />
                 </div>
                 <div className="snap-start min-h-screen w-full flex items-center justify-center">
@@ -70,7 +70,7 @@ export default function Homepage() {
                         title="Immerse Yourself in Realistic Scam Scenarios"
                         body="Think you can spot a scam? Step into the shoes of a savvy user with our text-based game designed to simulate interactions with scammers. Experience the tension and decision-making involved in real-life scenarios as you navigate through conversations. Choose your responses and actions wisely, as each decision shapes the outcome of the encounter. This engaging tool will not only entertain but also educate you on how to effectively handle potential scams."
                         img={quiz}
-                        link="/quiz/"
+                        link="/game/"
                     />
                 </div>
             </div>

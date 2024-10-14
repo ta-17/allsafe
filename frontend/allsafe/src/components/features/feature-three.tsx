@@ -63,7 +63,7 @@ const FeatureLeft = ({
                                 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
                         }}
                     >
-                        <TypographyH2 className="!my-0 text-left">
+                        <TypographyH2 className="!my-0 text-left border-0">
                             {title}
                         </TypographyH2>
                         <p className="text-lg font-light leading-[1.4] opacity-70">
