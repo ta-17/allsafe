@@ -43,7 +43,7 @@ const FeatureLeft = ({
                         className
                     )}
                 >
-                    <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
+                    <div className="not-prose relative flex h-full overflow-hidden rounded-lg border">
                         <Image
                             src={img}
                             width={0}
@@ -63,8 +63,10 @@ const FeatureLeft = ({
                                 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
                         }}
                     >
-                        <TypographyH3 className="!my-0">{title}</TypographyH3>
-                        <p className="font-light leading-[1.4] opacity-70">
+                        <TypographyH2 className="!my-0 text-left border-0">
+                            {title}
+                        </TypographyH2>
+                        <p className="text-lg font-light leading-[1.4] opacity-70">
                             {body}
                         </p>
                         <div className="not-prose flex gap-2">
@@ -73,8 +75,8 @@ const FeatureLeft = ({
                         </Button> */}
                             {link !== undefined && (
                                 // <Button className="w-fit" variant="link" asChild>
-                                <Link href={link} className="hover:underline">
-                                    Learn More {'->'}
+                                <Link href={link} className="underline">
+                                    Explore {'->'}
                                 </Link>
                                 // </Button>
                             )}

@@ -359,9 +359,14 @@ export default function ScamDetect() {
                         id="model-bar-chart-section"
                         className="model-bar-chart-section text-center w-full p-8  rounded-lg mt-12"
                     >
-                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
-                            Word Frequency Bar Chart
-                        </h2>
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800">
+                                Scam Words Found in Your Message
+                            </h2>
+                            <span>
+                                (Frequency Analysis Based on Our Dataset)
+                            </span>
+                        </div>
                         <div
                             id="model-bar-chart"
                             className="model-bar-chart chart w-full h-[400px]  rounded-lg"
