@@ -34,7 +34,7 @@ const formSchema = z.object({
 
 export default function FakeInstaDetect() {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-    const [file, setFile] = useState<File | ArrayBuffer | string | null>(null)
+    const [file, setFile] = useState<File | null>(null)
     const [msg, setMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [showMore, setShowMore] = useState<boolean>(false)
@@ -81,11 +81,12 @@ export default function FakeInstaDetect() {
 
         if (file) {
             try {
-                const fileBuffer = await file.arrayBuffer()
+                const filebuffer = await file.arrayBuffer()
                 const data = await detectFakeInstaAccount({
-                    file: fileBuffer,
+                    file: filebuffer,
                     isProfilePic: values.isProfilePic,
                     isPrivate: values.isPrivate,
+                    fileType: file.type,
                 })
 
                 setResult(data)
