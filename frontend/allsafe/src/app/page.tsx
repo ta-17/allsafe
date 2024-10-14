@@ -65,7 +65,7 @@ export default function Homepage() {
                         link="/resources/news"
                     />
                 </div>
-                <div className="snap-start min-h-screen w-full flex items-center justify-center ">
+                <div className="snap-start min-h-screen w-full flex items-center justify-center">
                     <FeatureRight
                         title="Immerse Yourself in Realistic Scam Scenarios"
                         body="Think you can spot a scam? Step into the shoes of a savvy user with our text-based game designed to simulate interactions with scammers. Experience the tension and decision-making involved in real-life scenarios as you navigate through conversations. Choose your responses and actions wisely, as each decision shapes the outcome of the encounter. This engaging tool will not only entertain but also educate you on how to effectively handle potential scams."
